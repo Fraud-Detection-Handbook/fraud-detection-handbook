@@ -1,0 +1,2618 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Baseline feature transformation &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Baseline fraud detection system" href="BaselineModeling.html" />
+    <link rel="prev" title="2. Transaction data simulator" href="SimulatedDataset.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_3_GettingStarted/BaselineFeatureTransformation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_3_GettingStarted/BaselineFeatureTransformation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_3_GettingStarted/BaselineFeatureTransformation.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_3_GettingStarted/BaselineFeatureTransformation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_3_GettingStarted/BaselineFeatureTransformation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-of-dataset">
+   3.1. Loading of dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#date-and-time-transformations">
+   3.2. Date and time transformations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customer-id-transformations">
+   3.3. Customer ID transformations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminal-id-transformations">
+   3.4. Terminal ID transformations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-of-dataset">
+   3.5. Saving of dataset
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="baseline-feature-transformation">
+<span id="id1"></span><h1><span class="section-number">3. </span>Baseline feature transformation<a class="headerlink" href="#baseline-feature-transformation" title="Permalink to this headline">¶</a></h1>
+<p>The simulated dataset generated in the previous section is simple. It only contains the essential features that characterize a payment card transaction. These are: a unique identifier for the transaction, the date and time of the transaction, the transaction amount, a unique identifier for the customer, a unique number for the merchant, and a binary variable that labels the transaction as legitimate or fraudulent (0 for legitimate or 1 for fraudulent). Fig. 1 provides the first three rows of the simulated dataset:</p>
+<p><img alt="alt text" src="../_images/tx_table1.png" /></p>
+<p style="text-align: center;">
+Fig. 1. The first three transactions in the simulated dataset used in this chapter.
+</p>
+<p>What each row essentially tells us is that, at 00:00:31, on the 1st of April 2018, a customer with ID 596 made a payment of a value of 57.19 to a merchant with ID 3156, and that the transaction was not fraudulent. Then, at 00:02:10, on the 1st of April 2018, a customer with ID 4961 made a payment of a value of 81.51 to a merchant with ID 3412, and that the transaction was not fraudulent. And so on. The simulated dataset is a long list of such transactions (1.8 million in total). The variable <code class="docutils literal notranslate"><span class="pre">transaction_ID</span></code> is a unique identifier for each transaction.</p>
+<p>While conceptually simple for a human, such a set of features is however not appropriate for a machine learning predictive model. Machine learning algorithms typically require <em>numerical</em> and <em>ordered</em> features. Numerical means that the type of the variable must be an integer or a real number. Ordered means that the order of the values of a variable is meaningful.</p>
+<p>In this dataset, the only numerical and ordered features are the transaction amount and the fraud label. The date is a Panda timestamp, and therefore not numerical. The identifiers for the transactions, customers, and terminals are numerical but not ordered: it would not make sense to assume for example that the terminal with ID 3548 is ‘bigger’ or ‘larger’ than the terminal with ID 1983. Rather, these identifiers represent distinct ‘entities’, which are referred to as <em>categorical</em> features.</p>
+<p>There is unfortunately no standard procedure to deal with non-numerical or categorical features. The topic is known in the machine learning literature as <em>feature engineering</em> or <em>feature transformation</em> and will be covered in <span class="xref myst">Chapter 7</span>. In essence, the goal of feature engineering is to design new features that are assumed to be relevant for a predictive problem. The design of these features is usually problem-dependent, and involves domain knowledge.</p>
+<p>In this section, we will implement three types of feature transformation that are known to be relevant for payment card fraud detection.</p>
+<p><img alt="encoding" src="../_images/encoding_variables.png" /></p>
+<p>The first type of transformation involves the date/time variable, and consists in creating binary features that characterize potentially relevant periods. We will create two such features. The first one will characterize whether a transaction occurs during a weekday or during the weekend. The second will characterize whether a transaction occurs during the day or the night. These features can be useful since it has been observed that fraudulent patterns differ between weekdays and weekends, and between the day and night.</p>
+<p>The second type of transformation involves the customer ID and consists in creating features that characterize the customer spending behaviors. We will follow the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id30"><span>VVBC+15</span></a>]</span>, and keep track of the average spending amount and number of transactions for each customer and for three window sizes. This will lead to the creation of six new features.</p>
+<p>The third type of transformation involves the terminal ID and consists in creating new features that characterize the ‘risk’ associated to the terminal. The risk will be defined as the average number of frauds that were observed on the terminal for three window sizes. This will lead to the creation of three new features.</p>
+<p>The table below summarizes the types of transformation that will be performed and the new features that will be created.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Original feature name</p></th>
+<th class="head"><p>Original feature type</p></th>
+<th class="head"><p>Transformation</p></th>
+<th class="head"><p>Number of new features</p></th>
+<th class="head"><p>New feature(s) type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TX_DATE_TIME</p></td>
+<td><p>Panda timestamp</p></td>
+<td><p>0 if transaction during a weekday, 1 if transaction during a weekend. The new feature is called TX_DURING_WEEKEND.</p></td>
+<td><p>1</p></td>
+<td><p>Integer (0/1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TX_DATE_TIME</p></td>
+<td><p>Panda timestamp</p></td>
+<td><p>0 if transaction between 6am and 0pm, 1 if transaction between 0pm and 6am. The new feature is called TX_DURING_NIGHT.</p></td>
+<td><p>1</p></td>
+<td><p>Integer (0/1)</p></td>
+</tr>
+<tr class="row-even"><td><p>CUSTOMER_ID</p></td>
+<td><p>Categorical variable</p></td>
+<td><p>Number of transactions by the customer in the last n day(s), for n in {1,7,30}. The new features are called CUSTOMER_ID_NB_TX_nDAY_WINDOW.</p></td>
+<td><p>3</p></td>
+<td><p>Integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>CUSTOMER_ID</p></td>
+<td><p>Categorical variable</p></td>
+<td><p>Average spending amount in the last n day(s), for n in {1,7,30}. The new features are called CUSTOMER_ID_AVG_AMOUNT_nDAY_WINDOW.</p></td>
+<td><p>3</p></td>
+<td><p>Real</p></td>
+</tr>
+<tr class="row-even"><td><p>TERMINAL_ID</p></td>
+<td><p>Categorical variable</p></td>
+<td><p>Number of transactions on the terminal in the last n+d day(s), for n in {1,7,30} and d=7. The parameter d is called delay and will be discussed later in this notebook. The new features are called TERMINAL_ID_NB_TX_nDAY_WINDOW.</p></td>
+<td><p>3</p></td>
+<td><p>Integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>TERMINAL_ID</p></td>
+<td><p>Categorical variable</p></td>
+<td><p>Average number of frauds on the terminal in the last n+d day(s), for n in {1,7,30} and d=7. The parameter d is called delay and will be discussed later in this notebook. The new features are called TERMINAL_ID_RISK_nDAY_WINDOW.</p></td>
+<td><p>3</p></td>
+<td><p>Real</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following sections provide the implementation for each of these three transformations. After the transformations, a set of 14 new features will be created. Note that some of the features are the result of aggregation functions over the values of other features or conditions (same customer, given time window). These features are often referred to as <em>aggregated features</em>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions and simulated data </span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+
+<span class="c1"># Get simulated data from Github repository</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;simulated-data-raw&quot;</span><span class="p">):</span>
+    <span class="o">!</span>git clone https://github.com/Fraud-Detection-Handbook/simulated-data-raw
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 31567  100 31567    0     0   135k      0 --:--:-- --:--:-- --:--:--  135k
+Cloning into &#39;simulated-data-raw&#39;...
+remote: Enumerating objects: 189, done.
+remote: Counting objects: 100% (189/189), done.
+remote: Compressing objects: 100% (187/187), done.
+remote: Total 189 (delta 0), reused 186 (delta 0), pack-reused 0
+Receiving objects: 100% (189/189), 28.04 MiB | 3.13 MiB/s, done.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-of-dataset">
+<h2><span class="section-number">3.1. </span>Loading of dataset<a class="headerlink" href="#loading-of-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Let us first load the transaction data simulated in the previous notebook. We will load the transaction files from April to September. Files can be loaded using the <code class="docutils literal notranslate"><span class="pre">read_from_files</span></code> function in the <a class="reference internal" href="../Chapter_References/shared_functions.html#shared-functions"><span class="std std-ref">shared functions</span></a> notebook. The function was put in this notebook since it will be used frequently throughout this book.</p>
+<p>The function takes as input the folder where the data files are located, and the dates that define the period to load (between <code class="docutils literal notranslate"><span class="pre">BEGIN_DATE</span></code> and <code class="docutils literal notranslate"><span class="pre">END_DATE</span></code>). It returns a DataFrame of transactions. The transactions are sorted by chronological order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_INPUT</span><span class="o">=</span><span class="s1">&#39;./simulated-data-raw/data/&#39;</span> 
+
+<span class="n">BEGIN_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-04-01&quot;</span>
+<span class="n">END_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-09-30&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load  files&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> transactions_df=read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> transactions loaded, containing </span><span class="si">{1}</span><span class="s2"> fraudulent transactions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">),</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
+CPU times: user 3.1 s, sys: 696 ms, total: 3.79 s
+Wall time: 4.13 s
+1754155 transactions loaded, containing 14681 fraudulent transactions
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2018-04-01 00:00:31</td>
+      <td>596</td>
+      <td>3156</td>
+      <td>57.16</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2018-04-01 00:02:10</td>
+      <td>4961</td>
+      <td>3412</td>
+      <td>81.51</td>
+      <td>130</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2018-04-01 00:07:56</td>
+      <td>2</td>
+      <td>1365</td>
+      <td>146.00</td>
+      <td>476</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2018-04-01 00:09:29</td>
+      <td>4128</td>
+      <td>8737</td>
+      <td>64.49</td>
+      <td>569</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2018-04-01 00:10:34</td>
+      <td>927</td>
+      <td>9906</td>
+      <td>50.99</td>
+      <td>634</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="date-and-time-transformations">
+<h2><span class="section-number">3.2. </span>Date and time transformations<a class="headerlink" href="#date-and-time-transformations" title="Permalink to this headline">¶</a></h2>
+<p>We will create two new binary features from the transaction dates and times:</p>
+<ul class="simple">
+<li><p>The first will characterize whether a transaction occurs during a weekday (value 0) or a weekend (1), and will be called <code class="docutils literal notranslate"><span class="pre">TX_DURING_WEEKEND</span></code></p></li>
+<li><p>The second will characterize whether a transaction occurs during the day or during the day (0) or during the night (1). The night is defined as hours that are between 0pm and 6am. It will be called <code class="docutils literal notranslate"><span class="pre">TX_DURING_NIGHT</span></code>.</p></li>
+</ul>
+<p>For the <code class="docutils literal notranslate"><span class="pre">TX_DURING_WEEKEND</span></code> feature, we define a function <code class="docutils literal notranslate"><span class="pre">is_weekend</span></code> that takes as input a Panda timestamp, and returns 1 if the date is during a weekend, or 0 otherwise. The timestamp object conveniently provides the <code class="docutils literal notranslate"><span class="pre">weekday</span></code> function to help in computing this value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_weekend</span><span class="p">(</span><span class="n">tx_datetime</span><span class="p">):</span>
+    
+    <span class="c1"># Transform date into weekday (0 is Monday, 6 is Sunday)</span>
+    <span class="n">weekday</span> <span class="o">=</span> <span class="n">tx_datetime</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>
+    <span class="c1"># Binary value: 0 if weekday, 1 if weekend</span>
+    <span class="n">is_weekend</span> <span class="o">=</span> <span class="n">weekday</span><span class="o">&gt;=</span><span class="mi">5</span>
+    
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">is_weekend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is then straghtforward to compute this feature for all transactions using the Panda <code class="docutils literal notranslate"><span class="pre">apply</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> transactions_df[&#39;TX_DURING_WEEKEND&#39;]=transactions_df.TX_DATETIME.apply(is_weekend)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.54 s, sys: 247 ms, total: 7.79 s
+Wall time: 7.94 s
+</pre></div>
+</div>
+</div>
+</div>
+<p>We follow the same logic to implement the <code class="docutils literal notranslate"><span class="pre">TX_DURING_NIGHT</span></code> feature. First, a function <code class="docutils literal notranslate"><span class="pre">is_night</span></code> that takes as input a Panda timestamp, and returns 1 if the time is during the night, or 0 otherwise. The timestamp object conveniently provides the hour property to help in computing this value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_night</span><span class="p">(</span><span class="n">tx_datetime</span><span class="p">):</span>
+    
+    <span class="c1"># Get the hour of the transaction</span>
+    <span class="n">tx_hour</span> <span class="o">=</span> <span class="n">tx_datetime</span><span class="o">.</span><span class="n">hour</span>
+    <span class="c1"># Binary value: 1 if hour less than 6, and 0 otherwise</span>
+    <span class="n">is_night</span> <span class="o">=</span> <span class="n">tx_hour</span><span class="o">&lt;=</span><span class="mi">6</span>
+    
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">is_night</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> transactions_df[&#39;TX_DURING_NIGHT&#39;]=transactions_df.TX_DATETIME.apply(is_night)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.09 s, sys: 221 ms, total: 7.31 s
+Wall time: 7.47 s
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us check that these features where correctly computed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&gt;=</span><span class="mi">30</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>TX_DURING_NIGHT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>288062</th>
+      <td>288062</td>
+      <td>2018-05-01 00:01:21</td>
+      <td>3546</td>
+      <td>2944</td>
+      <td>18.71</td>
+      <td>2592081</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>288063</th>
+      <td>288063</td>
+      <td>2018-05-01 00:01:48</td>
+      <td>206</td>
+      <td>3521</td>
+      <td>18.60</td>
+      <td>2592108</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>288064</th>
+      <td>288064</td>
+      <td>2018-05-01 00:02:22</td>
+      <td>2610</td>
+      <td>4470</td>
+      <td>66.67</td>
+      <td>2592142</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>288065</th>
+      <td>288065</td>
+      <td>2018-05-01 00:03:15</td>
+      <td>4578</td>
+      <td>1520</td>
+      <td>79.41</td>
+      <td>2592195</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>288066</th>
+      <td>288066</td>
+      <td>2018-05-01 00:03:51</td>
+      <td>1246</td>
+      <td>7809</td>
+      <td>52.08</td>
+      <td>2592231</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1754150</th>
+      <td>1754150</td>
+      <td>2018-09-30 23:56:36</td>
+      <td>161</td>
+      <td>655</td>
+      <td>54.24</td>
+      <td>15810996</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1754151</th>
+      <td>1754151</td>
+      <td>2018-09-30 23:57:38</td>
+      <td>4342</td>
+      <td>6181</td>
+      <td>1.23</td>
+      <td>15811058</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1754152</th>
+      <td>1754152</td>
+      <td>2018-09-30 23:58:21</td>
+      <td>618</td>
+      <td>1502</td>
+      <td>6.62</td>
+      <td>15811101</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1754153</th>
+      <td>1754153</td>
+      <td>2018-09-30 23:59:52</td>
+      <td>4056</td>
+      <td>3067</td>
+      <td>55.40</td>
+      <td>15811192</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1754154</th>
+      <td>1754154</td>
+      <td>2018-09-30 23:59:57</td>
+      <td>3542</td>
+      <td>9849</td>
+      <td>23.59</td>
+      <td>15811197</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1466093 rows × 11 columns</p>
+</div></div></div>
+</div>
+<p>The 2018-05-01 was a Monday, and the 2018-09-30 a Sunday. These dates are correctly flagged as weekday, and weekend, respectively. The day and night feature is also correctly set for the first transactions, that happen closely after 0 pm, and the last transactions that happen closely before 0 pm.</p>
+</div>
+<div class="section" id="customer-id-transformations">
+<h2><span class="section-number">3.3. </span>Customer ID transformations<a class="headerlink" href="#customer-id-transformations" title="Permalink to this headline">¶</a></h2>
+<p>Let us now proceed with customer ID transformations. We will take inspiration from the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id30"><span>VVBC+15</span></a>]</span>, and compute two of these features over three time windows. The first feature will be the number of transactions that occur within a time window (Frequency). The second will be the average amount spent in these transactions (Monetary value). The time windows will be set to one, seven, and thirty days. This will generate six new features. Note that these time windows could later be optimized along with the models using a model selection procedure (<a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5</span></a>).</p>
+<p>Let us implement these transformations by writing a <code class="docutils literal notranslate"><span class="pre">get_customer_spending_behaviour_features</span></code> function. The function takes as inputs the set of transactions for a customer and a set of window sizes. It returns a DataFrame with the six new features. Our implementation relies on the Panda <code class="docutils literal notranslate"><span class="pre">rolling</span></code> function, which makes easy the computation of aggregates over a time window.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_customer_spending_behaviour_features</span><span class="p">(</span><span class="n">customer_transactions</span><span class="p">,</span> <span class="n">windows_size_in_days</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">30</span><span class="p">]):</span>
+    
+    <span class="c1"># Let us first order transactions chronologically</span>
+    <span class="n">customer_transactions</span><span class="o">=</span><span class="n">customer_transactions</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># The transaction date and time is set as the index, which will allow the use of the rolling function </span>
+    <span class="n">customer_transactions</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">customer_transactions</span><span class="o">.</span><span class="n">TX_DATETIME</span>
+    
+    <span class="c1"># For each window size</span>
+    <span class="k">for</span> <span class="n">window_size</span> <span class="ow">in</span> <span class="n">windows_size_in_days</span><span class="p">:</span>
+        
+        <span class="c1"># Compute the sum of the transaction amounts and the number of transactions for the given window size</span>
+        <span class="n">SUM_AMOUNT_TX_WINDOW</span><span class="o">=</span><span class="n">customer_transactions</span><span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">NB_TX_WINDOW</span><span class="o">=</span><span class="n">customer_transactions</span><span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    
+        <span class="c1"># Compute the average transaction amount for the given window size</span>
+        <span class="c1"># NB_TX_WINDOW is always &gt;0 since current transaction is always included</span>
+        <span class="n">AVG_AMOUNT_TX_WINDOW</span><span class="o">=</span><span class="n">SUM_AMOUNT_TX_WINDOW</span><span class="o">/</span><span class="n">NB_TX_WINDOW</span>
+    
+        <span class="c1"># Save feature values</span>
+        <span class="n">customer_transactions</span><span class="p">[</span><span class="s1">&#39;CUSTOMER_ID_NB_TX_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;DAY_WINDOW&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">NB_TX_WINDOW</span><span class="p">)</span>
+        <span class="n">customer_transactions</span><span class="p">[</span><span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;DAY_WINDOW&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">AVG_AMOUNT_TX_WINDOW</span><span class="p">)</span>
+    
+    <span class="c1"># Reindex according to transaction IDs</span>
+    <span class="n">customer_transactions</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">customer_transactions</span><span class="o">.</span><span class="n">TRANSACTION_ID</span>
+        
+    <span class="c1"># And return the dataframe with the new features</span>
+    <span class="k">return</span> <span class="n">customer_transactions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us compute these aggregates for the first customer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spending_behaviour_customer_0</span><span class="o">=</span><span class="n">get_customer_spending_behaviour_features</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">spending_behaviour_customer_0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>TX_DURING_NIGHT</th>
+      <th>CUSTOMER_ID_NB_TX_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_30DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</th>
+    </tr>
+    <tr>
+      <th>TRANSACTION_ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1758</th>
+      <td>1758</td>
+      <td>2018-04-01 07:19:05</td>
+      <td>0</td>
+      <td>6076</td>
+      <td>123.59</td>
+      <td>26345</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>123.590000</td>
+      <td>1.0</td>
+      <td>123.590000</td>
+      <td>1.0</td>
+      <td>123.590000</td>
+    </tr>
+    <tr>
+      <th>8275</th>
+      <td>8275</td>
+      <td>2018-04-01 18:00:16</td>
+      <td>0</td>
+      <td>858</td>
+      <td>77.34</td>
+      <td>64816</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>100.465000</td>
+      <td>2.0</td>
+      <td>100.465000</td>
+      <td>2.0</td>
+      <td>100.465000</td>
+    </tr>
+    <tr>
+      <th>8640</th>
+      <td>8640</td>
+      <td>2018-04-01 19:02:02</td>
+      <td>0</td>
+      <td>6698</td>
+      <td>46.51</td>
+      <td>68522</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>82.480000</td>
+      <td>3.0</td>
+      <td>82.480000</td>
+      <td>3.0</td>
+      <td>82.480000</td>
+    </tr>
+    <tr>
+      <th>12169</th>
+      <td>12169</td>
+      <td>2018-04-02 08:51:06</td>
+      <td>0</td>
+      <td>6569</td>
+      <td>54.72</td>
+      <td>118266</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>59.523333</td>
+      <td>4.0</td>
+      <td>75.540000</td>
+      <td>4.0</td>
+      <td>75.540000</td>
+    </tr>
+    <tr>
+      <th>15764</th>
+      <td>15764</td>
+      <td>2018-04-02 14:05:38</td>
+      <td>0</td>
+      <td>7707</td>
+      <td>63.30</td>
+      <td>137138</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>60.467500</td>
+      <td>5.0</td>
+      <td>73.092000</td>
+      <td>5.0</td>
+      <td>73.092000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1750390</th>
+      <td>1750390</td>
+      <td>2018-09-30 13:38:41</td>
+      <td>0</td>
+      <td>3096</td>
+      <td>38.23</td>
+      <td>15773921</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>5.0</td>
+      <td>64.388000</td>
+      <td>28.0</td>
+      <td>57.306429</td>
+      <td>89.0</td>
+      <td>63.097640</td>
+    </tr>
+    <tr>
+      <th>1750758</th>
+      <td>1750758</td>
+      <td>2018-09-30 14:10:21</td>
+      <td>0</td>
+      <td>9441</td>
+      <td>43.60</td>
+      <td>15775821</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6.0</td>
+      <td>60.923333</td>
+      <td>29.0</td>
+      <td>56.833793</td>
+      <td>89.0</td>
+      <td>62.433933</td>
+    </tr>
+    <tr>
+      <th>1751039</th>
+      <td>1751039</td>
+      <td>2018-09-30 14:34:30</td>
+      <td>0</td>
+      <td>1138</td>
+      <td>69.69</td>
+      <td>15777270</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.0</td>
+      <td>62.175714</td>
+      <td>29.0</td>
+      <td>57.872414</td>
+      <td>90.0</td>
+      <td>62.514556</td>
+    </tr>
+    <tr>
+      <th>1751272</th>
+      <td>1751272</td>
+      <td>2018-09-30 14:54:59</td>
+      <td>0</td>
+      <td>9441</td>
+      <td>91.26</td>
+      <td>15778499</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>8.0</td>
+      <td>65.811250</td>
+      <td>30.0</td>
+      <td>58.985333</td>
+      <td>90.0</td>
+      <td>61.882333</td>
+    </tr>
+    <tr>
+      <th>1751455</th>
+      <td>1751455</td>
+      <td>2018-09-30 15:11:37</td>
+      <td>0</td>
+      <td>2746</td>
+      <td>27.90</td>
+      <td>15779497</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>9.0</td>
+      <td>61.598889</td>
+      <td>31.0</td>
+      <td>57.982581</td>
+      <td>91.0</td>
+      <td>61.508901</td>
+    </tr>
+  </tbody>
+</table>
+<p>384 rows × 17 columns</p>
+</div></div></div>
+</div>
+<p>We can check that the new features are consistent with the customer profile (see the previous notebook). For customer 0, the mean amount was <code class="docutils literal notranslate"><span class="pre">mean_amount</span></code>=62.26, and the transaction frequency was <code class="docutils literal notranslate"><span class="pre">mean_nb_tx_per_day</span></code>=2.18. These values are indeed closely matched by the features <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID_NB_TX_30DAY_WINDOW</span></code> and <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</span></code>, especially after 30 days.</p>
+<p>Let us now generate these features for all customers. This is straightforward using the Panda <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">apply</span></code> methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> transactions_df=transactions_df.groupby(&#39;CUSTOMER_ID&#39;).apply(lambda x: get_customer_spending_behaviour_features(x, windows_size_in_days=[1,7,30]))
+<span class="n">transactions_df</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1min 2s, sys: 1.21 s, total: 1min 3s
+Wall time: 1min 7s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>TX_DURING_NIGHT</th>
+      <th>CUSTOMER_ID_NB_TX_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_30DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2018-04-01 00:00:31</td>
+      <td>596</td>
+      <td>3156</td>
+      <td>57.16</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>57.160000</td>
+      <td>1.0</td>
+      <td>57.160000</td>
+      <td>1.0</td>
+      <td>57.160000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2018-04-01 00:02:10</td>
+      <td>4961</td>
+      <td>3412</td>
+      <td>81.51</td>
+      <td>130</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>81.510000</td>
+      <td>1.0</td>
+      <td>81.510000</td>
+      <td>1.0</td>
+      <td>81.510000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2018-04-01 00:07:56</td>
+      <td>2</td>
+      <td>1365</td>
+      <td>146.00</td>
+      <td>476</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>146.000000</td>
+      <td>1.0</td>
+      <td>146.000000</td>
+      <td>1.0</td>
+      <td>146.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2018-04-01 00:09:29</td>
+      <td>4128</td>
+      <td>8737</td>
+      <td>64.49</td>
+      <td>569</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>64.490000</td>
+      <td>1.0</td>
+      <td>64.490000</td>
+      <td>1.0</td>
+      <td>64.490000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2018-04-01 00:10:34</td>
+      <td>927</td>
+      <td>9906</td>
+      <td>50.99</td>
+      <td>634</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>50.990000</td>
+      <td>1.0</td>
+      <td>50.990000</td>
+      <td>1.0</td>
+      <td>50.990000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1754150</th>
+      <td>1754150</td>
+      <td>2018-09-30 23:56:36</td>
+      <td>161</td>
+      <td>655</td>
+      <td>54.24</td>
+      <td>15810996</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>75.280000</td>
+      <td>12.0</td>
+      <td>67.047500</td>
+      <td>72.0</td>
+      <td>69.521111</td>
+    </tr>
+    <tr>
+      <th>1754151</th>
+      <td>1754151</td>
+      <td>2018-09-30 23:57:38</td>
+      <td>4342</td>
+      <td>6181</td>
+      <td>1.23</td>
+      <td>15811058</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>1.230000</td>
+      <td>21.0</td>
+      <td>22.173810</td>
+      <td>93.0</td>
+      <td>24.780753</td>
+    </tr>
+    <tr>
+      <th>1754152</th>
+      <td>1754152</td>
+      <td>2018-09-30 23:58:21</td>
+      <td>618</td>
+      <td>1502</td>
+      <td>6.62</td>
+      <td>15811101</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>5.0</td>
+      <td>7.368000</td>
+      <td>21.0</td>
+      <td>7.400476</td>
+      <td>65.0</td>
+      <td>7.864462</td>
+    </tr>
+    <tr>
+      <th>1754153</th>
+      <td>1754153</td>
+      <td>2018-09-30 23:59:52</td>
+      <td>4056</td>
+      <td>3067</td>
+      <td>55.40</td>
+      <td>15811192</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>100.696667</td>
+      <td>16.0</td>
+      <td>107.052500</td>
+      <td>51.0</td>
+      <td>102.919608</td>
+    </tr>
+    <tr>
+      <th>1754154</th>
+      <td>1754154</td>
+      <td>2018-09-30 23:59:57</td>
+      <td>3542</td>
+      <td>9849</td>
+      <td>23.59</td>
+      <td>15811197</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>5.0</td>
+      <td>41.304000</td>
+      <td>24.0</td>
+      <td>35.308333</td>
+      <td>119.0</td>
+      <td>37.251513</td>
+    </tr>
+  </tbody>
+</table>
+<p>1754155 rows × 17 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="terminal-id-transformations">
+<h2><span class="section-number">3.4. </span>Terminal ID transformations<a class="headerlink" href="#terminal-id-transformations" title="Permalink to this headline">¶</a></h2>
+<p>Finally, let us proceed with the terminal ID transformations. The main goal will be to extract a <em>risk score</em>, that assesses the exposure of a given terminal ID to fraudulent transactions. The risk score will be defined as the average number of fraudulent transactions that occurred on a terminal ID over a time window. As for customer ID transformations, we will use three window sizes, of 1, 7, and 30 days.</p>
+<p>Contrary to customer ID transformations, the time windows will not directly precede a given transaction. Instead, they will be shifted back by a <em>delay period</em>. The delay period accounts for the fact that, in practice, the fraudulent transactions are only discovered after a fraud investigation or a customer complaint. Hence, the fraudulent labels, which are needed to compute the risk score, are only available after this delay period. To a first approximation, this delay period will be set to one week. The motivations for the delay period will be further argued in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#validation-strategies"><span class="std std-ref">Chapter 5, Validation strategies</span></a>.</p>
+<p>Let us perform the computation of the risk scores by defining a <code class="docutils literal notranslate"><span class="pre">get_count_risk_rolling_window</span></code> function. The function takes as inputs the DataFrame of transactions for a given terminal ID, the delay period, and a list of window sizes. In the first stage, the number of transactions and fraudulent transactions are computed for the delay period (<code class="docutils literal notranslate"><span class="pre">NB_TX_DELAY</span></code> and <code class="docutils literal notranslate"><span class="pre">NB_FRAUD_DELAY</span></code>). In the second stage, the number of transactions and fraudulent transactions are computed for each window size plus the delay period (<code class="docutils literal notranslate"><span class="pre">NB_TX_DELAY_WINDOW</span></code> and <code class="docutils literal notranslate"><span class="pre">NB_FRAUD_DELAY_WINDOW</span></code>). The number of transactions and fraudulent transactions that occurred for a given window size, shifted back by the delay period, is then obtained by simply computing the differences of the quantities obtained for the delay period, and the window size plus delay period:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NB_FRAUD_WINDOW</span><span class="o">=</span><span class="n">NB_FRAUD_DELAY_WINDOW</span><span class="o">-</span><span class="n">NB_FRAUD_DELAY</span>
+<span class="n">NB_TX_WINDOW</span><span class="o">=</span><span class="n">NB_TX_DELAY_WINDOW</span><span class="o">-</span><span class="n">NB_TX_DELAY</span>
+</pre></div>
+</div>
+<p>The risk score is finally obtained by computing the proportion of fraudulent transactions for each window size (or 0 if no transaction occurred for the given window):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RISK_WINDOW</span><span class="o">=</span><span class="n">NB_FRAUD_WINDOW</span><span class="o">/</span><span class="n">NB_TX_WINDOW</span>
+</pre></div>
+</div>
+<p>Additionally to the risk score, the function also returns the number of transactions for each window size. This results in the addition of six new features: The risk and number of transactions, for three window sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_count_risk_rolling_window</span><span class="p">(</span><span class="n">terminal_transactions</span><span class="p">,</span> <span class="n">delay_period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">windows_size_in_days</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">30</span><span class="p">],</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;TERMINAL_ID&quot;</span><span class="p">):</span>
+    
+    <span class="n">terminal_transactions</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">)</span>
+    
+    <span class="n">terminal_transactions</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="o">.</span><span class="n">TX_DATETIME</span>
+    
+    <span class="n">NB_FRAUD_DELAY</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">delay_period</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">NB_TX_DELAY</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">delay_period</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">window_size</span> <span class="ow">in</span> <span class="n">windows_size_in_days</span><span class="p">:</span>
+    
+        <span class="n">NB_FRAUD_DELAY_WINDOW</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">delay_period</span><span class="o">+</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">NB_TX_DELAY_WINDOW</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">delay_period</span><span class="o">+</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    
+        <span class="n">NB_FRAUD_WINDOW</span><span class="o">=</span><span class="n">NB_FRAUD_DELAY_WINDOW</span><span class="o">-</span><span class="n">NB_FRAUD_DELAY</span>
+        <span class="n">NB_TX_WINDOW</span><span class="o">=</span><span class="n">NB_TX_DELAY_WINDOW</span><span class="o">-</span><span class="n">NB_TX_DELAY</span>
+    
+        <span class="n">RISK_WINDOW</span><span class="o">=</span><span class="n">NB_FRAUD_WINDOW</span><span class="o">/</span><span class="n">NB_TX_WINDOW</span>
+        
+        <span class="n">terminal_transactions</span><span class="p">[</span><span class="n">feature</span><span class="o">+</span><span class="s1">&#39;_NB_TX_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;DAY_WINDOW&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">NB_TX_WINDOW</span><span class="p">)</span>
+        <span class="n">terminal_transactions</span><span class="p">[</span><span class="n">feature</span><span class="o">+</span><span class="s1">&#39;_RISK_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;DAY_WINDOW&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">RISK_WINDOW</span><span class="p">)</span>
+        
+    <span class="n">terminal_transactions</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">terminal_transactions</span><span class="o">.</span><span class="n">TRANSACTION_ID</span>
+    
+    <span class="c1"># Replace NA values with 0 (all undefined risk scores where NB_TX_WINDOW is 0) </span>
+    <span class="n">terminal_transactions</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">terminal_transactions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>TX_DURING_NIGHT</th>
+      <th>CUSTOMER_ID_NB_TX_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_30DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3527</th>
+      <td>3527</td>
+      <td>2018-04-01 10:17:43</td>
+      <td>3774</td>
+      <td>3059</td>
+      <td>225.41</td>
+      <td>37063</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>158.073333</td>
+      <td>3.0</td>
+      <td>158.073333</td>
+      <td>3.0</td>
+      <td>158.073333</td>
+    </tr>
+    <tr>
+      <th>5789</th>
+      <td>5790</td>
+      <td>2018-04-01 13:31:48</td>
+      <td>4944</td>
+      <td>6050</td>
+      <td>222.26</td>
+      <td>48708</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>127.605000</td>
+      <td>2.0</td>
+      <td>127.605000</td>
+      <td>2.0</td>
+      <td>127.605000</td>
+    </tr>
+    <tr>
+      <th>6549</th>
+      <td>6549</td>
+      <td>2018-04-01 14:42:02</td>
+      <td>4625</td>
+      <td>9102</td>
+      <td>226.40</td>
+      <td>52922</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>167.165000</td>
+      <td>4.0</td>
+      <td>167.165000</td>
+      <td>4.0</td>
+      <td>167.165000</td>
+    </tr>
+    <tr>
+      <th>9583</th>
+      <td>9583</td>
+      <td>2018-04-02 01:01:05</td>
+      <td>3814</td>
+      <td>6893</td>
+      <td>59.15</td>
+      <td>90065</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>6.0</td>
+      <td>29.138333</td>
+      <td>6.0</td>
+      <td>29.138333</td>
+      <td>6.0</td>
+      <td>29.138333</td>
+    </tr>
+    <tr>
+      <th>10356</th>
+      <td>10355</td>
+      <td>2018-04-02 05:03:35</td>
+      <td>2513</td>
+      <td>1143</td>
+      <td>222.04</td>
+      <td>104615</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>5.0</td>
+      <td>123.740000</td>
+      <td>5.0</td>
+      <td>123.740000</td>
+      <td>5.0</td>
+      <td>123.740000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1753524</th>
+      <td>1753524</td>
+      <td>2018-09-30 19:51:48</td>
+      <td>1671</td>
+      <td>3192</td>
+      <td>128.60</td>
+      <td>15796308</td>
+      <td>182</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6.0</td>
+      <td>138.358333</td>
+      <td>25.0</td>
+      <td>106.957200</td>
+      <td>82.0</td>
+      <td>75.621341</td>
+    </tr>
+    <tr>
+      <th>1753600</th>
+      <td>1753600</td>
+      <td>2018-09-30 20:09:00</td>
+      <td>4166</td>
+      <td>632</td>
+      <td>17.39</td>
+      <td>15797340</td>
+      <td>182</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>19.766667</td>
+      <td>19.0</td>
+      <td>15.984737</td>
+      <td>86.0</td>
+      <td>15.846512</td>
+    </tr>
+    <tr>
+      <th>1753673</th>
+      <td>1753673</td>
+      <td>2018-09-30 20:30:52</td>
+      <td>4097</td>
+      <td>1558</td>
+      <td>24.04</td>
+      <td>15798652</td>
+      <td>182</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>23.050000</td>
+      <td>16.0</td>
+      <td>40.440625</td>
+      <td>63.0</td>
+      <td>41.877460</td>
+    </tr>
+    <tr>
+      <th>1754014</th>
+      <td>1754014</td>
+      <td>2018-09-30 22:27:04</td>
+      <td>100</td>
+      <td>8604</td>
+      <td>73.85</td>
+      <td>15805624</td>
+      <td>182</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>48.010000</td>
+      <td>26.0</td>
+      <td>30.384231</td>
+      <td>103.0</td>
+      <td>23.627184</td>
+    </tr>
+    <tr>
+      <th>1754017</th>
+      <td>1754018</td>
+      <td>2018-09-30 22:28:01</td>
+      <td>4677</td>
+      <td>8935</td>
+      <td>45.85</td>
+      <td>15805681</td>
+      <td>182</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>5.0</td>
+      <td>39.078000</td>
+      <td>19.0</td>
+      <td>35.133684</td>
+      <td>85.0</td>
+      <td>37.656000</td>
+    </tr>
+  </tbody>
+</table>
+<p>14681 rows × 17 columns</p>
+</div></div></div>
+</div>
+<p>Let us compute these six features for the first terminal ID containing at least one fraud:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the first terminal ID that contains frauds</span>
+<span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">TERMINAL_ID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3156
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_count_risk_rolling_window</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TERMINAL_ID</span><span class="o">==</span><span class="mi">3059</span><span class="p">],</span> <span class="n">delay_period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">windows_size_in_days</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>...</th>
+      <th>CUSTOMER_ID_NB_TX_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_30DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_1DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_1DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_7DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_7DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_30DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_30DAY_WINDOW</th>
+    </tr>
+    <tr>
+      <th>TRANSACTION_ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3527</th>
+      <td>3527</td>
+      <td>2018-04-01 10:17:43</td>
+      <td>3774</td>
+      <td>3059</td>
+      <td>225.41</td>
+      <td>37063</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>158.073333</td>
+      <td>3.0</td>
+      <td>158.073333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4732</th>
+      <td>4732</td>
+      <td>2018-04-01 11:59:14</td>
+      <td>55</td>
+      <td>3059</td>
+      <td>36.28</td>
+      <td>43154</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>35.670000</td>
+      <td>2.0</td>
+      <td>35.670000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>16216</th>
+      <td>16216</td>
+      <td>2018-04-02 14:47:34</td>
+      <td>4879</td>
+      <td>3059</td>
+      <td>105.00</td>
+      <td>139654</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>76.010000</td>
+      <td>10.0</td>
+      <td>76.010000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18249</th>
+      <td>18249</td>
+      <td>2018-04-02 19:08:10</td>
+      <td>2263</td>
+      <td>3059</td>
+      <td>90.89</td>
+      <td>155290</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7.0</td>
+      <td>50.458571</td>
+      <td>7.0</td>
+      <td>50.458571</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>26512</th>
+      <td>26512</td>
+      <td>2018-04-03 15:44:49</td>
+      <td>4879</td>
+      <td>3059</td>
+      <td>58.51</td>
+      <td>229489</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>14.0</td>
+      <td>71.070000</td>
+      <td>14.0</td>
+      <td>71.070000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1697944</th>
+      <td>1697944</td>
+      <td>2018-09-25 05:32:56</td>
+      <td>402</td>
+      <td>3059</td>
+      <td>57.30</td>
+      <td>15312776</td>
+      <td>177</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>14.0</td>
+      <td>65.167857</td>
+      <td>46.0</td>
+      <td>68.163261</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1701971</th>
+      <td>1701971</td>
+      <td>2018-09-25 12:30:54</td>
+      <td>1035</td>
+      <td>3059</td>
+      <td>7.56</td>
+      <td>15337854</td>
+      <td>177</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>23.0</td>
+      <td>7.052174</td>
+      <td>107.0</td>
+      <td>6.763738</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1704512</th>
+      <td>1704512</td>
+      <td>2018-09-25 16:37:41</td>
+      <td>1519</td>
+      <td>3059</td>
+      <td>35.79</td>
+      <td>15352661</td>
+      <td>177</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7.0</td>
+      <td>41.404286</td>
+      <td>30.0</td>
+      <td>46.780000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1731937</th>
+      <td>1731937</td>
+      <td>2018-09-28 14:30:31</td>
+      <td>1534</td>
+      <td>3059</td>
+      <td>81.39</td>
+      <td>15604231</td>
+      <td>180</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>18.0</td>
+      <td>69.477778</td>
+      <td>89.0</td>
+      <td>63.906629</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1740901</th>
+      <td>1740901</td>
+      <td>2018-09-29 13:35:17</td>
+      <td>118</td>
+      <td>3059</td>
+      <td>90.96</td>
+      <td>15687317</td>
+      <td>181</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>35.0</td>
+      <td>104.233714</td>
+      <td>98.0</td>
+      <td>91.407143</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>193 rows × 23 columns</p>
+</div></div></div>
+</div>
+<p>We can check that the first fraud occurred on the 2018/09/10, and that risk scores only start being counted with a one-week delay.</p>
+<p>Let us finally generate these features for all terminals. This is straightforward using the Panda <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">apply</span></code> methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> transactions_df=transactions_df.groupby(&#39;TERMINAL_ID&#39;).apply(lambda x: get_count_risk_rolling_window(x, delay_period=7, windows_size_in_days=[1,7,30], feature=&quot;TERMINAL_ID&quot;))
+<span class="n">transactions_df</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2min 27s, sys: 2.23 s, total: 2min 29s
+Wall time: 2min 41s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+      <th>TX_DURING_WEEKEND</th>
+      <th>...</th>
+      <th>CUSTOMER_ID_NB_TX_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW</th>
+      <th>CUSTOMER_ID_NB_TX_30DAY_WINDOW</th>
+      <th>CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_1DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_1DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_7DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_7DAY_WINDOW</th>
+      <th>TERMINAL_ID_NB_TX_30DAY_WINDOW</th>
+      <th>TERMINAL_ID_RISK_30DAY_WINDOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2018-04-01 00:00:31</td>
+      <td>596</td>
+      <td>3156</td>
+      <td>57.16</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>57.160000</td>
+      <td>1.0</td>
+      <td>57.160000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2018-04-01 00:02:10</td>
+      <td>4961</td>
+      <td>3412</td>
+      <td>81.51</td>
+      <td>130</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>81.510000</td>
+      <td>1.0</td>
+      <td>81.510000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2018-04-01 00:07:56</td>
+      <td>2</td>
+      <td>1365</td>
+      <td>146.00</td>
+      <td>476</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>146.000000</td>
+      <td>1.0</td>
+      <td>146.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2018-04-01 00:09:29</td>
+      <td>4128</td>
+      <td>8737</td>
+      <td>64.49</td>
+      <td>569</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>64.490000</td>
+      <td>1.0</td>
+      <td>64.490000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2018-04-01 00:10:34</td>
+      <td>927</td>
+      <td>9906</td>
+      <td>50.99</td>
+      <td>634</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>50.990000</td>
+      <td>1.0</td>
+      <td>50.990000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1754150</th>
+      <td>1754150</td>
+      <td>2018-09-30 23:56:36</td>
+      <td>161</td>
+      <td>655</td>
+      <td>54.24</td>
+      <td>15810996</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>12.0</td>
+      <td>67.047500</td>
+      <td>72.0</td>
+      <td>69.521111</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>28.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>1754151</th>
+      <td>1754151</td>
+      <td>2018-09-30 23:57:38</td>
+      <td>4342</td>
+      <td>6181</td>
+      <td>1.23</td>
+      <td>15811058</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>21.0</td>
+      <td>22.173810</td>
+      <td>93.0</td>
+      <td>24.780753</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>39.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>1754152</th>
+      <td>1754152</td>
+      <td>2018-09-30 23:58:21</td>
+      <td>618</td>
+      <td>1502</td>
+      <td>6.62</td>
+      <td>15811101</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>21.0</td>
+      <td>7.400476</td>
+      <td>65.0</td>
+      <td>7.864462</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>33.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>1754153</th>
+      <td>1754153</td>
+      <td>2018-09-30 23:59:52</td>
+      <td>4056</td>
+      <td>3067</td>
+      <td>55.40</td>
+      <td>15811192</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>16.0</td>
+      <td>107.052500</td>
+      <td>51.0</td>
+      <td>102.919608</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>0.0</td>
+      <td>28.0</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>1754154</th>
+      <td>1754154</td>
+      <td>2018-09-30 23:59:57</td>
+      <td>3542</td>
+      <td>9849</td>
+      <td>23.59</td>
+      <td>15811197</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>24.0</td>
+      <td>35.308333</td>
+      <td>119.0</td>
+      <td>37.251513</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>12.0</td>
+      <td>0.0</td>
+      <td>41.0</td>
+      <td>0.02439</td>
+    </tr>
+  </tbody>
+</table>
+<p>1754155 rows × 23 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="saving-of-dataset">
+<h2><span class="section-number">3.5. </span>Saving of dataset<a class="headerlink" href="#saving-of-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Let us finally save the dataset, split into daily batches, using the pickle format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-transformed/data/&quot;</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">)</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">transactions_day</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">day</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_TIME_SECONDS&#39;</span><span class="p">)</span>
+    
+    <span class="n">date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
+    <span class="n">filename_output</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span>
+    
+    <span class="c1"># Protocol=4 required for Google Colab</span>
+    <span class="n">transactions_day</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="o">+</span><span class="n">filename_output</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-transformed/data</span></code>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_3_GettingStarted"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="SimulatedDataset.html" title="previous page"><span class="section-number">2. </span>Transaction data simulator</a>
+    <a class='right-next' id="next-link" href="BaselineModeling.html" title="next page"><span class="section-number">4. </span>Baseline fraud detection system</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

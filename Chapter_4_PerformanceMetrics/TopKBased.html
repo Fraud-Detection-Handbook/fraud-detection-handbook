@@ -1,0 +1,1150 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Precision top-k metrics &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Real-world data" href="Assessment_RealWorldData.html" />
+    <link rel="prev" title="3. Threshold-free metrics" href="ThresholdFree.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_4_PerformanceMetrics/TopKBased.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_4_PerformanceMetrics/TopKBased.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_4_PerformanceMetrics/TopKBased.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_4_PerformanceMetrics/TopKBased.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_4_PerformanceMetrics/TopKBased.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#precision-top-k">
+   4.1. Precision top-
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#card-precision-top-k">
+   4.2. Card Precision top-
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="precision-top-k-metrics">
+<span id="id1"></span><h1><span class="section-number">4. </span>Precision top-k metrics<a class="headerlink" href="#precision-top-k-metrics" title="Permalink to this headline">¶</a></h1>
+<p>This section addresses the relevance of a credit card FDS from a more operational perspective, by explicitly considering their benefits for fraud investigators. Let us first recall that the purpose of an FDS is to provide investigators with <em>alerts</em>, that is, a set of transactions that are assumed to be the most suspicious (see Section <a class="reference internal" href="../Chapter_2_Background/FDS.html#fraud-detection-system"><span class="std std-ref">Credit card fraud detection system</span></a>). These transactions are manually checked, by contacting the cardholder. The process of contacting cardholders is time-consuming, and the number of fraud investigators is limited. The number of alerts that may be checked during a given period is therefore necessarily limited.</p>
+<p><em>Precision top-<span class="math notranslate nohighlight">\(k\)</span></em> metrics aim at quantifying the performance of an FDS in this setting <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id39"><span>FZ11</span></a>]</span>. Precisions are computed daily, reflecting the precisions obtained for a working day of fraud investigators. The <span class="math notranslate nohighlight">\(k\)</span> parameter quantifies the maximum number of alerts that can be checked by investigators in a day.</p>
+<p>Formally, for a day <span class="math notranslate nohighlight">\(d\)</span>, let us denote by <span class="math notranslate nohighlight">\(\mathcal{T}_d\)</span> the set of transactions. Only a minority of transactions <span class="math notranslate nohighlight">\(\mathcal{T}_d^{Fraud} \subset \mathcal{T}_d\)</span> is fraudulent, while the majority <span class="math notranslate nohighlight">\(\mathcal{T}_d^{Genuine} \subset \mathcal{T}_d\)</span> are genuine. Let us further denote by <span class="math notranslate nohighlight">\(\mathcal{A}_d\)</span> the set of alerts. The set of alerts contains both true positives (<span class="math notranslate nohighlight">\(\mathcal{A}_d^{Fraud}\)</span>), and false positives (<span class="math notranslate nohighlight">\(\mathcal{A}_d^{Genuine}\)</span>). Fig. 1 provides a schematic illustration.</p>
+<p><img alt="" src="../_images/hits_per_day_with_caption.png" /></p>
+<p>Denoting by <span class="math notranslate nohighlight">\(k\)</span> the number of alerts that investigators can process during a day, and by <span class="math notranslate nohighlight">\(|.|\)</span> the cardinality of a set, we have <span class="math notranslate nohighlight">\(|\mathcal{A}_d|=k\)</span>, with <span class="math notranslate nohighlight">\(k &lt;&lt; |\mathcal{T}_d|\)</span>.</p>
+<p>In this setting, the performance of a classifier is to maximize the precision in the subset <span class="math notranslate nohighlight">\(\mathcal{A}_d\)</span>, that is, to maximize</p>
+<div class="math notranslate nohighlight">
+\[P&#64;k(d)=\frac{|\mathcal{A}_d^{Fraud}|}{|\mathcal{A}_d|}=\frac{|\mathcal{A}_d^{Fraud}|}{k}\]</div>
+<p>This quantity is referred to as the <em>Precision top-<span class="math notranslate nohighlight">\(k\)</span> for day <span class="math notranslate nohighlight">\(d\)</span></em> <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>, or <span class="math notranslate nohighlight">\(P&#64;k(d)\)</span>. An alternative to this measure is the <em>Card Precision top-<span class="math notranslate nohighlight">\(k\)</span></em>, which measures the <em>Precision top-<span class="math notranslate nohighlight">\(k\)</span></em> in terms of cards rather than authorized transactions. Multiple transactions in <span class="math notranslate nohighlight">\(|A_d|\)</span> from the same card should be counted as a single alert since investigators check all the recent transactions when contacting cardholders. The <em>Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> for day <span class="math notranslate nohighlight">\(d\)</span></em> is referred to as <span class="math notranslate nohighlight">\(CP&#64;k(d)\)</span>.</p>
+<p>We detail both these metrics in the following, together with their implementations.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions and simulated data </span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+
+<span class="c1"># Get simulated data from Github repository</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;simulated-data-transformed&quot;</span><span class="p">):</span>
+    <span class="o">!</span>git clone https://github.com/Fraud-Detection-Handbook/simulated-data-transformed
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 37136  100 37136    0     0   135k      0 --:--:-- --:--:-- --:--:--  135k
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="precision-top-k">
+<h2><span class="section-number">4.1. </span>Precision top-<span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#precision-top-k" title="Permalink to this headline">¶</a></h2>
+<p>Let us reuse the <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds"><span class="std std-ref">baseline fraud detection setup</span></a>, using one week of data for training, and one week of data for testing the detection performances. A decision tree of depth two is used as the prediction model.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from the 2018-07-25 to the 2018-08-14</span>
+
+<span class="n">DIR_INPUT</span><span class="o">=</span><span class="s1">&#39;./simulated-data-transformed/data/&#39;</span> 
+
+<span class="n">BEGIN_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-07-25&quot;</span>
+<span class="n">END_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-08-14&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load  files&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> transactions_df=read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> transactions loaded, containing </span><span class="si">{1}</span><span class="s2"> fraudulent transactions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">),</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span><span class="o">=</span><span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_test</span><span class="o">=</span><span class="mi">7</span>
+
+<span class="p">(</span><span class="n">train_df</span><span class="p">,</span><span class="n">test_df</span><span class="p">)</span><span class="o">=</span><span class="n">get_train_test_set</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span><span class="n">start_date_training</span><span class="p">,</span>
+                                      <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span><span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span><span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span><span class="p">)</span>
+
+<span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;TX_FRAUD&quot;</span>
+
+<span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DURING_WEEKEND&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_DURING_NIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_30DAY_WINDOW&#39;</span><span class="p">]</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">model_and_predictions_dictionary</span> <span class="o">=</span> <span class="n">fit_model_and_get_predictions</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
+                                                                 <span class="n">input_features</span><span class="p">,</span> <span class="n">output_feature</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
+CPU times: user 243 ms, sys: 146 ms, total: 389 ms
+Wall time: 406 ms
+201295 transactions loaded, containing 1792 fraudulent transactions
+</pre></div>
+</div>
+</div>
+</div>
+<p>The predictions for the test week are returned in the <code class="docutils literal notranslate"><span class="pre">predictions_test</span></code> entry of the <code class="docutils literal notranslate"><span class="pre">model_and_predictions_dictionary</span></code> dictionary. <code class="docutils literal notranslate"><span class="pre">predictions_test</span></code> is a vector that contains the fraud probabilities for each of the transactions in the <code class="docutils literal notranslate"><span class="pre">test_df</span></code> DataFrame. We can check that the number of predictions equals the number of transactions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_and_predictions_dictionary</span><span class="p">[</span><span class="s1">&#39;predictions_test&#39;</span><span class="p">])</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us add these predictions as a new column in the DataFrame of test transactions, and display the five first rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions_df</span><span class="o">=</span><span class="n">test_df</span>
+<span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;predictions&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">model_and_predictions_dictionary</span><span class="p">[</span><span class="s1">&#39;predictions_test&#39;</span><span class="p">]</span>
+<span class="n">predictions_df</span><span class="p">[[</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">,</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span><span class="s1">&#39;TERMINAL_ID&#39;</span><span class="p">,</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">,</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span><span class="s1">&#39;predictions&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>predictions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>134215</th>
+      <td>1236698</td>
+      <td>2018-08-08 00:01:14</td>
+      <td>2765</td>
+      <td>2747</td>
+      <td>-0.266899</td>
+      <td>129</td>
+      <td>0</td>
+      <td>0.003536</td>
+    </tr>
+    <tr>
+      <th>134216</th>
+      <td>1236699</td>
+      <td>2018-08-08 00:02:33</td>
+      <td>714</td>
+      <td>2073</td>
+      <td>1.295440</td>
+      <td>129</td>
+      <td>0</td>
+      <td>0.003536</td>
+    </tr>
+    <tr>
+      <th>134218</th>
+      <td>1236701</td>
+      <td>2018-08-08 00:08:40</td>
+      <td>4982</td>
+      <td>1258</td>
+      <td>-0.650902</td>
+      <td>129</td>
+      <td>0</td>
+      <td>0.003536</td>
+    </tr>
+    <tr>
+      <th>134219</th>
+      <td>1236702</td>
+      <td>2018-08-08 00:08:41</td>
+      <td>704</td>
+      <td>8501</td>
+      <td>0.290249</td>
+      <td>129</td>
+      <td>0</td>
+      <td>0.003536</td>
+    </tr>
+    <tr>
+      <th>134220</th>
+      <td>1236703</td>
+      <td>2018-08-08 00:10:34</td>
+      <td>3085</td>
+      <td>4208</td>
+      <td>0.039070</td>
+      <td>129</td>
+      <td>0</td>
+      <td>0.003536</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(P&#64;k(d)\)</span> can be computed for a day <span class="math notranslate nohighlight">\(d\)</span> by ranking all fraud probabilities by decreasing order, and computing the precision for the top <span class="math notranslate nohighlight">\(k\)</span> ranked transactions. Let us for example compute the precision obtained on the top 100 transactions, for the first day of transactions in the test set (day 129).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    
+    <span class="c1"># Order transactions by decreasing probabilities of frauds</span>
+    <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+    <span class="c1"># Get the top k most suspicious transactions</span>
+    <span class="n">df_day_top_k</span><span class="o">=</span><span class="n">df_day</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span>
+    <span class="n">list_detected_fraudulent_transactions</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">TRANSACTION_ID</span><span class="p">)</span>
+    
+    <span class="c1"># Compute precision top k</span>
+    <span class="n">precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_fraudulent_transactions</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
+    
+    <span class="k">return</span> <span class="n">list_detected_fraudulent_transactions</span><span class="p">,</span> <span class="n">precision_top_k</span>
+
+
+<span class="n">day</span><span class="o">=</span><span class="mi">129</span>
+
+<span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
+<span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">,</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span> <span class="s1">&#39;predictions&#39;</span><span class="p">]]</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">precision_top_k</span><span class="o">=</span> <span class="n">precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="o">=</span><span class="n">df_day</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">precision_top_k</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.26
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get a precision of 0.26, that is, 26 out of the one hundred most highly suspicious transactions were indeed fraudulent transactions.</p>
+<p>It should be noted that the highest value that is achievable for the <span class="math notranslate nohighlight">\(P&#64;k(d)\)</span> may be lower than one. This is the case when <span class="math notranslate nohighlight">\(k\)</span> is higher than the number of fraudulent transactions for a given day. In the example above, the number of fraudulent transactions at day 129 is 55.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a result, the maximum <span class="math notranslate nohighlight">\(P&#64;100(129)\)</span> which can be achieved is 55/100=0.55.</p>
+<p>When a test set spans multiple days, let <span class="math notranslate nohighlight">\(P&#64;k\)</span> be the mean of <span class="math notranslate nohighlight">\(P&#64;k(d)\)</span> for a set of days <span class="math notranslate nohighlight">\(d \in \mathcal{D}\)</span> <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>, that is:</p>
+<div class="math notranslate nohighlight">
+\[
+P&#64;k = \frac{1}{|\mathcal{D}|}\sum_{d \in \mathcal{D}} P_k(d)
+\]</div>
+<p>Let us implement this score with a function <code class="docutils literal notranslate"><span class="pre">precision_top_k</span></code>, which takes as input a <code class="docutils literal notranslate"><span class="pre">predictions_df</span></code> DataFrame, and a <code class="docutils literal notranslate"><span class="pre">top_k</span></code> threshold. The function loops over all days of the DataFrame, and computes for each day the number of fraudulent transactions and the precision top-<span class="math notranslate nohighlight">\(k\)</span>. It returns these values for all days as lists, together with the resulting mean of the precisions top-<span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+
+    <span class="c1"># Sort days by increasing order</span>
+    <span class="n">list_days</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">list_days</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    
+    <span class="n">precision_top_k_per_day_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nb_fraudulent_transactions_per_day</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># For each day, compute precision top k</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">list_days</span><span class="p">:</span>
+        
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span> <span class="s1">&#39;predictions&#39;</span><span class="p">]]</span>
+        
+        <span class="n">nb_fraudulent_transactions_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span>
+        
+        <span class="n">_</span><span class="p">,</span> <span class="n">_precision_top_k</span> <span class="o">=</span> <span class="n">precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">)</span>
+        
+        <span class="n">precision_top_k_per_day_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_precision_top_k</span><span class="p">)</span>
+        
+    <span class="c1"># Compute the mean</span>
+    <span class="n">mean_precision_top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">precision_top_k_per_day_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">)</span>
+    
+    <span class="c1"># Returns number of fraudulent transactions per day,</span>
+    <span class="c1"># precision top k per day, and resulting mean</span>
+    <span class="k">return</span> <span class="n">nb_fraudulent_transactions_per_day</span><span class="p">,</span><span class="n">precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_precision_top_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Applying this function to the <code class="docutils literal notranslate"><span class="pre">prediction_df</span></code>, with <span class="math notranslate nohighlight">\(k=100\)</span>, we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb_fraudulent_transactions_per_day_remaining</span><span class="p">,</span>\
+<span class="n">precision_top_k_per_day_list</span><span class="p">,</span>\
+<span class="n">mean_precision_top_k</span> <span class="o">=</span> <span class="n">precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="o">=</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of remaining fraudulent transactions: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_fraudulent_transactions_per_day_remaining</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">precision_top_k_per_day_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mean_precision_top_k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of remaining fraudulent transactions: [55, 60, 56, 56, 59, 58, 41]
+Precision top-k: [0.26, 0.35, 0.26, 0.33, 0.3, 0.35, 0.19]
+Average Precision top-k: 0.291
+</pre></div>
+</div>
+</div>
+</div>
+<p>For better visualization, let us plot these data. We reuse the plotting function introduced in <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds-training-test-sets"><span class="std std-ref">Defining the training and test sets</span></a> (imported from the <a class="reference internal" href="../Chapter_References/shared_functions.html#shared-functions"><span class="std std-ref">shared functions</span></a> notebook). First, we use the <code class="docutils literal notranslate"><span class="pre">get_tx_stats</span></code> function to compute the number of transactions per day, fraudulent transactions per day, and frauded cards per day. We then add the <em>remaining</em> fraudulent transactions per day, and precision top-<span class="math notranslate nohighlight">\(k\)</span> per day to the DataFrame, for the seven days of the test period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the number of transactions per day, </span>
+<span class="c1">#fraudulent transactions per day and fraudulent cards per day</span>
+<span class="n">tx_stats</span><span class="o">=</span><span class="n">get_tx_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span> <span class="n">start_date_df</span><span class="o">=</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add the remaining number of fraudulent transactions for the last 7 days (test period)</span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;nb_fraudulent_transactions_per_day_remaining&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nb_fraudulent_transactions_per_day_remaining</span><span class="p">)</span>
+<span class="c1"># Add precision top k for the last 7 days (test period) </span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">precision_top_k_per_day_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the <em>remaining</em> number of fraudulent transactions is the number of fraudulent transactions originally present in the test period, minus those transactions that belong to cards known to be frauded in the training set (see <code class="docutils literal notranslate"><span class="pre">get_train_test_set</span></code> function). We recall that these transactions should be removed when assessing the performance of the fraud detector on the test set, since the cards they belong to were known to be frauded when training the fraud detector.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="c1"># Plot the number of transactions per day, fraudulent transactions per day and fraudulent cards per day</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;precision_top_k_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+        <span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+        <span class="s1">&#39;nb_fraudulent_transactions_per_day_remaining&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+       <span class="p">}</span>
+
+<span class="n">fraud_and_transactions_stats_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Training period</span>
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span> <span class="o">=</span> <span class="n">delta_delay</span> <span class="o">=</span> <span class="n">delta_test</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">end_date_training</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Test period</span>
+<span class="n">start_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="p">)</span>
+<span class="n">end_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span><span class="n">delta_test</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">get_template_tx_stats</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">start_date_training</span><span class="o">=</span><span class="n">start_date_training</span><span class="p">,</span>
+                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of fraudulent transactions per day </span><span class="se">\n</span><span class="s1"> and number of detected fraudulent transactions&#39;</span><span class="p">,</span>
+                      <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span>
+                      <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span>
+                      <span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span><span class="p">,</span>
+                      <span class="n">ylim</span><span class="o">=</span><span class="mi">150</span>
+                     <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# fraudulent txs per day - Original&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day_remaining&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day_remaining&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# fraudulent txs per day - Remaining&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;precision_top_k_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# detected fraudulent txs per day&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resulting plot gives us</p>
+<ul class="simple">
+<li><p>the number of fraudulent transactions originally present in the transaction dataset, for the training, delay, and test period</p></li>
+<li><p>the number of remaining transactions for the test period (original, minus those belonging to cards known to be fraudulent in the training period)</p></li>
+<li><p>the number of detected fraudulent transactions for the test period (precision top-<span class="math notranslate nohighlight">\(k\)</span> times <span class="math notranslate nohighlight">\(k\)</span>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fraud_and_transactions_stats_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/TopKBased_21_0.png" src="../_images/TopKBased_21_0.png" />
+</div>
+</div>
+<p>The graph shows a well-detailed summary of the performance of the fraud detector from an operational point of view. In the test period, the number of fraudulent transactions varied between 74 and 91. Once known frauded cards from the training period were removed, the remaining fraudulent transactions varied between 41 and 60. Out of these remaining fraudulent transactions, the fraud detector correctly detected between 19 and 35 transactions, with an average number of 29 fraudulent transactions detected per day (average precision top-<span class="math notranslate nohighlight">\(k\)</span>=0.29), that is, about 50% of the actual fraudulent transactions were detected.</p>
+</div>
+<div class="section" id="card-precision-top-k">
+<span id="id5"></span><h2><span class="section-number">4.2. </span>Card Precision top-<span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#card-precision-top-k" title="Permalink to this headline">¶</a></h2>
+<p>As pointed out in the introduction, multiple fraudulent transactions from the same card should count as a single correct detection since investigators check all the recent transactions when contacting cardholders. The resulting metric is the <em>Card Precision Top-<span class="math notranslate nohighlight">\(k\)</span></em>, or <span class="math notranslate nohighlight">\(CP&#64;k\)</span>, and quantifies the number of correctly detected frauded cards out of the <span class="math notranslate nohighlight">\(k\)</span> cards which have the highest risks of frauds.</p>
+<p><span class="math notranslate nohighlight">\(CP&#64;k\)</span> can be computed by slightly amending the implementation of the Precision top-<span class="math notranslate nohighlight">\(k\)</span> given above. More specifically, instead of simply sorting transactions by decreasing order of their fraud probabilities, we first group transactions by customer ID. For each customer ID, we then take the maximum value of the fraud probability and the fraud label. This can be computed in a single line of code with the Panda <code class="docutils literal notranslate"><span class="pre">group_by</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> operators. The card precision top-<span class="math notranslate nohighlight">\(k\)</span> is finally computed by sorting customer IDs by decreasing order the fraud probabilities and computing the precision for the set of <span class="math notranslate nohighlight">\(k\)</span> cards with the highest fraud probabilities.</p>
+<p>This is implemented below with the function <code class="docutils literal notranslate"><span class="pre">card_precision_top_k_day</span></code>. Similarly to the <code class="docutils literal notranslate"><span class="pre">precision_top_k_day</span></code>, the function takes as input a set of transactions for a given day and a top-<span class="math notranslate nohighlight">\(k\)</span> value. It returns the list of detected frauded cards, and the card precision top-<span class="math notranslate nohighlight">\(k\)</span> for that day. As an example, let us compute the precision obtained on the top 100 cards, for the first day of transactions in the test set (day 129).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span> <span class="n">top_k</span><span class="p">):</span>
+    
+    <span class="c1"># This takes the max of the predictions AND the max of label TX_FRAUD for each CUSTOMER_ID, </span>
+    <span class="c1"># and sorts by decreasing order of fraudulent prediction</span>
+    <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># Get the top k most suspicious cards</span>
+    <span class="n">df_day_top_k</span><span class="o">=</span><span class="n">df_day</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span>
+    <span class="n">list_detected_frauded_cards</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    
+    <span class="c1"># Compute precision top k</span>
+    <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
+    
+    <span class="k">return</span> <span class="n">list_detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span>
+
+<span class="n">day</span><span class="o">=</span><span class="mi">129</span>
+
+<span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
+<span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]]</span>
+
+<span class="n">_</span><span class="p">,</span><span class="n">card_precision_top_k</span><span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="o">=</span><span class="n">df_day</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">card_precision_top_k</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.24
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get a card precision of 0.24, that is, 24 out of the first one hundred most highly suspicious cards were indeed frauded cards. The number of frauded cards on day 129 was 50.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_day</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+</pre></div>
+</div>
+</div>
+</div>
+<p>Close to 50% of the frauded cards were therefore detected. Computing the Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> over several days is achieved the same way as for the Precision Top-<span class="math notranslate nohighlight">\(k\)</span>, by computing the Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> for each day of the test period, and taking the mean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">):</span>
+
+    <span class="c1"># Sort days by increasing order</span>
+    <span class="n">list_days</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">list_days</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    
+    <span class="n">card_precision_top_k_per_day_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nb_frauded_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># For each day, compute precision top k</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">list_days</span><span class="p">:</span>
+        
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]]</span>
+        
+        <span class="n">nb_frauded_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+        
+        <span class="n">_</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
+        
+        <span class="n">card_precision_top_k_per_day_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_precision_top_k</span><span class="p">)</span>
+        
+    <span class="c1"># Compute the mean</span>
+    <span class="n">mean_card_precision_top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Returns precision top k per day as a list, and resulting mean</span>
+    <span class="k">return</span> <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb_frauded_cards_per_day_remaining</span>\
+<span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span>\
+<span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span><span class="n">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="o">=</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of remaining frauded cards: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_frauded_cards_per_day_remaining</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mean_card_precision_top_k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of remaining frauded cards: [50, 54, 51, 54, 55, 54, 38]
+Precision top-k: [0.24, 0.35, 0.26, 0.32, 0.3, 0.34, 0.19]
+Average Precision top-k: 0.2857142857142857
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us plot these results for better visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the number of transactions per day, </span>
+<span class="c1"># fraudulent transactions per day and fraudulent cards per day</span>
+<span class="n">tx_stats</span><span class="o">=</span><span class="n">get_tx_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span> <span class="n">start_date_df</span><span class="o">=</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add the remaining number of frauded cards for the last 7 days (test period)</span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nb_frauded_cards_per_day_remaining</span><span class="p">)</span>
+
+<span class="c1"># Add the card precision top k for the last 7 days (test period) </span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">card_precision_top_k_per_day_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="c1"># Plot the number of transactions per day, fraudulent transactions per day and fraudulent cards per day</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+        <span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+        <span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+       <span class="p">}</span>
+
+<span class="n">fraud_and_transactions_stats_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Training period</span>
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span> <span class="o">=</span> <span class="n">delta_delay</span> <span class="o">=</span> <span class="n">delta_test</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">end_date_training</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Test period</span>
+<span class="n">start_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="p">)</span>
+<span class="n">end_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span><span class="n">delta_test</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">get_template_tx_stats</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">start_date_training</span><span class="o">=</span><span class="n">start_date_training</span><span class="p">,</span>
+                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of fraudulent transactions per day </span><span class="se">\n</span><span class="s1"> and number of detected fraudulent transactions&#39;</span><span class="p">,</span>
+                      <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span>
+                      <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span>
+                      <span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span><span class="p">,</span>
+                      <span class="n">ylim</span><span class="o">=</span><span class="mi">150</span>
+                     <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# fraudulent txs per day - Original&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# frauded cards per day - Remaining&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# detected frauded cards per day&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fraud_and_transactions_stats_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/TopKBased_33_0.png" src="../_images/TopKBased_33_0.png" />
+</div>
+</div>
+<p>The results are qualitatively similar to those obtained using the Precision top-<span class="math notranslate nohighlight">\(k\)</span>. In the test period, the number of frauded cards varied between 69 and 80. Once transactions from known frauded cards were removed, the remaining frauded cards varied between 38 and 55. Out of these remaining frauded cards, the fraud detector correctly detected between 19 and 35 cards, with an average number of 29 frauded cards detected per day (average Card Precision Top-<span class="math notranslate nohighlight">\(k\)</span>=0.33), that is, about 60% of the actual frauded cards were detected.</p>
+<p>Finally, it should be noted that once a frauded card has been detected, it is blocked and therefore should be removed from the pool of transactions. Let us amend the <code class="docutils literal notranslate"><span class="pre">card_precision_top_k</span></code> to remove frauded cards that have been detected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">remove_detected_frauded_cards</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="c1"># Sort days by increasing order</span>
+    <span class="n">list_days</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">list_days</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    
+    <span class="c1"># At first, the list of detected frauded cards is empty</span>
+    <span class="n">list_detected_frauded_cards</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">card_precision_top_k_per_day_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nb_frauded_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># For each day, compute precision top k</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">list_days</span><span class="p">:</span>
+        
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]]</span>
+        
+        <span class="c1"># Let us remove detected frauded cards from the set of daily transactions</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+        
+        <span class="n">nb_frauded_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+        
+        <span class="n">detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
+        
+        <span class="n">card_precision_top_k_per_day_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_precision_top_k</span><span class="p">)</span>
+        
+        <span class="c1"># Let us update the list of detected frauded cards</span>
+        <span class="k">if</span> <span class="n">remove_detected_frauded_cards</span><span class="p">:</span>
+            <span class="n">list_detected_frauded_cards</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">detected_frauded_cards</span><span class="p">)</span>
+        
+    <span class="c1"># Compute the mean</span>
+    <span class="n">mean_card_precision_top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Returns precision top k per day as a list, and resulting mean</span>
+    <span class="k">return</span> <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb_frauded_cards_per_day_remaining</span>\
+<span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span>\
+<span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span><span class="n">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="o">=</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of remaining frauded cards: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_frauded_cards_per_day_remaining</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Precision top-k: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mean_card_precision_top_k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of remaining frauded cards: [50, 50, 49, 47, 46, 44, 31]
+Precision top-k: [0.24, 0.32, 0.27, 0.25, 0.23, 0.26, 0.12]
+Average Precision top-k: 0.2414285714285714
+</pre></div>
+</div>
+</div>
+</div>
+<p>We note that the number of remaining frauded cards is lower, since detected frauded cards are removed from the pool of transactions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the number of transactions per day, </span>
+<span class="c1">#fraudulent transactions per day and fraudulent cards per day</span>
+<span class="n">tx_stats</span><span class="o">=</span><span class="n">get_tx_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span> <span class="n">start_date_df</span><span class="o">=</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add the remaining number of frauded cards for the last 7 days (test period)</span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nb_frauded_cards_per_day_remaining</span><span class="p">)</span>
+
+<span class="c1"># Add the card precision top k for the last 7 days (test period) </span>
+<span class="n">tx_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">card_precision_top_k_per_day_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="c1"># Plot the number of transactions per day, fraudulent transactions per day and fraudulent cards per day</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+        <span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+        <span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+       <span class="p">}</span>
+
+<span class="n">fraud_and_transactions_stats_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Training period</span>
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span> <span class="o">=</span> <span class="n">delta_delay</span> <span class="o">=</span> <span class="n">delta_test</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">end_date_training</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Test period</span>
+<span class="n">start_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="p">)</span>
+<span class="n">end_date_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span><span class="n">delta_test</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">get_template_tx_stats</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">start_date_training</span><span class="o">=</span><span class="n">start_date_training</span><span class="p">,</span>
+                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of fraudulent transactions per day </span><span class="se">\n</span><span class="s1"> and number of detected fraudulent transactions&#39;</span><span class="p">,</span>
+                      <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span>
+                      <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span>
+                      <span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span><span class="p">,</span>
+                      <span class="n">ylim</span><span class="o">=</span><span class="mi">150</span>
+                     <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# frauded cards per day - Original&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day_remaining&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# frauded cards per day - Remaining&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;card_precision_top_k_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# detected frauded cards per day&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fraud_and_transactions_stats_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/TopKBased_41_0.png" src="../_images/TopKBased_41_0.png" />
+</div>
+</div>
+<p>This last implementation of <code class="docutils literal notranslate"><span class="pre">card_precision_top_k</span></code> is the one included in the <a class="reference internal" href="../Chapter_References/shared_functions.html#shared-functions"><span class="std std-ref">shared functions</span></a> notebook and used in the next chapters.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_4_PerformanceMetrics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ThresholdFree.html" title="previous page"><span class="section-number">3. </span>Threshold-free metrics</a>
+    <a class='right-next' id="next-link" href="Assessment_RealWorldData.html" title="next page"><span class="section-number">5. </span>Real-world data</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

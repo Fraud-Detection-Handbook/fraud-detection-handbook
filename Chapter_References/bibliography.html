@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Bibliography &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="1. Shared functions" href="shared_functions.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_References/bibliography.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_References/bibliography.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_References/bibliography.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bibliography">
+<h1><span class="section-number">2. </span>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h1>
+<p id="id1"><dl class="citation">
+<dt class="label" id="id10"><span class="brackets">AA17</span></dt>
+<dd><p>Aderemi O Adewumi and Andronicus A Akinyelu. A survey of machine-learning and nature-inspired based credit card fraud detection techniques. <em>International Journal of System Assurance Engineering and Management</em>, 8(2):937–953, 2017.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">Ban20</span></dt>
+<dd><p>European Central Bank. 6th report on card fraud. August 2020. [Online; Last consulted 09-October-2020]. URL: <a class="reference external" href="\url{https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2}"><span><a class="reference external" href="https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2">https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2</a></span></a>.</p>
+</dd>
+<dt class="label" id="id58"><span class="brackets">BTK+21</span></dt>
+<dd><p>Marijan Beg, Juliette Taka, Thomas Kluyver, Alexander Konovalov, Min Ragan-Kelley, Nicolas M Thiéry, and Hans Fangohr. Using jupyter for reproducible scientific workflows. <em>Computing in Science &amp; Engineering</em>, 23(2):36–46, 2021.</p>
+</dd>
+<dt class="label" id="id49"><span class="brackets">BB12</span></dt>
+<dd><p>James Bergstra and Yoshua Bengio. Random search for hyper-parameter optimization. <em>Journal of machine learning research</em>, 2012.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">Bis06</span></dt>
+<dd><p>Christopher M Bishop. <em>Pattern recognition and machine learning</em>. springer, 2006.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets">Bon21</span></dt>
+<dd><p>Gianluca Bontempi. <em>Statistical foundations of machine learning, 2nd edition</em>. Université Libre de Bruxelles, 2021.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets">BEP13</span></dt>
+<dd><p>Kendrick Boyd, Kevin H Eng, and C David Page. Area under the precision-recall curve: point estimates and confidence intervals. In <em>Joint European conference on machine learning and knowledge discovery in databases</em>, 451–466. Springer, 2013.</p>
+</dd>
+<dt class="label" id="id55"><span class="brackets">Car18</span></dt>
+<dd><p>Fabrizio Carcillo. <em>Beyond Supervised Learning in Credit Card Fraud Detection: A Dive into Semi-supervised and Distributed Learning</em>. Université libre de Bruxelles, 2018.</p>
+</dd>
+<dt class="label" id="id53"><span class="brackets">CDPLB+18</span></dt>
+<dd><p>Fabrizio Carcillo, Andrea Dal Pozzolo, Yann-Aël Le Borgne, Olivier Caelen, Yannis Mazzer, and Gianluca Bontempi. Scarff: a scalable framework for streaming credit card fraud detection with spark. <em>Information fusion</em>, 41:182–194, 2018.</p>
+</dd>
+<dt class="label" id="id54"><span class="brackets">CLBCB18</span></dt>
+<dd><p>Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, and Gianluca Bontempi. Streaming active learning strategies for real-life credit card fraud detection: assessment and visualization. <em>International Journal of Data Science and Analytics</em>, 5(4):285–300, 2018.</p>
+</dd>
+<dt class="label" id="id56"><span class="brackets">CLBC+19</span></dt>
+<dd><p>Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. <em>Information Sciences</em>, 2019.</p>
+</dd>
+<dt class="label" id="id45"><span class="brackets">CTMozetivc20</span></dt>
+<dd><p>Vitor Cerqueira, Luis Torgo, and Igor Mozetič. Evaluating time series forecasting models: an empirical study on performance estimation methods. <em>Machine Learning</em>, 109(11):1997–2028, 2020.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets">Cha09</span></dt>
+<dd><p>Nitesh V Chawla. Data mining for imbalanced datasets: an overview. In <em>Data mining and knowledge discovery handbook</em>, pages 875–886. Springer, 2009.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets">CCHJ08</span></dt>
+<dd><p>Nitesh V Chawla, David A Cieslak, Lawrence O Hall, and Ajay Joshi. Automatically countering imbalance and its empirical relationship to cost. <em>Data Mining and Knowledge Discovery</em>, 17(2):225–252, 2008.</p>
+</dd>
+<dt class="label" id="id26"><span class="brackets">CLB+04</span></dt>
+<dd><p>Chao Chen, Andy Liaw, Leo Breiman, and others. Using random forest to learn imbalanced data. <em>University of California, Berkeley</em>, 110(1-12):24, 2004.</p>
+</dd>
+<dt class="label" id="id51"><span class="brackets">DP15</span></dt>
+<dd><p>Andrea Dal Pozzolo. <em>Adaptive machine learning for credit card fraud detection</em>. Université libre de Bruxelles, 2015.</p>
+</dd>
+<dt class="label" id="id52"><span class="brackets">DPBC+17</span></dt>
+<dd><p>Andrea Dal Pozzolo, Giacomo Boracchi, Olivier Caelen, Cesare Alippi, and Gianluca Bontempi. Credit card fraud detection: a realistic modeling and a novel learning strategy. <em>IEEE transactions on neural networks and learning systems</em>, 29(8):3784–3797, 2017.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">DPCLB+14</span></dt>
+<dd><p>Andrea Dal Pozzolo, Olivier Caelen, Yann-Ael Le Borgne, Serge Waterschoot, and Gianluca Bontempi. Learned lessons in credit card fraud detection from a practitioner perspective. <em>Expert systems with applications</em>, 41(10):4915–4928, 2014.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets">DG06</span></dt>
+<dd><p>Jesse Davis and Mark Goadrich. The relationship between precision-recall and roc curves. In <em>Proceedings of the 23rd international conference on Machine learning</em>, 233–240. 2006.</p>
+</dd>
+<dt class="label" id="id34"><span class="brackets">Elk01</span></dt>
+<dd><p>Charles Elkan. The foundations of cost-sensitive learning. In <em>International joint conference on artificial intelligence</em>, volume 17, 973–978. Lawrence Erlbaum Associates Ltd, 2001.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets">FZ11</span></dt>
+<dd><p>Guangzhe Fan and Mu Zhu. Detection of rare items with target. <em>Statistics and Its Interface</em>, 4(1):11–17, 2011.</p>
+</dd>
+<dt class="label" id="id35"><span class="brackets">Faw04</span></dt>
+<dd><p>Tom Fawcett. Roc graphs: notes and practical considerations for researchers. <em>Machine learning</em>, 31(1):1–38, 2004.</p>
+</dd>
+<dt class="label" id="id36"><span class="brackets">Faw06</span></dt>
+<dd><p>Tom Fawcett. An introduction to roc analysis. <em>Pattern recognition letters</em>, 27(8):861–874, 2006.</p>
+</dd>
+<dt class="label" id="id47"><span class="brackets">FernandezGarciaG+18</span></dt>
+<dd><p>Alberto Fernández, Salvador García, Mikel Galar, Ronaldo C Prati, Bartosz Krawczyk, and Francisco Herrera. <em>Learning from imbalanced data sets</em>. Springer, 2018.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets">FK15</span></dt>
+<dd><p>Peter Flach and Meelis Kull. Precision-recall-gain curves: pr analysis done right. In <em>Advances in neural information processing systems</em>, 838–846. 2015.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">FHT01</span></dt>
+<dd><p>Jerome Friedman, Trevor Hastie, and Robert Tibshirani. <em>The elements of statistical learning</em>. Volume 1. Springer series in statistics New York, 2001.</p>
+</dd>
+<dt class="label" id="id46"><span class="brackets">GvZliobaiteB+14</span></dt>
+<dd><p>João Gama, Indrė Žliobaitė, Albert Bifet, Mykola Pechenizkiy, and Abdelhamid Bouchachia. A survey on concept drift adaptation. <em>ACM computing surveys (CSUR)</em>, 46(4):1–37, 2014.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">Ins18</span></dt>
+<dd><p>Statistic Brain Research Institute. Credit card fraud statistics. April 2018. [Online; Last consulted 30-March-2021]. URL: <a class="reference external" href="\url{https://www.statisticbrain.com/credit-card-fraud-statistics/}"><span><a class="reference external" href="https://www.statisticbrain.com/credit-card-fraud-statistics/">https://www.statisticbrain.com/credit-card-fraud-statistics/</a></span></a>.</p>
+</dd>
+<dt class="label" id="id50"><span class="brackets">Kag16</span></dt>
+<dd><p>Kaggle. Credit card fraud detection dataset. November 2016. [Online; Last consulted 09-March-2021]. URL: <a class="reference external" href="\url{https://www.kaggle.com/mlg-ulb/creditcardfraud}"><span><a class="reference external" href="https://www.kaggle.com/mlg-ulb/creditcardfraud">https://www.kaggle.com/mlg-ulb/creditcardfraud</a></span></a>.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">Kri10</span></dt>
+<dd><p>M. Krivko. A hybrid model for plastic card fraud detection systems. <em>Expert Systems with Applications</em>, 37(8):6070 – 6076, 2010. URL: <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0957417410001582">http://www.sciencedirect.com/science/article/pii/S0957417410001582</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.eswa.2010.02.119">doi:https://doi.org/10.1016/j.eswa.2010.02.119</a>.</p>
+</dd>
+<dt class="label" id="id57"><span class="brackets">LLBHG+19</span></dt>
+<dd><p>Bertrand Lebichot, Yann-Aël Le Borgne, Liyun He-Guelton, Frédéric Oblé, and Gianluca Bontempi. Deep-learning domain adaptation techniques for credit cards fraud detection. In <em>INNS Big Data and Deep Learning conference</em>, 78–88. Springer, 2019.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">LJ20</span></dt>
+<dd><p>Yvan Lucas and Johannes Jurgovsky. Credit card fraud detection using machine learning: a survey. <em>arXiv preprint arXiv:2010.06479</em>, 2020.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets">McK17</span></dt>
+<dd><p>Wes McKinney. <em>Python for data analysis: Data wrangling with Pandas, NumPy, and IPython - 2nd Edition</em>. O'Reilly Media, Inc., 2017.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">MekterovicBrkicBaranovic18</span></dt>
+<dd><p>Igor Mekterović, Ljiljana Brkić, and Mirta Baranović. A systematic review of data mining approaches to credit card fraud detection. <em>WSEAS Transactions on Business and Economics</em>, 15:437–444, 2018.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets">Mus19</span></dt>
+<dd><p>John Muschelli. Roc and auc with a binary predictor: a potentially misleading metric. <em>Journal of Classification</em>, pages 1–13, 2019.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets">MullerG16</span></dt>
+<dd><p>Andreas C Müller and Sarah Guido. <em>Introduction to machine learning with Python: a guide for data scientists</em>. O'Reilly Media, Inc., 2016.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">PL18</span></dt>
+<dd><p>Vipul Patil and Umesh Kumar Lilhore. A survey on different data mining &amp; machine learning methods for credit card fraud detection. <em>International Journal of Scientific Research in Computer Science, Engineering and Information Technology</em>, 3(5):320–325, 2018.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">PC18</span></dt>
+<dd><p>Rimpal R Popat and Jayesh Chaudhary. A survey on credit card fraud detection using machine learning. In <em>2018 2nd International Conference on Trends in Electronics and Informatics (ICOEI)</em>, 1120–1125. IEEE, 2018.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">PP19</span></dt>
+<dd><p>C Victoria Priscilla and D Padma Prabha. Credit card fraud detection: a systematic review. In <em>International Conference on Information, Communication and Computing Technology</em>, 290–303. Springer, 2019.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">rep19</span></dt>
+<dd><p>Nilson report. Nilson report issue 1164. November 2019. [Online; Last consulted 09-October-2020]. URL: <a class="reference external" href="\url{https://nilsonreport.com/upload/content_promo/The_Nilson_Report_Issue_1164.pdf }"><span><a class="reference external" href="https://nilsonreport.com/upload/content_promo/The_Nilson_Report_Issue_1164.pdf ">https://nilsonreport.com/upload/content_promo/The_Nilson_Report_Issue_1164.pdf </a></span></a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">SSB18</span></dt>
+<dd><p>Imane Sadgali, Nawal Sael, and Faouzia Benabbou. Detection of credit card fraud: state of art. <em>International Journal of computer science and network security</em>, 18(11):76–83, 2018.</p>
+</dd>
+<dt class="label" id="id41"><span class="brackets">SR15</span></dt>
+<dd><p>Takaya Saito and Marc Rehmsmeier. The precision-recall plot is more informative than the roc plot when evaluating binary classifiers on imbalanced datasets. <em>PloS one</em>, 10(3):e0118432, 2015.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">SKK18</span></dt>
+<dd><p>Janvier Omar Sinayobye, Fred Kiwanuka, and Swaib Kaawaase Kyanda. A state-of-the-art review of machine learning techniques for fraud detection research. In <em>2018 IEEE/ACM Symposium on Software Engineering in Africa (SEiA)</em>, 11–19. IEEE, 2018.</p>
+</dd>
+<dt class="label" id="id44"><span class="brackets">Tha20</span></dt>
+<dd><p>Alaa Tharwat. Classification assessment methods. <em>Applied Computing and Informatics</em>, 2020.</p>
+</dd>
+<dt class="label" id="id30"><span class="brackets">VVBC+15</span></dt>
+<dd><p>Véronique Van Vlasselaer, Cristián Bravo, Olivier Caelen, Tina Eliassi-Rad, Leman Akoglu, Monique Snoeck, and Bart Baesens. Apate: a novel approach for automated credit card transaction fraud detection using network-based extensions. <em>Decision Support Systems</em>, 75:38–48, 2015.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">WHJ+09</span></dt>
+<dd><p>Christopher Whitrow, David J Hand, Piotr Juszczak, David Weston, and Niall M Adams. Transaction aggregation as a strategy for credit card fraud detection. <em>Data mining and knowledge discovery</em>, 18(1):30–55, 2009.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">YAG19</span></dt>
+<dd><p>Niloofar Yousefi, Marie Alaghband, and Ivan Garibay. A comprehensive survey on machine learning techniques and user authentication approaches for credit card fraud detection. <em>arXiv preprint arXiv:1912.02629</em>, 2019.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">ZAM+16</span></dt>
+<dd><p>Zahra Zojaji, Reza Ebrahimi Atani, Amir Hassan Monadjemi, and others. A survey of credit card fraud detection techniques: data and technique oriented perspective. <em>arXiv preprint arXiv:1611.06439</em>, 2016.</p>
+</dd>
+</dl>
+</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_References"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="shared_functions.html" title="previous page"><span class="section-number">1. </span>Shared functions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

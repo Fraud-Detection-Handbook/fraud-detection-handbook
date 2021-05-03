@@ -1,0 +1,2070 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Transaction data simulator &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Baseline feature transformation" href="BaselineFeatureTransformation.html" />
+    <link rel="prev" title="1. Introduction" href="Introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_3_GettingStarted/SimulatedDataset.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_3_GettingStarted/SimulatedDataset.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_3_GettingStarted/SimulatedDataset.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_3_GettingStarted/SimulatedDataset.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_3_GettingStarted/SimulatedDataset.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customer-profiles-generation">
+   2.1. Customer profiles generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminal-profiles-generation">
+   2.2. Terminal profiles generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-of-customer-profiles-to-terminals">
+   2.3. Association of customer profiles to terminals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generation-of-transactions">
+   2.4. Generation of transactions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fraud-scenarios-generation">
+   2.5. Fraud scenarios generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-of-dataset">
+   2.6. Saving of dataset
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="transaction-data-simulator">
+<span id="id1"></span><h1><span class="section-number">2. </span>Transaction data simulator<a class="headerlink" href="#transaction-data-simulator" title="Permalink to this headline">¶</a></h1>
+<p>This section presents a transaction data simulator of legitimate and fraudulent transactions. This simulator will be used throughout the rest of this book to motivate and assess the efficiency of different fraud detection techniques in a reproducible way.</p>
+<p>A simulation is necessarily an approximation of reality. Compared to the complexity of the dynamics underlying real-world payment card transaction data, the data simulator that we present below follows a simple design.</p>
+<p>This simple design is a choice. First, having simple rules to generate transactions and fraudulent behaviors will help in interpreting the kind of patterns that different fraud detection techniques can identify. Second, while simple in its design, the data simulator will generate datasets that are challenging to deal with.</p>
+<p>The simulated datasets will highlight most of the issues that practitioners of fraud detection face using real-world data. In particular, they will include class imbalance (less than 1% of fraudulent transactions), a mix of numerical and categorical features (with categorical features involving a very large number of values), non-trivial relationships between features, and time-dependent fraud scenarios.</p>
+<h3>Design choices</h3>
+<h4>Transaction features</h4>
+<p>Our focus will be on the most essential features of a transaction. In essence, a payment card transaction consists of any amount paid to a merchant by a customer at a certain time. The six main features that summarise a transaction therefore are:</p>
+<ol class="simple">
+<li><p>The transaction ID: A unique identifier for the transaction</p></li>
+<li><p>The date and time: Date and time at which the transaction occurs</p></li>
+<li><p>The customer ID: The identifier for the customer. Each customer has a unique identifier</p></li>
+<li><p>The terminal ID: The identifier for the merchant (or more precisely the terminal). Each terminal has a unique identifier</p></li>
+<li><p>The transaction amount: The amount of the transaction.</p></li>
+<li><p>The fraud label: A binary variable, with the value <span class="math notranslate nohighlight">\(0\)</span> for a legitimate transaction, or the value <span class="math notranslate nohighlight">\(1\)</span> for a fraudulent transaction.</p></li>
+</ol>
+<p>These features will be referred to as <code class="docutils literal notranslate"><span class="pre">TRANSACTION_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">TX_DATETIME</span></code>, <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">TERMINAL_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">TX_AMOUNT</span></code>, and <code class="docutils literal notranslate"><span class="pre">TX_FRAUD</span></code>.</p>
+<p>The goal of the transaction data simulator will be to generate a table of transactions with these features. This table will be referred to as the <em>labeled transactions</em> table. Such a table is illustrated in Fig. 1.</p>
+<p><img alt="alt text" src="../_images/tx_table1.png" /></p>
+<p style="text-align: center;">
+Fig. 1. Example of labeled transaction table. Each transaction is represented as a row in the table,<br> together with its label (TX_FRAUD variable, 0 for legitimate, and 1 for fraudulent transactions).
+</p>
+<h4>Transaction generation process</h4>
+<p>The simulation will consist of five main steps:</p>
+<ol class="simple">
+<li><p>Generation of customer profiles: Every customer is different in their spending habits. This will be simulated by defining some properties for each customer. The main properties will be their geographical location, their spending frequency, and their spending amounts. The customer properties will be represented as a table, referred to as the <em>customer profile table</em>.</p></li>
+<li><p>Generation of terminal profiles: Terminal properties will simply consist of a geographical location. The terminal properties will be represented as a table, referred to as the <em>terminal profile table</em>.</p></li>
+<li><p>Association of customer profiles to terminals: We will assume that customers only make transactions on terminals that are within a radius of <span class="math notranslate nohighlight">\(r\)</span> of their geographical locations. This makes the simple assumption that a customer only makes transactions on terminals that are geographically close to their location. This step will consist of adding a feature ‘list_terminals’ to each customer profile, that contains the set of terminals that a customer can use.</p></li>
+<li><p>Generation of transactions: The simulator will loop over the set of customer profiles, and generate transactions according to their properties (spending frequencies and amounts, and available terminals). This will result in a table of transactions.</p></li>
+<li><p>Generation of fraud scenarios: This last step will label the transactions as legitimate or genuine. This will be done by following three different fraud scenarios.</p></li>
+</ol>
+<p>The transaction generation process is illustrated below.</p>
+<p><img alt="alt text" src="../_images/FlowDatasetGenerator.png" /></p>
+<p style="text-align: center;">
+Fig. 2. Transaction generation process. The customer and terminal profiles will allow to generate  <br> a set of transactions. The final step, which generates fraud scenarios, provides the labeled transactions table.
+<p>The following sections provide the implementation for each of these steps.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary imports for this notebook</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># For plotting</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;darkgrid&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;axes.facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;0.9&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="customer-profiles-generation">
+<h2><span class="section-number">2.1. </span>Customer profiles generation<a class="headerlink" href="#customer-profiles-generation" title="Permalink to this headline">¶</a></h2>
+<p>Each customer will be defined by the following properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID</span></code>: The customer unique ID</p></li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">x_customer_id</span></code>,<code class="docutils literal notranslate"><span class="pre">y_customer_id</span></code>): A pair of real coordinates (<code class="docutils literal notranslate"><span class="pre">x_customer_id</span></code>,<code class="docutils literal notranslate"><span class="pre">y_customer_id</span></code>) in a 100 * 100 grid, that defines the geographical location of the customer</p></li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">mean_amount</span></code>, <code class="docutils literal notranslate"><span class="pre">std_amount</span></code>):  The mean and standard deviation of the transaction amounts for the customer, assuming that the transaction amounts follow a normal distribution. The <code class="docutils literal notranslate"><span class="pre">mean_amount</span></code> will be drawn from a uniform distribution (5,100) and the <code class="docutils literal notranslate"><span class="pre">std_amount</span></code> will be set as the <code class="docutils literal notranslate"><span class="pre">mean_amount</span></code> divided by two.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_nb_tx_per_day</span></code>:  The average number of transactions per day for the customer, assuming that the number of transactions per day follows a Poisson distribution. This number will be drawn from a uniform distribution (0,4).</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">generate_customer_profiles_table</span></code> function provides an implementation for generating a table of customer profiles. It takes as input the number of customers for which to generate a profile and a random state for reproducibility. It returns a DataFrame containing the properties for each customer.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_customer_profiles_table</span><span class="p">(</span><span class="n">n_customers</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+        
+    <span class="n">customer_id_properties</span><span class="o">=</span><span class="p">[]</span>
+    
+    <span class="c1"># Generate customer properties from random distributions </span>
+    <span class="k">for</span> <span class="n">customer_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">):</span>
+        
+        <span class="n">x_customer_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">y_customer_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        
+        <span class="n">mean_amount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Arbitrary (but sensible) value </span>
+        <span class="n">std_amount</span> <span class="o">=</span> <span class="n">mean_amount</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># Arbitrary (but sensible) value</span>
+        
+        <span class="n">mean_nb_tx_per_day</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Arbitrary (but sensible) value </span>
+        
+        <span class="n">customer_id_properties</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">customer_id</span><span class="p">,</span>
+                                      <span class="n">x_customer_id</span><span class="p">,</span> <span class="n">y_customer_id</span><span class="p">,</span>
+                                      <span class="n">mean_amount</span><span class="p">,</span> <span class="n">std_amount</span><span class="p">,</span>
+                                      <span class="n">mean_nb_tx_per_day</span><span class="p">])</span>
+        
+    <span class="n">customer_profiles_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">customer_id_properties</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span>
+                                                                      <span class="s1">&#39;x_customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;y_customer_id&#39;</span><span class="p">,</span>
+                                                                      <span class="s1">&#39;mean_amount&#39;</span><span class="p">,</span> <span class="s1">&#39;std_amount&#39;</span><span class="p">,</span>
+                                                                      <span class="s1">&#39;mean_nb_tx_per_day&#39;</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">customer_profiles_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an example, let us generate a customer profile table for five customers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_customers</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">customer_profiles_table</span> <span class="o">=</span> <span class="n">generate_customer_profiles_table</span><span class="p">(</span><span class="n">n_customers</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">customer_profiles_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CUSTOMER_ID</th>
+      <th>x_customer_id</th>
+      <th>y_customer_id</th>
+      <th>mean_amount</th>
+      <th>std_amount</th>
+      <th>mean_nb_tx_per_day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>54.881350</td>
+      <td>71.518937</td>
+      <td>62.262521</td>
+      <td>31.131260</td>
+      <td>2.179533</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>42.365480</td>
+      <td>64.589411</td>
+      <td>46.570785</td>
+      <td>23.285393</td>
+      <td>3.567092</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>96.366276</td>
+      <td>38.344152</td>
+      <td>80.213879</td>
+      <td>40.106939</td>
+      <td>2.115580</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>56.804456</td>
+      <td>92.559664</td>
+      <td>11.748426</td>
+      <td>5.874213</td>
+      <td>0.348517</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2.021840</td>
+      <td>83.261985</td>
+      <td>78.924891</td>
+      <td>39.462446</td>
+      <td>3.480049</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="terminal-profiles-generation">
+<h2><span class="section-number">2.2. </span>Terminal profiles generation<a class="headerlink" href="#terminal-profiles-generation" title="Permalink to this headline">¶</a></h2>
+<p>Each terminal will be defined by the following properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TERMINAL_ID</span></code>: The terminal ID</p></li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">x_terminal_id</span></code>,<code class="docutils literal notranslate"><span class="pre">y_terminal_id</span></code>): A pair of real coordinates (<code class="docutils literal notranslate"><span class="pre">x_terminal_id</span></code>,<code class="docutils literal notranslate"><span class="pre">y_terminal_id</span></code>) in a 100 * 100 grid, that defines the geographical location of the terminal</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">generate_terminal_profiles_table</span></code> function provides an implementation for generating a table of terminal profiles. It takes as input the number of terminals for which to generate a profile and a random state for reproducibility. It returns a DataFrame containing the properties for each terminal.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_terminal_profiles_table</span><span class="p">(</span><span class="n">n_terminals</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+        
+    <span class="n">terminal_id_properties</span><span class="o">=</span><span class="p">[]</span>
+    
+    <span class="c1"># Generate terminal properties from random distributions </span>
+    <span class="k">for</span> <span class="n">terminal_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_terminals</span><span class="p">):</span>
+        
+        <span class="n">x_terminal_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">y_terminal_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        
+        <span class="n">terminal_id_properties</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">terminal_id</span><span class="p">,</span>
+                                      <span class="n">x_terminal_id</span><span class="p">,</span> <span class="n">y_terminal_id</span><span class="p">])</span>
+                                       
+    <span class="n">terminal_profiles_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">terminal_id_properties</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TERMINAL_ID&#39;</span><span class="p">,</span>
+                                                                      <span class="s1">&#39;x_terminal_id&#39;</span><span class="p">,</span> <span class="s1">&#39;y_terminal_id&#39;</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">terminal_profiles_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an example, let us generate a customer terminal table for five terminals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_terminals</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">terminal_profiles_table</span> <span class="o">=</span> <span class="n">generate_terminal_profiles_table</span><span class="p">(</span><span class="n">n_terminals</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">terminal_profiles_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TERMINAL_ID</th>
+      <th>x_terminal_id</th>
+      <th>y_terminal_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>54.881350</td>
+      <td>71.518937</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>60.276338</td>
+      <td>54.488318</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>42.365480</td>
+      <td>64.589411</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>43.758721</td>
+      <td>89.177300</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>96.366276</td>
+      <td>38.344152</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="association-of-customer-profiles-to-terminals">
+<h2><span class="section-number">2.3. </span>Association of customer profiles to terminals<a class="headerlink" href="#association-of-customer-profiles-to-terminals" title="Permalink to this headline">¶</a></h2>
+<p>Let us now associate terminals to customer profiles. In our design, customers can only perform transactions on terminals that are within a radius of <code class="docutils literal notranslate"><span class="pre">r</span></code> of their geographical locations.</p>
+<p>Let us first write a function, called <code class="docutils literal notranslate"><span class="pre">get_list_terminals_within_radius</span></code>, which finds these terminals for a customer profile. The function will take as input a customer profile (any row in the customer profiles table), an array that contains the geographical location of all terminals, and the radius <code class="docutils literal notranslate"><span class="pre">r</span></code>. It will return the list of terminals within a radius of <code class="docutils literal notranslate"><span class="pre">r</span></code> for that customer.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_list_terminals_within_radius</span><span class="p">(</span><span class="n">customer_profile</span><span class="p">,</span> <span class="n">x_y_terminals</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    
+    <span class="c1"># Use numpy arrays in the following to speed up computations</span>
+    
+    <span class="c1"># Location (x,y) of customer as numpy array</span>
+    <span class="n">x_y_customer</span> <span class="o">=</span> <span class="n">customer_profile</span><span class="p">[[</span><span class="s1">&#39;x_customer_id&#39;</span><span class="p">,</span><span class="s1">&#39;y_customer_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    
+    <span class="c1"># Squared difference in coordinates between customer and terminal locations</span>
+    <span class="n">squared_diff_x_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x_y_customer</span> <span class="o">-</span> <span class="n">x_y_terminals</span><span class="p">)</span>
+    
+    <span class="c1"># Sum along rows and compute suared root to get distance</span>
+    <span class="n">dist_x_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">squared_diff_x_y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Get the indices of terminals which are at a distance less than r</span>
+    <span class="n">available_terminals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dist_x_y</span><span class="o">&lt;</span><span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># Return the list of terminal IDs</span>
+    <span class="k">return</span> <span class="n">available_terminals</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an example, let us get the list of terminals that are within a radius <span class="math notranslate nohighlight">\(r=50\)</span> of the last customer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We first get the geographical locations of all terminals as a numpy array</span>
+<span class="n">x_y_terminals</span> <span class="o">=</span> <span class="n">terminal_profiles_table</span><span class="p">[[</span><span class="s1">&#39;x_terminal_id&#39;</span><span class="p">,</span><span class="s1">&#39;y_terminal_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1"># And get the list of terminals within radius of $50$ for the last customer</span>
+<span class="n">get_list_terminals_within_radius</span><span class="p">(</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">x_y_terminals</span><span class="o">=</span><span class="n">x_y_terminals</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The list contains the third and fourth terminals, which are indeed the only ones within a radius of <span class="math notranslate nohighlight">\(50\)</span> of the last customer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terminal_profiles_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TERMINAL_ID</th>
+      <th>x_terminal_id</th>
+      <th>y_terminal_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>54.881350</td>
+      <td>71.518937</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>60.276338</td>
+      <td>54.488318</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>42.365480</td>
+      <td>64.589411</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>43.758721</td>
+      <td>89.177300</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>96.366276</td>
+      <td>38.344152</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For better visualization, let us plot</p>
+<ul class="simple">
+<li><p>The locations of all terminals (in red)</p></li>
+<li><p>The location of the last customer (in blue)</p></li>
+<li><p>The region within radius of 50 of the first customer (in green)</p></li>
+</ul>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">terminals_available_to_customer_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot locations of terminals</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">terminal_profiles_table</span><span class="o">.</span><span class="n">x_terminal_id</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+           <span class="n">terminal_profiles_table</span><span class="o">.</span><span class="n">y_terminal_id</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Locations of terminals&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot location of the last customer</span>
+<span class="n">customer_id</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">x_customer_id</span><span class="p">,</span> 
+           <span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">y_customer_id</span><span class="p">,</span> 
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Location of last customer&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Plot the region within a radius of 50 of the last customr</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">x_customer_id</span><span class="p">,</span>
+                   <span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">y_customer_id</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+
+<span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Green circle: </span><span class="se">\n</span><span class="s2"> Terminals within a radius of 50 </span><span class="se">\n</span><span class="s2"> of the last customer&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+    
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x_terminal_id&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y_terminal_id&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terminals_available_to_customer_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SimulatedDataset_20_0.png" src="../_images/SimulatedDataset_20_0.png" />
+</div>
+</div>
+<p>Computing the list of available terminals for each customer is then straightforward, using the panda <code class="docutils literal notranslate"><span class="pre">apply</span></code> function. We store the results as a new column <code class="docutils literal notranslate"><span class="pre">available_terminals</span></code> in the customer profiles table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_profiles_table</span><span class="p">[</span><span class="s1">&#39;available_terminals&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">get_list_terminals_within_radius</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_y_terminals</span><span class="o">=</span><span class="n">x_y_terminals</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">customer_profiles_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CUSTOMER_ID</th>
+      <th>x_customer_id</th>
+      <th>y_customer_id</th>
+      <th>mean_amount</th>
+      <th>std_amount</th>
+      <th>mean_nb_tx_per_day</th>
+      <th>available_terminals</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>54.881350</td>
+      <td>71.518937</td>
+      <td>62.262521</td>
+      <td>31.131260</td>
+      <td>2.179533</td>
+      <td>[0, 1, 2, 3]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>42.365480</td>
+      <td>64.589411</td>
+      <td>46.570785</td>
+      <td>23.285393</td>
+      <td>3.567092</td>
+      <td>[0, 1, 2, 3]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>96.366276</td>
+      <td>38.344152</td>
+      <td>80.213879</td>
+      <td>40.106939</td>
+      <td>2.115580</td>
+      <td>[1, 4]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>56.804456</td>
+      <td>92.559664</td>
+      <td>11.748426</td>
+      <td>5.874213</td>
+      <td>0.348517</td>
+      <td>[0, 1, 2, 3]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2.021840</td>
+      <td>83.261985</td>
+      <td>78.924891</td>
+      <td>39.462446</td>
+      <td>3.480049</td>
+      <td>[2, 3]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>It is worth noting that the radius <span class="math notranslate nohighlight">\(r\)</span> controls the number of terminals that will be on average available for each customer. As the number of terminals is increased, this radius should be adapted to match the average number of available terminals per customer that is desired in a simulation.</p>
+</div>
+<div class="section" id="generation-of-transactions">
+<h2><span class="section-number">2.4. </span>Generation of transactions<a class="headerlink" href="#generation-of-transactions" title="Permalink to this headline">¶</a></h2>
+<p>The customer profiles now contain all the information that we require to generate transactions. The transaction generation will be done by a function <code class="docutils literal notranslate"><span class="pre">generate_transactions_table</span></code> that takes as input a customer profile, a starting date, and a number of days for which to generate transactions. It will return a table of transactions, which follows the format presented above (without the transaction label, which will be added in <a class="reference internal" href="#fraud-scenarios-generation"><span class="std std-ref">fraud scenarios generation</span></a>).</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_transactions_table</span><span class="p">(</span><span class="n">customer_profile</span><span class="p">,</span> <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> <span class="n">nb_days</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    
+    <span class="n">customer_transactions</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    
+    <span class="c1"># For all days</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_days</span><span class="p">):</span>
+        
+        <span class="c1"># Random number of transactions for that day </span>
+        <span class="n">nb_tx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">mean_nb_tx_per_day</span><span class="p">)</span>
+        
+        <span class="c1"># If nb_tx positive, let us generate transactions</span>
+        <span class="k">if</span> <span class="n">nb_tx</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            
+            <span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_tx</span><span class="p">):</span>
+                
+                <span class="c1"># Time of transaction: Around noon, std 20000 seconds. This choice aims at simulating the fact that </span>
+                <span class="c1"># most transactions occur during the day.</span>
+                <span class="n">time_tx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">86400</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20000</span><span class="p">))</span>
+                
+                <span class="c1"># If transaction time between 0 and 86400, let us keep it, otherwise, let us discard it</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">time_tx</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">time_tx</span><span class="o">&lt;</span><span class="mi">86400</span><span class="p">):</span>
+                    
+                    <span class="c1"># Amount is drawn from a normal distribution  </span>
+                    <span class="n">amount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">mean_amount</span><span class="p">,</span> <span class="n">customer_profile</span><span class="o">.</span><span class="n">std_amount</span><span class="p">)</span>
+                    
+                    <span class="c1"># If amount negative, draw from a uniform distribution</span>
+                    <span class="k">if</span> <span class="n">amount</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+                        <span class="n">amount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">mean_amount</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+                    
+                    <span class="n">amount</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">available_terminals</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                        
+                        <span class="n">terminal_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">available_terminals</span><span class="p">)</span>
+                    
+                        <span class="n">customer_transactions</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">time_tx</span><span class="o">+</span><span class="n">day</span><span class="o">*</span><span class="mi">86400</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span>
+                                                      <span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">,</span> 
+                                                      <span class="n">terminal_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">])</span>
+            
+    <span class="n">customer_transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">customer_transactions</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TX_TIME_SECONDS&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">customer_transactions</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">customer_transactions</span><span class="p">[</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">customer_transactions</span><span class="p">[</span><span class="s2">&quot;TX_TIME_SECONDS&quot;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">start_date</span><span class="p">)</span>
+        <span class="n">customer_transactions</span><span class="o">=</span><span class="n">customer_transactions</span><span class="p">[[</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">,</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_SECONDS&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]]</span>
+    
+    <span class="k">return</span> <span class="n">customer_transactions</span>  
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us for example generate transactions for the first customer, for five days, starting at the date 2018-04-01:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transaction_table_customer_0</span><span class="o">=</span><span class="n">generate_transactions_table</span><span class="p">(</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                         <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> 
+                                                         <span class="n">nb_days</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">transaction_table_customer_0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2018-04-01 07:19:05</td>
+      <td>0</td>
+      <td>3</td>
+      <td>123.59</td>
+      <td>26345</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2018-04-01 19:02:02</td>
+      <td>0</td>
+      <td>3</td>
+      <td>46.51</td>
+      <td>68522</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-04-01 18:00:16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>77.34</td>
+      <td>64816</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018-04-02 15:13:02</td>
+      <td>0</td>
+      <td>2</td>
+      <td>32.35</td>
+      <td>141182</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2018-04-02 14:05:38</td>
+      <td>0</td>
+      <td>3</td>
+      <td>63.30</td>
+      <td>137138</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2018-04-02 15:46:51</td>
+      <td>0</td>
+      <td>3</td>
+      <td>13.59</td>
+      <td>143211</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2018-04-02 08:51:06</td>
+      <td>0</td>
+      <td>2</td>
+      <td>54.72</td>
+      <td>118266</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2018-04-02 20:24:47</td>
+      <td>0</td>
+      <td>3</td>
+      <td>51.89</td>
+      <td>159887</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2018-04-03 12:15:47</td>
+      <td>0</td>
+      <td>2</td>
+      <td>117.91</td>
+      <td>216947</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2018-04-03 08:50:09</td>
+      <td>0</td>
+      <td>1</td>
+      <td>67.72</td>
+      <td>204609</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2018-04-03 09:25:49</td>
+      <td>0</td>
+      <td>1</td>
+      <td>28.46</td>
+      <td>206749</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2018-04-03 15:33:14</td>
+      <td>0</td>
+      <td>2</td>
+      <td>50.25</td>
+      <td>228794</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2018-04-03 07:41:24</td>
+      <td>0</td>
+      <td>1</td>
+      <td>93.26</td>
+      <td>200484</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2018-04-04 01:15:35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>46.40</td>
+      <td>263735</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2018-04-04 09:33:58</td>
+      <td>0</td>
+      <td>2</td>
+      <td>23.26</td>
+      <td>293638</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2018-04-05 16:19:09</td>
+      <td>0</td>
+      <td>1</td>
+      <td>71.96</td>
+      <td>404349</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2018-04-05 07:41:19</td>
+      <td>0</td>
+      <td>2</td>
+      <td>52.69</td>
+      <td>373279</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can make a quick check that the generated transactions follow the customer profile properties:</p>
+<ul class="simple">
+<li><p>The terminal IDs are indeed those in the list of available terminals (0, 1, 2 and 3)</p></li>
+<li><p>The transaction amounts seem to follow the amount parameters of the customer (<code class="docutils literal notranslate"><span class="pre">mean_amount</span></code>=62.26 and	<code class="docutils literal notranslate"><span class="pre">std_amount</span></code>=31.13)</p></li>
+<li><p>The number of transactions per day varies according to the transaction frequency parameters of the customer (<code class="docutils literal notranslate"><span class="pre">mean_nb_tx_per_day</span></code>=2.18).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUSTOMER_ID                       0
+x_customer_id               54.8814
+y_customer_id               71.5189
+mean_amount                 62.2625
+std_amount                  31.1313
+mean_nb_tx_per_day          2.17953
+available_terminals    [0, 1, 2, 3]
+Name: 0, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us now generate the transactions for all customers. This is straightforward using the pandas <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">apply</span></code> methods:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">=</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">generate_transactions_table</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nb_days</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">transactions_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2018-04-01 07:19:05</td>
+      <td>0</td>
+      <td>3</td>
+      <td>123.59</td>
+      <td>26345</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2018-04-01 19:02:02</td>
+      <td>0</td>
+      <td>3</td>
+      <td>46.51</td>
+      <td>68522</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-04-01 18:00:16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>77.34</td>
+      <td>64816</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018-04-02 15:13:02</td>
+      <td>0</td>
+      <td>2</td>
+      <td>32.35</td>
+      <td>141182</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2018-04-02 14:05:38</td>
+      <td>0</td>
+      <td>3</td>
+      <td>63.30</td>
+      <td>137138</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>2018-04-05 07:41:19</td>
+      <td>4</td>
+      <td>2</td>
+      <td>111.38</td>
+      <td>373279</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>2018-04-05 06:59:59</td>
+      <td>4</td>
+      <td>3</td>
+      <td>80.36</td>
+      <td>370799</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>2018-04-05 17:23:34</td>
+      <td>4</td>
+      <td>2</td>
+      <td>53.25</td>
+      <td>408214</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>2018-04-05 12:51:38</td>
+      <td>4</td>
+      <td>2</td>
+      <td>36.44</td>
+      <td>391898</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>2018-04-05 12:38:46</td>
+      <td>4</td>
+      <td>3</td>
+      <td>17.53</td>
+      <td>391126</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>65 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>This gives us a set of 65 transactions, with 5 customers, 5 terminals, and 5 days.</p>
+<h3> Scaling up to a larger dataset</h3>
+<p>We now have all the building blocks to generate a larger dataset. Let us write a <code class="docutils literal notranslate"><span class="pre">generate_dataset</span></code> function, that will take care of running all the previous steps. It will</p>
+<ul class="simple">
+<li><p>take as inputs the number of desired customers, terminals and days, as well as the starting date and the radius <code class="docutils literal notranslate"><span class="pre">r</span></code></p></li>
+<li><p>return the generated customer and terminal profiles table, and the DataFrame of transactions.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to speed up the computations, one can use the <code class="docutils literal notranslate"><span class="pre">parallel_apply</span></code> function of the <code class="docutils literal notranslate"><span class="pre">pandarallel</span></code> module. This function replaces the panda <code class="docutils literal notranslate"><span class="pre">apply</span></code> function, and allows the distribution of the computation on all the available CPUs.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_dataset</span><span class="p">(</span><span class="n">n_customers</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">n_terminals</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">,</span> <span class="n">nb_days</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">customer_profiles_table</span> <span class="o">=</span> <span class="n">generate_customer_profiles_table</span><span class="p">(</span><span class="n">n_customers</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time to generate customer profiles table: </span><span class="si">{0:.2}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="p">))</span>
+    
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">terminal_profiles_table</span> <span class="o">=</span> <span class="n">generate_terminal_profiles_table</span><span class="p">(</span><span class="n">n_terminals</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time to generate terminal profiles table: </span><span class="si">{0:.2}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="p">))</span>
+    
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">x_y_terminals</span> <span class="o">=</span> <span class="n">terminal_profiles_table</span><span class="p">[[</span><span class="s1">&#39;x_terminal_id&#39;</span><span class="p">,</span><span class="s1">&#39;y_terminal_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">customer_profiles_table</span><span class="p">[</span><span class="s1">&#39;available_terminals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">get_list_terminals_within_radius</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_y_terminals</span><span class="o">=</span><span class="n">x_y_terminals</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># With Pandarallel</span>
+    <span class="c1">#customer_profiles_table[&#39;available_terminals&#39;] = customer_profiles_table.parallel_apply(lambda x : get_list_closest_terminals(x, x_y_terminals=x_y_terminals, r=r), axis=1)</span>
+    <span class="n">customer_profiles_table</span><span class="p">[</span><span class="s1">&#39;nb_terminals&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">available_terminals</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time to associate terminals to customers: </span><span class="si">{0:.2}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="p">))</span>
+    
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">transactions_df</span><span class="o">=</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">generate_transactions_table</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nb_days</span><span class="o">=</span><span class="n">nb_days</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># With Pandarallel</span>
+    <span class="c1">#transactions_df=customer_profiles_table.groupby(&#39;CUSTOMER_ID&#39;).parallel_apply(lambda x : generate_transactions_table(x.iloc[0], nb_days=nb_days)).reset_index(drop=True)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time to generate transactions: </span><span class="si">{0:.2}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="p">))</span>
+    
+    <span class="c1"># Sort transactions chronologically</span>
+    <span class="n">transactions_df</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_DATETIME&#39;</span><span class="p">)</span>
+    <span class="c1"># Reset indices, starting from 0</span>
+    <span class="n">transactions_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">transactions_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># TRANSACTION_ID are the dataframe indices, starting from 0</span>
+    <span class="n">transactions_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">customer_profiles_table</span><span class="p">,</span> <span class="n">terminal_profiles_table</span><span class="p">,</span> <span class="n">transactions_df</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us generate a dataset that features</p>
+<ul class="simple">
+<li><p>5000 customers</p></li>
+<li><p>10000 terminals</p></li>
+<li><p>183 days of transactions (which corresponds to a simulated period from 2018/04/01 to 2018/09/30)</p></li>
+</ul>
+<p>The starting date is arbitrarily fixed at 2018/04/01. The radius <span class="math notranslate nohighlight">\(r\)</span> is set to 5, which corresponds to around 100 available terminals for each customer.</p>
+<p>It takes around 3 minutes to generate this dataset on a standard laptop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">customer_profiles_table</span><span class="p">,</span> <span class="n">terminal_profiles_table</span><span class="p">,</span> <span class="n">transactions_df</span><span class="p">)</span><span class="o">=</span>\
+    <span class="n">generate_dataset</span><span class="p">(</span><span class="n">n_customers</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> 
+                     <span class="n">n_terminals</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> 
+                     <span class="n">nb_days</span><span class="o">=</span><span class="mi">183</span><span class="p">,</span> 
+                     <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> 
+                     <span class="n">r</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time to generate customer profiles table: 0.076s
+Time to generate terminal profiles table: 0.06s
+Time to associate terminals to customers: 4.3s
+Time to generate transactions: 2.9e+02s
+</pre></div>
+</div>
+</div>
+</div>
+<p>A total of 1754155 transactions were generated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1754155, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this number is low compared to real-world fraud detection systems, where millions of transactions may need to be processed every day. This will however be enough for the purpose of this book, in particular to keep reasonable executions times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2018-04-01 00:00:31</td>
+      <td>596</td>
+      <td>3156</td>
+      <td>57.16</td>
+      <td>31</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2018-04-01 00:02:10</td>
+      <td>4961</td>
+      <td>3412</td>
+      <td>81.51</td>
+      <td>130</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2018-04-01 00:07:56</td>
+      <td>2</td>
+      <td>1365</td>
+      <td>146.00</td>
+      <td>476</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2018-04-01 00:09:29</td>
+      <td>4128</td>
+      <td>8737</td>
+      <td>64.49</td>
+      <td>569</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2018-04-01 00:10:34</td>
+      <td>927</td>
+      <td>9906</td>
+      <td>50.99</td>
+      <td>634</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1754150</th>
+      <td>1754150</td>
+      <td>2018-09-30 23:56:36</td>
+      <td>161</td>
+      <td>655</td>
+      <td>54.24</td>
+      <td>15810996</td>
+      <td>182</td>
+    </tr>
+    <tr>
+      <th>1754151</th>
+      <td>1754151</td>
+      <td>2018-09-30 23:57:38</td>
+      <td>4342</td>
+      <td>6181</td>
+      <td>1.23</td>
+      <td>15811058</td>
+      <td>182</td>
+    </tr>
+    <tr>
+      <th>1754152</th>
+      <td>1754152</td>
+      <td>2018-09-30 23:58:21</td>
+      <td>618</td>
+      <td>1502</td>
+      <td>6.62</td>
+      <td>15811101</td>
+      <td>182</td>
+    </tr>
+    <tr>
+      <th>1754153</th>
+      <td>1754153</td>
+      <td>2018-09-30 23:59:52</td>
+      <td>4056</td>
+      <td>3067</td>
+      <td>55.40</td>
+      <td>15811192</td>
+      <td>182</td>
+    </tr>
+    <tr>
+      <th>1754154</th>
+      <td>1754154</td>
+      <td>2018-09-30 23:59:57</td>
+      <td>3542</td>
+      <td>9849</td>
+      <td>23.59</td>
+      <td>15811197</td>
+      <td>182</td>
+    </tr>
+  </tbody>
+</table>
+<p>1754155 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>As a sanity check, let us plot the distribution of transaction amounts and transaction times.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">distribution_amount_times_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">amount_val</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">][</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">time_val</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">][</span><span class="s1">&#39;TX_TIME_SECONDS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">amount_val</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">hist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of transaction amounts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">amount_val</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">amount_val</span><span class="p">)])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Number of transactions&quot;</span><span class="p">)</span>
+
+<span class="c1"># We divide the time variables by 86400 to transform seconds to days in the plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">time_val</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">hist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of transaction times&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">time_val</span><span class="o">/</span><span class="mi">86400</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">time_val</span><span class="o">/</span><span class="mi">86400</span><span class="p">)])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Time (days)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Number of transactions&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distribution_amount_times_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SimulatedDataset_43_0.png" src="../_images/SimulatedDataset_43_0.png" />
+</div>
+</div>
+<p>The distribution of transaction amounts has most of its mass for small amounts. The distribution of transaction times  follows a gaussian distribution on a daily basis, centered around noon. These two distributions are in accordance with the simulation parameters used in the previous sections.</p>
+</div>
+<div class="section" id="fraud-scenarios-generation">
+<span id="id2"></span><h2><span class="section-number">2.5. </span>Fraud scenarios generation<a class="headerlink" href="#fraud-scenarios-generation" title="Permalink to this headline">¶</a></h2>
+<p>This last step of the simulation adds fraudulent transactions to the dataset, using the following fraud scenarios:</p>
+<ul class="simple">
+<li><p>Scenario 1: Any transaction whose amount is more than 220 is a fraud. This scenario is not inspired by a real-world scenario. Rather, it will provide an obvious fraud pattern that should be detected by any baseline fraud detector. This will be useful to validate the implementation of a fraud detection technique.</p></li>
+<li><p>Scenario 2: Every day, a list of two terminals is drawn at random. All transactions on these terminals in the next 28 days will be marked as fraudulent. This scenario simulates a criminal use of a terminal, through phishing for example. Detecting this scenario will be possible by adding features that keep track of the number of fraudulent transactions on the terminal. Since the terminal is only compromised for 28 days, additional strategies that involve concept drift will need to be designed to efficiently deal with this scenario.</p></li>
+<li><p>Scenario 3: Every day, a list of 3 customers is drawn at random. In the next 14 days, 1/3 of their transactions have their amounts multiplied by 5 and marked as fraudulent. This scenario simulates a card-not-present fraud where the credentials of a customer have been leaked. The customer continues to make transactions, and transactions of higher values are made by the fraudster who tries to maximize their gains. Detecting this scenario will require adding features that keep track of the spending habits of the customer. As for scenario 2, since the card is only temporarily compromised, additional strategies that involve concept drift should also be designed.</p></li>
+</ul>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_frauds</span><span class="p">(</span><span class="n">customer_profiles_table</span><span class="p">,</span> <span class="n">terminal_profiles_table</span><span class="p">,</span> <span class="n">transactions_df</span><span class="p">):</span>
+    
+    <span class="c1"># By default, all transactions are genuine</span>
+    <span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD_SCENARIO&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    
+    <span class="c1"># Scenario 1</span>
+    <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_AMOUNT</span><span class="o">&gt;</span><span class="mi">220</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_AMOUNT</span><span class="o">&gt;</span><span class="mi">220</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD_SCENARIO&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">nb_frauds_scenario_1</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of frauds from scenario 1: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_frauds_scenario_1</span><span class="p">))</span>
+    
+    <span class="c1"># Scenario 2</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">max</span><span class="p">()):</span>
+        
+        <span class="n">compromised_terminals</span> <span class="o">=</span> <span class="n">terminal_profiles_table</span><span class="o">.</span><span class="n">TERMINAL_ID</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
+        
+        <span class="n">compromised_transactions</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&gt;=</span><span class="n">day</span><span class="p">)</span> <span class="o">&amp;</span> 
+                                                    <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&lt;</span><span class="n">day</span><span class="o">+</span><span class="mi">28</span><span class="p">)</span> <span class="o">&amp;</span> 
+                                                    <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TERMINAL_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">compromised_terminals</span><span class="p">))]</span>
+                            
+        <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">compromised_transactions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">compromised_transactions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;TX_FRAUD_SCENARIO&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+    
+    <span class="n">nb_frauds_scenario_2</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">-</span><span class="n">nb_frauds_scenario_1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of frauds from scenario 2: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_frauds_scenario_2</span><span class="p">))</span>
+    
+    <span class="c1"># Scenario 3</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">max</span><span class="p">()):</span>
+        
+        <span class="n">compromised_customers</span> <span class="o">=</span> <span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">day</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+        
+        <span class="n">compromised_transactions</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&gt;=</span><span class="n">day</span><span class="p">)</span> <span class="o">&amp;</span> 
+                                                    <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">&lt;</span><span class="n">day</span><span class="o">+</span><span class="mi">14</span><span class="p">)</span> <span class="o">&amp;</span> 
+                                                    <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">compromised_customers</span><span class="p">))]</span>
+        
+        <span class="n">nb_compromised_transactions</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">compromised_transactions</span><span class="p">)</span>
+        
+        
+        <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
+        <span class="n">index_fauds</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">compromised_transactions</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">),</span><span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">nb_compromised_transactions</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+        
+        <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index_fauds</span><span class="p">,</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index_fauds</span><span class="p">,</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span>
+        <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index_fauds</span><span class="p">,</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="n">transactions_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index_fauds</span><span class="p">,</span><span class="s1">&#39;TX_FRAUD_SCENARIO&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span>
+        
+                             
+    <span class="n">nb_frauds_scenario_3</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">-</span><span class="n">nb_frauds_scenario_2</span><span class="o">-</span><span class="n">nb_frauds_scenario_1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of frauds from scenario 3: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nb_frauds_scenario_3</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">transactions_df</span>                 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us add fraudulent transactions using these scenarios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> transactions_df = add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of frauds from scenario 1: 978
+Number of frauds from scenario 2: 9099
+Number of frauds from scenario 3: 4604
+CPU times: user 1min 46s, sys: 5.15 s, total: 1min 51s
+Wall time: 1min 56s
+</pre></div>
+</div>
+</div>
+</div>
+<p>Percentage of fraudulent transactions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.008369271814634397
+</pre></div>
+</div>
+</div>
+</div>
+<p>Number of fraudulent transactions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14681
+</pre></div>
+</div>
+</div>
+</div>
+<p>A total of 14681 transactions were marked as fraudulent. This amounts to 0.8% of the transactions. Note that the sum of the frauds for each scenario does not equal the total amount of fraudulent transactions. This is because the same transactions may have been marked as fraudulent by two or more fraud scenarios.</p>
+<p>Our simulated transaction dataset is now complete, with a fraudulent label added to all transactions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TRANSACTION_ID</th>
+      <th>TX_DATETIME</th>
+      <th>CUSTOMER_ID</th>
+      <th>TERMINAL_ID</th>
+      <th>TX_AMOUNT</th>
+      <th>TX_TIME_SECONDS</th>
+      <th>TX_TIME_DAYS</th>
+      <th>TX_FRAUD</th>
+      <th>TX_FRAUD_SCENARIO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2018-04-01 00:00:31</td>
+      <td>596</td>
+      <td>3156</td>
+      <td>57.16</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2018-04-01 00:02:10</td>
+      <td>4961</td>
+      <td>3412</td>
+      <td>81.51</td>
+      <td>130</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2018-04-01 00:07:56</td>
+      <td>2</td>
+      <td>1365</td>
+      <td>146.00</td>
+      <td>476</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2018-04-01 00:09:29</td>
+      <td>4128</td>
+      <td>8737</td>
+      <td>64.49</td>
+      <td>569</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2018-04-01 00:10:34</td>
+      <td>927</td>
+      <td>9906</td>
+      <td>50.99</td>
+      <td>634</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD_SCENARIO</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(973, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD_SCENARIO</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9077, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD_SCENARIO</span><span class="o">==</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4631, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us check how the number of transactions, the number of fraudulent transactions, and the number of frauded cards vary on a daily basis.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">):</span>
+    <span class="c1">#Number of transactions per day</span>
+    <span class="n">nb_tx_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="c1">#Number of fraudulent transactions per day</span>
+    <span class="n">nb_fraud_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1">#Number of fraudulent cards per day</span>
+    <span class="n">nb_fraudcard_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">nb_tx_per_day</span><span class="p">,</span><span class="n">nb_fraud_per_day</span><span class="p">,</span><span class="n">nb_fraudcard_per_day</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">nb_tx_per_day</span><span class="p">,</span><span class="n">nb_fraud_per_day</span><span class="p">,</span><span class="n">nb_fraudcard_per_day</span><span class="p">)</span><span class="o">=</span><span class="n">get_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">)</span>
+
+<span class="n">n_days</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">nb_tx_per_day</span><span class="p">)</span>
+<span class="n">tx_stats</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">nb_tx_per_day</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span><span class="n">nb_fraud_per_day</span><span class="p">,</span><span class="n">nb_fraudcard_per_day</span><span class="p">])})</span>
+<span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;stat_type&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nb_tx_per_day&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">n_days</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;nb_fraud_per_day&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">n_days</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;nb_fraudcard_per_day&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">n_days</span>
+<span class="n">tx_stats</span><span class="o">=</span><span class="n">tx_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;darkgrid&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
+
+<span class="n">fraud_and_transactions_stats_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+
+<span class="n">fraud_and_transactions_stats_fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="n">sns_plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;TX_TIME_DAYS&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tx_stats</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;stat_type&quot;</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nb_tx_per_day&quot;</span><span class="p">,</span><span class="s2">&quot;nb_fraud_per_day&quot;</span><span class="p">,</span><span class="s2">&quot;nb_fraudcard_per_day&quot;</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Total transactions, and number of fraudulent transactions </span><span class="se">\n</span><span class="s1"> and number of frauded cards per day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Number of days since beginning of data generation&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Number&quot;</span><span class="p">)</span>
+
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">300</span><span class="p">])</span>
+
+<span class="n">labels_legend</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# transactions per day (/50)&quot;</span><span class="p">,</span> <span class="s2">&quot;# fraudulent txs per day&quot;</span><span class="p">,</span> <span class="s2">&quot;# fraudulent cards per day&quot;</span><span class="p">]</span>
+
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels_legend</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fraud_and_transactions_stats_fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SimulatedDataset_62_0.png" src="../_images/SimulatedDataset_62_0.png" />
+</div>
+</div>
+<p>This simulation generated around 10000 transactions per day. The number of fraudulent transactions per day is around 85, and the number of fraudulent cards around 80. It is worth noting that the first month has a lower number of fraudulent transactions, which is due to the fact that frauds from scenarios 2 and 3 span periods of 28 and 14 days, respectively.</p>
+<p>The resulting dataset is interesting: It features class imbalance (less than 1% of fraudulent transactions), a mix of numerical and categorical features, non-trivial relationships between features, and time-dependent fraud scenarios.</p>
+<p>Let us finally save the dataset for reuse in the rest of this book.</p>
+</div>
+<div class="section" id="saving-of-dataset">
+<h2><span class="section-number">2.6. </span>Saving of dataset<a class="headerlink" href="#saving-of-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Instead of saving the whole transaction dataset, we split the dataset into daily batches. This will allow later to load specific periods, and gain in loading times. The pickle format is used, rather than CSV, to speed up the loading times. All files are saved in the <code class="docutils literal notranslate"><span class="pre">DIR_OUTPUT</span></code> folder. The names of the files are the dates, with the <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> extension.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-raw/data/&quot;</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">)</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-04-01&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">transactions_day</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">day</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TX_TIME_SECONDS&#39;</span><span class="p">)</span>
+    
+    <span class="n">date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
+    <span class="n">filename_output</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span>
+    
+    <span class="c1"># Protocol=4 required for Google Colab</span>
+    <span class="n">transactions_day</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="o">+</span><span class="n">filename_output</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-raw/data</span></code>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_3_GettingStarted"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
+    <a class='right-next' id="next-link" href="BaselineFeatureTransformation.html" title="next page"><span class="section-number">3. </span>Baseline feature transformation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

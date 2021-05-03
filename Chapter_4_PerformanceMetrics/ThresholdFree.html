@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Threshold-free metrics &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Precision top-k metrics" href="TopKBased.html" />
+    <link rel="prev" title="2. Threshold-based metrics" href="ThresholdBased.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_4_PerformanceMetrics/ThresholdFree.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_4_PerformanceMetrics/ThresholdFree.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_4_PerformanceMetrics/ThresholdFree.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_4_PerformanceMetrics/ThresholdFree.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_4_PerformanceMetrics/ThresholdFree.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#receiving-operating-characteristic-roc-curve">
+   3.1. Receiving Operating Characteristic (ROC) curve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#precision-recall-curve">
+   3.2. Precision-Recall curve
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="threshold-free-metrics">
+<span id="id1"></span><h1><span class="section-number">3. </span>Threshold-free metrics<a class="headerlink" href="#threshold-free-metrics" title="Permalink to this headline">¶</a></h1>
+<p>All the metrics presented in the previous section can only be computed once a confusion matrix is available, which requires setting a decision threshold <span class="math notranslate nohighlight">\(t\)</span> on the probabilities that are returned by the classifier. In order to evaluate the performance of a classifier over a range of different thresholds, two well-known assessment techniques are the Receiving Operating Characteristic (ROC) curve and the Precision-Recall (PR) curve. Both techniques allow providing an overall performance score, in the form of the area under the curve (AUC) measure.</p>
+<p>This section presents these two techniques and discusses their pros and cons. In particular, we will show that the PR curve and the Average Precision (as the metric that computes the area under the PR curve) are better suited for fraud detection problems than the ROC curve and the AUC ROC, respectively.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions and simulated data </span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+
+<span class="c1"># Get simulated data from Github repository</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;simulated-data-transformed&quot;</span><span class="p">):</span>
+    <span class="o">!</span>git clone https://github.com/Fraud-Detection-Handbook/simulated-data-transformed
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 37136  100 37136    0     0   148k      0 --:--:-- --:--:-- --:--:--  148k
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="receiving-operating-characteristic-roc-curve">
+<span id="receiving-operating-characteristic-curve"></span><h2><span class="section-number">3.1. </span>Receiving Operating Characteristic (ROC) curve<a class="headerlink" href="#receiving-operating-characteristic-roc-curve" title="Permalink to this headline">¶</a></h2>
+<p>The Receiving Operating Characteristic (ROC) curve <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id35"><span>Faw04</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id36"><span>Faw06</span></a>]</span> is obtained by plotting the Recall (or True Positive Rate - TPR) against the False Positive Rate (FPR) for all the different classification thresholds <span class="math notranslate nohighlight">\(t\)</span>. It is the <em>de-facto</em> standard for estimating the performance of fraud detection systems in the literature <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>A classifier K is said to be more performant than a classifier W in the ROC space only if the curve of K always dominates the curve of W.</p>
+<center>
+<p><img alt="" src="../_images/ROC.jpg" /></p>
+</center>
+<div align="center">Fig. 3. The Receiving Operating Characteristic (ROC) curve for two classifiers K and W. <br>The gray line represents the performance of a random model.</div><p>The best classifier corresponds to the point (0,1) in the ROC space (no false negatives and no false positives), while a classifier predicting at random would have performances along the diagonal connecting the bottom left corner to the
+top right. When there is not a clear winner (e.g. classifier K dominates W only in one part of the ROC space), the comparison is usually done by calculating the Area Under the ROC Curve (AUC ROC). The AUC ROC is usually computed with the <em>trapezoidal rule</em> (linearly interpolation) <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id36"><span>Faw06</span></a>]</span>, which provides an expected probability for the TPR and FPR in case of ties in the prediction values.</p>
+<p>The ROC curve is obtained by computing the TPR and FPR for all possible fraud probability values returned by a classifier.</p>
+<p>Let us illustrate its construction by reusing the simple example presented in the <a class="reference internal" href="ThresholdBased.html#threshold-based-metrics"><span class="std std-ref">previous section</span></a>. The example contains 10 transactions, among which 2 are fraudulent, and 8 genuine. The labels are given by a list <code class="docutils literal notranslate"><span class="pre">true_labels</span></code>. We assume that a vector of fraud probabilities has been returned by a fraud detector.  The vector of fraud probabilities is given by a list <code class="docutils literal notranslate"><span class="pre">fraud_probabilities</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 fraudulent and 8 genuine transactions</span>
+<span class="n">true_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Probability of fraud for each transaction</span>
+<span class="n">fraud_probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.35</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first steps in computing the ROC curve consists in getting the list of all unique possible thresholds for which the TPR and FPR will be computed, and sort them by decreasing order. A threshold higher than 1 (set to 1.1) is also added for having the case where all transactions are predicted as genuine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique_thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">))</span>
+<span class="n">unique_thresholds</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">unique_thresholds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.1, 0.9, 0.45, 0.4, 0.35, 0.2, 0.1, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives a list of eight unique thresholds to consider in this example. To these thresholds are associated all the possible (TPR, FPR) that the classifier can return.</p>
+<p>Reusing the <code class="docutils literal notranslate"><span class="pre">threshold_based_metrics</span></code> function defined in the previous section, let us compute the TPR and FPR for each of these thresholds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performance_metrics</span><span class="o">=</span><span class="n">threshold_based_metrics</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> <span class="n">unique_thresholds</span><span class="p">)</span>
+<span class="n">performance_metrics</span><span class="p">[[</span><span class="s1">&#39;Threshold&#39;</span><span class="p">,</span><span class="s1">&#39;TPR&#39;</span><span class="p">,</span><span class="s1">&#39;FPR&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Threshold</th>
+      <th>TPR</th>
+      <th>FPR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.10</td>
+      <td>0.0</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.90</td>
+      <td>0.5</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.45</td>
+      <td>0.5</td>
+      <td>0.125</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.40</td>
+      <td>0.5</td>
+      <td>0.250</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.35</td>
+      <td>1.0</td>
+      <td>0.250</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.20</td>
+      <td>1.0</td>
+      <td>0.625</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.10</td>
+      <td>1.0</td>
+      <td>0.875</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.00</td>
+      <td>1.0</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As expected, the lower the threshold, the higher the TPR (more frauds are detected), but the higher the FPR (more genuine transactions are classified as fraudulent). The first point of the curve consists in predicting all transactions as genuine (threshold 1.1). The resulting TPR is zero (no detected fraud), and FPR is 0 (no false positive). The last point of the curve consists in predicting all transactions as fraudulent (threshold 0). The resulting TPR is one (all frauds detected), and FPR is 1 (all genuine transactions misclassified as frauds).</p>
+<p>Since the ROC curve is a standard metric in classification, the Python library <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code> provides a function <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> to compute the thresholds, as well as the corresponding FPR and TPR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">drop_intermediate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="n">threshold</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.   , 0.   , 0.125, 0.25 , 0.25 , 0.625, 0.875, 1.   ]),
+ array([0. , 0.5, 0.5, 0.5, 1. , 1. , 1. , 1. ]),
+ array([1.9 , 0.9 , 0.45, 0.4 , 0.35, 0.2 , 0.1 , 0.  ]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us now plot the resulting ROC curve. We note that the first threshold (1.9) differs from the one we chose earlier (1.1). This is because the <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve</span></code> function sets the first threshold to 1 plus the second threshold (0.9), giving 1.9 in this case.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="k">def</span> <span class="nf">get_template_roc_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">random</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">])</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">random</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;AUC ROC Random = 0.5&quot;</span><span class="p">)</span>
+
+<span class="n">ROC_AUC</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">)</span>    
+    
+<span class="n">roc_curve</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">get_template_roc_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;Receiver Operating Characteristic (ROC) Curve&quot;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AUC ROC Classifier = </span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ROC_AUC</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_16_0.png" src="../_images/ThresholdFree_16_0.png" />
+</div>
+</div>
+<p>ROC curves have three important properties <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>. First, they are monotonic functions: The TPR can only increase as the FPR increases. Second, the area under the curve has a probabilistic interpretation: The AUC ROC can be interpreted as the probability that the scores given by a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one. Third, the AUC ROC of a random classifier is <span class="math notranslate nohighlight">\(0.5\)</span>.</p>
+<p>The last property can be easily checked by setting all predictions to 0.5. This gives a list of only two thresholds. The first is 1.5, which classifies all predictions as genuine. The second is 0.5, which classifies all predictions as fraudulent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 fraudulent and 8 genuine transactions</span>
+<span class="n">true_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Probability of fraud for each transaction</span>
+<span class="n">fraud_probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+
+<span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">drop_intermediate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="n">threshold</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0., 1.]), array([0., 1.]), array([1.5, 0.5]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">ROC_AUC</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">)</span>    
+    
+<span class="n">roc_curve</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">get_template_roc_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;Receiver Operating Characteristic (ROC) Curve</span><span class="se">\n</span><span class="s2"> Random classifier&quot;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">random</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AUC ROC Classifier = </span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ROC_AUC</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_20_0.png" src="../_images/ThresholdFree_20_0.png" />
+</div>
+</div>
+<p>This results in a line going from [0,0] to [1,1]. The resulting AUC ROC is the area under this line, which is 0.5.</p>
+<p>Let us now reuse the experimental setting of the <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds"><span class="std std-ref">baseline fraud detection system</span></a> presented in Chapter 3. One week of data is used for training, and one week for testing. Five prediction models are considered: logistic regression, a decision tree with depth two and a decision tree of unlimited depth, a random forest with 25 trees, and a boosting model with default parameters. The ROC curves and their AUC are reported below for the five models.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from the 2018-07-25 to the 2018-08-14</span>
+
+<span class="n">DIR_INPUT</span><span class="o">=</span><span class="s1">&#39;./simulated-data-transformed/data&#39;</span> 
+
+<span class="n">BEGIN_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-07-25&quot;</span>
+<span class="n">END_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-08-14&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load  files&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> transactions_df=read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> transactions loaded, containing </span><span class="si">{1}</span><span class="s2"> fraudulent transactions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">),</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span><span class="o">=</span><span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_test</span><span class="o">=</span><span class="mi">7</span>
+
+<span class="p">(</span><span class="n">train_df</span><span class="p">,</span><span class="n">test_df</span><span class="p">)</span><span class="o">=</span><span class="n">get_train_test_set</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span><span class="n">start_date_training</span><span class="p">,</span>
+                                      <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span><span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span><span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span><span class="p">)</span>
+
+<span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;TX_FRAUD&quot;</span>
+
+<span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DURING_WEEKEND&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_DURING_NIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_30DAY_WINDOW&#39;</span><span class="p">]</span>
+
+<span class="n">classifiers_dictionary</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Logistic regression&#39;</span><span class="p">:</span><span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                        <span class="s1">&#39;Decision tree with depth of two&#39;</span><span class="p">:</span><span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                        <span class="s1">&#39;Decision tree - unlimited depth&#39;</span><span class="p">:</span><span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                        <span class="s1">&#39;Random forest&#39;</span><span class="p">:</span><span class="n">sklearn</span><span class="o">.</span><span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+                        <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span><span class="n">xgboost</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="p">}</span>
+
+<span class="n">fitted_models_and_predictions_dictionary</span><span class="o">=</span><span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">classifier_name</span> <span class="ow">in</span> <span class="n">classifiers_dictionary</span><span class="p">:</span>
+    
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">model_and_predictions</span> <span class="o">=</span> <span class="n">fit_model_and_get_predictions</span><span class="p">(</span><span class="n">classifiers_dictionary</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">],</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
+                                                          <span class="n">input_features</span><span class="o">=</span><span class="n">input_features</span><span class="p">,</span>
+                                                          <span class="n">output_feature</span><span class="o">=</span><span class="n">output_feature</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time to fit the &quot;</span><span class="o">+</span><span class="n">classifier_name</span><span class="o">+</span><span class="s2">&quot; model: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+    
+    <span class="n">fitted_models_and_predictions_dictionary</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">]</span><span class="o">=</span><span class="n">model_and_predictions</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
+CPU times: user 196 ms, sys: 155 ms, total: 351 ms
+Wall time: 375 ms
+201295 transactions loaded, containing 1792 fraudulent transactions
+Time to fit the Logistic regression model: 0.73
+Time to fit the Decision tree with depth of two model: 0.45
+Time to fit the Decision tree - unlimited depth model: 1.3
+Time to fit the Random forest model: 9.15
+[10:53:15] WARNING: /private/var/folders/wz/86tkhhmd5gxgh4f24bdl9l2m0000gn/T/pip-install-o8iul8v_/xgboost/build/temp.macosx-10.9-x86_64-3.8/xgboost/src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective &#39;binary:logistic&#39; was changed from &#39;error&#39; to &#39;logloss&#39;. Explicitly set eval_metric if you&#39;d like to restore the old behavior.
+Time to fit the XGBoost model: 7.49
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">roc_curve</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Logistic regression&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;Decision tree with depth of two&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> 
+        <span class="s1">&#39;Decision tree - unlimited depth&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+        <span class="s1">&#39;Random forest&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span> <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">40</span><span class="p">)}</span>
+
+<span class="n">get_template_roc_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Receiver Operating Characteristic Curve</span><span class="se">\n</span><span class="s1">Test data&#39;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">classifier_name</span> <span class="ow">in</span> <span class="n">classifiers_dictionary</span><span class="p">:</span>
+    
+    <span class="n">model_and_predictions</span><span class="o">=</span><span class="n">fitted_models_and_predictions_dictionary</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">]</span>
+
+    <span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">output_feature</span><span class="p">],</span> <span class="n">model_and_predictions</span><span class="p">[</span><span class="s1">&#39;predictions_test&#39;</span><span class="p">])</span>
+    <span class="n">ROC_AUC</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FPR_list</span><span class="p">,</span> <span class="n">TPR_list</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AUC ROC </span><span class="si">{0}</span><span class="s1">= </span><span class="si">{1:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">classifier_name</span><span class="p">,</span><span class="n">ROC_AUC</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_24_0.png" src="../_images/ThresholdFree_24_0.png" />
+</div>
+</div>
+<p>The curves show that decision trees have the lowest performances, while random forest, logistic regression, and boosting have similar performances. We can note that the curves for the two decision trees have only a few points. For the tree with depth two, the reason is that it only has four leaves, so it only predicts four different values, and therefore has only four possible thresholds. For the tree with unlimited depth, the reason that is that all its leaves are pure on the training set (they either predict a probability of 1 or a probability of 0). Therefore this model only has two possible thresholds.</p>
+<p>ROC curves are relevant to get a sense of a classifier performance over the whole range of possible FPR. Their interest for fraud detection is however limited since an important goal of fraud detection is to keep the FPR very low.</p>
+<p>To get a sense of how low the FPR should be kept, let us recall that false positives are genuine transactions that are predicted as fraudulent. In an operational fraud system, these transactions will need to be manually handled by investigators. Due to the limited number of investigators, there is only a limited amount of transactions that can be checked.</p>
+<p>Let us consider more concretely how this constraint translates in terms of FPR.</p>
+<p>In this example, the dataset contains 58264 transactions (over 7 days), among which 57879 are genuine, and 385 fraudulent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="p">[</span><span class="n">test_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(57879, 23)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="p">[</span><span class="n">test_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(385, 23)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assuming that 100 transactions can be checked every day, a total of 700 transactions could be checked after 7 days, that is, around 1% of the transactions. Therefore, any FPR higher than 0.01 will raise more alerts that can be handled by investigators.</p>
+<p>Real-world fraud detection systems typically handle hundreds of thousands to millions of on a daily basis. The proportion of transactions that can be manually checked is in fact closer to 0.1% than 1%. That is, any FPR higher than 0.001 is already too high.</p>
+<p>As a result, due to the imbalanced nature of the problem, 99.9% of what is represented on the ROC curve has little relevance from the perspective of an operational fraud detection system where fraudulent transactions must be checked by a limited team of investigators.</p>
+<p>We refer the reader to <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id41"><span>SR15</span></a>]</span> for an in-depth discussion of the inadequacy of the ROC curve for imbalanced problems, and the motivations for using the Precision-Recall curve instead.</p>
+</div>
+<div class="section" id="precision-recall-curve">
+<span id="id7"></span><h2><span class="section-number">3.2. </span>Precision-Recall curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">¶</a></h2>
+<p>The Precision-Recall curve (PR curve) is obtained by plotting the precision against the recall (or True Positive Rate - TPR) for all the different classification thresholds <span class="math notranslate nohighlight">\(t\)</span>. The main advantage of the PR curve is to put in evidence classifiers that can have both a high recall and a high precision (which indirectly translates to a high TPR and a low FPR).</p>
+<p>Let us reuse the same example as above, and compute the precision and recall for the eight unique thresholds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 fraudulent and 8 genuine transactions</span>
+<span class="n">true_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Probability of fraud for each transaction</span>
+<span class="n">fraud_probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.35</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">unique_thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">))</span>
+<span class="n">unique_thresholds</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">performance_metrics</span><span class="o">=</span><span class="n">threshold_based_metrics</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> <span class="n">unique_thresholds</span><span class="p">)</span>
+<span class="n">performance_metrics</span><span class="p">[[</span><span class="s1">&#39;Threshold&#39;</span><span class="p">,</span><span class="s1">&#39;Precision&#39;</span><span class="p">,</span><span class="s1">&#39;TPR&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Threshold</th>
+      <th>Precision</th>
+      <th>TPR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.10</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.90</td>
+      <td>1.000000</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.45</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.40</td>
+      <td>0.333333</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.35</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.20</td>
+      <td>0.285714</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.10</td>
+      <td>0.222222</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.00</td>
+      <td>0.200000</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us now plot the PR curve, and compute its AUC. We will use the Average Precision (AP), which summarizes such a plot as the weighted mean of precisions achieved at each threshold, with the increase in recall from the previous threshold used as the weight <span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id40"><span>BEP13</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id39"><span>FZ11</span></a>]</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+AP=\sum_n(R_n-R_{n-1})*P_n
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_n\)</span> and <span class="math notranslate nohighlight">\(R_n\)</span> are the precision and recall at the <span class="math notranslate nohighlight">\(n\)</span>-th threshold.</p>
+<p>An implementation of the average precision is provided below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_AP</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">):</span>
+    
+    <span class="n">AP</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">n_thresholds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_thresholds</span><span class="p">):</span>
+        
+        <span class="k">if</span> <span class="n">recall</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">recall</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+            
+            <span class="n">AP</span> <span class="o">=</span> <span class="n">AP</span><span class="o">+</span><span class="p">(</span><span class="n">recall</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">recall</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">precision</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        
+    <span class="k">return</span> <span class="n">AP</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The plotting is obtained by using the <code class="docutils literal notranslate"><span class="pre">step</span></code> function from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="k">def</span> <span class="nf">get_template_pr_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">])</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Recall (True Positive Rate)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">baseline</span><span class="p">,</span> <span class="n">baseline</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;AP Random = </span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">baseline</span><span class="p">))</span>
+
+<span class="n">precision</span> <span class="o">=</span> <span class="n">performance_metrics</span><span class="o">.</span><span class="n">Precision</span><span class="o">.</span><span class="n">values</span>
+<span class="n">recall</span> <span class="o">=</span> <span class="n">performance_metrics</span><span class="o">.</span><span class="n">TPR</span><span class="o">.</span><span class="n">values</span>
+    
+<span class="n">pr_curve</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">get_template_pr_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;Precision Recall (PR) Curve&quot;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">baseline</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">true_labels</span><span class="p">))</span>
+<span class="n">AP2</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">average_precision_score</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">fraud_probabilities</span><span class="p">)</span>
+<span class="n">AP</span> <span class="o">=</span> <span class="n">compute_AP</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AP Classifier = </span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AP</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_36_0.png" src="../_images/ThresholdFree_36_0.png" />
+</div>
+</div>
+<p>PR curves behave differently from ROC curves. We detail these differences in the following.</p>
+<p>First, they are not monotonic: The precision may decrease or increase, as the recall increases. This is illustrated above, where for a recall of <span class="math notranslate nohighlight">\(0.5\)</span>, the precision first goes down to <span class="math notranslate nohighlight">\(0.33\)</span> (threshold <span class="math notranslate nohighlight">\(0.4\)</span>), before going up to <span class="math notranslate nohighlight">\(0.5\)</span> (threshold <span class="math notranslate nohighlight">\(0.35\)</span>).</p>
+<p>Second, their AUC does not carry a statistical interpretation as ROC AUC. However, it can be shown that there exists a one-to-one correspondence between PR and ROC curves, and that a curve that dominates in the PR space necessarily dominates in the ROC space <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id37"><span>DG06</span></a>]</span>.</p>
+<p>Third, the performance of a random classifier depends on the class imbalance. It is <span class="math notranslate nohighlight">\(0.5\)</span> in the balanced case, and <span class="math notranslate nohighlight">\(P/(P+N)\)</span> in the general case, where <span class="math notranslate nohighlight">\(P\)</span> is the number of positive examples, and <span class="math notranslate nohighlight">\(N\)</span> the number of negative examples. In particular, a classifier that classifies all examples as positive (recall of 1) has a precision of <span class="math notranslate nohighlight">\(P/(P+N)\)</span>. In the example above, this gives a precision of <span class="math notranslate nohighlight">\(2/(2+8)=0.2\)</span>, highlighted with the dotted red line. This property makes the AP more interesting than the AUC ROC in a fraud detection problem, since it better reflects the challenge related to the class imbalance problem (the AP of a random classifier decreases as the class imbalance ratio increases).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Linear interpolation (as is used for ROC curves) should not be used for plotting PR curves, nor for assessing their AUC. The use of the step-wise function for plotting, and AP as a measure of AUC are well established. We refer the reader to <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id41"><span>SR15</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id42"><span>FK15</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id37"><span>DG06</span></a>]</span> for detailed discussions on the topic, and the use of alternative ways to plot the PR curve or assess its AUC.</p>
+</div>
+<p>Let us finally reuse the experimental setting of the previous section, and plot the PR curves and corresponding AP for each of the five prediction models.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">pr_curve</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Logistic regression&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;Decision tree with depth of two&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> 
+        <span class="s1">&#39;Decision tree - unlimited depth&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+        <span class="s1">&#39;Random forest&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span> <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">40</span><span class="p">)}</span>
+
+<span class="n">get_template_pr_curve</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;Precision Recall (PR) Curve</span><span class="se">\n</span><span class="s2">Test data&quot;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">baseline</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">output_feature</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">output_feature</span><span class="p">]))</span>
+    
+<span class="k">for</span> <span class="n">classifier_name</span> <span class="ow">in</span> <span class="n">classifiers_dictionary</span><span class="p">:</span>
+    
+    <span class="n">model_and_predictions</span><span class="o">=</span><span class="n">fitted_models_and_predictions_dictionary</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">]</span>
+
+    <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">output_feature</span><span class="p">],</span> <span class="n">model_and_predictions</span><span class="p">[</span><span class="s1">&#39;predictions_test&#39;</span><span class="p">])</span>
+    <span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">recall</span><span class="o">=</span><span class="n">recall</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">AP</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">average_precision_score</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">output_feature</span><span class="p">],</span> <span class="n">model_and_predictions</span><span class="p">[</span><span class="s1">&#39;predictions_test&#39;</span><span class="p">])</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">classifier_name</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AP </span><span class="si">{0}</span><span class="s1">= </span><span class="si">{1:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">classifier_name</span><span class="p">,</span><span class="n">AP</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_39_0.png" src="../_images/ThresholdFree_39_0.png" />
+</div>
+</div>
+<p>And let us compare these PR curves with the ROC curves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdFree_41_0.png" src="../_images/ThresholdFree_41_0.png" />
+</div>
+</div>
+<p>At first sight, PR and ROC curves give a very different picture of the relative performances of the different classifiers. In order to better relate the two types of curve, it is useful to mentally ‘transpose’ the PR curve in such a way that the x-axis represents the precision, and the y-axis represents the True Positive Rate. Once transposed, both curves represent the TPR on their y-axis, and one can note that the PR curve is actually a zoomed version of the ROC curves for very low values of the False Positive Rate.</p>
+<p>As pointed out above at the end of the section on ROC curves, the TPR for low FPR values is actually what matters in a fraud detection problem: The number of cards that can be manually checked by fraud investigators is in practice very limited. This also gives a different ordering of performances for the classifiers. For example, with ROC curves, decision trees with unlimited depth have a better AUC than a decision tree of depth two (0.788 versus 0.763, respectively). The performances are reversed when computed in terms of Average Precision (0.309 versus 0.496).</p>
+<p>While PR curves are useful to highlight the performances of fraud detection systems for low FPR values, they however remain difficult to interpret from an operational point of view. The next section addresses this issue, by discussing <a class="reference internal" href="TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Precision top-<span class="math notranslate nohighlight">\(k\)</span> metrics</span></a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_4_PerformanceMetrics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ThresholdBased.html" title="previous page"><span class="section-number">2. </span>Threshold-based metrics</a>
+    <a class='right-next' id="next-link" href="TopKBased.html" title="next page"><span class="section-number">4. </span>Precision top-k metrics</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

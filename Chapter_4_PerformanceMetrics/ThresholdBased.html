@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Threshold-based metrics &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Threshold-free metrics" href="ThresholdFree.html" />
+    <link rel="prev" title="1. Introduction" href="Introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   4. Summary
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_4_PerformanceMetrics/ThresholdBased.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_4_PerformanceMetrics/ThresholdBased.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_4_PerformanceMetrics/ThresholdBased.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_4_PerformanceMetrics/ThresholdBased.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_4_PerformanceMetrics/ThresholdBased.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confusion-matrix">
+   2.1. Confusion matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean-misclassification-error">
+   2.2. Mean misclassification error
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-matrix-and-weigthed-loss">
+   2.3. Cost matrix and weigthed loss
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-performance-metrics-derived-from-the-confusion-matrix">
+   2.4. Other performance metrics derived from the confusion matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#column-wise">
+     2.4.1. Column-wise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#row-wise">
+     2.4.2. Row-wise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   2.5. Implementation
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="threshold-based-metrics">
+<span id="id1"></span><h1><span class="section-number">2. </span>Threshold-based metrics<a class="headerlink" href="#threshold-based-metrics" title="Permalink to this headline">¶</a></h1>
+<p>Fraud detection is most commonly addressed as a binary classification problem: A fraud detection system receives transactions, and its goal is to predict whether they are likely to be genuine, or fraudulent. Given a transaction <span class="math notranslate nohighlight">\(x\)</span> (with features <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, …), a fraud detection system outputs a fraud score, and classifies it as genuine or fraudulent, as illustrated in Fig. 1.</p>
+<p><img alt="" src="../_images/transaction_fraud_score_with_caption.png" /></p>
+<p>The fraud scores returned by a fraud detection system on a set of transactions only need to be <em>ordered</em>. The higher its value, the higher the probability for the transaction to be a fraud. For the sake of simplicity, we will assume in the following that the fraud score is the probability <span class="math notranslate nohighlight">\(p(x)\)</span> for a transaction <span class="math notranslate nohighlight">\(x\)</span> to be a fraud, that is, a value between 0 and 1.</p>
+<p>The decision to classify a transaction as fraudulent can then be made by setting a threshold <span class="math notranslate nohighlight">\(0 \le t \le 1\)</span> on the probability <span class="math notranslate nohighlight">\(p(x)\)</span>, such that if <span class="math notranslate nohighlight">\(p(x) &gt; t\)</span>, the transaction is classified as fraudulent, or as genuine if <span class="math notranslate nohighlight">\(p(x) \le t\)</span>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions</span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+
+<span class="c1"># For plotting confusion matrices</span>
+<span class="kn">from</span> <span class="nn">pretty_plot_confusion_matrix</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix_from_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 37136  100 37136    0     0   533k      0 --:--:-- --:--:-- --:--:--  533k
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Getting classes from a vector of fraud probabilities and a threshold</span>
+<span class="k">def</span> <span class="nf">get_class_from_fraud_probability</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    
+    <span class="n">predicted_classes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">fraud_probability</span><span class="o">&lt;</span><span class="n">threshold</span> <span class="k">else</span> <span class="mi">1</span> 
+                         <span class="k">for</span> <span class="n">fraud_probability</span> <span class="ow">in</span> <span class="n">fraud_probabilities</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">predicted_classes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="confusion-matrix">
+<h2><span class="section-number">2.1. </span>Confusion matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Once a threshold <span class="math notranslate nohighlight">\(t\)</span> is set, the outcome of a binary classification problem is usually represented as a <em>confusion matrix</em>. Denoting by <span class="math notranslate nohighlight">\(Y_1\)</span> the set of positive instances (frauds), <span class="math notranslate nohighlight">\(Y_0\)</span> the set of negative instances (genuine), <span class="math notranslate nohighlight">\(\hat{Y}_1\)</span> the set of instances predicted as positive and <span class="math notranslate nohighlight">\(\hat{Y}_0\)</span> the ones predicted as negative, the confusion matrix is represented as follows, see Fig. 2 <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id44"><span>Tha20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p><img alt="" src="../_images/confusion_matrix.png" /></p>
+<div align="center">Fig. 2. Example of confusion matrix.</div>    
+<p>The four possible outcomes are</p>
+<ul class="simple">
+<li><p>TP: True positives. These are the instances of class 1 (fraudulent transactions), that the classifier correctly predicts as fraudulent.</p></li>
+<li><p>TN: True negatives. These are the instances of class 0 (genuine transactions), that the classifier correctly predicts as genuine.</p></li>
+<li><p>FP: False positives. These are the instances of class 0 (genuine transactions), that the classifier incorrectly predicts as fraudulent.</p></li>
+<li><p>FN: False negatives. These are the instances of class 1 (fraudulent transactions), that the classifier incorrectly predicts as genuine.</p></li>
+</ul>
+</div>
+<div class="section" id="mean-misclassification-error">
+<h2><span class="section-number">2.2. </span>Mean misclassification error<a class="headerlink" href="#mean-misclassification-error" title="Permalink to this headline">¶</a></h2>
+<p>The most straightforward way to assess the performance of a binary classifier is by computing the proportion of misclassified instances. This quantity is known as the mean misclassification error (MME) and is computed as follows</p>
+<div class="math notranslate nohighlight">
+\[MME= \frac{FP+FN}{N}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N=TN+TP+FN+FP\)</span> is the size of the dataset.</p>
+<p>Note that the complementary <span class="math notranslate nohighlight">\(1-MME = \frac{TP+TN}{N}\)</span> is sometimes used instead and referred to as the <em>accuracy score</em> (<code class="docutils literal notranslate"><span class="pre">sklearn.metrics.accuracy_score</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implementation of the mean misclassification error</span>
+<span class="k">def</span> <span class="nf">compute_MME</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span><span class="n">predicted_classes</span><span class="p">):</span>
+    
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span>
+    
+    <span class="n">MME</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span><span class="o">!=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">))</span><span class="o">/</span><span class="n">N</span>
+    
+    <span class="k">return</span> <span class="n">MME</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The MME is usually a good indicator of a classifier performance for balanced datasets. For cost-sensitive problems such as fraud detection, the MME has several shortcomings. Let us illustrate this with the following example:</p>
+<ul class="simple">
+<li><p>10 transactions</p></li>
+<li><p>2 of which are fraudulent, and 8 of which are genuine</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">true_labels</span></code> list gives the list of fraudulent (1) and genuine (0) labels</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">fraud</span> <span class="pre">probabilities</span></code> list gives the fraud predictions from a fraud detection system</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 fraudulent and 8 genuine transactions</span>
+<span class="n">true_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Probability of fraud for each transaction</span>
+<span class="n">fraud_probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.35</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let us consider three thresholds:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t=1\)</span>: This threshold does not take into consideration the fraud probabilities, and classifies all transactions as genuine.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t=0.5\)</span>: This threshold is usually considered to be the <em>default</em> threshold, which assumes that a transaction with a fraud probability higher than 0.5 will be classified as fraud</p></li>
+<li><p><span class="math notranslate nohighlight">\(t=0.3\)</span>: Given the predicted fraud probabilities of this example, this threshold will allow to correctly classify the two fraudulent transactions</p></li>
+</ul>
+<p>Let us plot the confusion matrix for these 3 thresholds:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">confusion_matrix_plots</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">thresholds</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">thresholds</span><span class="p">)):</span>
+
+    <span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">get_class_from_fraud_probability</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="n">MME</span> <span class="o">=</span> <span class="n">compute_MME</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span><span class="n">predicted_classes</span><span class="p">)</span>
+    
+    <span class="n">confusion_matrix_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix_from_data</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_classes</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> 
+                                                        <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Oranges&quot;</span><span class="p">,</span>
+                                                          <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span> <span class="n">fz</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                                        <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">show_null_values</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                                                        <span class="n">pred_val_axis</span><span class="o">=</span><span class="s1">&#39;lin&#39;</span><span class="p">,</span>
+                                                        <span class="n">subtitle</span><span class="o">=</span><span class="s2">&quot;Threshold=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;. MME=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">MME</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion_matrix_plots</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ThresholdBased_9_0.png" src="../_images/ThresholdBased_9_0.png" />
+</div>
+</div>
+<p>Besides the confusion matrix, we also explicitly compute the MME and report it in the title. Note that the MME is also reported in red in the confusion matrix in the bottom-right cell, as a percentage. Let us now consider the results obtained with these three thresholds in more detail.</p>
+<ul class="simple">
+<li><p>With a threshold <span class="math notranslate nohighlight">\(t=1\)</span>, all transactions are predicted as genuine. The classifier makes two mistakes: it classifies the two fraudulent transactions as genuine (2 false negatives). The MME is therefore 0.2, that is, 80% of correct classifications. This high percentage of correct classifications is however an artifact of the class imbalance of the dataset. The predictor is mostly useless since it does not detect any fraudulent transactions.</p></li>
+<li><p>With a threshold <span class="math notranslate nohighlight">\(t=0.5\)</span>, the classifier is better, with an MME of 0.1. It only misclassifies one fraudulent transaction (one FN).</p></li>
+<li><p>Finally, by further decreasing the threshold to <span class="math notranslate nohighlight">\(t=0.3\)</span>, the classifier correctly detects the two fraudulent transactions (no false negatives). It however misclassifies two genuine transactions as fraudulent. The resulting MME is 0.2, that is, the same as the first classifier.</p></li>
+</ul>
+<p>This example illustrates the main shortcoming of the MME: it gives the same weight to false negatives and false positives. The first classifier (threshold <span class="math notranslate nohighlight">\(t=1\)</span>) is useless as a fraud detector, while the third classifier (threshold <span class="math notranslate nohighlight">\(t=0.3\)</span>) correctly identifies the two fraudulent transactions, at the expense of two false positives. The MME has the same misclassification error for the first and third classifier, and a lower error for the second (one misclassification). A more disproportionate case with more genuine transaction would further exacerbate this behavior. Deciding which one of these three classifiers is best is however a non-trivial question. It depends on the importance we give to detecting fraud.</p>
+</div>
+<div class="section" id="cost-matrix-and-weigthed-loss">
+<h2><span class="section-number">2.3. </span>Cost matrix and weigthed loss<a class="headerlink" href="#cost-matrix-and-weigthed-loss" title="Permalink to this headline">¶</a></h2>
+<p>A fraud detection problem is in nature a <em>cost-sensitive</em> problem: missing a fraudulent transaction is usually considered more costly than raising a false alert on a legitimate transaction. In the former case, losses not only include the amount of the fraudulent transaction. They also include other fraudulent transactions that may be carried out using the compromised card, as well as customer services costs related to later dealing with the issue, and the reputation of the company as a whole. In the latter case, the cost is reduced to checking the legitimacy of the transaction with the customer. In case of real-time detection, it also entails the customer inconvenience related to the blocking their legitimate payment.</p>
+<p>A possible approach to fix the <span class="math notranslate nohighlight">\(MME\)</span> presented above is by defining a <em>cost matrix</em>. The cost matrix quantifies, for each outcome in the confusion matrix, an associated cost. It is a 2 * 2 matrix, whose entries are denoted <span class="math notranslate nohighlight">\(c_{ij}\)</span> following the notations from <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34"><span>Elk01</span></a>]</span>.</p>
+<p><img alt="" src="../_images/cost_matrix.png" /></p>
+<div align="center">Fig. 2. Example of cost matrix.</div>    
+<p>The misclassification error can then be expressed as an expected weighted loss, by multiplying each entry of the confusion matrix with the corresponding entry in the cost matrix <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>. Denoting by <span class="math notranslate nohighlight">\(WL\)</span> this quantity (weighted loss), we get</p>
+<div class="math notranslate nohighlight">
+\[
+WL= \frac{TN*c_{00}+FN*c_{01}+FP*c_{10}+TP*c_{11}}{N}
+\]</div>
+<p>The costs of true negatives and true positives is usually <span class="math notranslate nohighlight">\(0\)</span>, since these are the entries that correspond to correct classifications. This simplifies the expression of <span class="math notranslate nohighlight">\(WL\)</span> to:</p>
+<div class="math notranslate nohighlight">
+\[
+WL= \frac{FN*c_{01}+FP*c_{10}}{N}
+\]</div>
+<p>It is however in practice difficult to set the values <span class="math notranslate nohighlight">\(c_{01}\)</span> and <span class="math notranslate nohighlight">\(c_{10}\)</span> <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>When defining a cost measure, one could consider the cost of a FN fixed or dependent on the transaction amount. In the first case, each fraud is equally costly, while in the latter the cost is example dependent. An argument for using fixed cost is to give equal importance to small and larger frauds (fraudsters usually test a card with small amounts), while transaction-dependent cost allows one to quantify the real loss that a company has to face.</p>
+<p>In the transaction-dependent case, the cost of a missed fraud (FN) is often assumed to be equal to the transaction amount <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34"><span>Elk01</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>, because it has to be reimbursed to the customer. The card spending limit can also be considered to account for the maximal potential damage that a missed fraud can lead to. The cost of correct or false alerts is considered to be equivalent to the cost of an investigator verifying with the cardholder whether a transaction was fraudulent. The cost of a phone call is negligible compared to the loss that occurs in the case of a fraud. However, when the number of false alerts is too large or the card is blocked by error, the impossibility to make transactions can translate into big losses for the customer.</p>
+<p>The overall cost should also include the time taken by the detection system to react. The shorter the reaction time, the larger the number of frauds that can be prevented. Typically, once fraudsters successfully perpetrate a fraud, they try to spend all the money available on the card. As a consequence, when evaluating an FDS, one should also consider the spending limit of each card: i.e. detecting a fraud on a card having a large spending limit (e.g. corporate cards) result in higher savings than detecting a fraud on a card having a small spending limit. Another consideration is that sometimes there are business-specific constraints specified in contracts (e.g. at least one fraud out of three has to be caught). In that case, one metric is fixed (here the TPR, defined below) and the goal is to optimize a completary one (e.g. the precision). For all these reasons, defining a cost measure is a challenging problem in credit card detection and there is no agreement on which is the right way to measure the cost of frauds <span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+</div>
+<div class="section" id="other-performance-metrics-derived-from-the-confusion-matrix">
+<h2><span class="section-number">2.4. </span>Other performance metrics derived from the confusion matrix<a class="headerlink" href="#other-performance-metrics-derived-from-the-confusion-matrix" title="Permalink to this headline">¶</a></h2>
+<p>More specific metrics about misclassifications can be obtained by focusing on ratios within the columns or rows of a confusion matrix.</p>
+<div class="section" id="column-wise">
+<h3><span class="section-number">2.4.1. </span>Column-wise<a class="headerlink" href="#column-wise" title="Permalink to this headline">¶</a></h3>
+<p>Column-wise, two meaningful quantities are the True Positive Rate (TPR) and the True Negative Rate (TNR). The TPR
+measures the proportion of positives that are correctly identified (e.g., the proportion of frauds that are correctly classified as frauds). It is also called <em>recall</em>, <em>hit rate</em>, or <em>sensitivity</em>. It is defined as:</p>
+<div class="math notranslate nohighlight">
+\[TPR = Recall = \frac{TP}{TP+FN}\]</div>
+<p>The TNR measures the proportion of negatives that are correctly identified (e.g., the proportion of genuine transactions that are correctly classified as genuine). It is also called <em>specificity</em>, or <em>selectivity</em>. It is defined as:</p>
+<div class="math notranslate nohighlight">
+\[TNR = \frac{TN}{TN+FP}\]</div>
+<p>Alternatively, the complementary measures, i.e the proportions of incorrect predictions, can also be computed. They are called the False Negative Rate (FNR) and False Positive Rate (FPR). Note that the FNR and TPR sum up to <span class="math notranslate nohighlight">\(1\)</span>, as do the FPR and TNR.</p>
+<div class="math notranslate nohighlight">
+\[FNR = \frac{FN}{TP+FN} = 1-TPR\]</div>
+<div class="math notranslate nohighlight">
+\[FPR = \frac{FP}{TN+FP} = 1-TNR\]</div>
+<p>Taking the mean of the FNR and the TNR provides a balanced measure of accuracy known as the Balanced Error Rate (BER) <span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[BER = 0.5*(FNR+FPR)\]</div>
+<p>The BER is a weighted loss where the misclassification costs make up for the class imbalance. An alternative measure that aggregates the TNR and TPR is the geometric mean G-mean, defined as the <span class="math notranslate nohighlight">\(G-mean = \sqrt{TPR × TNR}\)</span> <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>.</p>
+</div>
+<div class="section" id="row-wise">
+<h3><span class="section-number">2.4.2. </span>Row-wise<a class="headerlink" href="#row-wise" title="Permalink to this headline">¶</a></h3>
+<p>Row-wise, the most commonly used metric is the precision, also known as <em>Positive Predicted Value</em>. It measures, for the set of transactions that are predicted as fraudulent, the proportion of transactions that are indeed fraudulent.</p>
+<div class="math notranslate nohighlight">
+\[Precision = \frac{TP}{TP+FP}\]</div>
+<p>A system with high recall but low precision returns many alerts, but most of the alerts are incorrect when compared to the ground-truth labels (many false positives). A system with high precision but low recall is just the opposite, returning very few alerts, but most of its alerts are correct when compared to the training labels. An ideal system with high precision and high recall returns many alerts, with all alerts labeled correctly. For a fully automated blocking system, a high precision would be favored. For a system with a second layer of human verification, a high recall is beneficial as the false positives will be discarded anyway by the investigators, within the limit of their bandwidth.</p>
+<p>The three other metrics which can be computed row-wise are the Negative Predictive Value (NPV), the False Discovery Rate (FDR), and the False Ommission Rate (FOR). They are defined as <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span></p>
+<div class="math notranslate nohighlight">
+\[NPV = \frac{TN}{TN+FN} \]</div>
+<div class="math notranslate nohighlight">
+\[FDR = \frac{FP}{TP+FP}=1-Precision \]</div>
+<div class="math notranslate nohighlight">
+\[FOR = \frac{FN}{TN+FN}=1-NPV \]</div>
+<p>An aggregate measure of the precision and recall often used in practice is the <em>F1-score</em>. It is defined as the harmonic mean of the two quantities:</p>
+<div class="math notranslate nohighlight">
+\[\textrm{F1-score} = 2*\frac{Precision*Recall}{Precision+Recall}\]</div>
+<p>F1-score and G-mean are often considered to be relevant measures in imbalanced problems <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id27"><span>CCHJ08</span></a>]</span>,<span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id26"><span>CLB+04</span></a>]</span>. These measures can however be computed only once a confusion matrix is available, which means that their values depend on the threshold <span class="math notranslate nohighlight">\(t\)</span> used for classification. Changing the threshold corresponds to using different misclassification costs.</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2><span class="section-number">2.5. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>Let us implement all these measures using a <code class="docutils literal notranslate"><span class="pre">threshold_based_metrics</span></code> function. The function takes as input a list of predictions, a list of true labels, and a list of thresholds. It returns, for each threshold in the thresholds list, the set of performance measures.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_based_metrics</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">true_label</span><span class="p">,</span> <span class="n">thresholds_list</span><span class="p">):</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">thresholds_list</span><span class="p">:</span>
+    
+        <span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">get_class_from_fraud_probability</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+    
+        <span class="p">(</span><span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span><span class="p">,</span> <span class="n">TP</span><span class="p">)</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">true_label</span><span class="p">,</span> <span class="n">predicted_classes</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    
+        <span class="n">MME</span> <span class="o">=</span> <span class="p">(</span><span class="n">FP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FP</span><span class="o">+</span><span class="n">FN</span><span class="o">+</span><span class="n">TP</span><span class="p">)</span>
+    
+        <span class="n">TPR</span> <span class="o">=</span> <span class="n">TP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
+        <span class="n">TNR</span> <span class="o">=</span> <span class="n">TN</span><span class="o">/</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
+    
+        <span class="n">FPR</span> <span class="o">=</span> <span class="n">FP</span><span class="o">/</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
+        <span class="n">FNR</span> <span class="o">=</span> <span class="n">FN</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
+        
+        <span class="n">BER</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">FPR</span><span class="o">+</span><span class="n">FNR</span><span class="p">)</span>
+        
+        <span class="n">Gmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">TPR</span><span class="o">*</span><span class="n">TNR</span><span class="p">)</span>
+    
+        <span class="n">precision</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FDR</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">F1_score</span><span class="o">=</span><span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">precision</span> <span class="o">=</span> <span class="n">TP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
+            <span class="n">FDR</span><span class="o">=</span><span class="n">FP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
+        
+        <span class="n">NPV</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FOR</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="n">TN</span><span class="o">+</span><span class="n">FN</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">NPV</span> <span class="o">=</span> <span class="n">TN</span><span class="o">/</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
+            <span class="n">FOR</span> <span class="o">=</span> <span class="n">FN</span><span class="o">/</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
+            
+        
+        <span class="k">if</span> <span class="n">precision</span><span class="o">+</span><span class="n">TPR</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">F1_score</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">precision</span><span class="o">*</span><span class="n">TPR</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">precision</span><span class="o">+</span><span class="n">TPR</span><span class="p">)</span>
+    
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">threshold</span><span class="p">,</span> <span class="n">MME</span><span class="p">,</span> <span class="n">TPR</span><span class="p">,</span> <span class="n">TNR</span><span class="p">,</span> <span class="n">FPR</span><span class="p">,</span> <span class="n">FNR</span><span class="p">,</span> <span class="n">BER</span><span class="p">,</span> <span class="n">Gmean</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">NPV</span><span class="p">,</span> <span class="n">FDR</span><span class="p">,</span> <span class="n">FOR</span><span class="p">,</span> <span class="n">F1_score</span><span class="p">])</span>
+        
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Threshold&#39;</span> <span class="p">,</span><span class="s1">&#39;MME&#39;</span><span class="p">,</span> <span class="s1">&#39;TPR&#39;</span><span class="p">,</span> <span class="s1">&#39;TNR&#39;</span><span class="p">,</span> <span class="s1">&#39;FPR&#39;</span><span class="p">,</span> <span class="s1">&#39;FNR&#39;</span><span class="p">,</span> <span class="s1">&#39;BER&#39;</span><span class="p">,</span> <span class="s1">&#39;G-mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="s1">&#39;NPV&#39;</span><span class="p">,</span> <span class="s1">&#39;FDR&#39;</span><span class="p">,</span> <span class="s1">&#39;FOR&#39;</span><span class="p">,</span> <span class="s1">&#39;F1 Score&#39;</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us compute the threshold-based metrics for all possible thresholds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique_thresholds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">))</span>
+<span class="n">unique_thresholds</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">unique_thresholds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.9, 0.45, 0.4, 0.35, 0.2, 0.1, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">threshold_based_metrics</span><span class="p">(</span><span class="n">fraud_probabilities</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> <span class="n">unique_thresholds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Threshold</th>
+      <th>MME</th>
+      <th>TPR</th>
+      <th>TNR</th>
+      <th>FPR</th>
+      <th>FNR</th>
+      <th>BER</th>
+      <th>G-mean</th>
+      <th>Precision</th>
+      <th>NPV</th>
+      <th>FDR</th>
+      <th>FOR</th>
+      <th>F1 Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.90</td>
+      <td>0.1</td>
+      <td>0.5</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>0.5</td>
+      <td>0.2500</td>
+      <td>0.707107</td>
+      <td>1.000000</td>
+      <td>0.888889</td>
+      <td>0.000000</td>
+      <td>0.111111</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.45</td>
+      <td>0.2</td>
+      <td>0.5</td>
+      <td>0.875</td>
+      <td>0.125</td>
+      <td>0.5</td>
+      <td>0.3125</td>
+      <td>0.661438</td>
+      <td>0.500000</td>
+      <td>0.875000</td>
+      <td>0.500000</td>
+      <td>0.125000</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.40</td>
+      <td>0.3</td>
+      <td>0.5</td>
+      <td>0.750</td>
+      <td>0.250</td>
+      <td>0.5</td>
+      <td>0.3750</td>
+      <td>0.612372</td>
+      <td>0.333333</td>
+      <td>0.857143</td>
+      <td>0.666667</td>
+      <td>0.142857</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.35</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.750</td>
+      <td>0.250</td>
+      <td>0.0</td>
+      <td>0.1250</td>
+      <td>0.866025</td>
+      <td>0.500000</td>
+      <td>1.000000</td>
+      <td>0.500000</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.20</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>0.375</td>
+      <td>0.625</td>
+      <td>0.0</td>
+      <td>0.3125</td>
+      <td>0.612372</td>
+      <td>0.285714</td>
+      <td>1.000000</td>
+      <td>0.714286</td>
+      <td>0.000000</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.10</td>
+      <td>0.7</td>
+      <td>1.0</td>
+      <td>0.125</td>
+      <td>0.875</td>
+      <td>0.0</td>
+      <td>0.4375</td>
+      <td>0.353553</td>
+      <td>0.222222</td>
+      <td>1.000000</td>
+      <td>0.777778</td>
+      <td>0.000000</td>
+      <td>0.363636</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.0</td>
+      <td>0.5000</td>
+      <td>0.000000</td>
+      <td>0.200000</td>
+      <td>0.000000</td>
+      <td>0.800000</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We note that a threshold of <span class="math notranslate nohighlight">\(0.35\)</span> is what minimizes the BER, and maximizes the G-mean and F1 score. The threshold provides a TPR (recall) of 1, and a precision of 0.5, and could therefore be a sensible choice for this toy example. If the problem is required to maximize the precision, a threshold of <span class="math notranslate nohighlight">\(0.9\)</span> should be selected instead.</p>
+<p>To conclude this section, the main benefit of threshold-based metrics is to provide a detailed view of the misclassification errors. This benefit is also their drawback. Due to the multiplicity of measures, and their dependence on the decision threshold <span class="math notranslate nohighlight">\(t\)</span>, they make the comparison of two classifiers difficult. In fact, it is only if the application constraints and objective are clearly defined (e.g. the goal is to catch a maximum of fraud while ensuring that the precision remains above 60 percent) that threshold optimization and threshold based metrics make sense. Otherwise, it is better to perform a more general comparison with threshold-free metrics, covered in the next section, which aim at characterizing with a single number the performance of a classifier across all possible thresholds.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_4_PerformanceMetrics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
+    <a class='right-next' id="next-link" href="ThresholdFree.html" title="next page"><span class="section-number">3. </span>Threshold-free metrics</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,28 @@
+p {
+    text-align: justify;
+}
+
+.caption {
+    text-align: center;
+}
+
+img {
+   margin-left: auto;
+   margin-right: auto;
+   text-align:center;
+   display:block;
+}
+
+.dataframe tbody {
+	font-size: 12px;
+}
+.dataframe thead {
+	font-size: 12px;
+}
+
+table {
+    #margin-left: auto !important;
+    #margin-right: auto !important;
+    #width: fit-content !important;
+    border: 1px solid black;
+}
