@@ -1,0 +1,47 @@
+- file: Foreword
+  numbered: true
+
+- part: 1. Book overview
+  chapters:
+  - file: Chapter_1_BookContent/BookContent
+  - file: Chapter_1_BookContent/BookContributions
+  - file: Chapter_1_BookContent/HowToUse
+
+- part: 2. Background
+  chapters:
+  - file: Chapter_2_Background/Introduction
+  - file: Chapter_2_Background/CreditCardFraud
+  - file: Chapter_2_Background/FDS
+  - file: Chapter_2_Background/MachineLearningForFraudDetection
+  - file: Chapter_2_Background/Summary
+
+- part: 3. Getting started
+  chapters:
+  - file: Chapter_3_GettingStarted/Introduction
+  - file: Chapter_3_GettingStarted/SimulatedDataset
+  - file: Chapter_3_GettingStarted/BaselineFeatureTransformation
+  - file: Chapter_3_GettingStarted/BaselineModeling
+  - file: Chapter_3_GettingStarted/Baseline_RealWorldData
+  - file: Chapter_3_GettingStarted/Summary
+
+- part: 4. Performance metrics
+  chapters:
+  - file: Chapter_4_PerformanceMetrics/Introduction
+  - file: Chapter_4_PerformanceMetrics/ThresholdBased
+  - file: Chapter_4_PerformanceMetrics/ThresholdFree
+  - file: Chapter_4_PerformanceMetrics/TopKBased
+  - file: Chapter_4_PerformanceMetrics/Assessment_RealWorldData
+  - file: Chapter_4_PerformanceMetrics/Summary
+
+- part: 5. Model validation and model selection
+  chapters:
+  - file: Chapter_5_ModelValidationAndSelection/Introduction
+  - file: Chapter_5_ModelValidationAndSelection/ValidationStrategies
+  - file: Chapter_5_ModelValidationAndSelection/ModelSelection
+  - file: Chapter_5_ModelValidationAndSelection/Summary
+
+- part: References
+  chapters:
+  - file: Chapter_References/shared_functions
+  - file: Chapter_References/bibliography
+  

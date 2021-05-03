@@ -1,0 +1,11 @@
+name: simulation
+channels:
+  - conda-forge
+dependencies:
+  - python==3.8.3
+  - numpy==1.18.5
+  - pandas==1.0.5
+  - matplotlib==3.2.2
+  - seaborn==0.10.1
+  - xgboost==1.3.3
+  

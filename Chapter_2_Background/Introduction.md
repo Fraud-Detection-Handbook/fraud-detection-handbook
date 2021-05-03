@@ -1,0 +1,11 @@
+# Introduction
+
+This chapter provides the background to the problem of credit card fraud detection. It addresses what the problem is, how it is currently solved, and why machine learning can help in providing effective solutions. The chapter is structured as follows. 
+
+[Section 2.2](Credit_Card_Fraud_Scenarios) first addresses the problem of credit card fraud together with its causes and related losses. Relying on the latest authoritative reports on the topic at the writing of this book (in particular, the latest Nilson report from 2019 {cite}`NilsonReport2019` and the European Central Bank report on credit card fraud detection from 2020 {cite}`ECB2020`), we briefly summarise the techniques known to be employed by fraudsters to perform fraudulent transactions, and their associated costs. The section also discusses *fraud prevention* techniques, which range from the well-known PIN codes to more advanced techniques such as biometric identification.
+
+[Section 2.3](Fraud_Detection_System) then covers the operational side of a fraud detection system. It provides an overview of how fraud detection is performed in a real-world fraud detection system. Its understanding is important since it puts into evidence that effective detection requires both a mix of automated systems and fraud investigators. This has non-trivial implications. First, automated systems should optimize the workload of fraud investigators. Second, automated systems and human investigators work at different time scales: while automated systems usually provide risk scores for transactions in less than a second, fraud investigations usually require contacting a client to confirm a fraud, which can take days, or weeks. These peculiarities have important implications in the methodology used throughout this book.
+
+Finally, [Section 2.4](ML_For_CCFD) reviews the topic of machine learning techniques for credit card fraud detection. It is now clear that machine learning techniques can provide effective solutions to the problem of credit card fraud detection, and the research literature on the topic has grown exponentially in the last decade. The section makes a metareview of the latest surveys on the domain in the last five years (2015-2020). It highlights the core principles presented in these surveys and summarizes the main challenges of fraud detection systems. 
+
+
