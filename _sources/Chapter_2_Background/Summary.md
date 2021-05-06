@@ -4,7 +4,7 @@ Credit card fraud detection (CCFD) is a challenging problem, which requires anal
 
 ML for CCFD has become an active research field. This is illustrated by a large number of publications on the topic and their promising claims. At the same time, caution should be addressed in interpreting the results of these publications. As was pointed out in {ref}`ML_For_CCFD`, the field of ML for CCFD is relatively new, and there do not exist any recognized benchmarks, nor methodologies, to compare and assess the proposed techniques {cite}`priscilla2019credit,mekterovic2018systematic,zojaji2016survey`.
 
-The purpose of this book is to make the first step in this direction, by proposing reproducible implementations and baseline methodologies to address the topic of ML for CCFD. The proposed implementations and methodologies are based on our experience in the field, following our ten-year collaboration between the [Machine Learning Group - University of Brussels](https://mlg.ulb.ac.be/wordpress/) and the [Worldline payment processor company](https://uk.worldline.com/en/home.html). 
+This book aims at making a first step in this direction, by proposing reproducible implementations and baseline methodologies to address the topic of ML for CCFD. The proposed implementations and methodologies are based on our experience in the field, following our ten-year collaboration between the [Machine Learning Group - University of Brussels](https://mlg.ulb.ac.be/wordpress/) and the [Worldline payment processor company](https://uk.worldline.com/en/home.html). 
 
 
 

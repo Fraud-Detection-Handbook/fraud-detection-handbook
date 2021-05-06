@@ -2529,7 +2529,7 @@ Wall time: 2.13 s
 <img alt="../_images/ModelSelection_68_0.png" src="../_images/ModelSelection_68_0.png" />
 </div>
 </div>
-<p>On this simulated dataset, XGBoost provides the highest performances, followed by random forest, logistic regression, and finally decision trees which have the lowest performances. The gap in terms of performance is most visible with the average precision metric. The performances of logistic regression, random forest, and XGBoost are very similar to AUC ROC.</p>
+<p>On this simulated dataset, XGBoost provides the highest performances, followed by random forest, logistic regression, and finally decision trees which have the lowest performances. The gap in terms of performance is most visible with the average precision metric. The performances of logistic regression, random forest, and XGBoost are very similar in terms of AUC ROC.</p>
 <p>Let us plot the total execution times of the model selection procedure for each model class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3055,15 +3055,7 @@ Wall time: 2.13 s
 <p>The performances are essentially the same as those obtained with the grid search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">latex</span><span class="o">.</span><span class="n">repr</span><span class="o">=</span><span class="kc">True</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performances with grid search</span>
-
 <span class="n">summary_performances_xgboost</span>
 </pre></div>
 </div>

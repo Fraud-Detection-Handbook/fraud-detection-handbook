@@ -10,7 +10,7 @@ Machine learning for credit card fraud detection (ML for CCFD) has become an act
 
 It makes no doubt that the integration of machine learning techniques in payment card fraud detection systems has greatly improved their ability to more efficiently detect frauds. At the same time, a major issue in this new research field is the lack of reproducibility. There do not exist any recognized benchmarks, nor methodologies, to compare and assess the proposed techniques.
 
-The purpose of this book is to make the first step in this direction. All the techniques and results provided in this book are reproducible. Sections that include code are Jupyter notebooks, which can be executed either locally, or on the cloud using [Google Colab](https://colab.research.google.com/) or [Binder](https://mybinder.org/). 
+This book aims at making a first step in this direction. All the techniques and results provided in this book are reproducible. Sections that include code are Jupyter notebooks, which can be executed either locally, or on the cloud using [Google Colab](https://colab.research.google.com/) or [Binder](https://mybinder.org/). 
 
 The intended audience is students or professionals, interested in the specific problem of credit card fraud detection from a practical point of view. More generally, we think the book is also of interest for data practitioners and data scientists dealing with machine learning problems that involve sequential data and/or imbalanced classification problems.
 
