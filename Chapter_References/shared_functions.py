@@ -4,7 +4,7 @@
 # (shared_functions)=
 # # Shared functions
 # 
-# This notebook contains functions with are commonly reused in the book, for loading and saving data, fitting and assessing prediction models, or plotting results. 
+# This notebook contains functions which are commonly reused in the book, for loading and saving data, fitting and assessing prediction models, or plotting results. 
 # 
 # The notebook can be downloaded from GitHub with
 # 
