@@ -558,7 +558,7 @@
                 
   <div class="section" id="shared-functions">
 <span id="id1"></span><h1><span class="section-number">1. </span>Shared functions<a class="headerlink" href="#shared-functions" title="Permalink to this headline">¶</a></h1>
-<p>This notebook contains functions with are commonly reused in the book, such as for loading and saving data, fitting and assessing prediction models, or plotting results.</p>
+<p>This notebook contains functions which are commonly reused in the book, for loading and saving data, fitting and assessing prediction models, or plotting results.</p>
 <p>The notebook can be downloaded from GitHub with</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.ipynb
 
@@ -610,7 +610,7 @@
 <p>First use in <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html#baseline-feature-transformation"><span class="std std-ref">Chapter 3, Baseline Feature Transformation</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a set of pickle files, put them together in a single dataframe, and order them by time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a set of pickle files, put them together in a single DataFrame, and order them by time</span>
 <span class="c1"># It takes as input the folder DIR_INPUT where the files are stored, and the BEGIN_DATE and END_DATE</span>
 <span class="k">def</span> <span class="nf">read_from_files</span><span class="p">(</span><span class="n">DIR_INPUT</span><span class="p">,</span> <span class="n">BEGIN_DATE</span><span class="p">,</span> <span class="n">END_DATE</span><span class="p">):</span>
     
@@ -1105,7 +1105,7 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
                 <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="n">metric</span><span class="o">+</span><span class="s1">&#39; Test&#39;</span><span class="o">+</span><span class="s1">&#39; Std&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index_best_validation_performance</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
         <span class="p">)</span>
     
-    <span class="n">performances_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Best estimated parameters ($k^*$)&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">best_estimated_parameters</span>
+    <span class="n">performances_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Best estimated parameters&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">best_estimated_parameters</span>
     <span class="n">performances_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Validation performance&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">validation_performance</span>
     <span class="n">performances_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Test performance&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">test_performance</span>
 
