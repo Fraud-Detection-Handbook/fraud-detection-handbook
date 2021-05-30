@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_4_PerformanceMetrics/Introduction.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Threshold-based metrics" href="ThresholdBased.html" />
@@ -65,6 +67,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_4_PerformanceMetrics/Introduction.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Introduction" />
+<meta property="og:description" content="Introduction  This chapter discusses how to assess the performance of a fraud detection system. Intuitively, the task seems simple. An ideal fraud detection sys" />
+<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -364,7 +375,7 @@
 <p>As we will show shortly, the mean misclassification error is a poor performance metric, due to the cost-sensitive and imbalanced nature of a fraud detection problem. A simple way to illustrate this is to observe that, for a transaction dataset with 0.1% fraudulent transactions, a dummy baseline model classifying all the transactions as genuine provide a very high accuracy of 0.99. This is widely acknowledged in the fraud detection literature, and other performance metrics are therefore commonly used <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id44"><span>Tha20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id34"><span>Elk01</span></a>]</span>. The most common ones are the <em>recall</em>, the <em>specificity</em>, the <em>precision</em>, the <em>F1 score</em>, the <em>AUC ROC</em>, and the <em>Average Precision</em>.</p>
 <p>In the next sections, we will detail these metrics, and discuss their pros and cons. We will show that, despite their central role in assessing a fraud detection system, there is actually no consensus on what metric should be used.</p>
 <p>The recall, specificity, precision, and F1 score metrics, also known as <em>threshold-based</em> metrics, have well-known limitations due to their dependence on a decision threshold which is difficult to determine in practice, and strongly depends on the business-specific constraints. They are often complemented with the AUC ROC, and more recently, the Average Precision (AP) metrics. The AUC ROC and AP metrics aim at assessing, with a single number, the performance for all possible decision thresholds, and are referred to as <em>threshold-free</em> metrics. The AUC ROC is currently the de-facto metric for assessing fraud detection accuracies <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id38"><span>Cha09</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>. Recent research has however shown that this metric is also misleading for assessing highly imbalanced problems such as fraud detection <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id43"><span>Mus19</span></a>]</span>, and recommended using the Precision-Recall curve and AP metric instead <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id41"><span>SR15</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id40"><span>BEP13</span></a>]</span>.</p>
-<p>The chapter is structured as follows. <a class="reference internal" href="ThresholdBased.html#threshold-based-metrics"><span class="std std-ref">Section 4.2</span></a> first presents fraud detection as a classification problem and detail the main threshold-based metrics. Through a simple example, we show that the mean misclassification error is a bad indicator of performance, and motivate the use of alternative metrics such as recall, specificity, precision, and F1-score. <a class="reference internal" href="ThresholdFree.html#threshold-free-metrics"><span class="std std-ref">Section 4.3</span></a> then discusses the use of threshold-free measures such as AUC ROC and AP, and show their benefits and limitations. <a class="reference internal" href="TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Section 4.4</span></a> finally addresses the fraud detection problem from a more operational perspective and motivate the use of the <em>Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> metric</em>.</p>
+<p>The chapter is structured as follows. <a class="reference internal" href="ThresholdBased.html#threshold-based-metrics"><span class="std std-ref">Section 4.2</span></a> first presents fraud detection as a classification problem and details the main threshold-based metrics. Through a simple example, we show that the mean misclassification error is a bad indicator of performance, and motivate the use of alternative metrics such as recall, specificity, precision, and F1-score. <a class="reference internal" href="ThresholdFree.html#threshold-free-metrics"><span class="std std-ref">Section 4.3</span></a> then discusses the use of threshold-free measures such as AUC ROC and AP, and show their benefits and limitations. <a class="reference internal" href="TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Section 4.4</span></a> finally addresses the fraud detection problem from a more operational perspective and motivate the use of the <em>Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> metric</em>.</p>
 </div>
 
     <script type="text/x-thebe-config">

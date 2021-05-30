@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ModelSelection.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Summary" href="Summary.html" />
@@ -65,6 +67,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ModelSelection.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Model selection" />
+<meta property="og:description" content="Model selection  Model selection consists in selecting the prediction model that is expected to provide the best performances on future data. The standard metho" />
+<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -893,9 +904,9 @@ Wall time: 2.13 s
 <p>The resulting DataFrame provides the performances in terms of AUC ROC, AP, and CP&#64;100 for both the validation and test sets. Rows correspond to performances for a given maximum depth of a decision tree.</p>
 <p>Let us extract from this table the most relevant information, that is, entries that allow to answer the following questions:</p>
 <ol class="simple">
-<li><p>Which is the parameter that provides the best performances on the validation set?</p></li>
-<li><p>What would be the performances on the test set using these parameters?</p></li>
-<li><p>What would be the parameters that would have provided the best performances on the test set?</p></li>
+<li><p>Which parameter provides the best performances on the validation set?</p></li>
+<li><p>What is the performances on the test set using this parameter?</p></li>
+<li><p>What parameter would have provided the best performance on the test set?</p></li>
 </ol>
 <p>Answers to these questions can be organized as a table, using the <code class="docutils literal notranslate"><span class="pre">get_summary_performances</span></code> function.</p>
 <div class="cell tag_hide-cell docutils container">
