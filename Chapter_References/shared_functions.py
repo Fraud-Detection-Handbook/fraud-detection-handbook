@@ -59,9 +59,6 @@ import imblearn
 import warnings
 warnings.filterwarnings('ignore')
 
-import torch
-import torch.nn.functional as F
-
 
 # ## Loading and saving data
 
@@ -1307,9 +1304,18 @@ def plot_decision_boundary(classifier_0,
 
 # ## Deep Learning functions
 # 
+# 
+
+# In[ ]:
+
+
+import torch
+import torch.nn.functional as F
+
+
 # ### seed_everything
 # 
-# First use in [Chapter 8, Feed-forward neural network](FeedForwardNeuralNetworks).
+# First use in [Chapter 7, Feed-forward neural network](FeedForwardNeuralNetworks).
 
 # In[ ]:
 
@@ -1326,7 +1332,7 @@ def seed_everything(seed):
 
 # ### Utils for data management, training and evaluation
 # 
-# First use in [Chapter 8, Feed-forward neural network](FeedForwardNeuralNetworks).
+# First use in [Chapter 7, Feed-forward neural network](FeedForwardNeuralNetworks).
 
 # In[ ]:
 
@@ -1485,7 +1491,7 @@ def rolling_window(array, window):
 
 # ### FraudDatasetUnsupervised
 # 
-# First use in [Chapter 8, Autoencoders and anomaly detection](Autoencoders).
+# First use in [Chapter 7, Autoencoders and anomaly detection](Autoencoders).
 
 # In[ ]:
 
@@ -1512,7 +1518,7 @@ class FraudDatasetUnsupervised(torch.utils.data.Dataset):
 
 # ### SimpleFraudMLPWithDropout and FraudMLP modules
 # 
-# First use in [Chapter 8, Feed-forward neural network](FeedForwardNeuralNetworks).
+# First use in [Chapter 7, Feed-forward neural network](FeedForwardNeuralNetworks).
 
 # In[ ]:
 
@@ -1589,7 +1595,7 @@ class FraudMLP(torch.nn.Module):
 
 # ### SimpleAutoencoder module
 # 
-# First use in [Chapter 8, Autoencoders and anomaly detection](Autoencoders).
+# First use in [Chapter 7, Autoencoders and anomaly detection](Autoencoders).
 
 # In[ ]:
 
@@ -1633,7 +1639,7 @@ class SimpleAutoencoder(torch.nn.Module):
 
 # ### Attention module
 # 
-# First use in [Chapter 8, Sequential models and representation learning](SequentialModeling).
+# First use in [Chapter 7, Sequential models and representation learning](SequentialModeling).
 
 # In[ ]:
 
