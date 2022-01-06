@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Threshold-based metrics &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_4_PerformanceMetrics/ThresholdBased.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Threshold-free metrics" href="ThresholdFree.html" />
     <link rel="prev" title="1. Introduction" href="Introduction.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_4_PerformanceMetrics/ThresholdBased.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Threshold-based metrics" />
-<meta property="og:description" content="Threshold-based metrics  Fraud detection is most commonly addressed as a binary classification problem: A fraud detection system receives transactions, and its " />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,14 +423,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -379,16 +454,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#confusion-matrix">
    2.1. Confusion matrix
@@ -428,8 +503,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -437,7 +512,7 @@
         
               <div>
                 
-  <div class="section" id="threshold-based-metrics">
+  <div class="tex2jax_ignore mathjax_ignore section" id="threshold-based-metrics">
 <span id="id1"></span><h1><span class="section-number">2. </span>Threshold-based metrics<a class="headerlink" href="#threshold-based-metrics" title="Permalink to this headline">¶</a></h1>
 <p>Fraud detection is most commonly addressed as a binary classification problem: A fraud detection system receives transactions, and its goal is to predict whether they are likely to be genuine, or fraudulent. Given a transaction <span class="math notranslate nohighlight">\(x\)</span> (with features <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, …), a fraud detection system outputs a fraud score, and classifies it as genuine or fraudulent, as illustrated in Fig. 1.</p>
 <p><img alt="" src="../_images/transaction_fraud_score_with_caption.png" /></p>
@@ -479,7 +554,7 @@
 </div>
 <div class="section" id="confusion-matrix">
 <h2><span class="section-number">2.1. </span>Confusion matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h2>
-<p>Once a threshold <span class="math notranslate nohighlight">\(t\)</span> is set, the outcome of a binary classification problem is usually represented as a <em>confusion matrix</em>. Denoting by <span class="math notranslate nohighlight">\(Y_1\)</span> the set of positive instances (frauds), <span class="math notranslate nohighlight">\(Y_0\)</span> the set of negative instances (genuine), <span class="math notranslate nohighlight">\(\hat{Y}_1\)</span> the set of instances predicted as positive and <span class="math notranslate nohighlight">\(\hat{Y}_0\)</span> the ones predicted as negative, the confusion matrix is represented as follows, see Fig. 2 <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id44"><span>Tha20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>Once a threshold <span class="math notranslate nohighlight">\(t\)</span> is set, the outcome of a binary classification problem is usually represented as a <em>confusion matrix</em>. Denoting by <span class="math notranslate nohighlight">\(Y_1\)</span> the set of positive instances (frauds), <span class="math notranslate nohighlight">\(Y_0\)</span> the set of negative instances (genuine), <span class="math notranslate nohighlight">\(\hat{Y}_1\)</span> the set of instances predicted as positive and <span class="math notranslate nohighlight">\(\hat{Y}_0\)</span> the ones predicted as negative, the confusion matrix is represented as follows, see Fig. 2 <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id80">Tha20</a>]</span>.</p>
 <p><img alt="" src="../_images/confusion_matrix.png" /></p>
 <div align="center">Fig. 2. Example of confusion matrix.</div>    
 <p>The four possible outcomes are</p>
@@ -581,12 +656,12 @@
 <p>This example illustrates the main shortcoming of the MME: it gives the same weight to false negatives and false positives. The first classifier (threshold <span class="math notranslate nohighlight">\(t=1\)</span>) is useless as a fraud detector, while the third classifier (threshold <span class="math notranslate nohighlight">\(t=0.3\)</span>) correctly identifies the two fraudulent transactions, at the expense of two false positives. The MME has the same misclassification error for the first and third classifier, and a lower error for the second (one misclassification). A more disproportionate case with more genuine transaction would further exacerbate this behavior. Deciding which one of these three classifiers is best is however a non-trivial question. It depends on the importance we give to detecting fraud.</p>
 </div>
 <div class="section" id="cost-matrix-and-weigthed-loss">
-<h2><span class="section-number">2.3. </span>Cost matrix and weigthed loss<a class="headerlink" href="#cost-matrix-and-weigthed-loss" title="Permalink to this headline">¶</a></h2>
+<span id="performance-costmatrix"></span><h2><span class="section-number">2.3. </span>Cost matrix and weigthed loss<a class="headerlink" href="#cost-matrix-and-weigthed-loss" title="Permalink to this headline">¶</a></h2>
 <p>A fraud detection problem is in nature a <em>cost-sensitive</em> problem: missing a fraudulent transaction is usually considered more costly than raising a false alert on a legitimate transaction. In the former case, losses not only include the amount of the fraudulent transaction. They also include other fraudulent transactions that may be carried out using the compromised card, as well as customer services costs related to later dealing with the issue, and the reputation of the company as a whole. In the latter case, the cost is reduced to checking the legitimacy of the transaction with the customer. In case of real-time detection, it also entails the customer inconvenience related to the blocking their legitimate payment.</p>
-<p>A possible approach to fix the <span class="math notranslate nohighlight">\(MME\)</span> presented above is by defining a <em>cost matrix</em>. The cost matrix quantifies, for each outcome in the confusion matrix, an associated cost. It is a 2 * 2 matrix, whose entries are denoted <span class="math notranslate nohighlight">\(c_{ij}\)</span> following the notations from <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34"><span>Elk01</span></a>]</span>.</p>
+<p>A possible approach to fix the <span class="math notranslate nohighlight">\(MME\)</span> presented above is by defining a <em>cost matrix</em>. The cost matrix quantifies, for each outcome in the confusion matrix, an associated cost. It is a 2 * 2 matrix, whose entries are denoted <span class="math notranslate nohighlight">\(c_{ij}\)</span> following the notations from <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id70">Elk01</a>]</span>.</p>
 <p><img alt="" src="../_images/cost_matrix.png" /></p>
 <div align="center">Fig. 2. Example of cost matrix.</div>    
-<p>The misclassification error can then be expressed as an expected weighted loss, by multiplying each entry of the confusion matrix with the corresponding entry in the cost matrix <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>. Denoting by <span class="math notranslate nohighlight">\(WL\)</span> this quantity (weighted loss), we get</p>
+<p>The misclassification error can then be expressed as an expected weighted loss, by multiplying each entry of the confusion matrix with the corresponding entry in the cost matrix <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id36">GTM+20</a>]</span>. Denoting by <span class="math notranslate nohighlight">\(WL\)</span> this quantity (weighted loss), we get</p>
 <div class="math notranslate nohighlight">
 \[
 WL= \frac{TN*c_{00}+FN*c_{01}+FP*c_{10}+TP*c_{11}}{N}
@@ -596,10 +671,10 @@ WL= \frac{TN*c_{00}+FN*c_{01}+FP*c_{10}+TP*c_{11}}{N}
 \[
 WL= \frac{FN*c_{01}+FP*c_{10}}{N}
 \]</div>
-<p>It is however in practice difficult to set the values <span class="math notranslate nohighlight">\(c_{01}\)</span> and <span class="math notranslate nohighlight">\(c_{10}\)</span> <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>It is however in practice difficult to set the values <span class="math notranslate nohighlight">\(c_{01}\)</span> and <span class="math notranslate nohighlight">\(c_{10}\)</span> <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>]</span>.</p>
 <p>When defining a cost measure, one could consider the cost of a FN fixed or dependent on the transaction amount. In the first case, each fraud is equally costly, while in the latter the cost is example dependent. An argument for using fixed cost is to give equal importance to small and larger frauds (fraudsters usually test a card with small amounts), while transaction-dependent cost allows one to quantify the real loss that a company has to face.</p>
-<p>In the transaction-dependent case, the cost of a missed fraud (FN) is often assumed to be equal to the transaction amount <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34"><span>Elk01</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>, because it has to be reimbursed to the customer. The card spending limit can also be considered to account for the maximal potential damage that a missed fraud can lead to. The cost of correct or false alerts is considered to be equivalent to the cost of an investigator verifying with the cardholder whether a transaction was fraudulent. The cost of a phone call is negligible compared to the loss that occurs in the case of a fraud. However, when the number of false alerts is too large or the card is blocked by error, the impossibility to make transactions can translate into big losses for the customer.</p>
-<p>The overall cost should also include the time taken by the detection system to react. The shorter the reaction time, the larger the number of frauds that can be prevented. Typically, once fraudsters successfully perpetrate a fraud, they try to spend all the money available on the card. As a consequence, when evaluating an FDS, one should also consider the spending limit of each card: i.e. detecting a fraud on a card having a large spending limit (e.g. corporate cards) result in higher savings than detecting a fraud on a card having a small spending limit. Another consideration is that sometimes there are business-specific constraints specified in contracts (e.g. at least one fraud out of three has to be caught). In that case, one metric is fixed (here the TPR, defined below) and the goal is to optimize a completary one (e.g. the precision). For all these reasons, defining a cost measure is a challenging problem in credit card detection and there is no agreement on which is the right way to measure the cost of frauds <span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>In the transaction-dependent case, the cost of a missed fraud (FN) is often assumed to be equal to the transaction amount <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id70">Elk01</a>]</span>, because it has to be reimbursed to the customer. The card spending limit can also be considered to account for the maximal potential damage that a missed fraud can lead to. The cost of correct or false alerts is considered to be equivalent to the cost of an investigator verifying with the cardholder whether a transaction was fraudulent. The cost of a phone call is negligible compared to the loss that occurs in the case of a fraud. However, when the number of false alerts is too large or the card is blocked by error, the impossibility to make transactions can translate into big losses for the customer.</p>
+<p>The overall cost should also include the time taken by the detection system to react. The shorter the reaction time, the larger the number of frauds that can be prevented. Typically, once fraudsters successfully perpetrate a fraud, they try to spend all the money available on the card. As a consequence, when evaluating an FDS, one should also consider the spending limit of each card: i.e. detecting a fraud on a card having a large spending limit (e.g. corporate cards) result in higher savings than detecting a fraud on a card having a small spending limit. Another consideration is that sometimes there are business-specific constraints specified in contracts (e.g. at least one fraud out of three has to be caught). In that case, one metric is fixed (here the TPR, defined below) and the goal is to optimize a completary one (e.g. the precision). For all these reasons, defining a cost measure is a challenging problem in credit card detection and there is no agreement on which is the right way to measure the cost of frauds <span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>]</span>.</p>
 </div>
 <div class="section" id="other-performance-metrics-derived-from-the-confusion-matrix">
 <h2><span class="section-number">2.4. </span>Other performance metrics derived from the confusion matrix<a class="headerlink" href="#other-performance-metrics-derived-from-the-confusion-matrix" title="Permalink to this headline">¶</a></h2>
@@ -618,10 +693,10 @@ measures the proportion of positives that are correctly identified (e.g., the pr
 \[FNR = \frac{FN}{TP+FN} = 1-TPR\]</div>
 <div class="math notranslate nohighlight">
 \[FPR = \frac{FP}{TN+FP} = 1-TNR\]</div>
-<p>Taking the mean of the FNR and the TNR provides a balanced measure of accuracy known as the Balanced Error Rate (BER) <span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>:</p>
+<p>Taking the mean of the FNR and the TNR provides a balanced measure of accuracy known as the Balanced Error Rate (BER) <span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[BER = 0.5*(FNR+FPR)\]</div>
-<p>The BER is a weighted loss where the misclassification costs make up for the class imbalance. An alternative measure that aggregates the TNR and TPR is the geometric mean G-mean, defined as the <span class="math notranslate nohighlight">\(G-mean = \sqrt{TPR × TNR}\)</span> <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span>.</p>
+<p>The BER is a weighted loss where the misclassification costs make up for the class imbalance. An alternative measure that aggregates the TNR and TPR is the geometric mean G-mean, defined as the <span class="math notranslate nohighlight">\(G-mean = \sqrt{TPR × TNR}\)</span> <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>]</span>.</p>
 </div>
 <div class="section" id="row-wise">
 <h3><span class="section-number">2.4.2. </span>Row-wise<a class="headerlink" href="#row-wise" title="Permalink to this headline">¶</a></h3>
@@ -629,7 +704,7 @@ measures the proportion of positives that are correctly identified (e.g., the pr
 <div class="math notranslate nohighlight">
 \[Precision = \frac{TP}{TP+FP}\]</div>
 <p>A system with high recall but low precision returns many alerts, but most of the alerts are incorrect when compared to the ground-truth labels (many false positives). A system with high precision but low recall is just the opposite, returning very few alerts, but most of its alerts are correct when compared to the training labels. An ideal system with high precision and high recall returns many alerts, with all alerts labeled correctly. For a fully automated blocking system, a high precision would be favored. For a system with a second layer of human verification, a high recall is beneficial as the false positives will be discarded anyway by the investigators, within the limit of their bandwidth.</p>
-<p>The three other metrics which can be computed row-wise are the Negative Predictive Value (NPV), the False Discovery Rate (FDR), and the False Ommission Rate (FOR). They are defined as <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id47"><span>FernandezGarciaG+18</span></a>]</span></p>
+<p>The three other metrics which can be computed row-wise are the Negative Predictive Value (NPV), the False Discovery Rate (FDR), and the False Ommission Rate (FOR). They are defined as <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>]</span></p>
 <div class="math notranslate nohighlight">
 \[NPV = \frac{TN}{TN+FN} \]</div>
 <div class="math notranslate nohighlight">
@@ -639,7 +714,7 @@ measures the proportion of positives that are correctly identified (e.g., the pr
 <p>An aggregate measure of the precision and recall often used in practice is the <em>F1-score</em>. It is defined as the harmonic mean of the two quantities:</p>
 <div class="math notranslate nohighlight">
 \[\textrm{F1-score} = 2*\frac{Precision*Recall}{Precision+Recall}\]</div>
-<p>F1-score and G-mean are often considered to be relevant measures in imbalanced problems <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id27"><span>CCHJ08</span></a>]</span>,<span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id26"><span>CLB+04</span></a>]</span>. These measures can however be computed only once a confusion matrix is available, which means that their values depend on the threshold <span class="math notranslate nohighlight">\(t\)</span> used for classification. Changing the threshold corresponds to using different misclassification costs.</p>
+<p>F1-score and G-mean are often considered to be relevant measures in imbalanced problems <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id49">CCHJ08</a>]</span>,<span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52">CLB+04</a>]</span>. These measures can however be computed only once a confusion matrix is available, which means that their values depend on the threshold <span class="math notranslate nohighlight">\(t\)</span> used for classification. Changing the threshold corresponds to using different misclassification costs.</p>
 </div>
 </div>
 <div class="section" id="implementation">
@@ -903,17 +978,28 @@ measures the proportion of positives that are correctly identified (e.g., the pr
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ThresholdFree.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Threshold-free metrics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
-    <a class='right-next' id="next-link" href="ThresholdFree.html" title="next page"><span class="section-number">3. </span>Threshold-free metrics</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -934,11 +1020,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

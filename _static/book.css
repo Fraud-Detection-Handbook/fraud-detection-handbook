@@ -6,6 +6,10 @@ p {
     text-align: center;
 }
 
+div.caption-figure > p {
+    text-align: center;
+}
+
 img {
    margin-left: auto;
    margin-right: auto;

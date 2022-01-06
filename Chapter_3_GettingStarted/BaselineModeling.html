@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4. Baseline fraud detection system &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_3_GettingStarted/BaselineModeling.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Real-world data" href="Baseline_RealWorldData.html" />
     <link rel="prev" title="3. Baseline feature transformation" href="BaselineFeatureTransformation.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_3_GettingStarted/BaselineModeling.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Baseline fraud detection system" />
-<meta property="og:description" content="Baseline fraud detection system  This section aims at showing how a simple fraud detection system can be designed in a few steps. We will use the simulated data" />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,14 +423,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -379,16 +454,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#defining-the-training-and-test-sets">
    4.1. Defining the training and test sets
@@ -411,8 +486,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -420,7 +495,7 @@
         
               <div>
                 
-  <div class="section" id="baseline-fraud-detection-system">
+  <div class="tex2jax_ignore mathjax_ignore section" id="baseline-fraud-detection-system">
 <span id="baseline-fds"></span><h1><span class="section-number">4. </span>Baseline fraud detection system<a class="headerlink" href="#baseline-fraud-detection-system" title="Permalink to this headline">¶</a></h1>
 <p>This section aims at showing how a simple fraud detection system can be designed in a few steps. We will use the simulated data generated in the previous section, and will rely on a supervised learning approach as described in the section <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html#ml-for-ccfd-baseline-methodology"><span class="std std-ref">Baseline methodology - Supervised learning</span></a> of the previous chapter. The baseline supervised learning methodology is illustrated in Fig. 1.</p>
 <p><img alt="alt text" src="../_images/baseline_ML_workflow_subset.png" /></p>
@@ -452,7 +527,7 @@ Fig. 1. Baseline supervised learning methodology for credit card fraud detection
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 31567  100 31567    0     0   172k      0 --:--:-- --:--:-- --:--:--  172k
+100 63076  100 63076    0     0    99k      0 --:--:-- --:--:-- --:--:--     0:-- --:--:--   99k
 </pre></div>
 </div>
 </div>
@@ -460,8 +535,8 @@ Fig. 1. Baseline supervised learning methodology for credit card fraud detection
 <div class="section" id="defining-the-training-and-test-sets">
 <span id="baseline-fds-training-test-sets"></span><h2><span class="section-number">4.1. </span>Defining the training and test sets<a class="headerlink" href="#defining-the-training-and-test-sets" title="Permalink to this headline">¶</a></h2>
 <p>The training set aims at training a prediction model, while the test set aims at evaluating the performance of the prediction model on new data. In a fraud detection context, the transactions of the test set occur chronologically <em>after</em> the transactions used for training the model.</p>
-<p>We will use the transactions from the 2018/07/25 to the 2018/07/31 for the training set, and from the 2018-08-08 to the 2018-08-14 for the test set. One week of data will be sufficient to train a first prediction model and to assess its performance. We will later use larger periods for training and testing to evaluate how larger sets can affect the performance results.</p>
-<p>It is worth noting that we choose our test set to take place one week after the last transaction of the training set. In a fraud detection context, this period separating the training and test set is referred to as the <em>delay period</em> or <em>feedback delay</em> <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>]</span>. It accounts for the fact that, in a real-world fraud detection system, the label of a transaction (fraudulent or genuine) is only known after a customer complaint, or thanks to the result of a fraud investigation. Therefore, in a realistic scenario, the annotated data available to train a model and start making prediction for a given day are anterior to that day minus the delay period. Setting a delay period of one week is simplistic. It assumes that the labels (fraudulent or genuine) for all transactions are known exactly one week after they occurred. This is in practice not the case, since the delay may be shorter when customers report frauds quickly, or much longer in cases where frauds remain undetected for months. The delay period is in fact a parameter in the assessment of a fraud detection model, as will be addressed with validation strategies in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#validation-strategies"><span class="std std-ref">Chapter 4</span></a>). A one-week delay is, to a first approximation, a reasonable basis. From experience, statistics generally show that most of the feedback becomes available after a one week delay and empirically, it is also the point where the negative effect of considering that zero feedback is available before and the positive effect of considering that all the feedback is available after cancel each other out.</p>
+<p>We will use the transactions from the 2018-07-25 to the 2018-07-31 for the training set, and from the 2018-08-08 to the 2018-08-14 for the test set. One week of data will be sufficient to train a first prediction model and to assess its performance. We will later use larger periods for training and testing to evaluate how larger sets can affect the performance results.</p>
+<p>It is worth noting that we choose our test set to take place one week after the last transaction of the training set. In a fraud detection context, this period separating the training and test set is referred to as the <em>delay period</em> or <em>feedback delay</em> <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id33">DPBC+17</a>]</span>. It accounts for the fact that, in a real-world fraud detection system, the label of a transaction (fraudulent or genuine) is only known after a customer complaint, or thanks to the result of a fraud investigation. Therefore, in a realistic scenario, the annotated data available to train a model and start making predictions for a given day are anterior to that day minus the delay period. Setting a delay period of one week is simplistic. It assumes that the labels (fraudulent or genuine) for all transactions are known exactly one week after they occurred. This is not the case in practice, since the delay may be shorter when customers report frauds quickly, or much longer in cases where frauds remain undetected for months. The delay period is in fact a parameter in the assessment of a fraud detection model, which can be tuned during the validation stage (see <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#validation-strategies"><span class="std std-ref">Chapter 5</span></a>). A one-week delay is, to a first approximation, a reasonable basis: from experience, statistics generally show that most of the feedback becomes available after a one week delay.</p>
 <p>Let us load the transactions from the 2018-07-25 to the 2018-08-14, and plot the number of transactions per day, fraudulent transactions per day, and fraudulent cards per day.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -480,8 +555,8 @@ Fig. 1. Baseline supervised learning methodology for credit card fraud detection
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
-CPU times: user 198 ms, sys: 158 ms, total: 356 ms
-Wall time: 437 ms
+CPU times: user 48.2 ms, sys: 50.9 ms, total: 99.2 ms
+Wall time: 149 ms
 201295 transactions loaded, containing 1792 fraudulent transactions
 </pre></div>
 </div>
@@ -497,12 +572,12 @@ Wall time: 437 ms
     <span class="n">nb_tx_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
     <span class="c1">#Number of fraudulent transactions per day</span>
     <span class="n">nb_fraudulent_transactions_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="c1">#Number of fraudulent cards per day</span>
-    <span class="n">nb_frauded_cards_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="c1">#Number of compromised cards per day</span>
+    <span class="n">nb_compromised_cards_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
     
     <span class="n">tx_stats</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;nb_tx_per_day&quot;</span><span class="p">:</span><span class="n">nb_tx_per_day</span><span class="p">,</span>
                            <span class="s2">&quot;nb_fraudulent_transactions_per_day&quot;</span><span class="p">:</span><span class="n">nb_fraudulent_transactions_per_day</span><span class="p">,</span>
-                           <span class="s2">&quot;nb_frauded_cards_per_day&quot;</span><span class="p">:</span><span class="n">nb_frauded_cards_per_day</span><span class="p">})</span>
+                           <span class="s2">&quot;nb_compromised_cards_per_day&quot;</span><span class="p">:</span><span class="n">nb_compromised_cards_per_day</span><span class="p">})</span>
 
     <span class="n">tx_stats</span><span class="o">=</span><span class="n">tx_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
     
@@ -552,7 +627,7 @@ Wall time: 437 ms
 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
 <span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;nb_tx_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
         <span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> 
-        <span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">)}</span>
+        <span class="s1">&#39;nb_compromised_cards_per_day&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">(</span><span class="mi">250</span><span class="p">)}</span>
 
 <span class="n">fraud_and_transactions_stats_fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
@@ -568,7 +643,7 @@ Wall time: 437 ms
 
 <span class="n">get_template_tx_stats</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
                       <span class="n">start_date_training</span><span class="o">=</span><span class="n">start_date_training</span><span class="p">,</span>
-                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Total transactions, and number of fraudulent transactions </span><span class="se">\n</span><span class="s1"> and number of frauded cards per day&#39;</span><span class="p">,</span>
+                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Total transactions, and number of fraudulent transactions </span><span class="se">\n</span><span class="s1"> and number of compromised cards per day&#39;</span><span class="p">,</span>
                       <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span>
                       <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span>
                       <span class="n">delta_test</span><span class="o">=</span><span class="n">delta_test</span>
@@ -576,7 +651,7 @@ Wall time: 437 ms
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_tx_per_day&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_tx_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# transactions per day (/50)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_fraudulent_transactions_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# fraudulent txs per day&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_frauded_cards_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# fraudulent cards per day&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;tx_date&#39;</span><span class="p">],</span> <span class="n">tx_stats</span><span class="p">[</span><span class="s1">&#39;nb_compromised_cards_per_day&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;nb_compromised_cards_per_day&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;# compromised cards per day&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
@@ -607,11 +682,11 @@ Wall time: 437 ms
     <span class="c1"># Get the test set data</span>
     <span class="n">test_df</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="c1"># Note: Cards known to be frauded after the delay period are removed from the test set</span>
+    <span class="c1"># Note: Cards known to be compromised after the delay period are removed from the test set</span>
     <span class="c1"># That is, for each test day, all frauds known at (test_day-delay_period) are removed</span>
     
-    <span class="c1"># First, get known frauded customers from the training set</span>
-    <span class="n">known_frauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="c1"># First, get known defrauded customers from the training set</span>
+    <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
     
     <span class="c1"># Get the relative starting day of training set (easier than TX_DATETIME to collect test data)</span>
     <span class="n">start_tx_time_days_training</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -624,15 +699,15 @@ Wall time: 437 ms
                                                                     <span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span>
                                                                     <span class="n">day</span><span class="p">]</span>
         
-        <span class="c1"># Frauded cards from that test day, minus the delay period, are added to the pool of known frauded customers</span>
+        <span class="c1"># Compromised cards from that test day, minus the delay period, are added to the pool of known defrauded customers</span>
         <span class="n">test_df_day_delay_period</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">start_tx_time_days_training</span><span class="o">+</span>
                                                                                 <span class="n">delta_train</span><span class="o">+</span>
                                                                                 <span class="n">day</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         
-        <span class="n">new_frauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_df_day_delay_period</span><span class="p">[</span><span class="n">test_df_day_delay_period</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
-        <span class="n">known_frauded_customers</span> <span class="o">=</span> <span class="n">known_frauded_customers</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">new_frauded_customers</span><span class="p">)</span>
+        <span class="n">new_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_df_day_delay_period</span><span class="p">[</span><span class="n">test_df_day_delay_period</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+        <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="n">known_defrauded_customers</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">new_defrauded_customers</span><span class="p">)</span>
         
-        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">test_df_day</span><span class="p">[</span><span class="o">~</span><span class="n">test_df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_frauded_customers</span><span class="p">)]</span>
+        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">test_df_day</span><span class="p">[</span><span class="o">~</span><span class="n">test_df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_defrauded_customers</span><span class="p">)]</span>
         
         <span class="n">test_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_df_day</span><span class="p">)</span>
         
@@ -721,7 +796,7 @@ Wall time: 437 ms
 </div>
 <div class="section" id="model-training-decision-tree">
 <span id="baseline-fds-decision-tree"></span><h2><span class="section-number">4.2. </span>Model training : Decision tree<a class="headerlink" href="#model-training-decision-tree" title="Permalink to this headline">¶</a></h2>
-<p>As explained in the section <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html#ml-for-ccfd-baseline-methodology"><span class="std std-ref">Baseline methodology - Supervised learning</span></a>, the training of a prediction model consists in finding the mathematical relationship that exists between two sets of features, called <em>input</em> and <em>output</em> features. In a fraud detection context, the goal is to find a function that can predict whether a transaction is fraudulent or genuine (the output feature), using features that characterize the transactions (the input features).</p>
+<p>As explained in the section <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html#ml-for-ccfd-baseline-methodology"><span class="std std-ref">Baseline methodology - Supervised learning</span></a>, the training of a prediction model consists in identifying a mathematical relationship between two sets of features, called <em>input</em> and <em>output</em> features. In a fraud detection context, the goal is to find a function that can predict whether a transaction is fraudulent or genuine (the output feature), using features that characterize the transactions (the input features).</p>
 <p>We will define the input and output features as follows:</p>
 <ul class="simple">
 <li><p>The output feature will be the transaction label <code class="docutils literal notranslate"><span class="pre">TX_FRAUD</span></code></p></li>
@@ -744,9 +819,9 @@ Wall time: 437 ms
 </div>
 <p>In Python, the training of a prediction model is made easy using the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library. In particular, the  <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>  library provides implementations for training a wide range of prediction models.</p>
 <p>The training of prediction models will be covered in more detail in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>. For now, we will simply aim at training some standard classifiers, without getting into the detail of how the training is actually performed.</p>
-<p>We will start by relying on a prediction model called <em>decision tree</em>.</p>
-<p>Let us create a function <code class="docutils literal notranslate"><span class="pre">fit_model_and_get_predictions</span></code> that trains a model and returns predictions for a test set. The function takes as input a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object (a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> prediction model), a training set, a test set, and the set of input and output features. The training set will be used to train the classifier. This is done by calling the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method of the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object. The predictions of the classifier for the training and test sets are then obtained by calling the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method of the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object.</p>
-<p>The function returns a dictionary that contains the trained classifier, the predictions for the training set, and the predictions for the test set.</p>
+<p>We will start by relying on a prediction model called a <em>decision tree</em>.</p>
+<p>Let us create a function <code class="docutils literal notranslate"><span class="pre">fit_model_and_get_predictions</span></code> that trains a model and returns predictions for a test set. The function takes as input a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object (a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> prediction model), a training set, a test set, and the set of input and output features. The training set will be used to train the classifier. This is done by calling the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method of the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object. The predictions of the classifier for the training and test sets are then obtained by calling the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method of the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier object (cf. <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html#threshold-based-metrics"><span class="std std-ref">Chapter 4</span></a>).</p>
+<p>The function returns a dictionary that contains the trained classifier, the predictions for the training set, the predictions for the test set, and the execution times for training and inference.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_model_and_get_predictions</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
@@ -983,15 +1058,15 @@ Wall time: 437 ms
 <div class="cell_output docutils container">
 <img alt="../_images/BaselineModeling_27_0.svg" src="../_images/BaselineModeling_27_0.svg" /></div>
 </div>
-<p>A decision tree allows to split the input space into different regions, in such a way that the fraudulent transactions are separated from the genuine transactions. The last level of the tree (the leaves) gives the number of fraudulent and genuine transactions in each of these regions. The color indicates whether a node or leaf of the tree contains a majority of genuine (orange) or fraudulent (blue) transactions.</p>
+<p>A decision tree allows splitting the input space into different regions, in such a way that the fraudulent transactions are separated from the genuine transactions. The last level of the tree (the leaves) gives the number of fraudulent and genuine training transactions in each of these regions. The color indicates whether a node or leaf of the tree contains a majority of genuine (orange) or fraudulent (blue) transactions.</p>
 <p>Each of the five first transactions falls into the first leaf, a region that contains 236 fraudulent transactions and 66498 genuine transactions, that is, a region where the probability of fraud is <span class="math notranslate nohighlight">\(\frac{236}{66498+236}=0.003536\)</span>.</p>
 <p>It is worth noting that the decision tree correctly found that transactions with a high amount are frauds (scenario 1 in the <a class="reference internal" href="SimulatedDataset.html#fraud-scenarios-generation"><span class="std std-ref">fraud generation process</span></a>). The corresponding region is the second leaf. The decision threshold (218.67) is however not optimally found, as the second leaf contains 2 misclassified genuine transactions. The optimal threshold should be 220, as defined in scenario 1, but it was only empirically fitted from the training data that represent a sample of the overall data distribution.</p>
 </div>
 <div class="section" id="performance-assessment">
 <h2><span class="section-number">4.3. </span>performance assessment<a class="headerlink" href="#performance-assessment" title="Permalink to this headline">¶</a></h2>
-<p>Let us finally assess the performance of this decision tree model. We will compute three performance metrics: The AUC ROC, Average Precision (AP), and Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> (CP&#64;k). The motivation for these three metrics will be covered in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html#performance-metrics"><span class="std std-ref">Chapter 4</span></a>. For now, it is sufficient to know that</p>
+<p>Let us finally assess the performance of this decision tree model. We will compute three performance metrics: The AUC ROC, Average Precision (AP), and Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> (CP&#64;k). The motivation for these three metrics will be covered in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html#performance-metrics"><span class="std std-ref">Chapter 4</span></a>. For now, it is sufficient to know that:</p>
 <ul class="simple">
-<li><p>The Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> is the most pragmatic and interpretable measure. It takes into account the fact that investigators can only check a maximum of <span class="math notranslate nohighlight">\(k\)</span> potentially fraudulent cards per day. It is computed by ranking, for every day in the test set, the most fraudulent transactions, and selecting the <span class="math notranslate nohighlight">\(k\)</span> cards whose transactions have the highest fraud probabilities. The precision (proportion of actual frauded cards out of predicted frauded cards) is then computed for each day. The Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> is the average of these daily precisions. The number <span class="math notranslate nohighlight">\(k\)</span> will be set to <span class="math notranslate nohighlight">\(100\)</span> (that is, it is assumed that only 100 cards can be checked every day). The metric is described in detail in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Chapter 4, Precision top-k metrics</span></a>.</p></li>
+<li><p>The Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> is the most pragmatic and interpretable measure. It takes into account the fact that investigators can only check a maximum of <span class="math notranslate nohighlight">\(k\)</span> potentially fraudulent cards per day. It is computed by ranking, for every day in the test set, the most fraudulent transactions, and selecting the <span class="math notranslate nohighlight">\(k\)</span> cards whose transactions have the highest fraud probabilities. The precision (proportion of actual compromised cards out of predicted compromised cards) is then computed for each day. The Card Precision top-<span class="math notranslate nohighlight">\(k\)</span> is the average of these daily precisions. The number <span class="math notranslate nohighlight">\(k\)</span> will be set to <span class="math notranslate nohighlight">\(100\)</span> (that is, it is assumed that only 100 cards can be checked every day). The metric is described in detail in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Chapter 4, Precision top-k metrics</span></a>.</p></li>
 <li><p>The Average Precision is a proxy for the Card Precision top-<span class="math notranslate nohighlight">\(k\)</span>, that integrates precisions for all possible <span class="math notranslate nohighlight">\(k\)</span> values. The metric is described in detail in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html#precision-recall-curve"><span class="std std-ref">Chapter 4, Precision-Recall Curve</span></a>.</p></li>
 <li><p>The AUC ROC is an alternative measure to the Average Precision, which gives more importance to scores obtained with higher <span class="math notranslate nohighlight">\(k\)</span> values. It is less relevant in practice since the performances that matter most are those for low <span class="math notranslate nohighlight">\(k\)</span> values. We however also report it since it is the most widely used performance metric for fraud detection in the literature. The metric is described in detail in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html#receiving-operating-characteristic-curve"><span class="std std-ref">Chapter 4, Receiving Operating Characteristic (ROC) Curve</span></a>.</p></li>
 </ul>
@@ -1007,24 +1082,24 @@ Wall time: 437 ms
             
     <span class="c1"># Get the top k most suspicious cards</span>
     <span class="n">df_day_top_k</span><span class="o">=</span><span class="n">df_day</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span>
-    <span class="n">list_detected_frauded_cards</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="n">list_detected_compromised_cards</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
     
     <span class="c1"># Compute precision top k</span>
-    <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
+    <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_compromised_cards</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
     
-    <span class="k">return</span> <span class="n">list_detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span>
+    <span class="k">return</span> <span class="n">list_detected_compromised_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span>
 
-<span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">remove_detected_frauded_cards</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">remove_detected_compromised_cards</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="c1"># Sort days by increasing order</span>
     <span class="n">list_days</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">list_days</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
     
-    <span class="c1"># At first, the list of detected frauded cards is empty</span>
-    <span class="n">list_detected_frauded_cards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># At first, the list of detected compromised cards is empty</span>
+    <span class="n">list_detected_compromised_cards</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="n">card_precision_top_k_per_day_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">nb_frauded_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nb_compromised_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="c1"># For each day, compute precision top k</span>
     <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">list_days</span><span class="p">:</span>
@@ -1032,24 +1107,24 @@ Wall time: 437 ms
         <span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
         <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]]</span>
         
-        <span class="c1"># Let us remove detected frauded cards from the set of daily transactions</span>
-        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+        <span class="c1"># Let us remove detected compromised cards from the set of daily transactions</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_detected_compromised_cards</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
         
-        <span class="n">nb_frauded_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+        <span class="n">nb_compromised_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
         
-        <span class="n">detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
+        <span class="n">detected_compromised_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
         
         <span class="n">card_precision_top_k_per_day_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_precision_top_k</span><span class="p">)</span>
         
-        <span class="c1"># Let us update the list of detected frauded cards</span>
-        <span class="k">if</span> <span class="n">remove_detected_frauded_cards</span><span class="p">:</span>
-            <span class="n">list_detected_frauded_cards</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">detected_frauded_cards</span><span class="p">)</span>
+        <span class="c1"># Let us update the list of detected compromised cards</span>
+        <span class="k">if</span> <span class="n">remove_detected_compromised_cards</span><span class="p">:</span>
+            <span class="n">list_detected_compromised_cards</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">detected_compromised_cards</span><span class="p">)</span>
         
     <span class="c1"># Compute the mean</span>
     <span class="n">mean_card_precision_top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     
     <span class="c1"># Returns precision top k per day as a list, and resulting mean</span>
-    <span class="k">return</span> <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
+    <span class="k">return</span> <span class="n">nb_compromised_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
 
 <span class="k">def</span> <span class="nf">performance_assessment</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span> 
                            <span class="n">prediction_feature</span><span class="o">=</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="n">top_k_list</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span>
@@ -1119,7 +1194,7 @@ Wall time: 437 ms
 </table>
 </div></div></div>
 </div>
-<p>The most interpretable metric is the Card Precision&#64;100, which tells us that every day, 24% of the cards with the highest fraudulent scores were indeed compromised. Since the percentage of frauds in the test set is 0.7%, this proportion of detected frauds is high, and means that the classifier indeed manages to do much better than chance.</p>
+<p>The most interpretable metric is the Card Precision&#64;100, which tells us that every day, 24% of the cards with the highest fraudulent scores were indeed compromised. Since the percentage of frauds in the test set is 0.7%, this proportion of detected frauds is high and means that the classifier indeed manages to do much better than chance.</p>
 <p>The interpretation of the AUC ROC and Average Precision is less straightforward. However, by definition, it is known that a random classifier would give an AUC ROC of 0.5, and an Average Precision of 0.007 (the proportion of frauds in the test set). The obtained values are much higher (0.764) and (0.496), confirming the ability of the classifier to provide much better predictions than a random model.</p>
 <p>Note: The performances for a random model can be computed by simply setting all predictions to a probability of <span class="math notranslate nohighlight">\(0.5\)</span>:</p>
 <div class="cell docutils container">
@@ -1168,7 +1243,7 @@ Wall time: 437 ms
 </div>
 <div class="section" id="performances-using-standard-prediction-models">
 <span id="baseline-fds-performances-simulation"></span><h2><span class="section-number">4.4. </span>Performances using standard prediction models<a class="headerlink" href="#performances-using-standard-prediction-models" title="Permalink to this headline">¶</a></h2>
-<p>We now have all the building blocks to train and assess other classifiers. Besides the decision tree with depth 2, let us train four other prediction models: a <em>decision tree</em> with unlimited depth, a <em>logistic regression</em> model, a <em>random forest</em>, and a boosting model (refer to the import cell for library details). These models are the most commonly used in benchmarks in the fraud detection literature <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id16"><span>YAG19</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id17"><span>PP19</span></a>]</span>.</p>
+<p>We now have all the building blocks to train and assess other classifiers. Besides the decision tree with depth 2, let us train four other prediction models: a <em>decision tree</em> with unlimited depth, a <em>logistic regression</em> model, a <em>random forest</em>, and a boosting model (refer to the import cell for library details). These models are the most commonly used in benchmarks in the fraud detection literature <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id17">PP19</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id16">YAG19</a>]</span>.</p>
 <p>For this purpose, let us first create a dictionary of <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifiers that instantiates each of these classifiers. We then train and compute the predictions for each of these classifiers using the <code class="docutils literal notranslate"><span class="pre">fit_model_and_get_predictions</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1191,7 +1266,7 @@ Wall time: 437 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10:28:23] WARNING: /private/var/folders/wz/86tkhhmd5gxgh4f24bdl9l2m0000gn/T/pip-install-o8iul8v_/xgboost/build/temp.macosx-10.9-x86_64-3.8/xgboost/src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective &#39;binary:logistic&#39; was changed from &#39;error&#39; to &#39;logloss&#39;. Explicitly set eval_metric if you&#39;d like to restore the old behavior.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11:36:54] WARNING: /private/var/folders/2y/mv3z1v0945b60_l2bzjwpzj80000gn/T/pip-install-v081hmhv/xgboost_5f8c79180547427599a229ec66faab67/build/temp.macosx-10.9-x86_64-3.9/xgboost/src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective &#39;binary:logistic&#39; was changed from &#39;error&#39; to &#39;logloss&#39;. Explicitly set eval_metric if you&#39;d like to restore the old behavior.
 </pre></div>
 </div>
 </div>
@@ -1415,28 +1490,28 @@ Wall time: 437 ms
   <tbody>
     <tr>
       <th>Logistic regression</th>
-      <td>0.300081</td>
-      <td>0.015198</td>
+      <td>1.566042</td>
+      <td>0.010171</td>
     </tr>
     <tr>
       <th>Decision tree with depth of two</th>
-      <td>0.157327</td>
-      <td>0.011103</td>
+      <td>0.079466</td>
+      <td>0.004938</td>
     </tr>
     <tr>
       <th>Decision tree - unlimited depth</th>
-      <td>1.038191</td>
-      <td>0.014814</td>
+      <td>0.759311</td>
+      <td>0.007423</td>
     </tr>
     <tr>
       <th>Random forest</th>
-      <td>7.268234</td>
-      <td>0.275841</td>
+      <td>2.057255</td>
+      <td>0.106525</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>5.947637</td>
-      <td>0.087029</td>
+      <td>6.960977</td>
+      <td>0.132526</td>
     </tr>
   </tbody>
 </table>
@@ -1447,8 +1522,8 @@ Wall time: 437 ms
 <li><p>All prediction models have learned useful fraud patterns from the training data. This can be seen from the AUC ROC on the test set, which is higher than 0.5 for all classifiers, and an average precision much higher than 0.007.</p></li>
 <li><p>The random forest and boosting models provide better performances (in terms of Average Precision) than logistic regression and decision trees. This is also widely reported in the fraud detection literature.</p></li>
 <li><p>The relative performances of the classifiers differ depending on which performance metrics is used. For example, a decision tree of depth 2 has a lower AUC ROC than a decision tree of unlimited depth, but a higher average precision. Understanding precisely what these performances mean is crucial, and will be addressed in the next chapter.</p></li>
-<li><p>The performance of some classifiers (Random Forest and Decision Tree with unlimited depth) is perfect on the training set (AUC ROC and Average Precision of 1), but lower on the test set. In fact, the decision tree with unlimited depth is actually the worst classifier on the test set in terms of Average Precision. This is an example of a phenomenon called <em>overfitting</em>, which should be avoided. Moreover, their link to the target use case should drive the choice of the right classifier for deployment. The meaning of each performance metric will be addressed in the next chapter.</p></li>
-<li><p>The execution times for training ensembles of models (Random forest and XGBoost) is significantly higher than decision trees and logistic regression.</p></li>
+<li><p>The performance of some classifiers (Random Forest and Decision Tree with unlimited depth) is perfect on the training set (AUC ROC and Average Precision of 1), but lower on the test set. In fact, the decision tree with unlimited depth is actually the worst classifier on the test set in terms of Average Precision. This is an example of a phenomenon called <em>overfitting</em>, which should be avoided. This issue will be adressed in more detail in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#validation-strategies"><span class="std std-ref">Chapter 5</span></a>.</p></li>
+<li><p>As expected, the execution times for training ensembles of models (Random forest and XGBoost) is significantly higher than single models (decision trees and logistic regression).</p></li>
 </ul>
 </div>
 </div>
@@ -1475,17 +1550,28 @@ Wall time: 437 ms
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="BaselineFeatureTransformation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Baseline feature transformation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Baseline_RealWorldData.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Real-world data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="BaselineFeatureTransformation.html" title="previous page"><span class="section-number">3. </span>Baseline feature transformation</a>
-    <a class='right-next' id="next-link" href="Baseline_RealWorldData.html" title="next page"><span class="section-number">5. </span>Real-world data</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1506,11 +1592,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

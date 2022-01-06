@@ -1,3 +1,4 @@
+(Summary_Performance_Metrics)=
 # Summary
 
 
@@ -8,7 +9,7 @@ The chapter however only scratched the surface of how to approach a fraud detect
 
 The advanced chapters will cover in detail the possible avenues that can be explored to improve the proposed baseline approach. 
 
-Prior to that, the focus of the next two chapters will more specifically address the experimental methodology, that is, what performance measures should be used, and how these can be estimated. These issues are foundational. They aim at finding an objective way to compare the performances of different fraud detection approaches which will be decisive to finally achieve the optimal financial savings with the FDS. 
+Prior to that, the focus of the next two chapters will more specifically address the experimental methodology, that is, what performance measures should be used, and how these can be estimated. These issues are foundational for finding an objective way to compare the performances of different fraud detection systems and identifying the best performing one. 
 
 
 

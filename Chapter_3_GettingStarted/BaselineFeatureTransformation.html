@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3. Baseline feature transformation &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,10 +43,10 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -61,23 +58,17 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Baseline fraud detection system" href="BaselineModeling.html" />
     <link rel="prev" title="2. Transaction data simulator" href="SimulatedDataset.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_3_GettingStarted/BaselineFeatureTransformation.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Baseline feature transformation" />
-<meta property="og:description" content="Baseline feature transformation  The simulated dataset generated in the previous section is simple. It only contains the essential features that characterize a " />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +77,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -128,12 +123,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -160,12 +155,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -197,12 +192,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -234,12 +229,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -256,17 +251,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -279,6 +353,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +369,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,7 +401,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -346,14 +421,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -377,16 +452,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#loading-of-dataset">
    3.1. Loading of dataset
@@ -414,8 +489,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -423,22 +498,22 @@
         
               <div>
                 
-  <div class="section" id="baseline-feature-transformation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="baseline-feature-transformation">
 <span id="id1"></span><h1><span class="section-number">3. </span>Baseline feature transformation<a class="headerlink" href="#baseline-feature-transformation" title="Permalink to this headline">¶</a></h1>
 <p>The simulated dataset generated in the previous section is simple. It only contains the essential features that characterize a payment card transaction. These are: a unique identifier for the transaction, the date and time of the transaction, the transaction amount, a unique identifier for the customer, a unique number for the merchant, and a binary variable that labels the transaction as legitimate or fraudulent (0 for legitimate or 1 for fraudulent). Fig. 1 provides the first three rows of the simulated dataset:</p>
 <p><img alt="alt text" src="../_images/tx_table1.png" /></p>
 <p style="text-align: center;">
 Fig. 1. The first three transactions in the simulated dataset used in this chapter.
 </p>
-<p>What each row essentially tells us is that, at 00:00:31, on the 1st of April 2018, a customer with ID 596 made a payment of a value of 57.19 to a merchant with ID 3156, and that the transaction was not fraudulent. Then, at 00:02:10, on the 1st of April 2018, a customer with ID 4961 made a payment of a value of 81.51 to a merchant with ID 3412, and that the transaction was not fraudulent. And so on. The simulated dataset is a long list of such transactions (1.8 million in total). The variable <code class="docutils literal notranslate"><span class="pre">transaction_ID</span></code> is a unique identifier for each transaction.</p>
+<p>What each row essentially summarizes is that, at 00:00:31, on the 1st of April 2018, a customer with ID 596 made a payment of a value of 57.19 to a merchant with ID 3156, and that the transaction was not fraudulent. Then, at 00:02:10, on the 1st of April 2018, a customer with ID 4961 made a payment of a value of 81.51 to a merchant with ID 3412, and that the transaction was not fraudulent. And so on. The simulated dataset is a long list of such transactions (1.8 million in total). The variable <code class="docutils literal notranslate"><span class="pre">transaction_ID</span></code> is a unique identifier for each transaction.</p>
 <p>While conceptually simple for a human, such a set of features is however not appropriate for a machine learning predictive model. Machine learning algorithms typically require <em>numerical</em> and <em>ordered</em> features. Numerical means that the type of the variable must be an integer or a real number. Ordered means that the order of the values of a variable is meaningful.</p>
 <p>In this dataset, the only numerical and ordered features are the transaction amount and the fraud label. The date is a Panda timestamp, and therefore not numerical. The identifiers for the transactions, customers, and terminals are numerical but not ordered: it would not make sense to assume for example that the terminal with ID 3548 is ‘bigger’ or ‘larger’ than the terminal with ID 1983. Rather, these identifiers represent distinct ‘entities’, which are referred to as <em>categorical</em> features.</p>
-<p>There is unfortunately no standard procedure to deal with non-numerical or categorical features. The topic is known in the machine learning literature as <em>feature engineering</em> or <em>feature transformation</em> and will be covered in <span class="xref myst">Chapter 7</span>. In essence, the goal of feature engineering is to design new features that are assumed to be relevant for a predictive problem. The design of these features is usually problem-dependent, and involves domain knowledge.</p>
+<p>There is unfortunately no standard procedure to deal with non-numerical or categorical features. The topic is known in the machine learning literature as <em>feature engineering</em> or <em>feature transformation</em>. In essence, the goal of feature engineering is to design new features that are assumed to be relevant for a predictive problem. The design of these features is usually problem-dependent, and involves domain knowledge.</p>
 <p>In this section, we will implement three types of feature transformation that are known to be relevant for payment card fraud detection.</p>
 <p><img alt="encoding" src="../_images/encoding_variables.png" /></p>
-<p>The first type of transformation involves the date/time variable, and consists in creating binary features that characterize potentially relevant periods. We will create two such features. The first one will characterize whether a transaction occurs during a weekday or during the weekend. The second will characterize whether a transaction occurs during the day or the night. These features can be useful since it has been observed that fraudulent patterns differ between weekdays and weekends, and between the day and night.</p>
-<p>The second type of transformation involves the customer ID and consists in creating features that characterize the customer spending behaviors. We will follow the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id30"><span>VVBC+15</span></a>]</span>, and keep track of the average spending amount and number of transactions for each customer and for three window sizes. This will lead to the creation of six new features.</p>
-<p>The third type of transformation involves the terminal ID and consists in creating new features that characterize the ‘risk’ associated to the terminal. The risk will be defined as the average number of frauds that were observed on the terminal for three window sizes. This will lead to the creation of three new features.</p>
+<p>The first type of transformation involves the date/time variable, and consists in creating binary features that characterize potentially relevant periods. We will create two such features. The first one will characterize whether a transaction occurs during a weekday or during the weekend. The second will characterize whether a transaction occurs during the day or the night. These features can be useful since it has been observed in real-world datasets that fraudulent patterns differ between weekdays and weekends, and between the day and night.</p>
+<p>The second type of transformation involves the customer ID and consists in creating features that characterize the customer spending behaviors. We will follow the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id65">VVBC+15</a>]</span>, and keep track of the average spending amount and number of transactions for each customer and for three window sizes. This will lead to the creation of six new features.</p>
+<p>The third type of transformation involves the terminal ID and consists in creating new features that characterize the ‘risk’ associated with the terminal. The risk will be defined as the average number of frauds that were observed on the terminal for three window sizes. This will lead to the creation of three new features.</p>
 <p>The table below summarizes the types of transformation that will be performed and the new features that will be created.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -913,7 +988,7 @@ Wall time: 7.47 s
 </div>
 <div class="section" id="customer-id-transformations">
 <h2><span class="section-number">3.3. </span>Customer ID transformations<a class="headerlink" href="#customer-id-transformations" title="Permalink to this headline">¶</a></h2>
-<p>Let us now proceed with customer ID transformations. We will take inspiration from the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id30"><span>VVBC+15</span></a>]</span>, and compute two of these features over three time windows. The first feature will be the number of transactions that occur within a time window (Frequency). The second will be the average amount spent in these transactions (Monetary value). The time windows will be set to one, seven, and thirty days. This will generate six new features. Note that these time windows could later be optimized along with the models using a model selection procedure (<a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5</span></a>).</p>
+<p>Let us now proceed with customer ID transformations. We will take inspiration from the RFM (Recency, Frequency, Monetary value) framework proposed in <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id65">VVBC+15</a>]</span>, and compute two of these features over three time windows. The first feature will be the number of transactions that occur within a time window (Frequency). The second will be the average amount spent in these transactions (Monetary value). The time windows will be set to one, seven, and thirty days. This will generate six new features. Note that these time windows could later be optimized along with the models using a model selection procedure (<a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5</span></a>).</p>
 <p>Let us implement these transformations by writing a <code class="docutils literal notranslate"><span class="pre">get_customer_spending_behaviour_features</span></code> function. The function takes as inputs the set of transactions for a customer and a set of window sizes. It returns a DataFrame with the six new features. Our implementation relies on the Panda <code class="docutils literal notranslate"><span class="pre">rolling</span></code> function, which makes easy the computation of aggregates over a time window.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -2542,7 +2617,7 @@ Wall time: 2min 41s
 <p>Let us finally save the dataset, split into daily batches, using the pickle format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-transformed/data/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-transformed/&quot;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">)</span>
@@ -2562,7 +2637,7 @@ Wall time: 2min 41s
 </div>
 </div>
 </div>
-<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-transformed/data</span></code>.</p>
+<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-transformed</span></code>.</p>
 </div>
 </div>
 
@@ -2588,17 +2663,28 @@ Wall time: 2min 41s
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="SimulatedDataset.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Transaction data simulator</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="BaselineModeling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Baseline fraud detection system</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="SimulatedDataset.html" title="previous page"><span class="section-number">2. </span>Transaction data simulator</a>
-    <a class='right-next' id="next-link" href="BaselineModeling.html" title="next page"><span class="section-number">4. </span>Baseline fraud detection system</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -2619,11 +2705,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

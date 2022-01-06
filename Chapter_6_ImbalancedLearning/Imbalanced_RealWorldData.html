@@ -1,0 +1,1954 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Real-world data &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Summary" href="Summary.html" />
+    <link rel="prev" title="4. Ensemble methods" href="Ensembling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-sensitive">
+   5.1. Cost-sensitive
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-tree">
+     5.1.1. Decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     5.1.2. Logistic regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling">
+   5.2. Resampling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#smote">
+     5.2.1. SMOTE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-undersampling">
+     5.2.2. Random undersampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combining-smote-with-undersampling">
+     5.2.3. Combining SMOTE with undersampling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensembling">
+   5.3. Ensembling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#baseline">
+     5.3.1. Baseline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#balanced-bagging">
+     5.3.2. Balanced bagging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#balanced-random-forest">
+     5.3.3. Balanced random forest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weighted-xgboost">
+     5.3.4. Weighted XGBoost
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     5.3.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="real-world-data">
+<h1><span class="section-number">5. </span>Real-world data<a class="headerlink" href="#real-world-data" title="Permalink to this headline">¶</a></h1>
+<p>The section reports the performances that are obtained on real-world data using imbalanced learning techniques. The dataset is the same as in <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html#baseline-fds-realworlddata"><span class="std std-ref">Chapter 3, Section 5</span></a>. Results are reported following the methodology used in the previous sections with simulated data.</p>
+<p>We first report the performances for cost-sensitive techniques, varying the class weight for decision trees and logistic regression models. We then report the performances for resampling techniques using decision trees, and varying the imbalance ratio with SMOTE, RUS, and a combination of SMOTE and RUS. We finally report the results using ensemble techniques, varying the imbalance ratio with Bagging and Random Forests models, and varying the class weight with an XGBoost model.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions</span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+<span class="c1">#%run ../Chapter_References/shared_functions.ipynb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cost-sensitive">
+<h2><span class="section-number">5.1. </span>Cost-sensitive<a class="headerlink" href="#cost-sensitive" title="Permalink to this headline">¶</a></h2>
+<p>We followed the methodology reported in Section 6.2 (<a class="reference internal" href="CostSensitive.html#cost-sensitive-learning-transaction-data"><span class="std std-ref">Transaction data</span></a>), saving the results in a <code class="docutils literal notranslate"><span class="pre">performances_cost_sensitive_real_world_data.pkl</span></code> pickle file. The performances and execution times can be retrieved by loading the pickle file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;images/performances_cost_sensitive_real_world_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
+<span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">)</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filehandler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="decision-tree">
+<h3><span class="section-number">5.1.1. </span>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h3>
+<p>The results for decision tree models are reported below. The tree depth was set to 6 (providing the best performances as reported in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-decision-trees"><span class="std std-ref">Chapter 5</span></a>). We varied the class weight in the range 0.01 to 1, with the following set of possible values: <span class="math notranslate nohighlight">\([0.01, 0.05, 0.1, 0.5, 1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dt</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_dt</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Class weight for the majority class&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_7_0.png" src="../_images/Imbalanced_RealWorldData_7_0.png" />
+</div>
+</div>
+<p>We recall that a class weight of 1 consists in giving the same weight to positive and negative classes, whereas a class weight of 0.01 consists in giving 100 times more weight to the positive class (thus favoring the detection of fraud instances). We also note that a class weight of 1 provides the same results as in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection-decision-tree"><span class="std std-ref">Chapter 5</span></a>.</p>
+<p>The results show that decreasing the class weight allows to increase the performances in terms of AUC ROC, but decreases the performances in terms of Average Precision and CP&#64;100, particularly for very low values (close to 0.01).</p>
+<p>The performances as a function of the best parameters are summarized below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.871+/-0.01</td>
+      <td>0.067+/-0.02</td>
+      <td>0.218+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.881+/-0.02</td>
+      <td>0.066+/-0.01</td>
+      <td>0.183+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.881+/-0.02</td>
+      <td>0.068+/-0.01</td>
+      <td>0.232+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>These results follow the same trends as those obtained with the <a class="reference internal" href="CostSensitive.html#cost-sensitive-learning-transaction-data"><span class="std std-ref">simulated data</span></a>: Cost-sensitive learning is effective for improving AUC ROC performances, but detrimental to Average Precision.</p>
+</div>
+<div class="section" id="logistic-regression">
+<h3><span class="section-number">5.1.2. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<p>The results for logistic regression are reported below. The regularization parameter C was set to 0.1 (providing the best performances as was reported in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-logistic-regression"><span class="std std-ref">Chapter 5</span></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_lr</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_lr</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Class weight for the majority class&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_lr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_12_0.png" src="../_images/Imbalanced_RealWorldData_12_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_lr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.862+/-0.01</td>
+      <td>0.054+/-0.03</td>
+      <td>0.174+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.858+/-0.01</td>
+      <td>0.055+/-0.01</td>
+      <td>0.216+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.01</td>
+      <td>0.05</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.858+/-0.01</td>
+      <td>0.056+/-0.01</td>
+      <td>0.216+/-0.03</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Similar to decision trees, lowering the class weight of the majority class provides a boost of performances in terms of AUC ROC. The impact on Average Precision and CP&#64;100 is however mitigated: the only noticeable impact is an improvement of the Average Precision on validation data, which however comes at the cost of a higher variance (as is visible from the large confidence interval).</p>
+</div>
+</div>
+<div class="section" id="resampling">
+<h2><span class="section-number">5.2. </span>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h2>
+<p>We followed the methodology reported in Section 6.3 (<a class="reference internal" href="Resampling.html#resampling-strategies-transaction-data"><span class="std std-ref">Transaction data</span></a>), saving the results in the <code class="docutils literal notranslate"><span class="pre">performances_resampling_real_world_data.pkl</span></code> pickle file. The performances and execution times can be retrieved by loading the file. Performances were assessed for SMOTE, RUS, and a combined resampling with SMOTE and RUS. All the experiments relied on decision tree models, whose tree depth was set to 6 (providing the best performances as was reported in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-decision-trees"><span class="std std-ref">Chapter 5</span></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;images/performances_resampling_real_world_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
+<span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">)</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filehandler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="smote">
+<h3><span class="section-number">5.2.1. </span>SMOTE<a class="headerlink" href="#smote" title="Permalink to this headline">¶</a></h3>
+<p>The results for SMOTE are reported below. The imbalance ratio was varied in the range 0.01 to 1, with the following set of possible values: <span class="math notranslate nohighlight">\([0.01, 0.05, 0.1, 0.5, 1]\)</span>. We recall that the higher the imbalance ratio, the stronger the resampling. An imbalance ratio of 0.01 yields a distribution close to the original one (where the percentage of frauds is close to 0.25%). An imbalance ratio of 1 yields a distribution that contains as many positive instances as negative instances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_SMOTE</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;SMOTE&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_SMOTE</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_SMOTE</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_SMOTE</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Imbalance ratio&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_SMOTE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_18_0.png" src="../_images/Imbalanced_RealWorldData_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_SMOTE</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.5</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.879+/-0.01</td>
+      <td>0.051+/-0.01</td>
+      <td>0.15+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.882+/-0.02</td>
+      <td>0.056+/-0.01</td>
+      <td>0.168+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>1.0</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.883+/-0.02</td>
+      <td>0.056+/-0.01</td>
+      <td>0.168+/-0.02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The results show that the benefits of SMOTE are mitigated. Creating new synthetic instances of the positive class tends to increase AUC ROC performances (left plot). It however comes with a decrease of performances for both Average Precision and CP&#64;100 metrics. These results are in line with those observed on simulated data (Section 6.3, <a class="reference internal" href="Resampling.html#resampling-strategies-transaction-data-oversampling"><span class="std std-ref">Oversampling</span></a>).</p>
+</div>
+<div class="section" id="random-undersampling">
+<h3><span class="section-number">5.2.2. </span>Random undersampling<a class="headerlink" href="#random-undersampling" title="Permalink to this headline">¶</a></h3>
+<p>The results for random undersampling (RUS) are reported below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_RUS</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;RUS&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_RUS</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_RUS</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_RUS</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Imbalance ratio&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_RUS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_22_0.png" src="../_images/Imbalanced_RealWorldData_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_RUS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>1.0</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.885+/-0.0</td>
+      <td>0.064+/-0.02</td>
+      <td>0.203+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.892+/-0.02</td>
+      <td>0.066+/-0.01</td>
+      <td>0.201+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>1.0</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.892+/-0.02</td>
+      <td>0.066+/-0.01</td>
+      <td>0.201+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Similarly, RUS allows to improve performances in terms of AUC ROC, but comes with a noticeable decrease of performances in terms of AP and CP&#64;100. These results are also in line with those observed on simulated data (Section 6.3, <a class="reference internal" href="Resampling.html#resampling-strategies-transaction-data-rus"><span class="std std-ref">Undersampling</span></a>).</p>
+</div>
+<div class="section" id="combining-smote-with-undersampling">
+<h3><span class="section-number">5.2.3. </span>Combining SMOTE with undersampling<a class="headerlink" href="#combining-smote-with-undersampling" title="Permalink to this headline">¶</a></h3>
+<p>We finally report the results for combined resampling (SMOTE followed by RUS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_combined</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Combined&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_combined</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_combined</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_combined</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Imbalance ratio&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_combined</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_26_0.png" src="../_images/Imbalanced_RealWorldData_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_combined</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>1.0</td>
+      <td>0.1</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.883+/-0.01</td>
+      <td>0.039+/-0.01</td>
+      <td>0.091+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.883+/-0.02</td>
+      <td>0.045+/-0.01</td>
+      <td>0.119+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.887+/-0.01</td>
+      <td>0.046+/-0.01</td>
+      <td>0.119+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Again, we observe that resampling allows to improve performances in terms of AUC ROC, but decreases performances in terms of AP and CP&#64;100. The results are in line with those observed on simulated data (Section 6.3, <a class="reference internal" href="Resampling.html#resampling-strategies-transaction-data-combining"><span class="std std-ref">Combining</span></a>).</p>
+</div>
+</div>
+<div class="section" id="ensembling">
+<h2><span class="section-number">5.3. </span>Ensembling<a class="headerlink" href="#ensembling" title="Permalink to this headline">¶</a></h2>
+<p>We followed the methodology reported in Section 6.4 (<a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data"><span class="std std-ref">Transaction data</span></a>), saving the results in a <code class="docutils literal notranslate"><span class="pre">performances_resampling_real_world_data.pkl</span></code> pickle file. The performances and execution times can be retrieved by loading the pickle file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;images/performances_ensembles_real_world_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
+<span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">)</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filehandler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Performances were assessed for balanced bagging, balanced random forest, and weighted XGBoost.</p>
+<div class="section" id="baseline">
+<h3><span class="section-number">5.3.1. </span>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">¶</a></h3>
+<p>For the <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-baseline"><span class="std std-ref">baseline</span></a>, the hyperparameters were chosen as follows:</p>
+<ul class="simple">
+<li><p>Bagging and random forest: 100 trees, with a maximum depth of 10. These were shown to provide the best performances for random forests in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-rf"><span class="std std-ref">Chapter 5, Model Selection - Random forest</span></a>.</p></li>
+<li><p>XGBoost: 100 trees, with a maximum depth of 6, and a learning rate of 0.1. These were shown to provide the best trade-off in terms of performances in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-xgboost"><span class="std std-ref">Chapter 5, Model Selection - XGBoost</span></a>.</p></li>
+</ul>
+<p>The baseline performances are reported in the table below. It is worth noting that the performances for random forest and XGBoost are the same as those reported in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-rf"><span class="std std-ref">Chapter 5, Model Selection - Random forest</span></a> and <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-xgboost"><span class="std std-ref">Chapter 5, Model Selection - XGBoost</span></a>, respectively.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_baseline_bagging</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Baseline Bagging&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_baseline_bagging</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_baseline_bagging</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">performances_df_baseline_rf</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Baseline RF&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_baseline_rf</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_baseline_rf</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">performances_df_baseline_xgboost</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Baseline XGBoost&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_baseline_xgboost</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_baseline_xgboost</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">summary_test_performances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">summary_performances_baseline_bagging</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_baseline_rf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_baseline_xgboost</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                      <span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">summary_test_performances</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Baseline Bagging&#39;</span><span class="p">,</span> <span class="s1">&#39;Baseline RF&#39;</span><span class="p">,</span> <span class="s1">&#39;Baseline XGBoost&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_test_performances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline Bagging</th>
+      <th>Baseline RF</th>
+      <th>Baseline XGBoost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AUC ROC</th>
+      <td>0.912+/-0.02</td>
+      <td>0.912+/-0.02</td>
+      <td>0.928+/-0.01</td>
+    </tr>
+    <tr>
+      <th>Average precision</th>
+      <td>0.072+/-0.03</td>
+      <td>0.08+/-0.03</td>
+      <td>0.095+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Card Precision@100</th>
+      <td>0.209+/-0.07</td>
+      <td>0.227+/-0.05</td>
+      <td>0.235+/-0.07</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>XGBoost was observed to provide better performances than random forest across all performance metrics, as was already reported in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html#model-selection-rwd-comparison"><span class="std std-ref">Comparison of model performances: Summary</span></a>. The performances of bagging were on par with random forest in terms of AUC ROC, but lower in terms of Average Precision and CP&#64;100.</p>
+</div>
+<div class="section" id="balanced-bagging">
+<h3><span class="section-number">5.3.2. </span>Balanced bagging<a class="headerlink" href="#balanced-bagging" title="Permalink to this headline">¶</a></h3>
+<p>Similar to <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-bagging"><span class="std std-ref">Balanced bagging</span></a> with simulated data, the imbalance ratio (<code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> parameter) was parametrized to take values in the set <span class="math notranslate nohighlight">\([0.01, 0.05, 0.1, 0.5, 1]\)</span> for the model selection procedure. The number of trees and maximum tree depth were set to 100 and 10 (as with baseline bagging).</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_balanced_bagging</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Balanced Bagging&#39;</span><span class="p">]</span>
+<span class="n">performances_df_balanced_bagging</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>AUC ROC Test Std</th>
+      <th>Average precision Test</th>
+      <th>Average precision Test Std</th>
+      <th>Card Precision@100 Test</th>
+      <th>Card Precision@100 Test Std</th>
+      <th>Parameters</th>
+      <th>Execution time</th>
+      <th>AUC ROC Validation</th>
+      <th>AUC ROC Validation Std</th>
+      <th>Average precision Validation</th>
+      <th>Average precision Validation Std</th>
+      <th>Card Precision@100 Validation</th>
+      <th>Card Precision@100 Validation Std</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.917228</td>
+      <td>0.017889</td>
+      <td>0.086163</td>
+      <td>0.022412</td>
+      <td>0.247857</td>
+      <td>0.041656</td>
+      <td>{'clf__base_estimator': DecisionTreeClassifier...</td>
+      <td>260.625890</td>
+      <td>0.913089</td>
+      <td>0.006379</td>
+      <td>0.094850</td>
+      <td>0.017160</td>
+      <td>0.258929</td>
+      <td>0.025140</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.918801</td>
+      <td>0.015721</td>
+      <td>0.090421</td>
+      <td>0.017192</td>
+      <td>0.247500</td>
+      <td>0.037422</td>
+      <td>{'clf__base_estimator': DecisionTreeClassifier...</td>
+      <td>289.001823</td>
+      <td>0.914338</td>
+      <td>0.006752</td>
+      <td>0.089633</td>
+      <td>0.017394</td>
+      <td>0.255000</td>
+      <td>0.037095</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.919477</td>
+      <td>0.013627</td>
+      <td>0.087215</td>
+      <td>0.016194</td>
+      <td>0.240000</td>
+      <td>0.039448</td>
+      <td>{'clf__base_estimator': DecisionTreeClassifier...</td>
+      <td>251.555288</td>
+      <td>0.914954</td>
+      <td>0.008718</td>
+      <td>0.085063</td>
+      <td>0.017055</td>
+      <td>0.241071</td>
+      <td>0.034998</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.921931</td>
+      <td>0.012261</td>
+      <td>0.076810</td>
+      <td>0.015141</td>
+      <td>0.209643</td>
+      <td>0.035962</td>
+      <td>{'clf__base_estimator': DecisionTreeClassifier...</td>
+      <td>238.826444</td>
+      <td>0.913580</td>
+      <td>0.012917</td>
+      <td>0.069417</td>
+      <td>0.010087</td>
+      <td>0.195714</td>
+      <td>0.013209</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.921426</td>
+      <td>0.013367</td>
+      <td>0.069408</td>
+      <td>0.011683</td>
+      <td>0.189286</td>
+      <td>0.023332</td>
+      <td>{'clf__base_estimator': DecisionTreeClassifier...</td>
+      <td>197.796464</td>
+      <td>0.914754</td>
+      <td>0.011732</td>
+      <td>0.060259</td>
+      <td>0.008555</td>
+      <td>0.160357</td>
+      <td>0.021556</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us summarize the performances to highlight the optimal imbalance ratio, and plot the performances as a function of the imbalance ratio for the three performance metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_balanced_bagging</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_balanced_bagging</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_balanced_bagging</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.1</td>
+      <td>0.02</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.915+/-0.01</td>
+      <td>0.095+/-0.02</td>
+      <td>0.259+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.919+/-0.01</td>
+      <td>0.086+/-0.02</td>
+      <td>0.248+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.5</td>
+      <td>0.05</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.922+/-0.01</td>
+      <td>0.09+/-0.02</td>
+      <td>0.248+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_balanced_bagging</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Imbalance ratio&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_balanced_bagging</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_39_0.png" src="../_images/Imbalanced_RealWorldData_39_0.png" />
+</div>
+</div>
+<p>The results show that increasing the imbalance ratio leads to a decrease of both Average Precision and CP&#64;100. The trend is different with AUC ROC, where increasing the imbalance ratio first leads to a slight improvement of the metric, before reaching a plateau. It is worth noting that the results are qualitatively similar to <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-bagging"><span class="std std-ref">Balanced bagging</span></a> with simulated data for AUC ROC and Average Precision.</p>
+</div>
+<div class="section" id="balanced-random-forest">
+<h3><span class="section-number">5.3.3. </span>Balanced random forest<a class="headerlink" href="#balanced-random-forest" title="Permalink to this headline">¶</a></h3>
+<p>Similar to <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-rf"><span class="std std-ref">Balanced Random Forest</span></a> with simulated data, the imbalance ratio (<code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> parameter) was parametrized to take values in the set <span class="math notranslate nohighlight">\([0.01, 0.05, 0.1, 0.5, 1]\)</span> for the model selection procedure. The number of trees and maximum tree depth were set to 100 and 10 (as with baseline random forest).</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_balanced_rf</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Balanced RF&#39;</span><span class="p">]</span>
+<span class="n">performances_df_balanced_rf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>AUC ROC Test Std</th>
+      <th>Average precision Test</th>
+      <th>Average precision Test Std</th>
+      <th>Card Precision@100 Test</th>
+      <th>Card Precision@100 Test Std</th>
+      <th>Parameters</th>
+      <th>Execution time</th>
+      <th>AUC ROC Validation</th>
+      <th>AUC ROC Validation Std</th>
+      <th>Average precision Validation</th>
+      <th>Average precision Validation Std</th>
+      <th>Card Precision@100 Validation</th>
+      <th>Card Precision@100 Validation Std</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.918636</td>
+      <td>0.020386</td>
+      <td>0.093255</td>
+      <td>0.018644</td>
+      <td>0.253929</td>
+      <td>0.026733</td>
+      <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
+      <td>138.678571</td>
+      <td>0.918772</td>
+      <td>0.005630</td>
+      <td>0.099003</td>
+      <td>0.021238</td>
+      <td>0.263571</td>
+      <td>0.031274</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.922445</td>
+      <td>0.018733</td>
+      <td>0.092084</td>
+      <td>0.017847</td>
+      <td>0.245000</td>
+      <td>0.025425</td>
+      <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
+      <td>140.741641</td>
+      <td>0.920488</td>
+      <td>0.005681</td>
+      <td>0.094071</td>
+      <td>0.018980</td>
+      <td>0.255000</td>
+      <td>0.033480</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.925383</td>
+      <td>0.015810</td>
+      <td>0.088692</td>
+      <td>0.017844</td>
+      <td>0.238929</td>
+      <td>0.027244</td>
+      <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
+      <td>130.145606</td>
+      <td>0.921882</td>
+      <td>0.004630</td>
+      <td>0.091078</td>
+      <td>0.019971</td>
+      <td>0.247500</td>
+      <td>0.037490</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.926452</td>
+      <td>0.013919</td>
+      <td>0.075340</td>
+      <td>0.013228</td>
+      <td>0.200714</td>
+      <td>0.032490</td>
+      <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
+      <td>125.557530</td>
+      <td>0.921611</td>
+      <td>0.007349</td>
+      <td>0.074475</td>
+      <td>0.016815</td>
+      <td>0.202857</td>
+      <td>0.034949</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.924311</td>
+      <td>0.013693</td>
+      <td>0.069106</td>
+      <td>0.011243</td>
+      <td>0.176786</td>
+      <td>0.015498</td>
+      <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
+      <td>115.135572</td>
+      <td>0.919174</td>
+      <td>0.008283</td>
+      <td>0.066712</td>
+      <td>0.015405</td>
+      <td>0.180714</td>
+      <td>0.037109</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us summarize the performances to highlight the optimal imbalance ratio, and plot the performances as a function of the imbalance ratio for the three performance metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_balanced_rf</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_balanced_rf</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_balanced_rf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.922+/-0.0</td>
+      <td>0.099+/-0.02</td>
+      <td>0.264+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.925+/-0.02</td>
+      <td>0.093+/-0.02</td>
+      <td>0.254+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.5</td>
+      <td>0.01</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.926+/-0.01</td>
+      <td>0.093+/-0.02</td>
+      <td>0.254+/-0.03</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_balanced_rf</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Imbalance ratio&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_balanced_rf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_45_0.png" src="../_images/Imbalanced_RealWorldData_45_0.png" />
+</div>
+</div>
+<p>The results follow the same trends as with balanced bagging: increasing the imbalance ratio is detrimental to Average Precision and CP&#64;100, but can slightly increase AUC ROC. The results are qualitatively similar to <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-rf"><span class="std std-ref">Balanced Random Forest</span></a> with simulated data for AUC ROC and Average Precision.</p>
+</div>
+<div class="section" id="weighted-xgboost">
+<h3><span class="section-number">5.3.4. </span>Weighted XGBoost<a class="headerlink" href="#weighted-xgboost" title="Permalink to this headline">¶</a></h3>
+<p>Finally, similar to <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-weighted-xgboost"><span class="std std-ref">Weighted XGBoost</span></a> with simulated data, we varied the <code class="docutils literal notranslate"><span class="pre">scale_pos_weight</span></code> parameter to take values in the set <span class="math notranslate nohighlight">\([1,5,10,50,100]\)</span>. The same hyperparameters as the baseline XGBoost were otherwise kept (100 trees with a maximum depth of 6, and a learning rate of 0.1).</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_weighted_xgboost</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Weighted XGBoost&#39;</span><span class="p">]</span>
+<span class="n">performances_df_weighted_xgboost</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>AUC ROC Test Std</th>
+      <th>Average precision Test</th>
+      <th>Average precision Test Std</th>
+      <th>Card Precision@100 Test</th>
+      <th>Card Precision@100 Test Std</th>
+      <th>Parameters</th>
+      <th>Execution time</th>
+      <th>AUC ROC Validation</th>
+      <th>AUC ROC Validation Std</th>
+      <th>Average precision Validation</th>
+      <th>Average precision Validation Std</th>
+      <th>Card Precision@100 Validation</th>
+      <th>Card Precision@100 Validation Std</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.928408</td>
+      <td>0.014108</td>
+      <td>0.094781</td>
+      <td>0.030425</td>
+      <td>0.235357</td>
+      <td>0.068111</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>518.837213</td>
+      <td>0.924261</td>
+      <td>0.011350</td>
+      <td>0.102488</td>
+      <td>0.019552</td>
+      <td>0.260714</td>
+      <td>0.023765</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.927328</td>
+      <td>0.013481</td>
+      <td>0.096711</td>
+      <td>0.025309</td>
+      <td>0.248929</td>
+      <td>0.056887</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>626.773925</td>
+      <td>0.920673</td>
+      <td>0.016914</td>
+      <td>0.106036</td>
+      <td>0.021723</td>
+      <td>0.268571</td>
+      <td>0.021213</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.926817</td>
+      <td>0.013696</td>
+      <td>0.093330</td>
+      <td>0.026236</td>
+      <td>0.231071</td>
+      <td>0.057821</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>639.092060</td>
+      <td>0.920256</td>
+      <td>0.015958</td>
+      <td>0.098559</td>
+      <td>0.019405</td>
+      <td>0.262143</td>
+      <td>0.021888</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.925220</td>
+      <td>0.012177</td>
+      <td>0.095823</td>
+      <td>0.024201</td>
+      <td>0.240000</td>
+      <td>0.041367</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>627.310905</td>
+      <td>0.912374</td>
+      <td>0.027515</td>
+      <td>0.093519</td>
+      <td>0.014645</td>
+      <td>0.244643</td>
+      <td>0.032739</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.924530</td>
+      <td>0.012777</td>
+      <td>0.089102</td>
+      <td>0.030194</td>
+      <td>0.237857</td>
+      <td>0.043910</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>480.403027</td>
+      <td>0.912332</td>
+      <td>0.023152</td>
+      <td>0.086822</td>
+      <td>0.013398</td>
+      <td>0.238929</td>
+      <td>0.039453</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us summarize the performances to highlight the optimal imbalance ratio, and plot the performances as a function of the class weight for the three performance metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_weighted_xgboost</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_weighted_xgboost</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_weighted_xgboost</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.924+/-0.01</td>
+      <td>0.106+/-0.02</td>
+      <td>0.269+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.928+/-0.01</td>
+      <td>0.097+/-0.03</td>
+      <td>0.249+/-0.06</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.928+/-0.01</td>
+      <td>0.097+/-0.03</td>
+      <td>0.249+/-0.06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_weighted_xgboost</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Class weight&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_weighted_xgboost</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Imbalanced_RealWorldData_51_0.png" src="../_images/Imbalanced_RealWorldData_51_0.png" />
+</div>
+</div>
+<p>Contrary to balanced bagging and balanced random forest, increasing the class weight of the minority class allows to slightly improve the performances in terms of Average Precision and CP&#64;100. Improvements are only observed for a slight increase of the class weight (from 1 to 5). Higher values lead to slight decreases of performances. For AUC ROC, the optimal class weight is found to be 1 (equal cost for the minority and majority classes).</p>
+</div>
+<div class="section" id="summary">
+<h3><span class="section-number">5.3.5. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>Let us finally summarize in a single table the results on the real-world dataset. Performance metrics are reported row-wise, while ensemble methods are reported column-wise.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_test_performances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">summary_performances_baseline_bagging</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_balanced_bagging</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_baseline_rf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_balanced_rf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_baseline_xgboost</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                       <span class="n">summary_performances_weighted_xgboost</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+                                      <span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">summary_test_performances</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Baseline Bagging&#39;</span><span class="p">,</span> <span class="s1">&#39;Balanced Bagging&#39;</span><span class="p">,</span> 
+                                   <span class="s1">&#39;Baseline RF&#39;</span><span class="p">,</span> <span class="s1">&#39;Balanced RF&#39;</span><span class="p">,</span> 
+                                   <span class="s1">&#39;Baseline XGBoost&#39;</span><span class="p">,</span> <span class="s1">&#39;Weighted XGBoost&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_test_performances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline Bagging</th>
+      <th>Balanced Bagging</th>
+      <th>Baseline RF</th>
+      <th>Balanced RF</th>
+      <th>Baseline XGBoost</th>
+      <th>Weighted XGBoost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AUC ROC</th>
+      <td>0.912+/-0.02</td>
+      <td>0.919+/-0.01</td>
+      <td>0.912+/-0.02</td>
+      <td>0.925+/-0.02</td>
+      <td>0.928+/-0.01</td>
+      <td>0.928+/-0.01</td>
+    </tr>
+    <tr>
+      <th>Average precision</th>
+      <td>0.072+/-0.03</td>
+      <td>0.086+/-0.02</td>
+      <td>0.08+/-0.03</td>
+      <td>0.093+/-0.02</td>
+      <td>0.095+/-0.03</td>
+      <td>0.097+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Card Precision@100</th>
+      <td>0.209+/-0.07</td>
+      <td>0.248+/-0.04</td>
+      <td>0.227+/-0.05</td>
+      <td>0.254+/-0.03</td>
+      <td>0.235+/-0.07</td>
+      <td>0.249+/-0.06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The best improvements were observed for balanced bagging and balanced random forest, for which better performances were obtained compared to baseline bagging and baseline random forest. However, as we noted for the <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data"><span class="std std-ref">simulated data</span></a>, the benefits of resampling are most likely due to a higher diversity of the trees making up the ensembles, leading to a decrease of the overfitting phenomenon. In particular, the optimum imbalance ratio for Average Precision and CP&#64;100 was found to be the lowest one (0.01), which shows that the best strategy for these metrics was to avoid rebalancing the training sets.</p>
+<p>On the contrary, we observed that rebalancing the training sets could slightly improve the performances in terms of AUC ROC. The improvements were observed for imbalance ratios ranging from 0.1 to 0.5, leading to a slight increase of around 1% of the AUC ROC (from 0.91 to 0.92). Besides allowing a slight increase in performances, it is worth noting that rebalancing the dataset with undersampling techniques could speed up computation times by up to 20%.</p>
+<p>As for the results obtained on <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-summary"><span class="std std-ref">simulated data</span></a>, these experiments suggest that rebalancing can help improve performances in terms of AUC ROC or speed up the training time of an ensemble. It however appeared that keeping all of the training data was the best strategy if Average Precision and CP&#64;100 are the performance metrics to optimize.</p>
+<p>Overall, the best performances were obtained with XGBoost for the three metrics. As for the <a class="reference internal" href="Ensembling.html#ensembling-strategies-transaction-data-summary"><span class="std std-ref">simulated data</span></a>, modifying the class weight through weighted XGBoost did not allow to significantly improve performances, illustrating the robustness of XGBoost in class imbalance scenarios.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_6_ImbalancedLearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Ensembling.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Ensemble methods</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Summary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

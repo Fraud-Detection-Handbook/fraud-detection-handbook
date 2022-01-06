@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Transaction data simulator &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_3_GettingStarted/SimulatedDataset.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Baseline feature transformation" href="BaselineFeatureTransformation.html" />
     <link rel="prev" title="1. Introduction" href="Introduction.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_3_GettingStarted/SimulatedDataset.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Transaction data simulator" />
-<meta property="og:description" content="Transaction data simulator  This section presents a transaction data simulator of legitimate and fraudulent transactions. This simulator will be used throughout" />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,14 +423,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -379,16 +454,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#customer-profiles-generation">
    2.1. Customer profiles generation
@@ -421,8 +496,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -430,7 +505,7 @@
         
               <div>
                 
-  <div class="section" id="transaction-data-simulator">
+  <div class="tex2jax_ignore mathjax_ignore section" id="transaction-data-simulator">
 <span id="id1"></span><h1><span class="section-number">2. </span>Transaction data simulator<a class="headerlink" href="#transaction-data-simulator" title="Permalink to this headline">¶</a></h1>
 <p>This section presents a transaction data simulator of legitimate and fraudulent transactions. This simulator will be used throughout the rest of this book to motivate and assess the efficiency of different fraud detection techniques in a reproducible way.</p>
 <p>A simulation is necessarily an approximation of reality. Compared to the complexity of the dynamics underlying real-world payment card transaction data, the data simulator that we present below follows a simple design.</p>
@@ -453,20 +528,6 @@
 <p style="text-align: center;">
 Fig. 1. Example of labeled transaction table. Each transaction is represented as a row in the table,<br> together with its label (TX_FRAUD variable, 0 for legitimate, and 1 for fraudulent transactions).
 </p>
-<h4>Transaction generation process</h4>
-<p>The simulation will consist of five main steps:</p>
-<ol class="simple">
-<li><p>Generation of customer profiles: Every customer is different in their spending habits. This will be simulated by defining some properties for each customer. The main properties will be their geographical location, their spending frequency, and their spending amounts. The customer properties will be represented as a table, referred to as the <em>customer profile table</em>.</p></li>
-<li><p>Generation of terminal profiles: Terminal properties will simply consist of a geographical location. The terminal properties will be represented as a table, referred to as the <em>terminal profile table</em>.</p></li>
-<li><p>Association of customer profiles to terminals: We will assume that customers only make transactions on terminals that are within a radius of <span class="math notranslate nohighlight">\(r\)</span> of their geographical locations. This makes the simple assumption that a customer only makes transactions on terminals that are geographically close to their location. This step will consist of adding a feature ‘list_terminals’ to each customer profile, that contains the set of terminals that a customer can use.</p></li>
-<li><p>Generation of transactions: The simulator will loop over the set of customer profiles, and generate transactions according to their properties (spending frequencies and amounts, and available terminals). This will result in a table of transactions.</p></li>
-<li><p>Generation of fraud scenarios: This last step will label the transactions as legitimate or genuine. This will be done by following three different fraud scenarios.</p></li>
-</ol>
-<p>The transaction generation process is illustrated below.</p>
-<p><img alt="alt text" src="../_images/FlowDatasetGenerator.png" /></p>
-<p style="text-align: center;">
-Fig. 2. Transaction generation process. The customer and terminal profiles will allow to generate  <br> a set of transactions. The final step, which generates fraud scenarios, provides the labeled transactions table.
-<p>The following sections provide the implementation for each of these steps.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary imports for this notebook</span>
@@ -501,6 +562,20 @@ Fig. 2. Transaction generation process. The customer and terminal profiles will 
 <li><p><code class="docutils literal notranslate"><span class="pre">mean_nb_tx_per_day</span></code>:  The average number of transactions per day for the customer, assuming that the number of transactions per day follows a Poisson distribution. This number will be drawn from a uniform distribution (0,4).</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">generate_customer_profiles_table</span></code> function provides an implementation for generating a table of customer profiles. It takes as input the number of customers for which to generate a profile and a random state for reproducibility. It returns a DataFrame containing the properties for each customer.</p>
+<h4>Transaction generation process</h4>
+<p>The simulation will consist of five main steps:</p>
+<ol class="simple">
+<li><p>Generation of customer profiles: Every customer is different in their spending habits. This will be simulated by defining some properties for each customer. The main properties will be their geographical location, their spending frequency, and their spending amounts. The customer properties will be represented as a table, referred to as the <em>customer profile table</em>.</p></li>
+<li><p>Generation of terminal profiles: Terminal properties will simply consist of a geographical location. The terminal properties will be represented as a table, referred to as the <em>terminal profile table</em>.</p></li>
+<li><p>Association of customer profiles to terminals: We will assume that customers only make transactions on terminals that are within a radius of <span class="math notranslate nohighlight">\(r\)</span> of their geographical locations. This makes the simple assumption that a customer only makes transactions on terminals that are geographically close to their location. This step will consist of adding a feature ‘list_terminals’ to each customer profile, that contains the set of terminals that a customer can use.</p></li>
+<li><p>Generation of transactions: The simulator will loop over the set of customer profiles, and generate transactions according to their properties (spending frequencies and amounts, and available terminals). This will result in a table of transactions.</p></li>
+<li><p>Generation of fraud scenarios: This last step will label the transactions as legitimate or genuine. This will be done by following three different fraud scenarios.</p></li>
+</ol>
+<p>The transaction generation process is illustrated below.</p>
+<p><img alt="alt text" src="../_images/FlowDatasetGenerator.png" /></p>
+<p style="text-align: center;">
+Fig. 2. Transaction generation process. The customer and terminal profiles are used to generate  <br> a set of transactions. The final step, which generates fraud scenarios, provides the labeled transactions table.
+<p>The following sections detail the implementation for each of these steps.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_customer_profiles_table</span><span class="p">(</span><span class="n">n_customers</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -726,7 +801,7 @@ Fig. 2. Transaction generation process. The customer and terminal profiles will 
 </div>
 <div class="section" id="association-of-customer-profiles-to-terminals">
 <h2><span class="section-number">2.3. </span>Association of customer profiles to terminals<a class="headerlink" href="#association-of-customer-profiles-to-terminals" title="Permalink to this headline">¶</a></h2>
-<p>Let us now associate terminals to customer profiles. In our design, customers can only perform transactions on terminals that are within a radius of <code class="docutils literal notranslate"><span class="pre">r</span></code> of their geographical locations.</p>
+<p>Let us now associate terminals with the customer profiles. In our design, customers can only perform transactions on terminals that are within a radius of <code class="docutils literal notranslate"><span class="pre">r</span></code> of their geographical locations.</p>
 <p>Let us first write a function, called <code class="docutils literal notranslate"><span class="pre">get_list_terminals_within_radius</span></code>, which finds these terminals for a customer profile. The function will take as input a customer profile (any row in the customer profiles table), an array that contains the geographical location of all terminals, and the radius <code class="docutils literal notranslate"><span class="pre">r</span></code>. It will return the list of terminals within a radius of <code class="docutils literal notranslate"><span class="pre">r</span></code> for that customer.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -860,7 +935,7 @@ Fig. 2. Transaction generation process. The customer and terminal profiles will 
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="c1"># Plot the region within a radius of 50 of the last customr</span>
+<span class="c1"># Plot the region within a radius of 50 of the last customer</span>
 <span class="n">circ</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">x_customer_id</span><span class="p">,</span>
                    <span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">customer_id</span><span class="p">]</span><span class="o">.</span><span class="n">y_customer_id</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
@@ -989,8 +1064,8 @@ Fig. 2. Transaction generation process. The customer and terminal profiles will 
     
     <span class="n">customer_transactions</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">))</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">customer_profile</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">))</span>
     
     <span class="c1"># For all days</span>
     <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_days</span><span class="p">):</span>
@@ -1241,25 +1316,6 @@ Fig. 2. Transaction generation process. The customer and terminal profiles will 
 <li><p>The transaction amounts seem to follow the amount parameters of the customer (<code class="docutils literal notranslate"><span class="pre">mean_amount</span></code>=62.26 and	<code class="docutils literal notranslate"><span class="pre">std_amount</span></code>=31.13)</p></li>
 <li><p>The number of transactions per day varies according to the transaction frequency parameters of the customer (<code class="docutils literal notranslate"><span class="pre">mean_nb_tx_per_day</span></code>=2.18).</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_profiles_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUSTOMER_ID                       0
-x_customer_id               54.8814
-y_customer_id               71.5189
-mean_amount                 62.2625
-std_amount                  31.1313
-mean_nb_tx_per_day          2.17953
-available_terminals    [0, 1, 2, 3]
-Name: 0, dtype: object
-</pre></div>
-</div>
-</div>
-</div>
 <p>Let us now generate the transactions for all customers. This is straightforward using the pandas <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">apply</span></code> methods:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1471,10 +1527,10 @@ Name: 0, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time to generate customer profiles table: 0.076s
-Time to generate terminal profiles table: 0.06s
-Time to associate terminals to customers: 4.3s
-Time to generate transactions: 2.9e+02s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time to generate customer profiles table: 0.062s
+Time to generate terminal profiles table: 0.041s
+Time to associate terminals to customers: 0.95s
+Time to generate transactions: 7e+01s
 </pre></div>
 </div>
 </div>
@@ -1675,7 +1731,7 @@ Time to generate transactions: 2.9e+02s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/SimulatedDataset_43_0.png" src="../_images/SimulatedDataset_43_0.png" />
+<img alt="../_images/SimulatedDataset_42_0.png" src="../_images/SimulatedDataset_42_0.png" />
 </div>
 </div>
 <p>The distribution of transaction amounts has most of its mass for small amounts. The distribution of transaction times  follows a gaussian distribution on a daily basis, centered around noon. These two distributions are in accordance with the simulation parameters used in the previous sections.</p>
@@ -1756,8 +1812,8 @@ Time to generate transactions: 2.9e+02s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of frauds from scenario 1: 978
 Number of frauds from scenario 2: 9099
 Number of frauds from scenario 3: 4604
-CPU times: user 1min 46s, sys: 5.15 s, total: 1min 51s
-Wall time: 1min 56s
+CPU times: user 1min 14s, sys: 210 ms, total: 1min 14s
+Wall time: 1min 15s
 </pre></div>
 </div>
 </div>
@@ -1927,7 +1983,7 @@ Wall time: 1min 56s
 </div>
 </div>
 </div>
-<p>Let us check how the number of transactions, the number of fraudulent transactions, and the number of frauded cards vary on a daily basis.</p>
+<p>Let us check how the number of transactions, the number of fraudulent transactions, and the number of compromised cards vary on a daily basis.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">):</span>
@@ -1963,7 +2019,7 @@ Wall time: 1min 56s
 
 <span class="n">sns_plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;TX_TIME_DAYS&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tx_stats</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;stat_type&quot;</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nb_tx_per_day&quot;</span><span class="p">,</span><span class="s2">&quot;nb_fraud_per_day&quot;</span><span class="p">,</span><span class="s2">&quot;nb_fraudcard_per_day&quot;</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">sns_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Total transactions, and number of fraudulent transactions </span><span class="se">\n</span><span class="s1"> and number of frauded cards per day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Total transactions, and number of fraudulent transactions </span><span class="se">\n</span><span class="s1"> and number of compromised cards per day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">sns_plot</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Number of days since beginning of data generation&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Number&quot;</span><span class="p">)</span>
 
 <span class="n">sns_plot</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">300</span><span class="p">])</span>
@@ -1982,7 +2038,7 @@ Wall time: 1min 56s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/SimulatedDataset_62_0.png" src="../_images/SimulatedDataset_62_0.png" />
+<img alt="../_images/SimulatedDataset_61_0.png" src="../_images/SimulatedDataset_61_0.png" />
 </div>
 </div>
 <p>This simulation generated around 10000 transactions per day. The number of fraudulent transactions per day is around 85, and the number of fraudulent cards around 80. It is worth noting that the first month has a lower number of fraudulent transactions, which is due to the fact that frauds from scenarios 2 and 3 span periods of 28 and 14 days, respectively.</p>
@@ -1991,10 +2047,10 @@ Wall time: 1min 56s
 </div>
 <div class="section" id="saving-of-dataset">
 <h2><span class="section-number">2.6. </span>Saving of dataset<a class="headerlink" href="#saving-of-dataset" title="Permalink to this headline">¶</a></h2>
-<p>Instead of saving the whole transaction dataset, we split the dataset into daily batches. This will allow later to load specific periods, and gain in loading times. The pickle format is used, rather than CSV, to speed up the loading times. All files are saved in the <code class="docutils literal notranslate"><span class="pre">DIR_OUTPUT</span></code> folder. The names of the files are the dates, with the <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> extension.</p>
+<p>Instead of saving the whole transaction dataset, we split the dataset into daily batches. This will allow later the loading of specific periods instead of the whole dataset. The pickle format is used, rather than CSV, to speed up the loading times. All files are saved in the <code class="docutils literal notranslate"><span class="pre">DIR_OUTPUT</span></code> folder. The names of the files are the dates, with the <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> extension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-raw/data/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./simulated-data-raw/&quot;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_OUTPUT</span><span class="p">)</span>
@@ -2014,7 +2070,7 @@ Wall time: 1min 56s
 </div>
 </div>
 </div>
-<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-raw/data</span></code>.</p>
+<p>The generated dataset is also available from Github at <code class="docutils literal notranslate"><span class="pre">https://github.com/Fraud-Detection-Handbook/simulated-data-raw</span></code>.</p>
 </div>
 </div>
 
@@ -2040,17 +2096,28 @@ Wall time: 1min 56s
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="BaselineFeatureTransformation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Baseline feature transformation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
-    <a class='right-next' id="next-link" href="BaselineFeatureTransformation.html" title="next page"><span class="section-number">3. </span>Baseline feature transformation</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -2071,11 +2138,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

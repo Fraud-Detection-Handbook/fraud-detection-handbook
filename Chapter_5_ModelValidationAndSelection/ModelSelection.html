@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3. Model selection &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ModelSelection.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Summary" href="Summary.html" />
+    <link rel="next" title="4. Real-world data" href="ModelSelection_RealWorldData.html" />
     <link rel="prev" title="2. Validation strategies" href="ValidationStrategies.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ModelSelection.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Model selection" />
-<meta property="og:description" content="Model selection  Model selection consists in selecting the prediction model that is expected to provide the best performances on future data. The standard metho" />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,14 +423,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -379,16 +454,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#model-selection-decision-trees">
    3.1. Model selection: Decision trees
@@ -426,10 +501,15 @@
    3.4. Random search
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-of-results">
+   3.5. Saving of results
+  </a>
+ </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -437,9 +517,9 @@
         
               <div>
                 
-  <div class="section" id="model-selection">
+  <div class="tex2jax_ignore mathjax_ignore section" id="model-selection">
 <span id="id1"></span><h1><span class="section-number">3. </span>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h1>
-<p>Model selection consists in selecting the prediction model that is expected to provide the best performances on future data. The standard methodology consists of four main steps <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id21"><span>Bon21</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id20"><span>Bis06</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id19"><span>FHT01</span></a>]</span>:</p>
+<p>Model selection consists in selecting the prediction model that is expected to provide the best performances on future data. The standard methodology consists of four main steps <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id20">Bis06</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id21">Bon21</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id19">FHT01</a>]</span>:</p>
 <ol class="simple">
 <li><p>Define a collection of candidate models to be tested. Let <span class="math notranslate nohighlight">\(M\)</span> be the number of models, and <span class="math notranslate nohighlight">\(h_k\)</span>, <span class="math notranslate nohighlight">\(1 \le k \le M\)</span>, be the <span class="math notranslate nohighlight">\(k-\)</span>th model in the collection, parameterized by a set of parameters <span class="math notranslate nohighlight">\(\theta_k\)</span> (also see section <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html#ml-for-ccfd-baseline-methodology"><span class="std std-ref">Baseline methodology - Supervised learning</span></a>). Given a class of models (such as decision trees, logistic regression, …), a common practice is to define a collection of models of increasing complexity (tree depth for decision trees, regularisation coefficients for logistic regression, …).</p></li>
 <li><p>Train each candidate model using the training data. The training of model <span class="math notranslate nohighlight">\(h_k\)</span> identifies the parameters <span class="math notranslate nohighlight">\(\theta_k\)</span> that maximizes the performances of <span class="math notranslate nohighlight">\(h_k\)</span> on the training set.</p></li>
@@ -453,7 +533,7 @@ k^*= \mathrm{arg\ max}_{k \in \{1,2,...,M\}} A_{valid(h_k(.,\theta_k))}
 <p>An illustration of the model selection procedure with its different steps is provided in Fig. 1.</p>
 <p><img alt="alt text" src="../_images/model_selection.png" /></p>
 <div align="center">Fig. 1. Model selection procedure: A set of models of increasing complexity are trained, and their performances are assessed using a validation procedure. The model that provides the best validation performance is selected.</div>
-<p>The rationale for assessing models of increasing complexity is that there is usually a trade-off between the model complexity and its generalization performances (also referred to as the <em>bias/variance trade-off</em>) <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id21"><span>Bon21</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id20"><span>Bis06</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id19"><span>FHT01</span></a>]</span>. Models that have too few parameters fail to properly represent the relationship between input and output features (also referred to as <em>underfitting</em>). Models that have many parameters can perfectly represent the relationship between input and output features in the training data (also referred to as <em>overfitting</em>). Training data are however often noisy, and their distribution slightly different from the validation and test data. As a result, overfitting is usually detrimental to the performances on the validation or test data.</p>
+<p>The rationale for assessing models of increasing complexity is that there is usually a trade-off between the model complexity and its generalization performances (also referred to as the <em>bias/variance trade-off</em>) <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id20">Bis06</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id21">Bon21</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id19">FHT01</a>]</span>. Models that have too few parameters fail to properly represent the relationship between input and output features (also referred to as <em>underfitting</em>). Models that have many parameters can perfectly represent the relationship between input and output features in the training data (also referred to as <em>overfitting</em>). Training data are however often noisy, and their distribution slightly different from the validation and test data. As a result, overfitting is usually detrimental to the performances on the validation or test data.</p>
 <p>A qualitative representation of the trade-off between model complexity and performances is illustrated in Fig. 2. The training performances usually increase with the model complexity. The optimal validation and test performances are found for models of intermediate complexity, that both avoid underfitting and overfitting. This trade-off was experimentally illustrated with decision trees in the previous section on <a class="reference internal" href="ValidationStrategies.html#validation-strategies"><span class="std std-ref">Validation Strategies</span></a>.</p>
 <p><img alt="alt text" src="../_images/model_selection_graph.png" /></p>
 <div align="center">Fig. 2. Trade-off between model complexity and performances. The optimal validation and test performances are usually found for models of intermediate complexity, that both avoid underfitting and overfitting. </div>
@@ -476,30 +556,30 @@ k^*= \mathrm{arg\ max}_{k \in \{1,2,...,M\}} A_{valid(h_k(.,\theta_k))}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 43447  100 43447    0     0   134k      0 --:--:-- --:--:-- --:--:--  134k
+100 31568  100 31568    0     0  83513      0 --:--:-- --:--:-- --:--:-- 83513
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="model-selection-decision-trees">
-<h2><span class="section-number">3.1. </span>Model selection: Decision trees<a class="headerlink" href="#model-selection-decision-trees" title="Permalink to this headline">¶</a></h2>
+<span id="model-selection-decision-tree"></span><h2><span class="section-number">3.1. </span>Model selection: Decision trees<a class="headerlink" href="#model-selection-decision-trees" title="Permalink to this headline">¶</a></h2>
 <p>Let us first reproduce the <a class="reference internal" href="ValidationStrategies.html#sklearn-validation-pipeline"><span class="std std-ref">sklearn prequential validation pipeline</span></a> proposed in the previous section. We load three months of transaction data, and define the output feature as the fraud label <code class="docutils literal notranslate"><span class="pre">TX_FRAUD</span></code>, and the inputs features as the set of features obtained from the <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html#baseline-feature-transformation"><span class="std std-ref">baseline preprocessing</span></a>.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from the 2018-06-11 to the 2018-09-14</span>
 
-<span class="n">DIR_INPUT</span><span class="o">=</span><span class="s1">&#39;simulated-data-transformed/data/&#39;</span> 
+<span class="n">DIR_INPUT</span> <span class="o">=</span> <span class="s1">&#39;simulated-data-transformed/data/&#39;</span> 
 
 <span class="n">BEGIN_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-06-11&quot;</span>
 <span class="n">END_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-09-14&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load  files&quot;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> transactions_df=read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
+<span class="o">%</span><span class="k">time</span> transactions_df = read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> transactions loaded, containing </span><span class="si">{1}</span><span class="s2"> fraudulent transactions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">),</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 
-<span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;TX_FRAUD&quot;</span>
+<span class="n">output_feature</span> <span class="o">=</span> <span class="s2">&quot;TX_FRAUD&quot;</span>
 
-<span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DURING_WEEKEND&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_DURING_NIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+<span class="n">input_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DURING_WEEKEND&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_DURING_NIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
        <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
        <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
        <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
@@ -511,8 +591,8 @@ k^*= \mathrm{arg\ max}_{k \in \{1,2,...,M\}} A_{valid(h_k(.,\theta_k))}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
-CPU times: user 982 ms, sys: 712 ms, total: 1.69 s
-Wall time: 2.13 s
+CPU times: user 880 ms, sys: 545 ms, total: 1.43 s
+Wall time: 1.66 s
 919767 transactions loaded, containing 8195 fraudulent transactions
 </pre></div>
 </div>
@@ -522,11 +602,11 @@ Wall time: 2.13 s
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of folds for the prequential validation</span>
-<span class="n">n_folds</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">n_folds</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="c1"># Set the starting day for the training period, and the deltas</span>
 <span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">delta_train</span><span class="o">=</span><span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_test</span><span class="o">=</span><span class="n">delta_valid</span><span class="o">=</span><span class="n">delta_assessment</span><span class="o">=</span><span class="mi">7</span>
+<span class="n">delta_train</span> <span class="o">=</span> <span class="n">delta_delay</span> <span class="o">=</span> <span class="n">delta_test</span> <span class="o">=</span> <span class="n">delta_valid</span> <span class="o">=</span> <span class="n">delta_assessment</span> <span class="o">=</span> <span class="mi">7</span>
 
 <span class="n">start_date_training_for_valid</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="p">(</span><span class="n">delta_delay</span><span class="o">+</span><span class="n">delta_valid</span><span class="p">))</span>
 <span class="n">start_date_training_for_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="p">(</span><span class="n">n_folds</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">delta_test</span><span class="p">)</span>
@@ -534,20 +614,20 @@ Wall time: 2.13 s
 </div>
 </div>
 </div>
-<p>The performance metrics are the AUC ROC, the average Precision, and the Card Precision&#64;100.</p>
+<p>The performance metrics are the AUC ROC, the Average Precision, and the Card Precision&#64;100.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Only keep columns that are needed as argument to custome scoring function</span>
-<span class="c1"># to reduce serialisation time of transaction dataset</span>
-<span class="n">transactions_df_scorer</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Only keep columns that are needed as argument to the custom scoring function</span>
+<span class="c1"># (in order to reduce the serialization time of transaction dataset)</span>
+<span class="n">transactions_df_scorer</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]]</span>
 
 <span class="n">card_precision_top_100</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">card_precision_top_k_custom</span><span class="p">,</span> 
                                                      <span class="n">needs_proba</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                                                      <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
                                                      <span class="n">transactions_df</span><span class="o">=</span><span class="n">transactions_df_scorer</span><span class="p">)</span>
 
-<span class="n">performance_metrics_list_grid</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span> <span class="s1">&#39;card_precision@100&#39;</span><span class="p">]</span>
-<span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">]</span>
+<span class="n">performance_metrics_list_grid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span> <span class="s1">&#39;card_precision@100&#39;</span><span class="p">]</span>
+<span class="n">performance_metrics_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">]</span>
 
 <span class="n">scoring</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">:</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span>
            <span class="s1">&#39;average_precision&#39;</span><span class="p">:</span> <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span>
@@ -708,7 +788,7 @@ Wall time: 2.13 s
       <td>0.265000</td>
       <td>0.019756</td>
       <td>{'clf__max_depth': 2, 'clf__random_state': 0}</td>
-      <td>0.433836</td>
+      <td>0.383720</td>
       <td>0.790786</td>
       <td>0.012035</td>
       <td>0.549767</td>
@@ -726,7 +806,7 @@ Wall time: 2.13 s
       <td>0.281429</td>
       <td>0.015940</td>
       <td>{'clf__max_depth': 3, 'clf__random_state': 0}</td>
-      <td>0.448277</td>
+      <td>0.425149</td>
       <td>0.802717</td>
       <td>0.017607</td>
       <td>0.573414</td>
@@ -744,7 +824,7 @@ Wall time: 2.13 s
       <td>0.282500</td>
       <td>0.015199</td>
       <td>{'clf__max_depth': 4, 'clf__random_state': 0}</td>
-      <td>0.516275</td>
+      <td>0.467093</td>
       <td>0.800690</td>
       <td>0.017878</td>
       <td>0.554134</td>
@@ -762,7 +842,7 @@ Wall time: 2.13 s
       <td>0.284286</td>
       <td>0.004286</td>
       <td>{'clf__max_depth': 5, 'clf__random_state': 0}</td>
-      <td>0.595820</td>
+      <td>0.510538</td>
       <td>0.804218</td>
       <td>0.016505</td>
       <td>0.546094</td>
@@ -780,7 +860,7 @@ Wall time: 2.13 s
       <td>0.281429</td>
       <td>0.007626</td>
       <td>{'clf__max_depth': 6, 'clf__random_state': 0}</td>
-      <td>0.757094</td>
+      <td>0.600303</td>
       <td>0.798603</td>
       <td>0.024225</td>
       <td>0.537006</td>
@@ -798,7 +878,7 @@ Wall time: 2.13 s
       <td>0.268929</td>
       <td>0.009813</td>
       <td>{'clf__max_depth': 7, 'clf__random_state': 0}</td>
-      <td>0.714120</td>
+      <td>0.664072</td>
       <td>0.795636</td>
       <td>0.023144</td>
       <td>0.530609</td>
@@ -816,7 +896,7 @@ Wall time: 2.13 s
       <td>0.263571</td>
       <td>0.007593</td>
       <td>{'clf__max_depth': 8, 'clf__random_state': 0}</td>
-      <td>0.674568</td>
+      <td>0.792020</td>
       <td>0.795142</td>
       <td>0.023081</td>
       <td>0.516246</td>
@@ -834,7 +914,7 @@ Wall time: 2.13 s
       <td>0.258571</td>
       <td>0.009949</td>
       <td>{'clf__max_depth': 9, 'clf__random_state': 0}</td>
-      <td>0.702908</td>
+      <td>0.719332</td>
       <td>0.785849</td>
       <td>0.026249</td>
       <td>0.505189</td>
@@ -852,7 +932,7 @@ Wall time: 2.13 s
       <td>0.257500</td>
       <td>0.010467</td>
       <td>{'clf__max_depth': 10, 'clf__random_state': 0}</td>
-      <td>0.865949</td>
+      <td>0.765691</td>
       <td>0.786784</td>
       <td>0.031165</td>
       <td>0.493543</td>
@@ -870,7 +950,7 @@ Wall time: 2.13 s
       <td>0.261071</td>
       <td>0.014335</td>
       <td>{'clf__max_depth': 20, 'clf__random_state': 0}</td>
-      <td>1.384710</td>
+      <td>1.195464</td>
       <td>0.780408</td>
       <td>0.022168</td>
       <td>0.450980</td>
@@ -881,14 +961,14 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>10</th>
-      <td>0.797221</td>
-      <td>0.005425</td>
-      <td>0.334055</td>
-      <td>0.020390</td>
-      <td>0.258214</td>
-      <td>0.012095</td>
+      <td>0.797225</td>
+      <td>0.005427</td>
+      <td>0.334457</td>
+      <td>0.020767</td>
+      <td>0.257857</td>
+      <td>0.011715</td>
       <td>{'clf__max_depth': 50, 'clf__random_state': 0}</td>
-      <td>1.383142</td>
+      <td>1.400485</td>
       <td>0.822564</td>
       <td>0.013407</td>
       <td>0.341818</td>
@@ -1069,7 +1149,7 @@ Wall time: 2.13 s
 <h2><span class="section-number">3.2. </span>Model selection: Exploration of other model classes<a class="headerlink" href="#model-selection-exploration-of-other-model-classes" title="Permalink to this headline">¶</a></h2>
 <p>This section explores the performances that can be achieved with model selection using other model classes. We cover logistic regression, random forests, and boosting (as in the section <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds"><span class="std std-ref">Baseline Fraud Detection System</span></a>).</p>
 <div class="section" id="logistic-regression">
-<h3><span class="section-number">3.2.1. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<span id="model-selection-logistic-regression"></span><h3><span class="section-number">3.2.1. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
 <p>The main hyperparameter of logistic regression is the <a class="reference external" href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">regularization parameter C</a>. The <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression">default value for this parameter is 1</a>. Let us try fitting models with lower and higher values, for example in the set [0.1,1,10,100].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1148,32 +1228,32 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.866971</td>
-      <td>0.014856</td>
-      <td>0.620227</td>
-      <td>0.015979</td>
+      <td>0.866972</td>
+      <td>0.014858</td>
+      <td>0.620231</td>
+      <td>0.015977</td>
       <td>0.297143</td>
       <td>0.008207</td>
       <td>{'clf__C': 0.1, 'clf__random_state': 0}</td>
-      <td>0.505353</td>
-      <td>0.865051</td>
+      <td>0.602494</td>
+      <td>0.865052</td>
       <td>0.009591</td>
-      <td>0.608326</td>
-      <td>0.022735</td>
+      <td>0.608330</td>
+      <td>0.022740</td>
       <td>0.278929</td>
       <td>0.016300</td>
       <td>0.1</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.867640</td>
-      <td>0.015400</td>
-      <td>0.623075</td>
-      <td>0.016207</td>
+      <td>0.867643</td>
+      <td>0.015404</td>
+      <td>0.623081</td>
+      <td>0.016204</td>
       <td>0.297143</td>
       <td>0.008806</td>
       <td>{'clf__C': 1, 'clf__random_state': 0}</td>
-      <td>0.499692</td>
+      <td>0.656055</td>
       <td>0.866861</td>
       <td>0.008988</td>
       <td>0.612264</td>
@@ -1184,14 +1264,14 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>2</th>
-      <td>0.867676</td>
-      <td>0.015412</td>
-      <td>0.623221</td>
-      <td>0.016086</td>
+      <td>0.867678</td>
+      <td>0.015415</td>
+      <td>0.623224</td>
+      <td>0.016087</td>
       <td>0.297500</td>
       <td>0.008828</td>
       <td>{'clf__C': 10, 'clf__random_state': 0}</td>
-      <td>0.511710</td>
+      <td>0.582498</td>
       <td>0.867050</td>
       <td>0.008918</td>
       <td>0.612526</td>
@@ -1202,14 +1282,14 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>3</th>
-      <td>0.867676</td>
-      <td>0.015413</td>
-      <td>0.623249</td>
-      <td>0.016076</td>
+      <td>0.867680</td>
+      <td>0.015419</td>
+      <td>0.623253</td>
+      <td>0.016074</td>
       <td>0.297500</td>
       <td>0.008828</td>
       <td>{'clf__C': 100, 'clf__random_state': 0}</td>
-      <td>0.496295</td>
+      <td>0.728584</td>
       <td>0.867071</td>
       <td>0.008912</td>
       <td>0.612537</td>
@@ -1257,8 +1337,8 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>Best estimated parameters</th>
-      <td>100</td>
-      <td>100</td>
+      <td>100.0</td>
+      <td>100.0</td>
       <td>0.1</td>
     </tr>
     <tr>
@@ -1275,9 +1355,9 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>Optimal parameters</th>
-      <td>100</td>
-      <td>100</td>
-      <td>10</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>10.0</td>
     </tr>
     <tr>
       <th>Optimal test performance</th>
@@ -1307,7 +1387,7 @@ Wall time: 2.13 s
 <p>Performances tend to be a bit lower for a low <span class="math notranslate nohighlight">\(C\)</span> value (0.1). <span class="math notranslate nohighlight">\(C\)</span> values equal or higher than one provide similar performances. The default parameter <span class="math notranslate nohighlight">\(C=1\)</span> seems therefore to be a sensible value for the logistic regression model.</p>
 </div>
 <div class="section" id="random-forest">
-<h3><span class="section-number">3.2.2. </span>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<span id="model-selection-random-forest"></span><h3><span class="section-number">3.2.2. </span>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
 <p>The two main <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#forest">hyperparameters of a random forest</a> are the maximum tree depth and the number of trees (parameters <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, respectively). <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">By default</a>, the maximum tree depth is <code class="docutils literal notranslate"><span class="pre">None</span></code> (that is, nodes are expanded until all leaves are pure or until all leaves contain less than <code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code> samples), and the number of trees is 100. Let us try other values, by combining <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> values in the set [5,10,20,50] and <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> values in the set [25,50,100].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1391,14 +1471,14 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.845289</td>
-      <td>0.003870</td>
-      <td>0.620915</td>
-      <td>0.021970</td>
+      <td>0.845287</td>
+      <td>0.003872</td>
+      <td>0.620712</td>
+      <td>0.022145</td>
       <td>0.289286</td>
       <td>0.010570</td>
       <td>{'clf__max_depth': 5, 'clf__n_estimators': 25,...</td>
-      <td>1.332392</td>
+      <td>1.270088</td>
       <td>0.834147</td>
       <td>0.009100</td>
       <td>0.610413</td>
@@ -1409,14 +1489,14 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>1</th>
-      <td>0.850969</td>
-      <td>0.007507</td>
-      <td>0.621135</td>
-      <td>0.023615</td>
+      <td>0.850968</td>
+      <td>0.007508</td>
+      <td>0.620932</td>
+      <td>0.023824</td>
       <td>0.290714</td>
       <td>0.010996</td>
       <td>{'clf__max_depth': 5, 'clf__n_estimators': 50,...</td>
-      <td>2.620222</td>
+      <td>2.229425</td>
       <td>0.844140</td>
       <td>0.007473</td>
       <td>0.609801</td>
@@ -1429,14 +1509,14 @@ Wall time: 2.13 s
       <th>2</th>
       <td>0.855230</td>
       <td>0.007315</td>
-      <td>0.627005</td>
-      <td>0.021874</td>
+      <td>0.627034</td>
+      <td>0.021852</td>
       <td>0.292500</td>
       <td>0.010850</td>
       <td>{'clf__max_depth': 5, 'clf__n_estimators': 100...</td>
-      <td>5.043742</td>
+      <td>4.209755</td>
       <td>0.849065</td>
-      <td>0.011018</td>
+      <td>0.011019</td>
       <td>0.619450</td>
       <td>0.026249</td>
       <td>0.275000</td>
@@ -1447,12 +1527,12 @@ Wall time: 2.13 s
       <th>3</th>
       <td>0.867271</td>
       <td>0.006166</td>
-      <td>0.648592</td>
-      <td>0.012818</td>
+      <td>0.648583</td>
+      <td>0.012831</td>
       <td>0.300714</td>
       <td>0.010950</td>
       <td>{'clf__max_depth': 10, 'clf__n_estimators': 25...</td>
-      <td>2.537272</td>
+      <td>2.068099</td>
       <td>0.865000</td>
       <td>0.002259</td>
       <td>0.651858</td>
@@ -1464,13 +1544,13 @@ Wall time: 2.13 s
     <tr>
       <th>4</th>
       <td>0.869225</td>
-      <td>0.007956</td>
-      <td>0.655047</td>
-      <td>0.014188</td>
+      <td>0.007955</td>
+      <td>0.655050</td>
+      <td>0.014192</td>
       <td>0.300000</td>
       <td>0.012495</td>
       <td>{'clf__max_depth': 10, 'clf__n_estimators': 50...</td>
-      <td>5.074602</td>
+      <td>3.791683</td>
       <td>0.871323</td>
       <td>0.004542</td>
       <td>0.659386</td>
@@ -1481,53 +1561,53 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>5</th>
-      <td>0.874950</td>
+      <td>0.874949</td>
       <td>0.011903</td>
-      <td>0.664629</td>
+      <td>0.664613</td>
       <td>0.014215</td>
       <td>0.303214</td>
       <td>0.013030</td>
       <td>{'clf__max_depth': 10, 'clf__n_estimators': 10...</td>
-      <td>8.804179</td>
-      <td>0.872387</td>
+      <td>7.230055</td>
+      <td>0.872388</td>
       <td>0.005256</td>
-      <td>0.663483</td>
-      <td>0.024011</td>
+      <td>0.663481</td>
+      <td>0.024010</td>
       <td>0.286429</td>
       <td>0.017627</td>
       <td>100/10</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.853563</td>
-      <td>0.014821</td>
-      <td>0.659957</td>
-      <td>0.013723</td>
+      <td>0.853581</td>
+      <td>0.014851</td>
+      <td>0.660131</td>
+      <td>0.013713</td>
       <td>0.296429</td>
       <td>0.012016</td>
       <td>{'clf__max_depth': 20, 'clf__n_estimators': 25...</td>
-      <td>3.257792</td>
-      <td>0.869822</td>
+      <td>3.181439</td>
+      <td>0.869824</td>
       <td>0.005664</td>
-      <td>0.680405</td>
-      <td>0.016982</td>
+      <td>0.680407</td>
+      <td>0.016981</td>
       <td>0.285357</td>
       <td>0.014962</td>
       <td>25/20</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.862639</td>
-      <td>0.015981</td>
-      <td>0.673287</td>
-      <td>0.011435</td>
-      <td>0.296786</td>
-      <td>0.013301</td>
+      <td>0.862653</td>
+      <td>0.016004</td>
+      <td>0.673352</td>
+      <td>0.011485</td>
+      <td>0.297143</td>
+      <td>0.013439</td>
       <td>{'clf__max_depth': 20, 'clf__n_estimators': 50...</td>
-      <td>6.083609</td>
-      <td>0.876310</td>
-      <td>0.006773</td>
-      <td>0.690433</td>
+      <td>6.027631</td>
+      <td>0.876311</td>
+      <td>0.006772</td>
+      <td>0.690434</td>
       <td>0.019828</td>
       <td>0.287143</td>
       <td>0.016506</td>
@@ -1535,74 +1615,74 @@ Wall time: 2.13 s
     </tr>
     <tr>
       <th>8</th>
-      <td>0.870361</td>
-      <td>0.016913</td>
-      <td>0.677590</td>
-      <td>0.011694</td>
+      <td>0.870378</td>
+      <td>0.016910</td>
+      <td>0.677675</td>
+      <td>0.011698</td>
       <td>0.299286</td>
       <td>0.013190</td>
       <td>{'clf__max_depth': 20, 'clf__n_estimators': 10...</td>
-      <td>13.117394</td>
-      <td>0.879721</td>
-      <td>0.006366</td>
-      <td>0.694251</td>
-      <td>0.020535</td>
+      <td>11.521331</td>
+      <td>0.879728</td>
+      <td>0.006367</td>
+      <td>0.694063</td>
+      <td>0.020657</td>
       <td>0.288571</td>
       <td>0.016690</td>
       <td>100/20</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.858526</td>
-      <td>0.008785</td>
-      <td>0.651904</td>
-      <td>0.009460</td>
+      <td>0.858527</td>
+      <td>0.008786</td>
+      <td>0.651899</td>
+      <td>0.009478</td>
       <td>0.296429</td>
       <td>0.010996</td>
       <td>{'clf__max_depth': 50, 'clf__n_estimators': 25...</td>
-      <td>3.690854</td>
-      <td>0.869955</td>
-      <td>0.003716</td>
-      <td>0.674015</td>
-      <td>0.021355</td>
-      <td>0.284286</td>
-      <td>0.016690</td>
+      <td>3.340531</td>
+      <td>0.869956</td>
+      <td>0.003717</td>
+      <td>0.674013</td>
+      <td>0.021356</td>
+      <td>0.283929</td>
+      <td>0.016671</td>
       <td>25/50</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.865994</td>
-      <td>0.013416</td>
-      <td>0.663228</td>
-      <td>0.009270</td>
+      <td>0.865997</td>
+      <td>0.013420</td>
+      <td>0.663305</td>
+      <td>0.009296</td>
       <td>0.296071</td>
       <td>0.011401</td>
       <td>{'clf__max_depth': 50, 'clf__n_estimators': 50...</td>
-      <td>8.848500</td>
-      <td>0.875153</td>
-      <td>0.003630</td>
-      <td>0.683129</td>
-      <td>0.020881</td>
-      <td>0.286429</td>
-      <td>0.014932</td>
+      <td>6.319636</td>
+      <td>0.875154</td>
+      <td>0.003631</td>
+      <td>0.683127</td>
+      <td>0.020882</td>
+      <td>0.287143</td>
+      <td>0.015518</td>
       <td>50/50</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0.870231</td>
-      <td>0.014166</td>
-      <td>0.671542</td>
-      <td>0.011224</td>
-      <td>0.298929</td>
-      <td>0.013491</td>
+      <td>0.870256</td>
+      <td>0.014185</td>
+      <td>0.671611</td>
+      <td>0.011290</td>
+      <td>0.298571</td>
+      <td>0.013363</td>
       <td>{'clf__max_depth': 50, 'clf__n_estimators': 10...</td>
-      <td>18.136816</td>
-      <td>0.878360</td>
-      <td>0.002900</td>
-      <td>0.691421</td>
-      <td>0.019576</td>
-      <td>0.287857</td>
-      <td>0.015698</td>
+      <td>12.293192</td>
+      <td>0.878369</td>
+      <td>0.002908</td>
+      <td>0.691405</td>
+      <td>0.019560</td>
+      <td>0.287500</td>
+      <td>0.015199</td>
       <td>100/50</td>
     </tr>
   </tbody>
@@ -1772,7 +1852,7 @@ Wall time: 2.13 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for the model selection procedure: 627.54s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for the model selection procedure: 586.96s
 </pre></div>
 </div>
 </div>
@@ -1780,13 +1860,13 @@ Wall time: 2.13 s
 <p>This toy example illustrates the trade-off between performance and computation times in the search for optimal parameters. Computational resources are usually constrained, and one must carefully consider which hyperparameter combinations can be tested given the available resources.</p>
 </div>
 <div class="section" id="xgboost">
-<h3><span class="section-number">3.2.3. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h3>
-<p>XGBoost is a powerful learning algorithm whose tuning however relies <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/python/python_api.html">on many hyperparameters</a>. The most important ones are arguably the tree maximum depth (<code class="docutils literal notranslate"><span class="pre">max_depth</span></code>), the number of trees (<code class="docutils literal notranslate"><span class="pre">n_estimtors</span></code>), and the learning rate (<code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>). By default, the maximum tree depth is set to 2, the number of trees to 100, and the learning rate to 0.1. Let us try other combinations, with <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> in the set [2,3,5], <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> in the set [25,10,100], and <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> in the set [0.05, 0.1].</p>
+<span id="model-selection-xgboost"></span><h3><span class="section-number">3.2.3. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h3>
+<p>XGBoost is a powerful learning algorithm whose tuning however relies <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/python/python_api.html">on many hyperparameters</a>. The most important ones are arguably the tree maximum depth (<code class="docutils literal notranslate"><span class="pre">max_depth</span></code>), the number of trees (<code class="docutils literal notranslate"><span class="pre">n_estimtors</span></code>), and the learning rate (<code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>). By default, the maximum tree depth is set to 6, the number of trees to 100, and the learning rate to 0.3. Let us try other combinations, with <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> in the set [3,6,9], <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> in the set [25,10,100], and <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> in the set [0.1, 0.3].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">xgboost</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">()</span>
 
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__max_depth&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;clf__n_estimators&#39;</span><span class="p">:[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span> <span class="s1">&#39;clf__learning_rate&#39;</span><span class="p">:[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__max_depth&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="s1">&#39;clf__n_estimators&#39;</span><span class="p">:[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span> <span class="s1">&#39;clf__learning_rate&#39;</span><span class="p">:[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
               <span class="s1">&#39;clf__random_state&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;clf__n_jobs&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;clf__verbosity&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">]}</span>
 
 <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -1865,222 +1945,6 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.804691</td>
-      <td>0.014233</td>
-      <td>0.588738</td>
-      <td>0.027855</td>
-      <td>0.277143</td>
-      <td>0.012080</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>1.381555</td>
-      <td>0.800513</td>
-      <td>0.014902</td>
-      <td>0.582041</td>
-      <td>0.018621</td>
-      <td>0.263929</td>
-      <td>0.012263</td>
-      <td>25/0.05/2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.830872</td>
-      <td>0.010601</td>
-      <td>0.622804</td>
-      <td>0.021647</td>
-      <td>0.295714</td>
-      <td>0.015152</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>2.414702</td>
-      <td>0.815454</td>
-      <td>0.009721</td>
-      <td>0.608627</td>
-      <td>0.021724</td>
-      <td>0.275357</td>
-      <td>0.013339</td>
-      <td>50/0.05/2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.848894</td>
-      <td>0.011078</td>
-      <td>0.637512</td>
-      <td>0.017503</td>
-      <td>0.299286</td>
-      <td>0.014304</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>4.477899</td>
-      <td>0.839563</td>
-      <td>0.006613</td>
-      <td>0.628430</td>
-      <td>0.024998</td>
-      <td>0.278929</td>
-      <td>0.013901</td>
-      <td>100/0.05/2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.820873</td>
-      <td>0.007643</td>
-      <td>0.618053</td>
-      <td>0.020612</td>
-      <td>0.288929</td>
-      <td>0.010708</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>1.724567</td>
-      <td>0.811389</td>
-      <td>0.011432</td>
-      <td>0.605400</td>
-      <td>0.026931</td>
-      <td>0.271786</td>
-      <td>0.014441</td>
-      <td>25/0.05/3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.833103</td>
-      <td>0.012269</td>
-      <td>0.636696</td>
-      <td>0.023064</td>
-      <td>0.296071</td>
-      <td>0.014859</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>3.526706</td>
-      <td>0.828770</td>
-      <td>0.008527</td>
-      <td>0.619382</td>
-      <td>0.025261</td>
-      <td>0.277857</td>
-      <td>0.014196</td>
-      <td>50/0.05/3</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.864374</td>
-      <td>0.006577</td>
-      <td>0.666651</td>
-      <td>0.012084</td>
-      <td>0.302143</td>
-      <td>0.012717</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>9.786538</td>
-      <td>0.862599</td>
-      <td>0.003400</td>
-      <td>0.651390</td>
-      <td>0.031014</td>
-      <td>0.281786</td>
-      <td>0.014962</td>
-      <td>100/0.05/3</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.828379</td>
-      <td>0.009684</td>
-      <td>0.627986</td>
-      <td>0.020924</td>
-      <td>0.292143</td>
-      <td>0.011845</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>2.709496</td>
-      <td>0.821080</td>
-      <td>0.012536</td>
-      <td>0.610315</td>
-      <td>0.017708</td>
-      <td>0.275714</td>
-      <td>0.015320</td>
-      <td>25/0.05/5</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.840545</td>
-      <td>0.010335</td>
-      <td>0.636732</td>
-      <td>0.026156</td>
-      <td>0.293571</td>
-      <td>0.013646</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>5.801920</td>
-      <td>0.831552</td>
-      <td>0.012443</td>
-      <td>0.634336</td>
-      <td>0.028856</td>
-      <td>0.277500</td>
-      <td>0.016487</td>
-      <td>50/0.05/5</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.871393</td>
-      <td>0.016108</td>
-      <td>0.685460</td>
-      <td>0.012231</td>
-      <td>0.303571</td>
-      <td>0.011451</td>
-      <td>{'clf__learning_rate': 0.05, 'clf__max_depth':...</td>
-      <td>9.421408</td>
-      <td>0.873190</td>
-      <td>0.004527</td>
-      <td>0.693422</td>
-      <td>0.018965</td>
-      <td>0.287857</td>
-      <td>0.015600</td>
-      <td>100/0.05/5</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.830388</td>
-      <td>0.009841</td>
-      <td>0.621413</td>
-      <td>0.021088</td>
-      <td>0.295714</td>
-      <td>0.015152</td>
-      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>1.321278</td>
-      <td>0.815454</td>
-      <td>0.009723</td>
-      <td>0.608477</td>
-      <td>0.021612</td>
-      <td>0.275357</td>
-      <td>0.013339</td>
-      <td>25/0.1/2</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.848309</td>
-      <td>0.010490</td>
-      <td>0.637862</td>
-      <td>0.017787</td>
-      <td>0.299286</td>
-      <td>0.014304</td>
-      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>2.329923</td>
-      <td>0.839086</td>
-      <td>0.006005</td>
-      <td>0.628894</td>
-      <td>0.023866</td>
-      <td>0.278929</td>
-      <td>0.015629</td>
-      <td>50/0.1/2</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.871571</td>
-      <td>0.014418</td>
-      <td>0.680005</td>
-      <td>0.009581</td>
-      <td>0.303929</td>
-      <td>0.013339</td>
-      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>4.463066</td>
-      <td>0.875828</td>
-      <td>0.005009</td>
-      <td>0.689009</td>
-      <td>0.016551</td>
-      <td>0.290714</td>
-      <td>0.015988</td>
-      <td>100/0.1/2</td>
-    </tr>
-    <tr>
-      <th>12</th>
       <td>0.833094</td>
       <td>0.012257</td>
       <td>0.635603</td>
@@ -2088,7 +1952,7 @@ Wall time: 2.13 s
       <td>0.296071</td>
       <td>0.014859</td>
       <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>1.774995</td>
+      <td>2.740516</td>
       <td>0.825157</td>
       <td>0.009026</td>
       <td>0.617990</td>
@@ -2098,7 +1962,7 @@ Wall time: 2.13 s
       <td>25/0.1/3</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>1</th>
       <td>0.864766</td>
       <td>0.006604</td>
       <td>0.666130</td>
@@ -2106,7 +1970,7 @@ Wall time: 2.13 s
       <td>0.301429</td>
       <td>0.013439</td>
       <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>3.213233</td>
+      <td>4.426460</td>
       <td>0.863627</td>
       <td>0.003203</td>
       <td>0.651369</td>
@@ -2116,15 +1980,15 @@ Wall time: 2.13 s
       <td>50/0.1/3</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>0.870728</td>
-      <td>0.012343</td>
-      <td>0.693917</td>
-      <td>0.008547</td>
+      <th>2</th>
+      <td>0.870792</td>
+      <td>0.012352</td>
+      <td>0.694030</td>
+      <td>0.008394</td>
       <td>0.303929</td>
       <td>0.012305</td>
       <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>5.909937</td>
+      <td>7.717508</td>
       <td>0.878438</td>
       <td>0.009221</td>
       <td>0.705235</td>
@@ -2134,58 +1998,274 @@ Wall time: 2.13 s
       <td>100/0.1/3</td>
     </tr>
     <tr>
-      <th>15</th>
-      <td>0.840549</td>
-      <td>0.010335</td>
-      <td>0.637267</td>
-      <td>0.025976</td>
-      <td>0.293929</td>
-      <td>0.014228</td>
+      <th>3</th>
+      <td>0.835862</td>
+      <td>0.012705</td>
+      <td>0.638601</td>
+      <td>0.025984</td>
+      <td>0.297500</td>
+      <td>0.014928</td>
       <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>2.918710</td>
-      <td>0.832045</td>
-      <td>0.011923</td>
-      <td>0.634660</td>
-      <td>0.028241</td>
-      <td>0.277143</td>
-      <td>0.016690</td>
-      <td>25/0.1/5</td>
+      <td>4.346976</td>
+      <td>0.843097</td>
+      <td>0.014918</td>
+      <td>0.640099</td>
+      <td>0.026283</td>
+      <td>0.278571</td>
+      <td>0.015551</td>
+      <td>25/0.1/6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.871589</td>
+      <td>0.014202</td>
+      <td>0.686221</td>
+      <td>0.012026</td>
+      <td>0.301786</td>
+      <td>0.009603</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>8.303945</td>
+      <td>0.869654</td>
+      <td>0.002863</td>
+      <td>0.699780</td>
+      <td>0.016875</td>
+      <td>0.288214</td>
+      <td>0.016884</td>
+      <td>50/0.1/6</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.871278</td>
+      <td>0.011437</td>
+      <td>0.685991</td>
+      <td>0.008947</td>
+      <td>0.298571</td>
+      <td>0.010351</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>17.992388</td>
+      <td>0.881340</td>
+      <td>0.004587</td>
+      <td>0.706922</td>
+      <td>0.017461</td>
+      <td>0.286429</td>
+      <td>0.017217</td>
+      <td>100/0.1/6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.852550</td>
+      <td>0.003171</td>
+      <td>0.656631</td>
+      <td>0.012632</td>
+      <td>0.302857</td>
+      <td>0.012164</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>4.437036</td>
+      <td>0.854345</td>
+      <td>0.008599</td>
+      <td>0.656910</td>
+      <td>0.023964</td>
+      <td>0.281429</td>
+      <td>0.012817</td>
+      <td>25/0.1/9</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.867596</td>
+      <td>0.016111</td>
+      <td>0.681919</td>
+      <td>0.011871</td>
+      <td>0.300000</td>
+      <td>0.009949</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>9.128478</td>
+      <td>0.875070</td>
+      <td>0.006199</td>
+      <td>0.700656</td>
+      <td>0.018366</td>
+      <td>0.285714</td>
+      <td>0.015779</td>
+      <td>50/0.1/9</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.862519</td>
+      <td>0.007472</td>
+      <td>0.674149</td>
+      <td>0.007838</td>
+      <td>0.293929</td>
+      <td>0.012428</td>
+      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
+      <td>18.618342</td>
+      <td>0.879667</td>
+      <td>0.003782</td>
+      <td>0.700592</td>
+      <td>0.017885</td>
+      <td>0.285000</td>
+      <td>0.017394</td>
+      <td>100/0.1/9</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.870988</td>
+      <td>0.014197</td>
+      <td>0.678544</td>
+      <td>0.012501</td>
+      <td>0.303214</td>
+      <td>0.012592</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>1.809805</td>
+      <td>0.877231</td>
+      <td>0.006120</td>
+      <td>0.698490</td>
+      <td>0.022835</td>
+      <td>0.288929</td>
+      <td>0.015131</td>
+      <td>25/0.3/3</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.871726</td>
+      <td>0.010990</td>
+      <td>0.686534</td>
+      <td>0.011086</td>
+      <td>0.302143</td>
+      <td>0.013458</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>3.290658</td>
+      <td>0.882839</td>
+      <td>0.008380</td>
+      <td>0.708226</td>
+      <td>0.020697</td>
+      <td>0.287500</td>
+      <td>0.016331</td>
+      <td>50/0.3/3</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.869414</td>
+      <td>0.009418</td>
+      <td>0.684661</td>
+      <td>0.008058</td>
+      <td>0.298571</td>
+      <td>0.011203</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>6.179205</td>
+      <td>0.886993</td>
+      <td>0.008474</td>
+      <td>0.706116</td>
+      <td>0.020094</td>
+      <td>0.286071</td>
+      <td>0.014756</td>
+      <td>100/0.3/3</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.868900</td>
+      <td>0.010737</td>
+      <td>0.682132</td>
+      <td>0.008824</td>
+      <td>0.299286</td>
+      <td>0.011974</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>3.157807</td>
+      <td>0.880707</td>
+      <td>0.005706</td>
+      <td>0.703211</td>
+      <td>0.016174</td>
+      <td>0.285000</td>
+      <td>0.015336</td>
+      <td>25/0.3/6</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.867046</td>
+      <td>0.011363</td>
+      <td>0.673906</td>
+      <td>0.007436</td>
+      <td>0.293929</td>
+      <td>0.009968</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>6.032546</td>
+      <td>0.879301</td>
+      <td>0.008605</td>
+      <td>0.697563</td>
+      <td>0.016872</td>
+      <td>0.283571</td>
+      <td>0.016614</td>
+      <td>50/0.3/6</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.859138</td>
+      <td>0.004852</td>
+      <td>0.659458</td>
+      <td>0.012488</td>
+      <td>0.285357</td>
+      <td>0.010369</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>11.699445</td>
+      <td>0.878025</td>
+      <td>0.007150</td>
+      <td>0.691442</td>
+      <td>0.016375</td>
+      <td>0.279643</td>
+      <td>0.013567</td>
+      <td>100/0.3/6</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.863341</td>
+      <td>0.007757</td>
+      <td>0.675966</td>
+      <td>0.008870</td>
+      <td>0.294286</td>
+      <td>0.011995</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>4.462973</td>
+      <td>0.876948</td>
+      <td>0.004011</td>
+      <td>0.699722</td>
+      <td>0.017653</td>
+      <td>0.283571</td>
+      <td>0.015924</td>
+      <td>25/0.3/9</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>0.870980</td>
-      <td>0.016694</td>
-      <td>0.686214</td>
-      <td>0.012601</td>
-      <td>0.304286</td>
-      <td>0.012164</td>
-      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>6.725632</td>
-      <td>0.870487</td>
-      <td>0.002778</td>
-      <td>0.693645</td>
-      <td>0.018728</td>
-      <td>0.287500</td>
-      <td>0.016331</td>
-      <td>50/0.1/5</td>
+      <td>0.859114</td>
+      <td>0.003609</td>
+      <td>0.660666</td>
+      <td>0.008002</td>
+      <td>0.288214</td>
+      <td>0.008943</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>8.684047</td>
+      <td>0.876392</td>
+      <td>0.006354</td>
+      <td>0.692759</td>
+      <td>0.017801</td>
+      <td>0.280357</td>
+      <td>0.014441</td>
+      <td>50/0.3/9</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>0.872081</td>
-      <td>0.010353</td>
-      <td>0.691773</td>
-      <td>0.010572</td>
-      <td>0.300357</td>
-      <td>0.012469</td>
-      <td>{'clf__learning_rate': 0.1, 'clf__max_depth': ...</td>
-      <td>13.230606</td>
-      <td>0.886075</td>
-      <td>0.004126</td>
-      <td>0.707456</td>
-      <td>0.017731</td>
-      <td>0.287500</td>
-      <td>0.016016</td>
-      <td>100/0.1/5</td>
+      <td>0.860454</td>
+      <td>0.002511</td>
+      <td>0.658901</td>
+      <td>0.010897</td>
+      <td>0.286786</td>
+      <td>0.009056</td>
+      <td>{'clf__learning_rate': 0.3, 'clf__max_depth': ...</td>
+      <td>17.091203</td>
+      <td>0.879577</td>
+      <td>0.006008</td>
+      <td>0.690895</td>
+      <td>0.016712</td>
+      <td>0.278571</td>
+      <td>0.015286</td>
+      <td>100/0.3/9</td>
     </tr>
   </tbody>
 </table>
@@ -2226,27 +2306,27 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>Best estimated parameters</th>
-      <td>100/0.1/5</td>
-      <td>100/0.1/5</td>
-      <td>100/0.1/2</td>
+      <td>100/0.3/3</td>
+      <td>50/0.3/3</td>
+      <td>25/0.3/3</td>
     </tr>
     <tr>
       <th>Validation performance</th>
-      <td>0.886+/-0.0</td>
-      <td>0.707+/-0.02</td>
-      <td>0.291+/-0.02</td>
+      <td>0.887+/-0.01</td>
+      <td>0.708+/-0.02</td>
+      <td>0.289+/-0.02</td>
     </tr>
     <tr>
       <th>Test performance</th>
-      <td>0.872+/-0.01</td>
-      <td>0.692+/-0.01</td>
-      <td>0.304+/-0.01</td>
+      <td>0.869+/-0.01</td>
+      <td>0.687+/-0.01</td>
+      <td>0.303+/-0.01</td>
     </tr>
     <tr>
       <th>Optimal parameters</th>
-      <td>100/0.1/5</td>
+      <td>50/0.3/3</td>
       <td>100/0.1/3</td>
-      <td>50/0.1/5</td>
+      <td>100/0.1/3</td>
     </tr>
     <tr>
       <th>Optimal test performance</th>
@@ -2262,7 +2342,7 @@ Wall time: 2.13 s
 <p>Let us plot the performances as a function of the maximum tree depth, for a number of trees set to 100. Increasing the maximum tree depth does not clearly affect the performances. It slightly increases performances for AUC ROC and AP, but slightly decreases it for CP&#64;100.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;100/0.1&quot;</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;100/0.3&quot;</span><span class="p">)]</span>
 
 <span class="n">summary_performances_fixed_number_of_trees</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
 
@@ -2281,7 +2361,7 @@ Wall time: 2.13 s
 <p>Let us then plot the performances as a function of the number of trees, for a maximum tree depth set to 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;0.1/5&quot;</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;0.3/3&quot;</span><span class="p">)]</span>
 
 <span class="n">summary_performances_fixed_max_tree_depth</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
 
@@ -2331,7 +2411,7 @@ Wall time: 2.13 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for the model selection procedure: 666.28s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for the model selection procedure: 1251.2s
 </pre></div>
 </div>
 </div>
@@ -2339,7 +2419,7 @@ Wall time: 2.13 s
 </div>
 </div>
 <div class="section" id="comparison-of-model-performances">
-<h2><span class="section-number">3.3. </span>Comparison of model performances<a class="headerlink" href="#comparison-of-model-performances" title="Permalink to this headline">¶</a></h2>
+<span id="model-selection-comparison-performances"></span><h2><span class="section-number">3.3. </span>Comparison of model performances<a class="headerlink" href="#comparison-of-model-performances" title="Permalink to this headline">¶</a></h2>
 <p>The previous section detailed the performances of different model classes. Let us compare these performances in order to determine which model class provides the best performances.</p>
 <p>For each model class, let us retrieve the performance for three types of parameters:</p>
 <ul class="simple">
@@ -2348,7 +2428,7 @@ Wall time: 2.13 s
 <li><p>Decision tree: <code class="docutils literal notranslate"><span class="pre">max_depth=None</span></code>.</p></li>
 <li><p>Logistic regression: <code class="docutils literal notranslate"><span class="pre">C=1</span></code>.</p></li>
 <li><p>Random forest: <code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth=None</span></code>.</p></li>
-<li><p>XGBoost: <code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth=2</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate=0.1</span></code>.</p></li>
+<li><p>XGBoost: <code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth=6</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate=0.3</span></code>.</p></li>
 </ul>
 </li>
 <li><p>Best estimated parameters: Parameters that provide the highest performances on the validation set.</p></li>
@@ -2359,7 +2439,7 @@ Wall time: 2.13 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dictionary</span><span class="o">=</span><span class="p">{</span>
     <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">performances_df_dt</span><span class="p">,</span>
-    <span class="s2">&quot;Logstic Regression&quot;</span><span class="p">:</span> <span class="n">performances_df_lr</span><span class="p">,</span>
+    <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="n">performances_df_lr</span><span class="p">,</span>
     <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="n">performances_df_rf</span><span class="p">,</span>
     <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="n">performances_df_xgboost</span>
 <span class="p">}</span>
@@ -2370,15 +2450,17 @@ Wall time: 2.13 s
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_selection_performances</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span>
-                                 <span class="n">performance_metric</span><span class="o">=</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">):</span>
-    
-    <span class="c1"># Note: max_depth of 50 is similar to None</span>
-    <span class="n">default_parameters_dictionary</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-        <span class="s2">&quot;Logstic Regression&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="s2">&quot;100/50&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="s2">&quot;100/0.1/2&quot;</span>
-    <span class="p">}</span>
+                                 <span class="n">performance_metric</span><span class="o">=</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span>
+                                 <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;XGBoost&#39;</span><span class="p">],</span>
+                                 <span class="n">default_parameters_dictionary</span><span class="o">=</span><span class="p">{</span>
+                                                <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                                                <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                                <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="s2">&quot;100/50&quot;</span><span class="p">,</span>
+                                                <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="s2">&quot;100/0.3/6&quot;</span>
+                                            <span class="p">}):</span>
     
     <span class="n">mean_performances_dictionary</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">&quot;Default parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -2393,7 +2475,9 @@ Wall time: 2.13 s
     <span class="p">}</span>
     
     <span class="c1"># For each model class</span>
-    <span class="k">for</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">performances_df</span> <span class="ow">in</span> <span class="n">performances_df_dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">model_class</span> <span class="ow">in</span> <span class="n">model_classes</span><span class="p">:</span>
+        
+        <span class="n">performances_df</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="n">model_class</span><span class="p">]</span>
         
         <span class="c1"># Get the performances for the default paramaters</span>
         <span class="n">default_performances</span><span class="o">=</span><span class="n">performances_df</span><span class="p">[</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">default_parameters_dictionary</span><span class="p">[</span><span class="n">model_class</span><span class="p">]]</span>
@@ -2430,10 +2514,10 @@ Wall time: 2.13 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Default parameters&#39;: [0.797, 0.868, 0.87, 0.872],
-  &#39;Best validation parameters&#39;: [0.797, 0.868, 0.87, 0.872],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Default parameters&#39;: [0.797, 0.868, 0.87, 0.859],
+  &#39;Best validation parameters&#39;: [0.797, 0.868, 0.87, 0.869],
   &#39;Optimal parameters&#39;: [0.813, 0.868, 0.875, 0.872]},
- {&#39;Default parameters&#39;: [0.005, 0.015, 0.014, 0.014],
+ {&#39;Default parameters&#39;: [0.005, 0.015, 0.014, 0.005],
   &#39;Best validation parameters&#39;: [0.01, 0.02, 0.02, 0.01],
   &#39;Optimal parameters&#39;: [0.01, 0.02, 0.01, 0.01]})
 </pre></div>
@@ -2447,16 +2531,17 @@ Wall time: 2.13 s
 <span class="k">def</span> <span class="nf">get_model_selection_performance_plot</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
                                          <span class="n">ax</span><span class="p">,</span> 
                                          <span class="n">performance_metric</span><span class="p">,</span>
-                                         <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-                                        <span class="p">):</span>
+                                         <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                                         <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;XGBoost&#39;</span><span class="p">]):</span>
     
     
     <span class="p">(</span><span class="n">mean_performances_dictionary</span><span class="p">,</span><span class="n">std_performances_dictionary</span><span class="p">)</span> <span class="o">=</span> \
         <span class="n">model_selection_performances</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">,</span>
                                      <span class="n">performance_metric</span><span class="o">=</span><span class="n">performance_metric</span><span class="p">)</span>
     
-    
-    <span class="n">model_classes</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     
     <span class="c1"># width of the bars</span>
     <span class="n">barWidth</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -2495,7 +2580,12 @@ Wall time: 2.13 s
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_model_selection_performances_plots</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
-                                           <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">]):</span>
+                                           <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span>
+                                           <span class="n">ylim_list</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.9</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.35</span><span class="p">]],</span>
+                                           <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;XGBoost&#39;</span><span class="p">]):</span>
     
     <span class="c1"># Create as many graphs as there are performance metrics to display</span>
     <span class="n">n_performance_metrics</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">performance_metrics_list</span><span class="p">)</span>
@@ -2503,15 +2593,14 @@ Wall time: 2.13 s
     
     <span class="n">parameter_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Default parameters&#39;</span><span class="p">,</span><span class="s1">&#39;Best validation parameters&#39;</span><span class="p">,</span><span class="s1">&#39;Optimal parameters&#39;</span><span class="p">]</span>
     
-    <span class="n">ylim_list</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.9</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.35</span><span class="p">]]</span>
-    
     <span class="c1"># Plot performance metric for each metric in performance_metrics_list</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_performance_metrics</span><span class="p">):</span>
     
         <span class="n">get_model_selection_performance_plot</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
                                              <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
                                              <span class="n">performance_metrics_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                             <span class="n">ylim</span><span class="o">=</span><span class="n">ylim_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                                             <span class="n">ylim</span><span class="o">=</span><span class="n">ylim_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                             <span class="n">model_classes</span><span class="o">=</span><span class="n">model_classes</span>
                                             <span class="p">)</span>
     
     <span class="n">ax</span><span class="p">[</span><span class="n">n_performance_metrics</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
@@ -2540,7 +2629,7 @@ Wall time: 2.13 s
 <img alt="../_images/ModelSelection_68_0.png" src="../_images/ModelSelection_68_0.png" />
 </div>
 </div>
-<p>On this simulated dataset, XGBoost provides the highest performances, followed by random forest, logistic regression, and finally decision trees which have the lowest performances. The gap in terms of performance is most visible with the average precision metric. The performances of logistic regression, random forest, and XGBoost are very similar in terms of AUC ROC.</p>
+<p>On this simulated dataset, XGBoost provides the highest performances in terms of Average Precision and CP&#64;100, followed by random forest, logistic regression, and finally decision trees which have the lowest performances. The gap in terms of performance is most visible with the average precision metric. The performances of logistic regression, random forest, and XGBoost are very similar in terms of AUC ROC.</p>
 <p>Let us plot the total execution times of the model selection procedure for each model class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2556,7 +2645,7 @@ Wall time: 2.13 s
 
 <span class="n">fig_model_selection_execution_times_for_each_model_class</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="n">model_classes</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">]</span>
     
 <span class="c1"># width of the bars</span>
 <span class="n">barWidth</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -2564,7 +2653,7 @@ Wall time: 2.13 s
 <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_classes</span><span class="p">))</span>
     
 <span class="c1"># Create execution times bars</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">,</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> 
         <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
         <span class="n">capsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 
@@ -2592,7 +2681,7 @@ Wall time: 2.13 s
 <div class="section" id="random-search">
 <h2><span class="section-number">3.4. </span>Random search<a class="headerlink" href="#random-search" title="Permalink to this headline">¶</a></h2>
 <p>Grid search is a widely used strategy for hyperparameter optimization. It however quickly becomes intractable when the number of hyperparameters is high since the number of parameter combinations grows exponentially with the number of parameters.</p>
-<p>An alternative to grid search is random search, where random combinations of parameters are assessed for a fixed number of combinations. Besides allowing to limit the number of tested parameter combinations, random combinations have been shown both empirically and theoretically to be more efficient for hyperparameter optimization than grid search <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id49"><span>BB12</span></a>]</span>.</p>
+<p>An alternative to grid search is random search, where random combinations of parameters are assessed for a fixed number of combinations. Besides allowing to limit the number of tested parameter combinations, random combinations have been shown both empirically and theoretically to be more efficient for hyperparameter optimization than grid search <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id83">BB12</a>]</span>.</p>
 <p>The intuition for the efficiency of random search is illustrated in Fig. 3. Essentially, random search allows to more efficiently explore the space of important hyperparameters.</p>
 <p><img alt="alt text" src="../_images/random_search.png" /></p>
 <div align="center">Fig. 3.  Grid and random search of nine parameter combinations, on a two-parameter space. Performance as a function of parameter's values is given in green (top - important parameter) and yellow (left, unimportant parameter). Grid search only assesses the important parameter for three different values, while random search explores the important parameter for nine different values (Figure taken from {cite}`bergstra2012random`).</div>
@@ -2732,7 +2821,7 @@ Wall time: 2.13 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">xgboost</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">()</span>
 
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__max_depth&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;clf__n_estimators&#39;</span><span class="p">:[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span><span class="s1">&#39;clf__learning_rate&#39;</span><span class="p">:[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__max_depth&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="s1">&#39;clf__n_estimators&#39;</span><span class="p">:[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span><span class="s1">&#39;clf__learning_rate&#39;</span><span class="p">:[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span>
               <span class="s1">&#39;clf__random_state&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;clf__n_jobs&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;clf__n_verbosity&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">]}</span>
 
 <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -2814,86 +2903,122 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.830872</td>
-      <td>0.010601</td>
-      <td>0.622804</td>
-      <td>0.021647</td>
-      <td>0.295714</td>
-      <td>0.015152</td>
+      <td>0.864766</td>
+      <td>0.006604</td>
+      <td>0.666130</td>
+      <td>0.012722</td>
+      <td>0.301429</td>
+      <td>0.013439</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>2.743754</td>
-      <td>0.815454</td>
-      <td>0.009721</td>
-      <td>0.608627</td>
-      <td>0.021724</td>
-      <td>0.275357</td>
-      <td>0.013339</td>
-      <td>50/0.05/2</td>
+      <td>3.234625</td>
+      <td>0.863627</td>
+      <td>0.003203</td>
+      <td>0.651369</td>
+      <td>0.030279</td>
+      <td>0.280714</td>
+      <td>0.014932</td>
+      <td>50/0.1/3</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.828379</td>
-      <td>0.009684</td>
-      <td>0.627986</td>
-      <td>0.020924</td>
-      <td>0.292143</td>
-      <td>0.011845</td>
+      <td>0.852550</td>
+      <td>0.003171</td>
+      <td>0.656631</td>
+      <td>0.012632</td>
+      <td>0.302857</td>
+      <td>0.012164</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>3.059411</td>
-      <td>0.821080</td>
-      <td>0.012536</td>
-      <td>0.610315</td>
-      <td>0.017708</td>
-      <td>0.275714</td>
-      <td>0.015320</td>
-      <td>25/0.05/5</td>
+      <td>4.030167</td>
+      <td>0.854345</td>
+      <td>0.008599</td>
+      <td>0.656910</td>
+      <td>0.023964</td>
+      <td>0.281429</td>
+      <td>0.012817</td>
+      <td>25/0.1/9</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.871393</td>
-      <td>0.016108</td>
-      <td>0.685460</td>
-      <td>0.012231</td>
-      <td>0.303571</td>
-      <td>0.011451</td>
+      <td>0.862519</td>
+      <td>0.007472</td>
+      <td>0.674149</td>
+      <td>0.007838</td>
+      <td>0.293929</td>
+      <td>0.012428</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>12.370115</td>
-      <td>0.873190</td>
-      <td>0.004527</td>
-      <td>0.693422</td>
-      <td>0.018965</td>
-      <td>0.287857</td>
-      <td>0.015600</td>
-      <td>100/0.05/5</td>
+      <td>17.273730</td>
+      <td>0.879667</td>
+      <td>0.003782</td>
+      <td>0.700592</td>
+      <td>0.017885</td>
+      <td>0.285000</td>
+      <td>0.017394</td>
+      <td>100/0.1/9</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.848309</td>
-      <td>0.010490</td>
-      <td>0.637862</td>
-      <td>0.017787</td>
-      <td>0.299286</td>
-      <td>0.014304</td>
+      <td>0.871726</td>
+      <td>0.010990</td>
+      <td>0.686534</td>
+      <td>0.011086</td>
+      <td>0.302143</td>
+      <td>0.013458</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>3.169141</td>
-      <td>0.839086</td>
-      <td>0.006005</td>
-      <td>0.628894</td>
-      <td>0.023866</td>
-      <td>0.278929</td>
-      <td>0.015629</td>
-      <td>50/0.1/2</td>
+      <td>3.859597</td>
+      <td>0.882839</td>
+      <td>0.008380</td>
+      <td>0.708226</td>
+      <td>0.020697</td>
+      <td>0.287500</td>
+      <td>0.016331</td>
+      <td>50/0.3/3</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.870728</td>
-      <td>0.012343</td>
-      <td>0.693917</td>
-      <td>0.008547</td>
+      <td>0.859138</td>
+      <td>0.004852</td>
+      <td>0.659458</td>
+      <td>0.012488</td>
+      <td>0.285357</td>
+      <td>0.010369</td>
+      <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
+      <td>13.659157</td>
+      <td>0.878025</td>
+      <td>0.007150</td>
+      <td>0.691442</td>
+      <td>0.016375</td>
+      <td>0.279643</td>
+      <td>0.013567</td>
+      <td>100/0.3/6</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.871589</td>
+      <td>0.014202</td>
+      <td>0.686221</td>
+      <td>0.012026</td>
+      <td>0.301786</td>
+      <td>0.009603</td>
+      <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
+      <td>6.731956</td>
+      <td>0.869654</td>
+      <td>0.002863</td>
+      <td>0.699780</td>
+      <td>0.016875</td>
+      <td>0.288214</td>
+      <td>0.016884</td>
+      <td>50/0.1/6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.870792</td>
+      <td>0.012352</td>
+      <td>0.694030</td>
+      <td>0.008394</td>
       <td>0.303929</td>
       <td>0.012305</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>8.901414</td>
+      <td>7.344713</td>
       <td>0.878438</td>
       <td>0.009221</td>
       <td>0.705235</td>
@@ -2903,94 +3028,58 @@ Wall time: 2.13 s
       <td>100/0.1/3</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>0.833103</td>
-      <td>0.012269</td>
-      <td>0.636696</td>
-      <td>0.023064</td>
-      <td>0.296071</td>
-      <td>0.014859</td>
-      <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>6.386794</td>
-      <td>0.828770</td>
-      <td>0.008527</td>
-      <td>0.619382</td>
-      <td>0.025261</td>
-      <td>0.277857</td>
-      <td>0.014196</td>
-      <td>50/0.05/3</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.848894</td>
-      <td>0.011078</td>
-      <td>0.637512</td>
-      <td>0.017503</td>
-      <td>0.299286</td>
-      <td>0.014304</td>
-      <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>6.957635</td>
-      <td>0.839563</td>
-      <td>0.006613</td>
-      <td>0.628430</td>
-      <td>0.024998</td>
-      <td>0.278929</td>
-      <td>0.013901</td>
-      <td>100/0.05/2</td>
-    </tr>
-    <tr>
       <th>7</th>
-      <td>0.870980</td>
-      <td>0.016694</td>
-      <td>0.686214</td>
-      <td>0.012601</td>
-      <td>0.304286</td>
-      <td>0.012164</td>
+      <td>0.859114</td>
+      <td>0.003609</td>
+      <td>0.660666</td>
+      <td>0.008002</td>
+      <td>0.288214</td>
+      <td>0.008943</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>6.018764</td>
-      <td>0.870487</td>
-      <td>0.002778</td>
-      <td>0.693645</td>
-      <td>0.018728</td>
-      <td>0.287500</td>
-      <td>0.016331</td>
-      <td>50/0.1/5</td>
+      <td>8.636219</td>
+      <td>0.876392</td>
+      <td>0.006354</td>
+      <td>0.692759</td>
+      <td>0.017801</td>
+      <td>0.280357</td>
+      <td>0.014441</td>
+      <td>50/0.3/9</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.872081</td>
-      <td>0.010353</td>
-      <td>0.691773</td>
-      <td>0.010572</td>
-      <td>0.300357</td>
-      <td>0.012469</td>
+      <td>0.860454</td>
+      <td>0.002511</td>
+      <td>0.658901</td>
+      <td>0.010897</td>
+      <td>0.286786</td>
+      <td>0.009056</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>12.286434</td>
-      <td>0.886075</td>
-      <td>0.004126</td>
-      <td>0.707456</td>
-      <td>0.017731</td>
-      <td>0.287500</td>
-      <td>0.016016</td>
-      <td>100/0.1/5</td>
+      <td>18.037850</td>
+      <td>0.879577</td>
+      <td>0.006008</td>
+      <td>0.690895</td>
+      <td>0.016712</td>
+      <td>0.278571</td>
+      <td>0.015286</td>
+      <td>100/0.3/9</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.830388</td>
-      <td>0.009841</td>
-      <td>0.621413</td>
-      <td>0.021088</td>
-      <td>0.295714</td>
-      <td>0.015152</td>
+      <td>0.870988</td>
+      <td>0.014197</td>
+      <td>0.678544</td>
+      <td>0.012501</td>
+      <td>0.303214</td>
+      <td>0.012592</td>
       <td>{'clf__random_state': 0, 'clf__n_verbosity': 0...</td>
-      <td>1.876480</td>
-      <td>0.815454</td>
-      <td>0.009723</td>
-      <td>0.608477</td>
-      <td>0.021612</td>
-      <td>0.275357</td>
-      <td>0.013339</td>
-      <td>25/0.1/2</td>
+      <td>1.766806</td>
+      <td>0.877231</td>
+      <td>0.006120</td>
+      <td>0.698490</td>
+      <td>0.022835</td>
+      <td>0.288929</td>
+      <td>0.015131</td>
+      <td>25/0.3/3</td>
     </tr>
   </tbody>
 </table>
@@ -3031,27 +3120,27 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>Best estimated parameters</th>
-      <td>100/0.1/5</td>
-      <td>100/0.1/5</td>
-      <td>100/0.1/3</td>
+      <td>50/0.3/3</td>
+      <td>50/0.3/3</td>
+      <td>25/0.3/3</td>
     </tr>
     <tr>
       <th>Validation performance</th>
-      <td>0.886+/-0.0</td>
-      <td>0.707+/-0.02</td>
-      <td>0.288+/-0.02</td>
+      <td>0.883+/-0.01</td>
+      <td>0.708+/-0.02</td>
+      <td>0.289+/-0.02</td>
     </tr>
     <tr>
       <th>Test performance</th>
       <td>0.872+/-0.01</td>
-      <td>0.692+/-0.01</td>
-      <td>0.304+/-0.01</td>
+      <td>0.687+/-0.01</td>
+      <td>0.303+/-0.01</td>
     </tr>
     <tr>
       <th>Optimal parameters</th>
-      <td>100/0.1/5</td>
+      <td>50/0.3/3</td>
       <td>100/0.1/3</td>
-      <td>50/0.1/5</td>
+      <td>100/0.1/3</td>
     </tr>
     <tr>
       <th>Optimal test performance</th>
@@ -3098,27 +3187,27 @@ Wall time: 2.13 s
   <tbody>
     <tr>
       <th>Best estimated parameters</th>
-      <td>100/0.1/5</td>
-      <td>100/0.1/5</td>
-      <td>100/0.1/2</td>
+      <td>100/0.3/3</td>
+      <td>50/0.3/3</td>
+      <td>25/0.3/3</td>
     </tr>
     <tr>
       <th>Validation performance</th>
-      <td>0.886+/-0.0</td>
-      <td>0.707+/-0.02</td>
-      <td>0.291+/-0.02</td>
+      <td>0.887+/-0.01</td>
+      <td>0.708+/-0.02</td>
+      <td>0.289+/-0.02</td>
     </tr>
     <tr>
       <th>Test performance</th>
-      <td>0.872+/-0.01</td>
-      <td>0.692+/-0.01</td>
-      <td>0.304+/-0.01</td>
+      <td>0.869+/-0.01</td>
+      <td>0.687+/-0.01</td>
+      <td>0.303+/-0.01</td>
     </tr>
     <tr>
       <th>Optimal parameters</th>
-      <td>100/0.1/5</td>
+      <td>50/0.3/3</td>
       <td>100/0.1/3</td>
-      <td>50/0.1/5</td>
+      <td>100/0.1/3</td>
     </tr>
     <tr>
       <th>Optimal test performance</th>
@@ -3139,8 +3228,41 @@ Wall time: 2.13 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for XGBoost with grid search: 666.28s
-Total execution time for XGBoost with random search: 484.81s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total execution time for XGBoost with grid search: 1251.2s
+Total execution time for XGBoost with random search: 690.32s
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="saving-of-results">
+<h2><span class="section-number">3.5. </span>Saving of results<a class="headerlink" href="#saving-of-results" title="Permalink to this headline">¶</a></h2>
+<p>Let us finally save the performance results and execution times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dictionary</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">performances_df_dt</span><span class="p">,</span>
+    <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="n">performances_df_lr</span><span class="p">,</span>
+    <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="n">performances_df_rf</span><span class="p">,</span>
+    <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="n">performances_df_xgboost</span><span class="p">,</span>
+    <span class="s2">&quot;XGBoost Random&quot;</span><span class="p">:</span> <span class="n">performances_df_xgboost_random</span>
+<span class="p">}</span>
+
+<span class="n">execution_times</span><span class="o">=</span><span class="p">[</span><span class="n">execution_time_dt</span><span class="p">,</span>
+                 <span class="n">execution_time_lr</span><span class="p">,</span>
+                 <span class="n">execution_time_rf</span><span class="p">,</span>
+                 <span class="n">execution_time_boosting</span><span class="p">,</span>
+                 <span class="n">execution_time_boosting_random</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both data structures are saved as a Pickle file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;performances_model_selection.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> 
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">((</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">),</span> <span class="n">filehandler</span><span class="p">)</span>
+<span class="n">filehandler</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3170,17 +3292,28 @@ Total execution time for XGBoost with random search: 484.81s
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="ValidationStrategies.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Validation strategies</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ModelSelection_RealWorldData.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Real-world data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="ValidationStrategies.html" title="previous page"><span class="section-number">2. </span>Validation strategies</a>
-    <a class='right-next' id="next-link" href="Summary.html" title="next page"><span class="section-number">4. </span>Summary</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -3201,11 +3334,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

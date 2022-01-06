@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Real-world data &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Summary" href="Summary.html" />
+    <link rel="prev" title="3. Model selection" href="ModelSelection.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-performance-versus-test-performance">
+   4.1. Training performance versus test performance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-performances-per-model-class">
+   4.2. Model performances per model class
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-trees">
+     4.2.1. Decision trees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     4.2.2. Logistic regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     4.2.3. Random forest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xgboost">
+     4.2.4. XGBoost
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-model-performances-summary">
+   4.3. Comparison of model performances: Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="real-world-data">
+<h1><span class="section-number">4. </span>Real-world data<a class="headerlink" href="#real-world-data" title="Permalink to this headline">¶</a></h1>
+<p>The section reports the performances that are obtained on real-world data using model selection procedures. The dataset is the same as in <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html#baseline-fds-realworlddata"><span class="std std-ref">Chapter 3, Section 5</span></a>. We first report the training performance versus test performance for decision trees. We then compare the gains of performances that can be obtained with prequential validation, for decision trees, logistic regression, random forests and boosting trees.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions and simulated data </span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+<span class="c1">#%run ../Chapter_References/shared_functions.ipynb</span>
+
+<span class="c1"># Get simulated data from Github repository</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;simulated-data-transformed&quot;</span><span class="p">):</span>
+    <span class="o">!</span>git clone https://github.com/Fraud-Detection-Handbook/simulated-data-transformed
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="training-performance-versus-test-performance">
+<h2><span class="section-number">4.1. </span>Training performance versus test performance<a class="headerlink" href="#training-performance-versus-test-performance" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference internal" href="ValidationStrategies.html#training-vs-test-performances"><span class="std std-ref">Section 2.1 of this chapter</span></a>, we illustrated the overfitting phenomenon with decision trees by comparing the training and test performances when the maximum tree depth is increased. We ran the same experiments on real-world data, and saved the resulting performance DataFrame as a Pickle file in  <code class="docutils literal notranslate"><span class="pre">performances_train_test_real_world_data.pkl</span></code>. Let us first load the file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;images/performances_train_test_real_world_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
+<span class="n">performances_df</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filehandler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The DataFrame contains the same information as in <a class="reference internal" href="ValidationStrategies.html#training-vs-test-performances"><span class="std std-ref">Section 2.1</span></a>, for the real-world transaction data.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>Average precision Test</th>
+      <th>Card Precision@100 Test</th>
+      <th>AUC ROC Train</th>
+      <th>Average precision Train</th>
+      <th>Card Precision@100 Train</th>
+      <th>Execution time</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.626</td>
+      <td>0.024</td>
+      <td>0.077</td>
+      <td>0.639</td>
+      <td>0.063</td>
+      <td>0.147</td>
+      <td>19.533309</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.715</td>
+      <td>0.032</td>
+      <td>0.134</td>
+      <td>0.736</td>
+      <td>0.094</td>
+      <td>0.233</td>
+      <td>22.060830</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.755</td>
+      <td>0.037</td>
+      <td>0.149</td>
+      <td>0.792</td>
+      <td>0.121</td>
+      <td>0.251</td>
+      <td>24.506536</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.791</td>
+      <td>0.045</td>
+      <td>0.187</td>
+      <td>0.815</td>
+      <td>0.154</td>
+      <td>0.317</td>
+      <td>27.029386</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.812</td>
+      <td>0.049</td>
+      <td>0.196</td>
+      <td>0.847</td>
+      <td>0.184</td>
+      <td>0.351</td>
+      <td>29.506857</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.826</td>
+      <td>0.029</td>
+      <td>0.114</td>
+      <td>0.868</td>
+      <td>0.213</td>
+      <td>0.414</td>
+      <td>32.073183</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.838</td>
+      <td>0.020</td>
+      <td>0.070</td>
+      <td>0.886</td>
+      <td>0.244</td>
+      <td>0.467</td>
+      <td>34.493712</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.831</td>
+      <td>0.020</td>
+      <td>0.049</td>
+      <td>0.895</td>
+      <td>0.282</td>
+      <td>0.500</td>
+      <td>37.152258</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.831</td>
+      <td>0.018</td>
+      <td>0.056</td>
+      <td>0.907</td>
+      <td>0.322</td>
+      <td>0.566</td>
+      <td>39.713055</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.520</td>
+      <td>0.008</td>
+      <td>0.014</td>
+      <td>0.973</td>
+      <td>0.758</td>
+      <td>0.983</td>
+      <td>63.055570</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.545</td>
+      <td>0.003</td>
+      <td>0.017</td>
+      <td>1.000</td>
+      <td>1.000</td>
+      <td>1.000</td>
+      <td>76.632960</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us plot the performances in terms of AUC ROC, Average Precision, and CP&#64;100, using the <code class="docutils literal notranslate"><span class="pre">get_performances_plots</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Train&#39;</span><span class="p">],</span><span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#2F4D7E&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_7_0.png" src="../_images/ModelSelection_RealWorldData_7_0.png" />
+</div>
+</div>
+<p>We observe that the results are qualitatively very similar to <a class="reference internal" href="ValidationStrategies.html#training-vs-test-performances"><span class="std std-ref">those obtained on simulated data</span></a>. The overfitting phenomenon is clearly present: As the tree depth increases, so does the performance for all metrics (blue lines), reaching optimal performances for a tree depth of 50. The test performance however peaks for a tree depth between 5 and 10, and then decreases for higher values of the parameter.</p>
+<p>Thanks to the reproducibility of experiments, we note that the performances obtained for a tree depth of 2 and 50 match those reported in <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html#chapter3-baselinewl"><span class="std std-ref">Chapter 3</span></a>.</p>
+</div>
+<div class="section" id="model-performances-per-model-class">
+<h2><span class="section-number">4.2. </span>Model performances per model class<a class="headerlink" href="#model-performances-per-model-class" title="Permalink to this headline">¶</a></h2>
+<p>Let us explore more extensively how model selection improves performances using prequential validation on real-world data. We report in the following the results for the four classes of models, following the same experimental setup than in the <a class="reference internal" href="ModelSelection.html#model-selection"><span class="std std-ref">previous section</span></a>. The results are available in the <code class="docutils literal notranslate"><span class="pre">performances_model_selection_real_world_data.pkl</span></code> Pickle file. Let us first load the file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;images/performances_model_selection_real_world_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
+<span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">)</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filehandler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results are in the same format as in the <a class="reference internal" href="ModelSelection.html#model-selection"><span class="std std-ref">previous section</span></a>. The performances are summarized as a dictionary in the <code class="docutils literal notranslate"><span class="pre">performances_df_dictionary</span></code>, where keys correspond to models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;Decision Tree&#39;, &#39;Random Forest&#39;, &#39;XGBoost&#39;, &#39;Logistic Regression&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The execution times for each models are stored in the <code class="docutils literal notranslate"><span class="pre">execution_times</span></code> list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">execution_times</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1617.0470759868622,
+ 694.7196891307831,
+ 3615.5994658470154,
+ 8788.51293516159,
+ 5527.099639177322]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="decision-trees">
+<span id="model-selection-rwd-decision-trees"></span><h3><span class="section-number">4.2.1. </span>Decision trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h3>
+<p>The validation and test performances as a function of tree depth are reported below, together with the summary of optimal parameters and performances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dt</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_dt</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_16_0.png" src="../_images/ModelSelection_RealWorldData_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>7</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.861+/-0.01</td>
+      <td>0.065+/-0.02</td>
+      <td>0.214+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.869+/-0.03</td>
+      <td>0.068+/-0.01</td>
+      <td>0.232+/-0.04</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>8</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.872+/-0.02</td>
+      <td>0.068+/-0.01</td>
+      <td>0.232+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Similar to the simulated dataset results, the validation peformances provide good estimates of the test performances. The optimal tree depth, between 6 and 9 depending on the performance metric, is higher than with the simulated data. This can be explained by the more complex relationships between input features and fraud label in the real-world dataset.</p>
+</div>
+<div class="section" id="logistic-regression">
+<span id="model-selection-rwd-logistic-regression"></span><h3><span class="section-number">4.2.2. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<p>The validation and test performances as a function of the regulization value are reported below, together with the summary of optimal parameters and performances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_lr</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_lr</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s1">&#39;Regularization value&#39;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_lr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_20_0.png" src="../_images/ModelSelection_RealWorldData_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_lr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.786+/-0.02</td>
+      <td>0.041+/-0.02</td>
+      <td>0.171+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.816+/-0.02</td>
+      <td>0.054+/-0.01</td>
+      <td>0.211+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.1</td>
+      <td>1.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.816+/-0.02</td>
+      <td>0.054+/-0.01</td>
+      <td>0.212+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Similar to <a class="reference internal" href="ModelSelection.html#model-selection-logistic-regression"><span class="std std-ref">the simulated dataset</span></a>, the regulization value has little influence on the performances. The performances are stable across the range of tested regularization values.</p>
+</div>
+<div class="section" id="random-forest">
+<span id="model-selection-rwd-rf"></span><h3><span class="section-number">4.2.3. </span>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<p>Two different parameters are assessed for random forests: The tree depth (<code class="docutils literal notranslate"><span class="pre">max_depth</span></code> parameter), taking values in the set [5,10,20,50], and the number of trees (<code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> parameter), taking values in the set [25,50,100]. Overall, the optimal parameters are a combination of 100 trees with a maximum depth of 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_rf</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_rf</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_rf</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_rf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>25/10</td>
+      <td>100/10</td>
+      <td>100/10</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.917+/-0.0</td>
+      <td>0.093+/-0.02</td>
+      <td>0.258+/-0.03</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.912+/-0.02</td>
+      <td>0.08+/-0.03</td>
+      <td>0.227+/-0.05</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>100/10</td>
+      <td>100/10</td>
+      <td>50/5</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.912+/-0.02</td>
+      <td>0.08+/-0.03</td>
+      <td>0.227+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For better visualization, we follow the same approach as with the <a class="reference internal" href="ModelSelection.html#model-selection-random-forest"><span class="std std-ref">simulated dataset</span></a>. Let us first report the performances as a function of the tree depth, for a fixed number of 100 trees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_rf_fixed_number_of_trees</span><span class="o">=</span><span class="n">performances_df_rf</span><span class="p">[</span><span class="n">performances_df_rf</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">)]</span>
+
+<span class="n">summary_performances_fixed_number_of_trees</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_rf_fixed_number_of_trees</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_rf_fixed_number_of_trees</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Number of trees/Maximum tree depth&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_fixed_number_of_trees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_26_0.png" src="../_images/ModelSelection_RealWorldData_26_0.png" />
+</div>
+</div>
+<p>Similar to the <a class="reference internal" href="ModelSelection.html#model-selection-random-forest"><span class="std std-ref">simulated dataset</span></a>, the peformances first increase with the tree depth, before reaching an optimum and decreasing. The optimal tree depth is found around 10.</p>
+<p>Let us then report the performances as a function of the number of trees, for a fixed depth of 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_rf_fixed_max_tree_depth</span><span class="o">=</span><span class="n">performances_df_rf</span><span class="p">[</span><span class="n">performances_df_rf</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)]</span>
+
+<span class="n">summary_performances_fixed_max_tree_depth</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_rf_fixed_max_tree_depth</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_rf_fixed_max_tree_depth</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Number of trees/Maximum tree depth&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_fixed_max_tree_depth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_28_0.png" src="../_images/ModelSelection_RealWorldData_28_0.png" />
+</div>
+</div>
+<p>Increasing the number of trees allows to slighlty increase the Average Precicision and the CP&#64;100. It however has little influence on the AUC ROC, for which 25 trees already provide optimal performances.</p>
+</div>
+<div class="section" id="xgboost">
+<span id="model-selection-rwd-xgboost"></span><h3><span class="section-number">4.2.4. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h3>
+<p>Three different parameters are assessed for boosting: The tree depth (<code class="docutils literal notranslate"><span class="pre">max_depth</span></code> parameter) taking values in the set [3,6,9], the number of trees (<code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> parameter) taking values in the set [25,50,100] and the learning rate (<code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> parameter) taking values in the set [0.1, 0.3]. The optimal parameters are a combination of 100 trees with a maximum depth of 6, and a learning rate of 0.1, except for the CP&#64;100 where 50 trees provide the best performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">]</span>
+<span class="n">summary_performances_xgboost</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_xgboost</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_xgboost</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>100/0.1/6</td>
+      <td>100/0.1/6</td>
+      <td>100/0.1/6</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.924+/-0.01</td>
+      <td>0.102+/-0.02</td>
+      <td>0.261+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.928+/-0.01</td>
+      <td>0.095+/-0.03</td>
+      <td>0.235+/-0.07</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>100/0.1/6</td>
+      <td>100/0.1/6</td>
+      <td>50/0.1/6</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.928+/-0.01</td>
+      <td>0.095+/-0.03</td>
+      <td>0.249+/-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For better visualization, we follow the same approach as with the <a class="reference internal" href="ModelSelection.html#model-selection-xgboost"><span class="std std-ref">simulated dataset</span></a>. Let us first report the performances as a function of the tree depth, for a fixed number of 100 trees and a learning rate of 0.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;100/0.1&quot;</span><span class="p">)]</span>
+
+<span class="n">summary_performances_fixed_number_of_trees</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_number_of_trees</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Number of trees/Maximum tree depth&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_fixed_number_of_trees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_34_0.png" src="../_images/ModelSelection_RealWorldData_34_0.png" />
+</div>
+</div>
+<p>Similar to the <a class="reference internal" href="ModelSelection.html#model-selection-xgboost"><span class="std std-ref">simulated dataset</span></a>, the peformances first increase with the tree depth, before reaching an optimum and decreasing. The optimal tree depth is found around 6.</p>
+<p>Let us then report the performances as a function of the number of trees, for a fixed depth of 6 and a learning rate 0.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="o">=</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="n">performances_df_xgboost</span><span class="p">[</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;0.1/6&quot;</span><span class="p">)]</span>
+
+<span class="n">summary_performances_fixed_max_tree_depth</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+
+<span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_xgboost_fixed_max_tree_depth</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Number of trees/Maximum tree depth&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_fixed_max_tree_depth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_36_0.png" src="../_images/ModelSelection_RealWorldData_36_0.png" />
+</div>
+</div>
+<p>Increasing the number of trees allows to increase the AUC ROC and the Average Precicision. We however note that for the CP&#64;100, a decrease of performance occurs after 50 trees for the test set.</p>
+</div>
+</div>
+<div class="section" id="comparison-of-model-performances-summary">
+<span id="model-selection-rwd-comparison"></span><h2><span class="section-number">4.3. </span>Comparison of model performances: Summary<a class="headerlink" href="#comparison-of-model-performances-summary" title="Permalink to this headline">¶</a></h2>
+<p>Let us finally compare the performances of the different classes of models. Similar to <a class="reference internal" href="ModelSelection.html#model-selection-comparison-performances"><span class="std std-ref">the simulated dataset</span></a>, we plot the performances for the four model classes and for each performance metric as bar charts using the <code class="docutils literal notranslate"><span class="pre">get_model_selection_performances_plots</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_model_selection_performances_plots</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
+                                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span>
+                                       <span class="n">ylim_list</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.35</span><span class="p">]],</span>
+                                       <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                      <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                      <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                      <span class="s1">&#39;XGBoost&#39;</span><span class="p">])</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_39_0.png" src="../_images/ModelSelection_RealWorldData_39_0.png" />
+</div>
+</div>
+<p>As for the simulated data, XGBoost is the model class that provides the best performances for the three metrics (Optimal parameters, represented with blue bars). It is however worth noting that for CP&#64;100, the XGboost optimal parameters are actually not found by the model selection procedure, resulting in lower performances. The actual performances in terms of CP&#64;100 are slightly better than random forests, and on par with decision trees.</p>
+<p>This is a result worth considering: Thanks to model selection, the decision tree model is actually as performant than XGBoost, and more performant than random forests in terms of CP&#64;100. The execution times for decision trees are however much lower than those of random forests and XGBoost, as is reported below.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+<span class="n">fig_model_selection_execution_times_for_each_model_class</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">]</span>
+    
+<span class="c1"># width of the bars</span>
+<span class="n">barWidth</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="c1"># The x position of bars</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_classes</span><span class="p">))</span>
+    
+<span class="c1"># Create execution times bars</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> 
+        <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+        <span class="n">capsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">r1</span><span class="o">+</span><span class="n">barWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">model_classes</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Model selection execution times </span><span class="se">\n</span><span class="s1"> for different model classes&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Model class&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Execution times (s)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_model_selection_execution_times_for_each_model_class</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ModelSelection_RealWorldData_42_0.png" src="../_images/ModelSelection_RealWorldData_42_0.png" />
+</div>
+</div>
+<p>It should be kept in mind that experiments were run on a 40 core server, with parallel computing enabled for random forests and XGBoost. Therefore, the model selection procedure for decision trees is in fact one to two order of magnitude faster than for random forests and XGBoost.</p>
+<p>As a final remark, we note that logistic regression models were the fastest to train, but also provided the worst performances for all metrics.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_5_ModelValidationAndSelection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="ModelSelection.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Model selection</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Summary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

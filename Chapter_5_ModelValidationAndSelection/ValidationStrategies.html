@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Validation strategies &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ValidationStrategies.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Model selection" href="ModelSelection.html" />
     <link rel="prev" title="1. Introduction" href="Introduction.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_5_ModelValidationAndSelection/ValidationStrategies.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Validation strategies" />
-<meta property="og:description" content="Validation strategies  The purpose of a fraud detection system is to maximize the detection of fraudulent transactions that will occur in the future.  The most " />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,14 +423,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -379,16 +454,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-performance-versus-test-performance">
    2.1. Training performance versus test performance
@@ -438,8 +513,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -447,20 +522,20 @@
         
               <div>
                 
-  <div class="section" id="validation-strategies">
+  <div class="tex2jax_ignore mathjax_ignore section" id="validation-strategies">
 <span id="id1"></span><h1><span class="section-number">2. </span>Validation strategies<a class="headerlink" href="#validation-strategies" title="Permalink to this headline">¶</a></h1>
 <p>The purpose of a fraud detection system is to maximize the detection of fraudulent transactions that will occur in the <em>future</em>.</p>
-<p>The most straightforward approach for training and evaluating a prediction model for a fraud detection system is illustrated in Fig. 1. For clarity of the illustration, the stream of transaction data is discretized in blocks. A block corresponds to a time period (such as one week or one day). We assume that the prediction model should be updated every new block <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
+<p>The most straightforward approach for training and evaluating a prediction model for a fraud detection system is illustrated in Fig. 1. For clarity of the illustration, the stream of transaction data is discretized in blocks. A block corresponds to a time period (such as one week or one day). We assume that the prediction model should be updated every new block <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id33">DPBC+17</a>]</span>.</p>
 <p>This is the approach that we used in the section <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds"><span class="std std-ref">Baseline fraud detection system</span></a>. Blocks corresponded to one week of transaction data. One block of data was used for training, and one block of data for testing. A one-week delay was also used to separate the training and test blocks.</p>
-<p>More generally, given a set of past transactions blocks collected up to the current time <span class="math notranslate nohighlight">\(t\)</span>, the purpose of the prediction model is to provide predictions for transactions that will occur in the next block (<em>future</em> transactions, also called <em>test</em> transactions, in yellow) <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id52"><span>DPBC+17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>. The set of blocks that are used for training are the <em>training blocks</em> (in dark blue). Due to the delay in obtaining transaction labels (See the section <a class="reference internal" href="../Chapter_2_Background/FDS.html#fraud-detection-system"><span class="std std-ref">Credit card fraud detection system</span></a>), the most recent transactions usually cannot be used for training (delay period, in light blue) and are removed. Older blocks are also usually discarded, due to concept drift (in light blue, also removed). Let us denote the lengths of the training, delay, and test periods by <span class="math notranslate nohighlight">\(\delta_{train}\)</span>, <span class="math notranslate nohighlight">\(\delta_{delay}\)</span>, and <span class="math notranslate nohighlight">\(\delta_{test}\)</span>, respectively.</p>
+<p>More generally, given a set of past transactions blocks collected up to the current time <span class="math notranslate nohighlight">\(t\)</span>, the purpose of the prediction model is to provide predictions for transactions that will occur in the next block (<em>future</em> transactions, also called <em>test</em> transactions, in yellow) <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id33">DPBC+17</a>]</span>. The set of blocks that are used for training are the <em>training blocks</em> (in dark blue). Due to the delay in obtaining transaction labels (See the section <a class="reference internal" href="../Chapter_2_Background/FDS.html#fraud-detection-system"><span class="std std-ref">Credit card fraud detection system</span></a>), the most recent transactions usually cannot be used for training (delay period, in light blue) and are removed. Older blocks are also usually discarded, due to concept drift (in light blue, also removed). Let us denote the lengths of the training, delay, and test periods by <span class="math notranslate nohighlight">\(\delta_{train}\)</span>, <span class="math notranslate nohighlight">\(\delta_{delay}\)</span>, and <span class="math notranslate nohighlight">\(\delta_{test}\)</span>, respectively.</p>
 <p><img alt="alt text" src="../_images/stream_train.png" /></p>
 <div align="center">Fig. 1. The purpose of a prediction model for fraud detection is to provide predictions for transactions that occur in the future (in yellow). The model is trained on a set of past transactions (in dark blue).</div>
-<p>The performance of a model on training data is often a bad indicator of the performance on future data <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id21"><span>Bon21</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id20"><span>Bis06</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id19"><span>FHT01</span></a>]</span>. The former is referred to as <em>training performance</em>, and the latter as <em>test performance</em> (that is, the performance of the model when <em>tested</em> on unseen data). In particular, increasing the degree of freedom of a model (such as the depth for a decision tree) always allows to increase the training performance, but usually leads to lower test performances (<em>overfitting</em> phenomenon).</p>
-<p>Validation procedures aim at solving this issue by estimating, on past data, the test performance of a prediction model by setting aside a part of them <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id45"><span>CTMozetivc20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id46"><span>GvZliobaiteB+14</span></a>]</span>. They work by splitting the past labeled data into two sets, the <em>training set</em> and the <em>validation set</em>, that simulate the setting of a real-world fraud detection system. The validation set plays the role of the test set. This is illustrated in Fig. 2.</p>
+<p>The performance of a model on training data is often a bad indicator of the performance on future data <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id20">Bis06</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id21">Bon21</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id19">FHT01</a>]</span>. The former is referred to as <em>training performance</em>, and the latter as <em>test performance</em> (that is, the performance of the model when <em>tested</em> on unseen data). In particular, increasing the degree of freedom of a model (such as the depth for a decision tree) always allows to increase the training performance, but usually leads to lower test performances (<em>overfitting</em> phenomenon).</p>
+<p>Validation procedures aim at solving this issue by estimating, on past data, the test performance of a prediction model by setting aside a part of them <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id81">CTMozetivc20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id82">GvZliobaiteB+14</a>]</span>. They work by splitting the past labeled data into two sets, the <em>training set</em> and the <em>validation set</em>, that simulate the setting of a real-world fraud detection system. The validation set plays the role of the test set. This is illustrated in Fig. 2.</p>
 <p><img alt="alt text" src="../_images/stream_valid.png" /></p>
 <div align="center">Fig. 2. A validation procedure simulates on past data the training procedure that will be used to provide predictions on test (unseen) data. It uses the validation set to estimate the performance of the test stage. </div>
 <p>In order to best simulate the setup illustrated in Fig. 1, the training and validation sets are separated with the same delay period. The length of the validation set (<span class="math notranslate nohighlight">\(\delta_{valid}\)</span>) is set equal to the length of the test set (<span class="math notranslate nohighlight">\(\delta_{test}\)</span>). The performance of a model on the validation set is used as an estimate of the performance that is expected on the test set.</p>
-<p>The validation strategy illustrated in Fig. 2 is called <em>hold-out validation</em> (since part of the available labeled transactions is held out of the training data). Variants of this approach are the <em>repeated hold-out validation</em> and the <em>prequential validation</em>. The former is the same as the <em>hold-out</em> validation except that the procedure is repeated several times using different subsets of the training data. The latter is a variant that repeats hold-out validation by shifting the training and validation sets in the past. Both repeated hold-out and prequential validations allow providing estimates of performances on the test set, together with confidence intervals <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id45"><span>CTMozetivc20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id46"><span>GvZliobaiteB+14</span></a>]</span>.</p>
+<p>The validation strategy illustrated in Fig. 2 is called <em>hold-out validation</em> (since part of the available labeled transactions is held out of the training data). Variants of this approach are the <em>repeated hold-out validation</em> and the <em>prequential validation</em>. The former is the same as the <em>hold-out</em> validation except that the procedure is repeated several times using different subsets of the training data. The latter is a variant that repeats hold-out validation by shifting the training and validation sets in the past. Both repeated hold-out and prequential validations allow providing estimates of performances on the test set, together with confidence intervals <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id81">CTMozetivc20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id82">GvZliobaiteB+14</a>]</span>.</p>
 <p>The next sections detail these validation procedures. We first illustrate using simulated data and decision trees that the training performance is a bad estimate of the test performance. We then provide implementations of the hold-out, repeated hold-out, and prequential validations, and discuss their pros and cons.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -876,7 +951,7 @@ Wall time: 2.16 s
             <span class="n">conf_max</span> <span class="o">=</span> <span class="n">performances_df</span><span class="p">[</span><span class="n">performance_metric_expe_type</span><span class="p">]</span>\
                         <span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">performances_df</span><span class="p">[</span><span class="n">performance_metric_expe_type</span><span class="o">+</span><span class="s1">&#39; Std&#39;</span><span class="p">]</span>
     
-            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">],</span> <span class="n">conf_min</span><span class="p">,</span> <span class="n">conf_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">expe_type_color_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">],</span> <span class="n">conf_min</span><span class="p">,</span> <span class="n">conf_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">expe_type_color_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
 
     <span class="c1"># If summary_performances table is present, adds vertical dashed bar for best estimated parameter </span>
     <span class="k">if</span> <span class="n">summary_performances</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -937,7 +1012,7 @@ Wall time: 2.16 s
 <p>Let us also recall that the Card Precision&#64;100 is the metric that is of highest interest for fraud investigators. It is worth noting that the AUC ROC on the test set has a different dynamic than the CP&#64;100: For the highest tree depth of fifty, the accuracy in terms of AUC ROC increases, whereas the CP&#64;100 remains low. This illustrates experimentally that the AUC ROC is not a well-suited metric for fraud investigators.</p>
 </div>
 <div class="section" id="hold-out-validation">
-<h2><span class="section-number">2.2. </span>Hold-out validation<a class="headerlink" href="#hold-out-validation" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2><span class="section-number">2.2. </span>Hold-out validation<a class="headerlink" href="#hold-out-validation" title="Permalink to this headline">¶</a></h2>
 <p>As illustrated above, the training performance does not provide guidance on how to select the prediction model that performs best on test data. Let us also recall that the test data cannot be used to estimate the prediction model at the time of training, since it has not been collecting yet.</p>
 <p>A simple way to anticipate the performance of the model at the test stage is by simulating the setup as above, but shifted in the past, using only the historical data available at the time of training. The most recent block with labeled data is used as a <em>validation set</em>. The training set consists of the blocks of transactions that precedes the validation set, with a delay block in between. The validation setup is illustrated in Fig. 4.</p>
 <p><img alt="alt text" src="../_images/stream_valid_1block.png" /></p>
@@ -2021,7 +2096,7 @@ Total execution time: 39.19s
 <p>The repeated hold-out validation offers a better view of the expected performances, by providing confidence intervals. Qualitatively, the results are similar to the hold-out validation. The AP provides the most accurate proxy to the expected performance on the test set. The AUC ROC and CP&#64;100 provide poorer estimates of the test performance.</p>
 </div>
 <div class="section" id="prequential-validation">
-<span id="id7"></span><h2><span class="section-number">2.4. </span>Prequential validation<a class="headerlink" href="#prequential-validation" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2><span class="section-number">2.4. </span>Prequential validation<a class="headerlink" href="#prequential-validation" title="Permalink to this headline">¶</a></h2>
 <p>The repeated hold-out validation relies on random subsets of the same training data to build prediction models. A limitation of this approach is that it reduces the expected performances of the models, as only subsets of data are used for training.</p>
 <p>An alternative validation procedure consists in using training sets of similar sizes, taken from older historical data. The scheme is called <em>prequential validation</em>, and is illustrated in Fig. 5. Each fold shifts the training and validation sets by one block in the past.</p>
 <p><img alt="alt text" src="../_images/stream_prequential_1block.png" /></p>
@@ -3220,14 +3295,14 @@ Total execution time: 52.82s
     <span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;predictions&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">y_pred</span>
     
     <span class="c1"># Compute the CP@k using the function implemented in Chapter 4, Section 4.2</span>
-    <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span>\
+    <span class="n">nb_compromised_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span>\
         <span class="n">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
     
     <span class="c1"># Return the mean_card_precision_top_k</span>
     <span class="k">return</span> <span class="n">mean_card_precision_top_k</span>
 
-<span class="c1"># Only keep columns that are needed as argument to custome scoring function</span>
-<span class="c1"># to reduce serialization time of transaction dataset</span>
+<span class="c1"># Only keep columns that are needed as argument to the custom scoring function</span>
+<span class="c1"># (in order to reduce the serialization time of transaction dataset)</span>
 <span class="n">transactions_df_scorer</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Make scorer using card_precision_top_k_custom</span>
@@ -3861,17 +3936,28 @@ Finished CV fitting
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ModelSelection.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Model selection</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
-    <a class='right-next' id="next-link" href="ModelSelection.html" title="next page"><span class="section-number">3. </span>Model selection</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -3892,11 +3978,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

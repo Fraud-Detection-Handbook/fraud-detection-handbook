@@ -7,10 +7,9 @@
 * Chapter 3: Getting started
 * Chapter 4: Performance metrics
 * Chapter 5: Model selection
-* Chapter 6: Imbalanced learning*
-* Chapter 7: Feature engineering*
-* Chapter 8: Deep learning*
-* Chapter 9: Interpretability*
+* Chapter 6: Imbalanced learning
+* Chapter 7: Deep learning
+* Chapter 8: Interpretability*
 
 (*): Not yet published. 
 
@@ -32,6 +31,9 @@ Recommended books:
 
 Machine Learning Group - Recommended publications:
 
+* Wissam Siblini, Guillaume Coter, Rémy Fabry, Liyun He-Guelton, Frédéric Oblé, Bertrand Lebichot, Yann-Aël Le Borgne, and Gianluca Bontempi. Transfer learning for credit card fraud detection: A journey from research to production. In Proceedings of the Data Science and Advanced Analytics (DSAA 2021), 2021 {cite}`siblini2021transfer`
+* Bertrand Lebichot, Théo Verhelst, Yann-Aël Le Borgne, Liyun He-Guelton, Frédéric Oblé, and Gianluca Bontempi. Transfer learning strategies for credit card fraud detection. IEEE access, 9:114754–114766, 2021 {cite}`lebichot2021transfer`
+* Bertrand Lebichot, Gian Marco Paldino, W Siblini, L He-Guelton, F Oblé, and G Bontempi. Incremental learning strategies for credit cards fraud detection. International Journal of Data Science and Analytics, pages 1–10, 2021 {cite}`lebichot2021incremental`
 * Bertrand Lebichot, Yann-Aël Le Borgne, Liyun He-Guelton, Frédéric Oblé, and Gianluca Bontempi. Deep-learning domain adaptation techniques for credit cards fraud detection. In INNS Big Data and Deep Learning conference, 78–88. Springer, 2019 {cite}`lebichot2019deep`
 * Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. Information Sciences, 2019 {cite}`carcillo2019combining`
 * Fabrizio Carcillo, Andrea Dal Pozzolo, Yann-Aël Le Borgne, Olivier Caelen, Yannis Mazzer, and Gianluca Bontempi. Scarff: a scalable framework for streaming credit card fraud detection with spark. Information fusion, 41:182–194, 2018 {cite}`carcillo2018scarff`

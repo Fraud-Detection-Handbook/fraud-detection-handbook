@@ -1,0 +1,2057 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Cost-sensitive learning &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_6_ImbalancedLearning/CostSensitive.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Resampling strategies" href="Resampling.html" />
+    <link rel="prev" title="1. Introduction" href="Introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_6_ImbalancedLearning/CostSensitive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_6_ImbalancedLearning/CostSensitive.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_6_ImbalancedLearning/CostSensitive.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_6_ImbalancedLearning/CostSensitive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_6_ImbalancedLearning/CostSensitive.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#illustrative-example">
+   2.1. Illustrative example
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-tree">
+     2.1.1. Decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     2.1.2. Logistic regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transaction-data">
+   2.2. Transaction data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     2.2.1. Load data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.2.2. Decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.2.3. Logistic regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.3. Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-of-results">
+   2.4. Saving of results
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="cost-sensitive-learning">
+<span id="id1"></span><h1><span class="section-number">2. </span>Cost-sensitive learning<a class="headerlink" href="#cost-sensitive-learning" title="Permalink to this headline">¶</a></h1>
+<p>Cost-sensitive learning is a subfield of machine learning that addresses classification problems where the misclassification costs are not equal <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id70">Elk01</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id69">LS08</a>]</span>. Cost-sensitive problems occur in many disciplines such as medicine (e.g., disease detection), engineering (e.g., machine failure detection), transport (e.g., traffic-jam detection), finance (e.g., fraud detection), and so forth. They are often related to the class-imbalance problem since in most of these problems, the goal is to detect events that are rare. The training datasets therefore typically contain fewer examples of the event of interest.</p>
+<p>We already addressed fraud detection as a cost-sensitive problem in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html#performance-costmatrix"><span class="std std-ref">Chapter 4, Cost Matrix</span></a>. The section pointed out the cost matrix as the standard way to quantify the misclassification costs. Denoting by <span class="math notranslate nohighlight">\(C\)</span> the <em>cost matrix</em>, its entries <span class="math notranslate nohighlight">\(c(i,j)\)</span> quantify the cost of predicting class <span class="math notranslate nohighlight">\(i\)</span> when the true class is <span class="math notranslate nohighlight">\(j\)</span> <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id70">Elk01</a>]</span>. For a binary classification problem, the cost matrix is a <span class="math notranslate nohighlight">\(2*2\)</span> matrix, as illustrated in Fig. 1.</p>
+<p><img alt="" src="../_images/cost_matrix1.png" /></p>
+<div align="center">Fig. 1. Example of cost matrix.</div>    
+<p>Correct classifications have a cost of zero, that is, <span class="math notranslate nohighlight">\(c_{00}=c_{11}=0\)</span>. Misclassification costs are however in practice difficult to estimate. As discussed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html#performance-costmatrix"><span class="std std-ref">Chapter 4, Cost Matrix</span></a>, missing a fraudulent transaction (false negative) involves a loss directly related to the amount of the transaction, but also on further fraudulent uses of the card, and on the company reputation. At the same time, the blocking of transactions that are legitimate (false positive) causes inconvenience to customers, generates useless investigation costs, and also impacts the company reputation.</p>
+<p>In cost-sensitive imbalanced problems, the most popular heuristic approach to estimate the costs lies in utilizing the imbalance ratio (IR). Let us denote by <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> the imbalanced dataset, with <span class="math notranslate nohighlight">\(\mathcal{X}_0\)</span> and <span class="math notranslate nohighlight">\(\mathcal{X}_1\)</span> being the subsets of samples belonging to the majority and minority class, respectively. The IR of the dataset <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is defined as <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id41">LemaitreNA17</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+IR=\frac{|\mathcal{X}_1|}{|\mathcal{X}_0|}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(|·|\)</span> denotes the cardinality of a set. In this setting, <span class="math notranslate nohighlight">\(C(i,j) = IR\)</span> and <span class="math notranslate nohighlight">\(C(j,i) = 1\)</span>, where the minority class is the i-th class, and the majority class is the j-th class. It is worth noting that using the IR as the cost for the majority class balances the overall cost of the two classes, that is, <span class="math notranslate nohighlight">\(|\mathcal{X}_1|=IR*|\mathcal{X}_0|\)</span>. The resulting cost matrix for a 2-class problem is given in Fig. 2.</p>
+<p><img alt="" src="../_images/cost_matrix_IR.png" /></p>
+<div align="center">Fig. 2. Cost matrix for imbalanced data. The cost of a false negative is 1, and the cost of a false positive is the imbalance ratio (IR).</div>      
+<p>Using the IR to set the misclassification costs is usually a good heuristic. It however has some limitations, in particular related to small sample size, class overlapping, and noisy or borderline instances <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>]</span>. A common complementary practice consists in considering the misclassification costs as a hyperparameter to be identified through model selection.</p>
+<p>Python sklearn provides support for cost-sensitive learning for most baseline classifiers thanks to the <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter. The parameter allows to specify costs in three different ways:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: The misclassification costs are set to 1 (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">balanced</span></code>: The costs are set according to the imbalance ratio (as in Fig. 2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{0:c10,</span> <span class="pre">1:c01}</span></code>: The misclassification costs are explicitly set for the two classes by means of a dictionary.</p></li>
+</ul>
+<p>The use of class weights usually implies a modification in the loss function of the learning algorithm. The modification depends on the type of algorithm. By strongly penalizing mistakes on the minority class, cost-sensitive learning improves their importance during the classifier training step. This pushes the decision boundary away from these instances, allowing to improve generalization on the minority class <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id39">FernandezGarciaG+18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id36">GTM+20</a>]</span>.</p>
+<p>This section presents how cost-sensitive learning can be used with the Python sklearn library. For better visualization, we first rely on a simple imbalanced dataset with two variables to illustrate how different misclassification costs change the decision boundaries. We then apply the approach to the larger simulated dataset of transaction data.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization: Load shared functions and simulated data </span>
+
+<span class="c1"># Load shared functions</span>
+<span class="o">!</span>curl -O https://raw.githubusercontent.com/Fraud-Detection-Handbook/fraud-detection-handbook/main/Chapter_References/shared_functions.py
+<span class="o">%</span><span class="k">run</span> shared_functions.py
+<span class="c1">#%run ../Chapter_References/shared_functions.ipynb</span>
+
+<span class="c1"># Get simulated data from Github repository</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;simulated-data-transformed&quot;</span><span class="p">):</span>
+    <span class="o">!</span>git clone https://github.com/Fraud-Detection-Handbook/simulated-data-transformed
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 63060  100 63060    0     0   221k      0 --:--:-- --:--:-- --:--:--  220k
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="illustrative-example">
+<span id="imbalanced-learning-illustrative-example"></span><h2><span class="section-number">2.1. </span>Illustrative example<a class="headerlink" href="#illustrative-example" title="Permalink to this headline">¶</a></h2>
+<p>For illustrative purposes, let us first consider a simple classification task. We use the <code class="docutils literal notranslate"><span class="pre">make_classification</span></code> function of the sklearn library to generate a two-class imbalanced dataset with 5000 examples. The dataset contains 95% of examples of class 0 and 5% of examples of class 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                            <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_repeated</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                            <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                            <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+                                            <span class="n">class_sep</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">dataset_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The distribution of the two classes slighly overlap, as illustrated below.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">fig_distribution</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">groups</span> <span class="o">=</span> <span class="n">dataset_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">X1</span><span class="p">,</span> <span class="n">group</span><span class="o">.</span><span class="n">X2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
+          <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+          <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_distribution</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_7_0.png" src="../_images/CostSensitive_7_0.png" />
+</div>
+</div>
+<div class="section" id="decision-tree">
+<h3><span class="section-number">2.1.1. </span>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h3>
+<p>Let us now train a decision tree to separate the two classes. We use a decision tree of depth 5, and a stratified 5-fold cross-validation to assess the performances of the classifier. The performances are assessed in terms of AUC ROC, Average precision, and balanced accuracy. The class weights are set to 1 for both classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results_</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+                                                     <span class="n">scoring</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span>
+                                                              <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span>
+                                                              <span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">],</span>
+                                                     <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The performances for each fold are returned in the <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code> dictionary, which is better visualized as a DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cv_results_</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>estimator</th>
+      <th>test_roc_auc</th>
+      <th>test_average_precision</th>
+      <th>test_balanced_accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>DecisionTreeClassifier(class_weight={0: 1, 1: ...</td>
+      <td>0.933</td>
+      <td>0.616</td>
+      <td>0.842</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>DecisionTreeClassifier(class_weight={0: 1, 1: ...</td>
+      <td>0.871</td>
+      <td>0.493</td>
+      <td>0.739</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.006</td>
+      <td>0.011</td>
+      <td>DecisionTreeClassifier(class_weight={0: 1, 1: ...</td>
+      <td>0.897</td>
+      <td>0.493</td>
+      <td>0.799</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.009</td>
+      <td>0.005</td>
+      <td>DecisionTreeClassifier(class_weight={0: 1, 1: ...</td>
+      <td>0.928</td>
+      <td>0.591</td>
+      <td>0.812</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.007</td>
+      <td>0.004</td>
+      <td>DecisionTreeClassifier(class_weight={0: 1, 1: ...</td>
+      <td>0.901</td>
+      <td>0.447</td>
+      <td>0.738</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let us take the mean and standard deviation of the performances across all folds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_mean</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">results_std</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_mean</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;+/-&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_std</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">))]],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fit time (s)&#39;</span><span class="p">,</span><span class="s1">&#39;Score time (s)&#39;</span><span class="p">,</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span><span class="s1">&#39;Average Precision&#39;</span><span class="p">,</span><span class="s1">&#39;Balanced accuracy&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.007+/-0.001</td>
+      <td>0.006+/-0.003</td>
+      <td>0.906+/-0.025</td>
+      <td>0.528+/-0.072</td>
+      <td>0.786+/-0.046</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The performances are rather good since the AUC ROC is well beyond <span class="math notranslate nohighlight">\(0.5\)</span> and the average precision over <span class="math notranslate nohighlight">\(0.05\)</span>. The balanced accuracy is however not so high, suggesting that the decision boundary misclassifies many of the samples from the minority class.</p>
+<p>Let us finally plot the decision boundary provided by one of the decision trees. We use the decision tree obtained from the first fold of the cross-validation.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                                      <span class="n">classifier</span><span class="p">,</span>
+                                      <span class="n">train_df</span><span class="p">,</span>
+                                      <span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span><span class="s1">&#39;X2&#39;</span><span class="p">],</span>
+                                      <span class="n">output_feature</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+                                      <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                      <span class="n">fs</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                                      <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">plot_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:blue&quot;</span><span class="p">,</span><span class="s2">&quot;tab:orange&quot;</span><span class="p">]</span>
+
+    <span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="n">plot_step</span><span class="o">=</span><span class="mf">0.1</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">))</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu_r</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot_training_data</span><span class="p">:</span>
+        <span class="c1"># Plot the training points</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">output_feature</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">group</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the decision tree from the first fold of the cross-validation</span>
+<span class="n">classifier_0</span> <span class="o">=</span> <span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the indices used for the training and testing of the first fold of the cross-validation</span>
+<span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># Recreate the train and test DafaFrames from these indices</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">]})</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]})</span>
+<span class="n">input_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span><span class="s1">&#39;X2&#39;</span><span class="p">]</span>
+<span class="n">output_feature</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">fig_decision_boundary</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With training data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">test_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With test data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
+              <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+              <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">)</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu_r</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_21_0.png" src="../_images/CostSensitive_21_0.png" />
+</div>
+</div>
+<p>For better visualization, we report the decision boundaries alone (middle), with the training data (left), and with the test data (right). The plots show that the decision tree correctly identifies the region where the minority class samples lie. The decision tree however mostly classifies samples from the overlapping region into the majority class (yellow/blue color gradient).</p>
+<p>We will reuse the functions above for computing the performances and for plotting the decision boundaries. For the sake of code conciseness, we implement two functions for computing the cross-validation results (<code class="docutils literal notranslate"><span class="pre">kfold_cv_with_classifier</span></code>) and for plotting the decision boundaries (<code class="docutils literal notranslate"><span class="pre">plot_decision_boundary</span></code>).</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span>
+                             <span class="n">X</span><span class="p">,</span>
+                             <span class="n">y</span><span class="p">,</span>
+                             <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                             <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Basline classifier&quot;</span><span class="p">):</span>
+    
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">cv_results_</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+                                                         <span class="n">scoring</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span>
+                                                                  <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span>
+                                                                  <span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">],</span>
+                                                         <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cv_results_</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">results_mean</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">results_std</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_mean</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;+/-&#39;</span><span class="o">+</span>
+                                <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_std</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">))]],</span>
+                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fit time (s)&#39;</span><span class="p">,</span><span class="s1">&#39;Score time (s)&#39;</span><span class="p">,</span>
+                                       <span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span><span class="s1">&#39;Average Precision&#39;</span><span class="p">,</span><span class="s1">&#39;Balanced accuracy&#39;</span><span class="p">])</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="n">strategy_name</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">classifier_0</span> <span class="o">=</span> <span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">]})</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]})</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span>
+                           <span class="n">train_df</span><span class="p">,</span> 
+                           <span class="n">test_df</span><span class="p">):</span>
+    
+    <span class="n">fig_decision_boundary</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With training data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">test_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With test data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
+                  <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">)</span>
+
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu_r</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">cax</span> <span class="o">=</span> <span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    <span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us recompute the performances and decision boundaries with these two functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="p">(</span><span class="n">results_df_dt_baseline</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span> <span class="o">=</span> <span class="n">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> 
+                                                                                     <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                                                                     <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                                                     <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Decision tree - Baseline&quot;</span><span class="p">)</span>
+
+<span class="n">fig_decision_boundary</span> <span class="o">=</span> <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df_dt_baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Decision tree - Baseline</th>
+      <td>0.007+/-0.003</td>
+      <td>0.006+/-0.002</td>
+      <td>0.906+/-0.025</td>
+      <td>0.528+/-0.072</td>
+      <td>0.786+/-0.046</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_28_0.png" src="../_images/CostSensitive_28_0.png" />
+</div>
+</div>
+<p>Let us now set the class weights so that false positives have a weight equal to the imbalance ratio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IR</span><span class="o">=</span><span class="mf">0.05</span><span class="o">/</span><span class="mf">0.95</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="n">IR</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">results_df_dt_cost_sensitive</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span> <span class="o">=</span> <span class="n">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> 
+                                                                         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                                                         <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                                         <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Decision tree - Cost-sensitive&quot;</span><span class="p">)</span>
+
+<span class="n">fig_decision_boundary</span> <span class="o">=</span> <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_df_dt_baseline</span><span class="p">,</span> 
+           <span class="n">results_df_dt_cost_sensitive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Decision tree - Baseline</th>
+      <td>0.007+/-0.003</td>
+      <td>0.006+/-0.002</td>
+      <td>0.906+/-0.025</td>
+      <td>0.528+/-0.072</td>
+      <td>0.786+/-0.046</td>
+    </tr>
+    <tr>
+      <th>Decision tree - Cost-sensitive</th>
+      <td>0.007+/-0.002</td>
+      <td>0.006+/-0.001</td>
+      <td>0.887+/-0.034</td>
+      <td>0.471+/-0.059</td>
+      <td>0.898+/-0.021</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_34_0.png" src="../_images/CostSensitive_34_0.png" />
+</div>
+</div>
+<p>We observe that the decision boundary was shifted towards samples from the minority class. This shift allowed to increase the performance in terms of balanced accuracy, which increased from 0.786+/-0.046 to 0.898+/-0.021. We note however that the performances in terms of AUC ROC and Average Precision both decreased.</p>
+</div>
+<div class="section" id="logistic-regression">
+<h3><span class="section-number">2.1.2. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<p>Let us now apply the same methodology with a logistic regression classifier. We first build a classifier with equal weights for the two classes and run a stratified 5-fold cross-validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">results_df_lr_baseline</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span> <span class="o">=</span> <span class="n">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> 
+                                                                          <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                                                          <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                                          <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Logistic regression - Baseline&quot;</span><span class="p">)</span>
+
+<span class="n">fig_decision_boundary</span> <span class="o">=</span> <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df_lr_baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Logistic regression - Baseline</th>
+      <td>0.01+/-0.002</td>
+      <td>0.005+/-0.002</td>
+      <td>0.937+/-0.012</td>
+      <td>0.535+/-0.065</td>
+      <td>0.641+/-0.048</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The performances in terms of AUC ROC and Average Precision are higher than with a decision tree, but lower in terms of balanced accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_41_0.png" src="../_images/CostSensitive_41_0.png" />
+</div>
+</div>
+<p>The decision boundary illustrates the linear separation that results from logistic regression. Due to the class imbalance, we observe that the decision boundary slightly favors the majority class.</p>
+<p>As for the decision tree, let us change the class weights, using the imbalance ratio as the weight for the majority class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="n">IR</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">results_df_lr_cost_sensitive</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span> <span class="o">=</span> <span class="n">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> 
+                                                                         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                                                         <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                                         <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Logistic regression - Cost-sensitive&quot;</span><span class="p">)</span>
+
+<span class="n">fig_decision_boundary</span> <span class="o">=</span> <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_df_lr_baseline</span><span class="p">,</span> <span class="n">results_df_lr_cost_sensitive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Logistic regression - Baseline</th>
+      <td>0.01+/-0.002</td>
+      <td>0.005+/-0.002</td>
+      <td>0.937+/-0.012</td>
+      <td>0.535+/-0.065</td>
+      <td>0.641+/-0.048</td>
+    </tr>
+    <tr>
+      <th>Logistic regression - Cost-sensitive</th>
+      <td>0.008+/-0.002</td>
+      <td>0.004+/-0.001</td>
+      <td>0.937+/-0.012</td>
+      <td>0.536+/-0.064</td>
+      <td>0.899+/-0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_45_0.png" src="../_images/CostSensitive_45_0.png" />
+</div>
+</div>
+<p>We observe that the decision boundary moved to the left, favoring the classification of the minority class. We note a strong increase of the balanced accuracy, from 0.641+/-0.048 to 0.899+/-0.01. The AUC ROC and Average Precision remain as good as the classifier with equal weights.</p>
+<p>The examples above show that tuning the class weights can improve classification performances. It is however worth noting that the performance improvements depend on the performance metric. For both classifiers, reducing the class weight of the majority class allowed to increase the balanced accuracy. The accuracy in terms of AUC ROC and Average Precision however remained unchanged for logistic regression and decreased for decision trees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_df_dt_baseline</span><span class="p">,</span>
+                        <span class="n">results_df_dt_cost_sensitive</span><span class="p">,</span>
+                        <span class="n">results_df_lr_baseline</span><span class="p">,</span>
+                        <span class="n">results_df_lr_cost_sensitive</span><span class="p">])</span>
+<span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fit time (s)</th>
+      <th>Score time (s)</th>
+      <th>AUC ROC</th>
+      <th>Average Precision</th>
+      <th>Balanced accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Decision tree - Baseline</th>
+      <td>0.007+/-0.003</td>
+      <td>0.006+/-0.002</td>
+      <td>0.906+/-0.025</td>
+      <td>0.528+/-0.072</td>
+      <td>0.786+/-0.046</td>
+    </tr>
+    <tr>
+      <th>Decision tree - Cost-sensitive</th>
+      <td>0.007+/-0.002</td>
+      <td>0.006+/-0.001</td>
+      <td>0.887+/-0.034</td>
+      <td>0.471+/-0.059</td>
+      <td>0.898+/-0.021</td>
+    </tr>
+    <tr>
+      <th>Logistic regression - Baseline</th>
+      <td>0.01+/-0.002</td>
+      <td>0.005+/-0.002</td>
+      <td>0.937+/-0.012</td>
+      <td>0.535+/-0.065</td>
+      <td>0.641+/-0.048</td>
+    </tr>
+    <tr>
+      <th>Logistic regression - Cost-sensitive</th>
+      <td>0.008+/-0.002</td>
+      <td>0.004+/-0.001</td>
+      <td>0.937+/-0.012</td>
+      <td>0.536+/-0.064</td>
+      <td>0.899+/-0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="transaction-data">
+<span id="cost-sensitive-learning-transaction-data"></span><h2><span class="section-number">2.2. </span>Transaction data<a class="headerlink" href="#transaction-data" title="Permalink to this headline">¶</a></h2>
+<p>Let us now explore whether changing the class weights can improve the classification performances on the simulated dataset of transaction data. We reuse the methodology of <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>, using prequential validation as the validation strategy.</p>
+<div class="section" id="load-data">
+<h3><span class="section-number">2.2.1. </span>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h3>
+<p>The loading of data and initialization of the parameters follow the same template as in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from the 2018-07-11 to the 2018-09-14</span>
+
+<span class="n">DIR_INPUT</span> <span class="o">=</span> <span class="s1">&#39;simulated-data-transformed/data/&#39;</span> 
+
+<span class="n">BEGIN_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-06-11&quot;</span>
+<span class="n">END_DATE</span> <span class="o">=</span> <span class="s2">&quot;2018-09-14&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load  files&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> transactions_df = read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> transactions loaded, containing </span><span class="si">{1}</span><span class="s2"> fraudulent transactions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">),</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+
+<span class="c1"># Number of folds for the prequential validation</span>
+<span class="n">n_folds</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Set the starting day for the training period, and the deltas</span>
+<span class="n">start_date_training</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2018-07-25&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">delta_train</span> <span class="o">=</span> <span class="n">delta_delay</span> <span class="o">=</span> <span class="n">delta_test</span> <span class="o">=</span> <span class="n">delta_valid</span> <span class="o">=</span> <span class="n">delta_assessment</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">start_date_training_for_valid</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="p">(</span><span class="n">delta_delay</span><span class="o">+</span><span class="n">delta_valid</span><span class="p">))</span>
+<span class="n">start_date_training_for_test</span> <span class="o">=</span> <span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="p">(</span><span class="n">n_folds</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">delta_test</span><span class="p">)</span>
+
+<span class="n">output_feature</span> <span class="o">=</span> <span class="s2">&quot;TX_FRAUD&quot;</span>
+
+<span class="n">input_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TX_AMOUNT&#39;</span><span class="p">,</span><span class="s1">&#39;TX_DURING_WEEKEND&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_DURING_NIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;CUSTOMER_ID_AVG_AMOUNT_30DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_1DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_1DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_7DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_7DAY_WINDOW&#39;</span><span class="p">,</span> <span class="s1">&#39;TERMINAL_ID_NB_TX_30DAY_WINDOW&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;TERMINAL_ID_RISK_30DAY_WINDOW&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># Only keep columns that are needed as argument to the custom scoring function</span>
+<span class="c1"># (in order to reduce the serialization time of transaction dataset)</span>
+<span class="n">transactions_df_scorer</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[[</span><span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">,</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]]</span>
+
+<span class="n">card_precision_top_100</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">card_precision_top_k_custom</span><span class="p">,</span> 
+                                                     <span class="n">needs_proba</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                                     <span class="n">top_k</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                                                     <span class="n">transactions_df</span><span class="o">=</span><span class="n">transactions_df_scorer</span><span class="p">)</span>
+
+<span class="n">performance_metrics_list_grid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span> <span class="s1">&#39;card_precision@100&#39;</span><span class="p">]</span>
+<span class="n">performance_metrics_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">]</span>
+
+<span class="n">scoring</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">:</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;average_precision&#39;</span><span class="p">:</span> <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;card_precision@100&#39;</span><span class="p">:</span> <span class="n">card_precision_top_100</span><span class="p">,</span>
+           <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Load  files
+CPU times: user 724 ms, sys: 569 ms, total: 1.29 s
+Wall time: 1.41 s
+919767 transactions loaded, containing 8195 fraudulent transactions
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">2.2.2. </span>Decision tree<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>The transaction dataset contains around 0.7% of fraudulent transactions. The imbalance ratio is therefore around 1/100. In order to assess the impact of the class weight parameter on the classification performance, we vary the class weight in the range 0.01 to 1, with the following set of possible values: <span class="math notranslate nohighlight">\([0.01, 0.05, 0.1, 0.5, 1]\)</span>.</p>
+<p>The implementation is the same as in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection-decision-tree"><span class="std std-ref">Chapter 5</span></a>. The only modification consists in varying the class weight parameter (<code class="docutils literal notranslate"><span class="pre">clf__class_weight</span></code>) instead of the decision tree depth. We use a decision tree depth of 5 (<code class="docutils literal notranslate"><span class="pre">clf__max_depth</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="c1"># Set of parameters for which to assess model performances</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__max_depth&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;clf__random_state&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="s1">&#39;clf__class_weight&#39;</span><span class="p">:[{</span><span class="mi">0</span><span class="p">:</span> <span class="n">w</span><span class="p">}</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]}</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Fit models and assess performances for all parameters</span>
+<span class="n">performances_df</span> <span class="o">=</span> <span class="n">model_selection_wrapper</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> 
+                                          <span class="n">input_features</span><span class="p">,</span> <span class="n">output_feature</span><span class="p">,</span>
+                                          <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="p">,</span> 
+                                          <span class="n">start_date_training_for_valid</span><span class="p">,</span>
+                                          <span class="n">start_date_training_for_test</span><span class="p">,</span>
+                                          <span class="n">n_folds</span><span class="o">=</span><span class="n">n_folds</span><span class="p">,</span>
+                                          <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span> 
+                                          <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span> 
+                                          <span class="n">delta_assessment</span><span class="o">=</span><span class="n">delta_assessment</span><span class="p">,</span>
+                                          <span class="n">performance_metrics_list_grid</span><span class="o">=</span><span class="n">performance_metrics_list_grid</span><span class="p">,</span>
+                                          <span class="n">performance_metrics_list</span><span class="o">=</span><span class="n">performance_metrics_list</span><span class="p">,</span>
+                                          <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">execution_time_dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us use the class weight as the varying parameter, and summarize the performances as a function of the class weight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select parameter of interest (class_weight)</span>
+<span class="n">parameters_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters&#39;</span><span class="p">])</span>
+<span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">parameters_dict</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;clf__class_weight&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parameters_dict</span><span class="p">))]</span>
+
+<span class="c1"># Rename to performances_df_dt for model performance comparison at the end of this notebook</span>
+<span class="n">performances_df_dt</span> <span class="o">=</span> <span class="n">performances_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>AUC ROC Test Std</th>
+      <th>Average precision Test</th>
+      <th>Average precision Test Std</th>
+      <th>Card Precision@100 Test</th>
+      <th>Card Precision@100 Test Std</th>
+      <th>Parameters</th>
+      <th>Execution time</th>
+      <th>AUC ROC Validation</th>
+      <th>AUC ROC Validation Std</th>
+      <th>Average precision Validation</th>
+      <th>Average precision Validation Std</th>
+      <th>Card Precision@100 Validation</th>
+      <th>Card Precision@100 Validation Std</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.825500</td>
+      <td>0.009464</td>
+      <td>0.537440</td>
+      <td>0.033668</td>
+      <td>0.289286</td>
+      <td>0.010903</td>
+      <td>{'clf__class_weight': {0: 0.01}, 'clf__max_dep...</td>
+      <td>0.555497</td>
+      <td>0.837454</td>
+      <td>0.014356</td>
+      <td>0.532924</td>
+      <td>0.025252</td>
+      <td>0.277500</td>
+      <td>0.010944</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.792912</td>
+      <td>0.029734</td>
+      <td>0.561153</td>
+      <td>0.046031</td>
+      <td>0.273571</td>
+      <td>0.019418</td>
+      <td>{'clf__class_weight': {0: 0.05}, 'clf__max_dep...</td>
+      <td>0.505740</td>
+      <td>0.808213</td>
+      <td>0.022140</td>
+      <td>0.565880</td>
+      <td>0.027737</td>
+      <td>0.266071</td>
+      <td>0.013716</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.784486</td>
+      <td>0.031698</td>
+      <td>0.556320</td>
+      <td>0.031025</td>
+      <td>0.272143</td>
+      <td>0.019548</td>
+      <td>{'clf__class_weight': {0: 0.1}, 'clf__max_dept...</td>
+      <td>0.718678</td>
+      <td>0.814153</td>
+      <td>0.023492</td>
+      <td>0.572758</td>
+      <td>0.029783</td>
+      <td>0.269643</td>
+      <td>0.015791</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.798043</td>
+      <td>0.020988</td>
+      <td>0.579394</td>
+      <td>0.016007</td>
+      <td>0.278214</td>
+      <td>0.003093</td>
+      <td>{'clf__class_weight': {0: 0.5}, 'clf__max_dept...</td>
+      <td>0.622862</td>
+      <td>0.799682</td>
+      <td>0.013524</td>
+      <td>0.568408</td>
+      <td>0.018631</td>
+      <td>0.265000</td>
+      <td>0.013420</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.810138</td>
+      <td>0.008586</td>
+      <td>0.600306</td>
+      <td>0.016797</td>
+      <td>0.284286</td>
+      <td>0.004286</td>
+      <td>{'clf__class_weight': {0: 1}, 'clf__max_depth'...</td>
+      <td>0.626287</td>
+      <td>0.804218</td>
+      <td>0.016505</td>
+      <td>0.546094</td>
+      <td>0.042197</td>
+      <td>0.267857</td>
+      <td>0.013869</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_dt</span> <span class="o">=</span> <span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.837+/-0.01</td>
+      <td>0.573+/-0.03</td>
+      <td>0.278+/-0.01</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.825+/-0.01</td>
+      <td>0.556+/-0.03</td>
+      <td>0.289+/-0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.825+/-0.01</td>
+      <td>0.6+/-0.02</td>
+      <td>0.289+/-0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We observe that the optimal class weight for the majority class depends on the performance metric. For better visualization, let us plot the performances as a function of the class weight for the three performance metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_dt</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Class weight for the majority class&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_58_0.png" src="../_images/CostSensitive_58_0.png" />
+</div>
+</div>
+<p>The results are mitigated, showing conflicting trends between the class weight of the majority class and the performance gains. For AUC ROC and CP&#64;100, a class weight close to the imbalance ratio (0.01) provides the highest performance for both the test set and validation set, but the lowest performance in terms of Average Precision.</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">2.2.3. </span>Logistic regression<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Let us follow the same methodology as above, using logistic regression as the classification algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># Set of parameters for which to assess model performances</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__C&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;clf__random_state&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="s1">&#39;clf__class_weight&#39;</span><span class="p">:[{</span><span class="mi">0</span><span class="p">:</span> <span class="n">w</span><span class="p">}</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]}</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Fit models and assess performances for all parameters</span>
+<span class="n">performances_df</span> <span class="o">=</span> <span class="n">model_selection_wrapper</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> 
+                                          <span class="n">input_features</span><span class="p">,</span> <span class="n">output_feature</span><span class="p">,</span>
+                                          <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="p">,</span> 
+                                          <span class="n">start_date_training_for_valid</span><span class="p">,</span>
+                                          <span class="n">start_date_training_for_test</span><span class="p">,</span>
+                                          <span class="n">n_folds</span><span class="o">=</span><span class="n">n_folds</span><span class="p">,</span>
+                                          <span class="n">delta_train</span><span class="o">=</span><span class="n">delta_train</span><span class="p">,</span> 
+                                          <span class="n">delta_delay</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">,</span> 
+                                          <span class="n">delta_assessment</span><span class="o">=</span><span class="n">delta_assessment</span><span class="p">,</span>
+                                          <span class="n">performance_metrics_list_grid</span><span class="o">=</span><span class="n">performance_metrics_list_grid</span><span class="p">,</span>
+                                          <span class="n">performance_metrics_list</span><span class="o">=</span><span class="n">performance_metrics_list</span><span class="p">,</span>
+                                          <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">execution_time_lr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select parameter of interest (class_weight)</span>
+<span class="n">parameters_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters&#39;</span><span class="p">])</span>
+<span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">parameters_dict</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;clf__class_weight&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parameters_dict</span><span class="p">))]</span>
+
+<span class="c1"># Rename to performances_df_dt for model performance comparison at the end of this notebook</span>
+<span class="n">performances_df_lr</span><span class="o">=</span><span class="n">performances_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_lr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC Test</th>
+      <th>AUC ROC Test Std</th>
+      <th>Average precision Test</th>
+      <th>Average precision Test Std</th>
+      <th>Card Precision@100 Test</th>
+      <th>Card Precision@100 Test Std</th>
+      <th>Parameters</th>
+      <th>Execution time</th>
+      <th>AUC ROC Validation</th>
+      <th>AUC ROC Validation Std</th>
+      <th>Average precision Validation</th>
+      <th>Average precision Validation Std</th>
+      <th>Card Precision@100 Validation</th>
+      <th>Card Precision@100 Validation Std</th>
+      <th>Parameters summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.871396</td>
+      <td>0.017137</td>
+      <td>0.571129</td>
+      <td>0.028027</td>
+      <td>0.293929</td>
+      <td>0.010120</td>
+      <td>{'clf__C': 1, 'clf__class_weight': {0: 0.01}, ...</td>
+      <td>0.587376</td>
+      <td>0.871069</td>
+      <td>0.009955</td>
+      <td>0.497808</td>
+      <td>0.039734</td>
+      <td>0.276429</td>
+      <td>0.013190</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.870711</td>
+      <td>0.016332</td>
+      <td>0.604805</td>
+      <td>0.015834</td>
+      <td>0.296786</td>
+      <td>0.009813</td>
+      <td>{'clf__C': 1, 'clf__class_weight': {0: 0.05}, ...</td>
+      <td>0.609912</td>
+      <td>0.870584</td>
+      <td>0.008772</td>
+      <td>0.550617</td>
+      <td>0.029466</td>
+      <td>0.278571</td>
+      <td>0.015085</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.870083</td>
+      <td>0.016028</td>
+      <td>0.613923</td>
+      <td>0.014765</td>
+      <td>0.296429</td>
+      <td>0.008950</td>
+      <td>{'clf__C': 1, 'clf__class_weight': {0: 0.1}, '...</td>
+      <td>0.515544</td>
+      <td>0.869906</td>
+      <td>0.008720</td>
+      <td>0.579392</td>
+      <td>0.019886</td>
+      <td>0.278214</td>
+      <td>0.014156</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.868234</td>
+      <td>0.015572</td>
+      <td>0.621852</td>
+      <td>0.015687</td>
+      <td>0.297500</td>
+      <td>0.008770</td>
+      <td>{'clf__C': 1, 'clf__class_weight': {0: 0.5}, '...</td>
+      <td>0.712305</td>
+      <td>0.867853</td>
+      <td>0.008948</td>
+      <td>0.608950</td>
+      <td>0.023132</td>
+      <td>0.277143</td>
+      <td>0.015286</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.867643</td>
+      <td>0.015404</td>
+      <td>0.623081</td>
+      <td>0.016204</td>
+      <td>0.297143</td>
+      <td>0.008806</td>
+      <td>{'clf__C': 1, 'clf__class_weight': {0: 1}, 'cl...</td>
+      <td>0.576240</td>
+      <td>0.866861</td>
+      <td>0.008988</td>
+      <td>0.612264</td>
+      <td>0.023474</td>
+      <td>0.278214</td>
+      <td>0.016914</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_lr</span> <span class="o">=</span> <span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+<span class="n">summary_performances_lr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUC ROC</th>
+      <th>Average precision</th>
+      <th>Card Precision@100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Best estimated parameters</th>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>Validation performance</th>
+      <td>0.871+/-0.01</td>
+      <td>0.612+/-0.02</td>
+      <td>0.279+/-0.02</td>
+    </tr>
+    <tr>
+      <th>Test performance</th>
+      <td>0.871+/-0.02</td>
+      <td>0.623+/-0.02</td>
+      <td>0.297+/-0.01</td>
+    </tr>
+    <tr>
+      <th>Optimal parameter(s)</th>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>Optimal test performance</th>
+      <td>0.871+/-0.02</td>
+      <td>0.623+/-0.02</td>
+      <td>0.298+/-0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_performances_plots</span><span class="p">(</span><span class="n">performances_df_lr</span><span class="p">,</span> 
+                       <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span> 
+                       <span class="n">expe_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">expe_type_color_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#008000&#39;</span><span class="p">,</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                       <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Class weight for the majority class&quot;</span><span class="p">,</span>
+                       <span class="n">summary_performances</span><span class="o">=</span><span class="n">summary_performances_lr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CostSensitive_65_0.png" src="../_images/CostSensitive_65_0.png" />
+</div>
+</div>
+<p>Similar to decision trees, the results are mitigated. Slightly higher performances are obtained for AUC ROC with a low class weight for the majority class. The performances in terms Average Precision and CP&#64;100 however follow the opposite trend.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2><span class="section-number">2.3. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>The benefits of relying on misclassification costs in the training procedure therefore appear to be strongly dependent on the characteristics of a dataset and on the performance metric to optimize. The experiments provided in this section showed that cost-sensitive learning effectively allows to shift the decision boundary of a classifier and to favor the classification of the minority class. Its benefits in terms of AUC ROC and Average Precision seem however conflicting. In particular, the shift of the decision boundary seems to lead to many false positives, that negatively impact the precision, and therefore, the performance in terms of Average Precision.</p>
+</div>
+<div class="section" id="saving-of-results">
+<h2><span class="section-number">2.4. </span>Saving of results<a class="headerlink" href="#saving-of-results" title="Permalink to this headline">¶</a></h2>
+<p>Let us finally save the performance results and execution times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performances_df_dictionary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">performances_df_dt</span><span class="p">,</span>
+    <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="n">performances_df_lr</span>
+<span class="p">}</span>
+
+<span class="n">execution_times</span> <span class="o">=</span> <span class="p">[</span><span class="n">execution_time_dt</span><span class="p">,</span>
+                   <span class="n">execution_time_lr</span>
+                  <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both data structures are saved as a Pickle file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;performances_cost_sensitive.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> 
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">((</span><span class="n">performances_df_dictionary</span><span class="p">,</span> <span class="n">execution_times</span><span class="p">),</span> <span class="n">filehandler</span><span class="p">)</span>
+<span class="n">filehandler</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_6_ImbalancedLearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Resampling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Resampling strategies</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

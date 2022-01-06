@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4. Machine learning for credit card fraud detection &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,40 +43,34 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_2_Background/MachineLearningForFraudDetection.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Summary" href="Summary.html" />
     <link rel="prev" title="3. Credit card fraud detection system" href="FDS.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_2_Background/MachineLearningForFraudDetection.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Machine learning for credit card fraud detection" />
-<meta property="og:description" content="Machine learning for credit card fraud detection  Credit card fraud detection (CCFD) is like looking for needles in a haystack. It requires to find, out of mill" />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -88,32 +79,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -130,12 +125,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    1. Introduction
@@ -162,12 +157,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
    1. Introduction
@@ -199,12 +194,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -236,12 +231,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -258,17 +253,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_References/shared_functions.html">
    1. Shared functions
@@ -281,6 +355,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -296,21 +371,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -328,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -348,25 +423,25 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recent-surveys">
    4.1. Recent surveys
@@ -384,8 +459,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -393,10 +468,10 @@
         
               <div>
                 
-  <div class="section" id="machine-learning-for-credit-card-fraud-detection">
+  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-for-credit-card-fraud-detection">
 <span id="ml-for-ccfd"></span><h1><span class="section-number">4. </span>Machine learning for credit card fraud detection<a class="headerlink" href="#machine-learning-for-credit-card-fraud-detection" title="Permalink to this headline">¶</a></h1>
-<p>Credit card fraud detection (CCFD) is like looking for needles in a haystack. It requires to find, out of millions of daily transactions, which ones are fraudulent. Due to the ever-increasing amount of data, it is now almost impossible for a human specialist to detect meaningful patterns from transaction data. For this reason, the use of machine learning techniques is now widespread in the field of fraud detection, where information extraction from large datasets is required <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id18"><span>LJ20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id17"><span>PP19</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id55"><span>Car18</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>.</p>
-<p>Machine Learning (ML) is the study of algorithms that improve automatically through experience <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id21"><span>Bon21</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id19"><span>FHT01</span></a>]</span>. ML is closely related to the fields of Statistics, Pattern Recognition, and Data Mining. At the same time, it emerges as a subfield of computer science and artificial intelligence and gives special attention to the algorithmic part of the knowledge extraction process. ML plays a key role in many scientific disciplines and its applications are part of our daily life. It is used for example to filter spam email, for weather prediction, in medical diagnosis, product recommendation, face detection, fraud detection, etc <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id20"><span>Bis06</span></a>]</span>.</p>
+<p>Credit card fraud detection (CCFD) is like looking for needles in a haystack. It requires finding, out of millions of daily transactions, which ones are fraudulent. Due to the ever-increasing amount of data, it is now almost impossible for a human specialist to detect meaningful patterns from transaction data. For this reason, the use of machine learning techniques is now widespread in the field of fraud detection, where information extraction from large datasets is required <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id31">Car18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id18">LJ20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id17">PP19</a>]</span>.</p>
+<p>Machine Learning (ML) is the study of algorithms that improve automatically through experience <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id21">Bon21</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id19">FHT01</a>]</span>. ML is closely related to the fields of Statistics, Pattern Recognition, and Data Mining. At the same time, it emerges as a subfield of computer science and artificial intelligence and gives special attention to the algorithmic part of the knowledge extraction process. ML plays a key role in many scientific disciplines and its applications are part of our daily life. It is used for example to filter spam email, for weather prediction, in medical diagnosis, product recommendation, face detection, fraud detection, etc <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id20">Bis06</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>]</span>.</p>
 <p>The ability of ML techniques to effectively address the challenges raised by CCFD has led to a large and growing body of research in the last decade. As reported in Fig. 1, thousands of papers related to this topic have been published between 2010 and 2020, with about 1500 papers published in 2020 alone.</p>
 <p><img alt="alt text" src="../_images/ML_CCFD_GoogleScholar_2010_2020.png" /></p>
 <p style="text-align: center;">
@@ -416,43 +491,43 @@ Fig. 1. Number of published articles on the topic of machine learning and credit
 <tbody>
 <tr class="row-even"><td><p>A survey of credit card fraud detection techniques: <br> Data and technique oriented perspective</p></td>
 <td><p>2016</p></td>
-<td><p><span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id8"><span>ZAM+16</span></a>]</span></p></td>
+<td><p><span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id8">ZAM+16</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>A survey of machine-learning and nature-inspired <br> based credit card fraud detection techniques</p></td>
 <td><p>2017</p></td>
-<td><p><span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id10"><span>AA17</span></a>]</span></p></td>
+<td><p><span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id10">AA17</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p>A survey on credit card fraud detection <br> using machine learning</p></td>
 <td><p>2018</p></td>
-<td><p><span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id11"><span>PC18</span></a>]</span></p></td>
+<td><p><span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id11">PC18</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>A state-of-the-art review of machine learning techniques <br> for fraud detection research</p></td>
 <td><p>2018</p></td>
-<td><p><span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id12"><span>SKK18</span></a>]</span></p></td>
+<td><p><span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id12">SKK18</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p>Detection of credit card fraud: State of art</p></td>
 <td><p>2018</p></td>
-<td><p><span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id14"><span>SSB18</span></a>]</span></p></td>
+<td><p><span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id14">SSB18</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>A survey on different data mining &amp; machine learning methods <br> for credit card fraud detection</p></td>
 <td><p>2018</p></td>
-<td><p><span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id15"><span>PL18</span></a>]</span></p></td>
+<td><p><span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id15">PL18</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p>A systematic review of data mining approaches <br> to credit card fraud detection</p></td>
 <td><p>2018</p></td>
-<td><p><span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id13"><span>MekterovicBrkicBaranovic18</span></a>]</span></p></td>
+<td><p><span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id13">MekterovicBrkicBaranovic18</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>A Comprehensive Survey on Machine Learning Techniques <br> and User Authentication Approaches <br>for Credit Card Fraud Detection</p></td>
 <td><p>2019</p></td>
-<td><p><span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id16"><span>YAG19</span></a>]</span></p></td>
+<td><p><span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id16">YAG19</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p>Credit Card Fraud Detection: A Systematic Review</p></td>
 <td><p>2019</p></td>
-<td><p><span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id17"><span>PP19</span></a>]</span></p></td>
+<td><p><span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id17">PP19</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Credit card fraud detection using machine learning: <br> A survey</p></td>
 <td><p>2020</p></td>
-<td><p><span id="id13">[<a class="reference internal" href="../Chapter_References/bibliography.html#id18"><span>LJ20</span></a>]</span></p></td>
+<td><p><span id="id13">[<a class="reference internal" href="../Chapter_References/bibliography.html#id18">LJ20</a>]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -461,31 +536,31 @@ Fig. 1. Number of published articles on the topic of machine learning and credit
 </div>
 <div class="section" id="baseline-methodology-supervised-learning">
 <span id="ml-for-ccfd-baseline-methodology"></span><h2><span class="section-number">4.2. </span>Baseline methodology - Supervised learning<a class="headerlink" href="#baseline-methodology-supervised-learning" title="Permalink to this headline">¶</a></h2>
-<p>A wide number of ML techniques can be used to address the problem of CCFD. This is directly reflected by the huge amount of published papers on the topic in the last decade. Despite this large volume of research work, most of the proposed approaches follow a common baseline ML methodology <span id="id14">[<a class="reference internal" href="../Chapter_References/bibliography.html#id15"><span>PL18</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id19"><span>FHT01</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id20"><span>Bis06</span></a>]</span>, which we summarize in Fig. 2.</p>
+<p>A wide number of ML techniques can be used to address the problem of CCFD. This is directly reflected by the huge amount of published papers on the topic in the last decade. Despite this large volume of research work, most of the proposed approaches follow a common baseline ML methodology <span id="id14">[<a class="reference internal" href="../Chapter_References/bibliography.html#id20">Bis06</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id19">FHT01</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id15">PL18</a>]</span>, which we summarize in Fig. 2.</p>
 <p><img alt="alt text" src="../_images/baseline_ML_workflow.png" /></p>
 <p style="text-align: center;">
 Fig. 2. ML for CCFD: Baseline methodology followed by most of the proposed approaches in the recent surveys on the topic.  
 </p>
-<p>In credit card fraud detection, data typically consists of transaction data, collected for example by a payment processor or a bank. Transaction data can be divided into three groups <span id="id15">[<a class="reference internal" href="../Chapter_References/bibliography.html#id18"><span>LJ20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id10"><span>AA17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id30"><span>VVBC+15</span></a>]</span></p>
+<p>In credit card fraud detection, data typically consists of transaction data, collected for example by a payment processor or a bank. Transaction data can be divided into three groups <span id="id15">[<a class="reference internal" href="../Chapter_References/bibliography.html#id10">AA17</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id18">LJ20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id65">VVBC+15</a>]</span></p>
 <ul class="simple">
 <li><p>Account-related features: They include for example the account number, the date of the account opening, the card limit, the card expiry date, etc.</p></li>
 <li><p>Transaction-related features: They include for example the transaction reference number, the account number, the transaction amount, the terminal (i.e., POS) number, the transaction time, etc. From the terminal, one can also obtain an additional category of information: merchant-related features such as its category code (restaurant, supermarket, …) or its location.</p></li>
 <li><p>Customer-related features: They include for example the customer number, the type of customer (low profile, high profile, …), etc.</p></li>
 </ul>
-<p>In its simplest form, a payment card transaction consists of any amount paid to a merchant by a customer at a certain time. A set of historical transaction data may be represented as a table such as illustrated in Fig. 3. For fraud detection, it is also assumed that the legitimacy of all transactions is known (that is, whether the transaction was genuine or fraudulent). This is usually represented by a binary label, with a value of 0 for a genuine transaction, and a value of 1 for fraudulent transactions.</p>
+<p>In its simplest form, a payment card transaction consists of any amount paid to a merchant by a customer at a certain time. A set of historical transaction data may be represented as a table such as illustrated in Fig. 3. For fraud detection, it is also generally assumed that the legitimacy of all transactions is known (that is, whether the transaction was genuine or fraudulent). This is usually represented by a binary label, with a value of 0 for a genuine transaction, and a value of 1 for fraudulent transactions.</p>
 <p><img alt="alt text" src="../_images/tx_table.png" /></p>
 <p style="text-align: center;">
 Fig. 3. Example of transaction data represented as a table. Each row corresponds to a transaction from a customer to a terminal. The last variable is the label, which indicates whether the transaction was genuine (0) or fraudulent (1).   
 </p>
 <p>Two stages can be distinguished in the design of an ML-based fraud detection system. The first stage consists of building a prediction model from a set of labeled historical data (Fig. 2, upper part). This process is called <em>supervised learning</em> since the label of the transactions (genuine or fraudulent) is known. In the second stage, the prediction model obtained from the supervised learning process is used to predict the label of new transactions (Fig. 2, lower part).</p>
-<p>Formally, a prediction model is a parametric function with parameters <span class="math notranslate nohighlight">\(\theta\)</span>, also called a <em>hypothesis</em>, that takes an input <span class="math notranslate nohighlight">\(x\)</span> from an input domain <span class="math notranslate nohighlight">\(\mathcal{X}\subset \mathbb{R}^n\)</span>, and outputs a prediction <span class="math notranslate nohighlight">\(\hat{y}=h(x,\theta)\)</span> over an output domain <span class="math notranslate nohighlight">\(\mathcal{Y} \subset \mathbb{R}\)</span> <span id="id16">[<a class="reference internal" href="../Chapter_References/bibliography.html#id55"><span>Car18</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id51"><span>DP15</span></a>]</span>:</p>
+<p>Formally, a prediction model is a parametric function with parameters <span class="math notranslate nohighlight">\(\theta\)</span>, also called a <em>hypothesis</em>, that takes an input <span class="math notranslate nohighlight">\(x\)</span> from an input domain <span class="math notranslate nohighlight">\(\mathcal{X}\subset \mathbb{R}^n\)</span>, and outputs a prediction <span class="math notranslate nohighlight">\(\hat{y}=h(x,\theta)\)</span> over an output domain <span class="math notranslate nohighlight">\(\mathcal{Y} \subset \mathbb{R}\)</span> <span id="id16">[<a class="reference internal" href="../Chapter_References/bibliography.html#id31">Car18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id34">DP15</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 h(x,\theta): \mathcal{X} \rightarrow \mathcal{Y}
 \]</div>
 <p>The input domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> usually differs from the space of raw transaction data for two reasons. First, for mathematical reasons, most supervised learning algorithms require the input domain to be real-valued, that is, <span class="math notranslate nohighlight">\(\mathcal{X} \subset \mathbb{R}^n\)</span>, which requires to transform transaction features that are not real numbers (such as timestamps, categorical variables, etc…). Second, it is usually beneficial to enrich transaction data with other variables that may improve the detection performance of the prediction model. This process is referred to as <em>feature engineering</em> (also known as <em>feature transformation</em>, <em>feature extraction</em>, or <em>data preprocessing</em>).</p>
 <p>For fraud detection, the output domain <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> is usually the predicted class for a given input <span class="math notranslate nohighlight">\(x\)</span>, that is <span class="math notranslate nohighlight">\(\mathcal{Y}=\{0,1\}\)</span>. Given that the output class is binary, these prediction models are also called <em>binary classifiers</em>. Alternatively, the output may also be expressed as a fraud probability, with <span class="math notranslate nohighlight">\(\mathcal{Y}=[0,1]\)</span>, or more generally as a risk score, with <span class="math notranslate nohighlight">\(\mathcal{Y} = \mathbb{R}\)</span>, where higher values express higher risks of fraud.</p>
-<p>The training (or building) of a prediction model <span class="math notranslate nohighlight">\(h(x,\theta)\)</span> consists of finding the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that provide the best performance. The performance of a prediction model is assessed using a loss function, that compares the true label <span class="math notranslate nohighlight">\(y\)</span> to the predicted label <span class="math notranslate nohighlight">\(\hat{y}=h(x,\theta)\)</span> for an input <span class="math notranslate nohighlight">\(x\)</span>. In binary classification problems, a common loss function is the zero/one loss function <span class="math notranslate nohighlight">\(L_{O/1}\)</span>, which assigns a loss equal to one in the case of wrong prediction, and zero otherwise:</p>
+<p>The training (or building) of a prediction model <span class="math notranslate nohighlight">\(h(x,\theta)\)</span> consists of finding the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that provide the best performance. The performance of a prediction model is assessed using a loss function, that compares the true label <span class="math notranslate nohighlight">\(y\)</span> to the predicted label <span class="math notranslate nohighlight">\(\hat{y}=h(x,\theta)\)</span> for an input <span class="math notranslate nohighlight">\(x\)</span>. In binary classification problems, a common loss function is the zero/one loss function <span class="math notranslate nohighlight">\(L_{0/1}\)</span>, which assigns a loss equal to one in the case of wrong prediction, and zero otherwise:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
@@ -501,13 +576,13 @@ y,\hat{y} &amp;= &amp;
 <p class="admonition-title">Note</p>
 <p>The zero/one loss function is a standard loss function for binary classification problems. It is however not well suited for credit card fraud detection problems, due to the high-class imbalance (much more genuine than fraudulent transactions). Estimating the performance of a fraud detection system is a non-trivial issue, which will be covered in depth in [Chapter 4[(Performance_Metrics).</p>
 </div>
-<p>To obtain a fair estimate of a prediction model performance, an important methodological practice, known as <em>validation</em>, is to evaluate the performance of a prediction model on data that were not used for training. This is achieved by splitting the dataset, before training, into a <em>training set</em> and a <em>validation set</em>.  The training set is used for the training of the prediction model (that is, to find the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that minimize the loss on the training set). Once the parameters <span class="math notranslate nohighlight">\(\theta\)</span> have been fixed, the loss is estimated with the validation set, which gives a better estimate of the performance that the prediction model is expected to have on future transactions.</p>
+<p>To obtain a fair estimate of a prediction model performance, an important methodological practice, known as <em>validation</em>, is to evaluate the performance of a prediction model on data that were not used for training. This is achieved by splitting the dataset, before training, into a <em>training set</em> and a <em>validation set</em>.  The training set is used for the training of the prediction model (that is, to find the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that minimize the loss on the training set). Once the parameters <span class="math notranslate nohighlight">\(\theta\)</span> have been fixed, the loss is estimated with the validation set, which gives a better estimate of the performance that the prediction model is expected to have on future (and unseen) transactions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Particular care must be taken in practice when splitting the dataset into training and validation sets, due to the sequential nature of credit card transactions, and the delay in fraud reporting. These issues will be addressed in detail in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html#model-validation-and-selection"><span class="std std-ref">Chapter 5</span></a>.</p>
 </div>
 <p>The supervised learning procedure typically consists of training a set of prediction models and estimating their performances using the validation set. At the end of the procedure, the model that is assumed to provide the best performance (that is, the lowest loss on the validation set) is selected, and used for providing predictions on new transactions (See Fig. 2).</p>
-<p>A wide range of methods exists for designing and training prediction models. This partly explains the large research literature on ML for CCFD, where papers usually focus on one or a couple of prediction methods. The survey from Priscilla et al. in 2019 <span id="id17">[<a class="reference internal" href="../Chapter_References/bibliography.html#id17"><span>PP19</span></a>]</span> provides a good overview of the machine learning methods that have been considered for the problem of CCFD. Their survey covered close to one hundred research papers, identifying for each paper which ML techniques were used, see Fig. 4.</p>
+<p>A wide range of methods exists for designing and training prediction models. This partly explains the large research literature on ML for CCFD, where papers usually focus on one or a couple of prediction methods. The survey from Priscilla et al. in 2019 <span id="id17">[<a class="reference internal" href="../Chapter_References/bibliography.html#id17">PP19</a>]</span> provides a good overview of the machine learning methods that have been considered for the problem of CCFD. Their survey covered close to one hundred research papers, identifying for each paper which ML techniques were used, see Fig. 4.</p>
 <p><img alt="alt text" src="../_images/ReviewMLforCCFD_2019_Table.png" /></p>
 <p style="text-align: center;">
 Fig. 4. Usage frequency of ML techniques in CCFD. Source: Priscilla et al., 2019 {cite}`priscilla2019credit`. References given in the table are in {cite}`priscilla2019credit`. 
@@ -517,7 +592,7 @@ Fig. 4. Usage frequency of ML techniques in CCFD. Source: Priscilla et al., 2019
 </div>
 <div class="section" id="overview-of-challenges">
 <span id="ml-for-ccfd-challenges"></span><h2><span class="section-number">4.3. </span>Overview of challenges<a class="headerlink" href="#overview-of-challenges" title="Permalink to this headline">¶</a></h2>
-<p>ML for CCFD is a notoriously difficult problem. We summarise below the challenges commonly highlighted in the reviews on the topic <span id="id18">[<a class="reference internal" href="../Chapter_References/bibliography.html#id18"><span>LJ20</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id17"><span>PP19</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id13"><span>MekterovicBrkicBaranovic18</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id10"><span>AA17</span></a>,<a class="reference internal" href="../Chapter_References/bibliography.html#id8"><span>ZAM+16</span></a>]</span>.</p>
+<p>ML for CCFD is a notoriously difficult problem. We summarise below the challenges commonly highlighted in the reviews on the topic <span id="id18">[<a class="reference internal" href="../Chapter_References/bibliography.html#id10">AA17</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id18">LJ20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id13">MekterovicBrkicBaranovic18</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id17">PP19</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id8">ZAM+16</a>]</span>.</p>
 <p><strong>Class imbalance</strong>: Transaction data contain much more legitimate than fraudulent transactions: The percentage of fraudulent transactions in a real-world dataset is typically well under 1%. Learning from imbalanced data is a difficult task since most learning algorithms do not handle well large differences between classes. Dealing with class imbalance requires the use of additional learning strategies like sampling or loss weighting, a topic known as <em>imbalanced learning</em>.</p>
 <p><strong>Concept drift</strong>: Transaction and fraud patterns change over time. On the one hand, the spending habits of credit card users are different during weekdays, weekends, vacation periods, and more generally evolve over time. On the other hand, fraudsters adopt new techniques as the old ones become obsolete. These time-dependent changes in the distributions of transactions and frauds are referred to as <em>concept drift</em>. Concept drift requires the design of learning strategies that can cope with temporal changes in statistical distributions, a topic known as <em>online learning</em>. The concept drift problem is accentuated in practice by the delayed feedbacks (See section <a class="reference internal" href="FDS.html#fraud-detection-system"><span class="std std-ref">Credit card fraud detection system</span></a>).</p>
 <p><strong>Near real-time requirements</strong>: Fraud detection systems must be able to quickly detect fraudulent transactions. Given the potentially high volume of transaction data (millions of transactions per day), classification times as low as tens of milliseconds may be required. This challenge closely relates to the <em>parallelization</em> and <em>scalability</em> of fraud detection systems.</p>
@@ -525,7 +600,7 @@ Fig. 4. Usage frequency of ML techniques in CCFD. Source: Priscilla et al., 2019
 <p><strong>Sequential modeling</strong>: Each terminal and/or customer generates a stream of sequential data with unique characteristics. An important challenge of fraud detection consists in modeling these streams to better characterize their expected behaviors and detect when abnormal behaviors occur. Modeling may be done by aggregating features over time (for example, keeping track of the mean frequency or transaction amounts of a customer), or by relying on sequential prediction models (such as hidden Markov models, or recurrent neural networks for example).</p>
 <p><strong>Class overlap</strong>: The last two challenges can be associated with the more general challenge of overlapping between the two classes. With only raw information about a transaction, distinguishing between a fraudulent or a genuine transaction is close to impossible. This issue is commonly addressed using feature engineering techniques, that add contextual information to raw payment information.</p>
 <p><strong>Performance measures</strong>: Standard measures for classification systems, such as the mean misclassification error or the AUC ROC, are not well suited for detection problems due to the class imbalance issue, and the complex cost structure of fraud detection. A fraud detection system should be able to maximize the detection of fraudulent transactions while minimizing the number of incorrectly predicted frauds (false positives). It is often necessary to consider multiple measures to assess the overall performance of a fraud detection system. Despite its central role in the design of a fraud detection system, there is currently no consensus on which set of performance measures should be used.</p>
-<p><strong>Lack of public datasets</strong>: For obvious confidentiality reasons, real-world credit card transactions cannot be publicly shared. There exists only one publicly shared dataset, which was made available on Kaggle <span id="id19">[<a class="reference internal" href="../Chapter_References/bibliography.html#id50"><span>Kag16</span></a>]</span> by our team in 2016. Despite its limitations (only two days of data, and obfuscated features), the dataset has been widely used in the research literature, and is one of the most upvoted and downloaded on Kaggle. The scarcity of datasets for fraud detection is also true with simulated data: No simulator or reference simulated datasets are yet available. As a result, most research works cannot be reproduced, making impossible the comparison of different techniques by independent researchers.</p>
+<p><strong>Lack of public datasets</strong>: For obvious confidentiality reasons, real-world credit card transactions cannot be publicly shared. There exists only one publicly shared dataset, which was made available on Kaggle <span id="id19">[<a class="reference internal" href="../Chapter_References/bibliography.html#id84">Kag16</a>]</span> by our team in 2016. Despite its limitations (only two days of data, and obfuscated features), the dataset has been widely used in the research literature, and is one of the most upvoted and downloaded on Kaggle. The scarcity of datasets for fraud detection is also true with simulated data: No simulator or reference simulated datasets are yet available. As a result, most research works cannot be reproduced, making impossible the comparison of different techniques by independent researchers.</p>
 </div>
 </div>
 
@@ -551,17 +626,28 @@ Fig. 4. Usage frequency of ML techniques in CCFD. Source: Priscilla et al., 2019
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FDS.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Credit card fraud detection system</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Summary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="FDS.html" title="previous page"><span class="section-number">3. </span>Credit card fraud detection system</a>
-    <a class='right-next' id="next-link" href="Summary.html" title="next page"><span class="section-number">5. </span>Summary</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -582,11 +668,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

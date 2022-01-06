@@ -21,16 +21,15 @@ Provisional table of content:
 * Chapter 3: Getting started
 * Chapter 4: Performance metrics
 * Chapter 5: Model selection
-* Chapter 6: Imbalanced learning*
-* Chapter 7: Feature engineering*
-* Chapter 8: Deep learning*
-* Chapter 9: Interpretability*
+* Chapter 6: Imbalanced learning
+* Chapter 7: Deep learning
+* Chapter 8: Interpretability*
 
 (*): Not yet published. 
 
 ## Current draft
 
-The writing of the book is ongoing. We provide through this Github repository an early access to the book. As of May 2021, the first five chapters are made available. They aim at providing a state-of-the-art background to the topic, and a baseline methodology for addressing the problem.
+The writing of the book is ongoing. We provide through this Github repository an early access to the book. As of January 2022, the first seven chapters are made available. 
 
 The online version of the current draft of this book is available [here](https://fraud-detection-handbook.github.io/fraud-detection-handbook/).
 
@@ -46,9 +45,9 @@ This book is a Jupyter book. You will therefore first need to [install Jupyter B
 The compilation was tested with the following package versions:
 
 ```
-sphinxcontrib-bibtex==2.1.4
-Sphinx==3.5.2
-jupyter-book==0.10.2
+sphinxcontrib-bibtex==2.2.1
+Sphinx==4.2.0
+jupyter-book==0.11.2
 ```
 
 Once done, this is a two-step process:
@@ -75,28 +74,31 @@ The code in the notebooks is released under a [GNU GPL v3.0 license](https://www
 If you wish to cite this book, you may use the following:
 
 <pre>
-@book{leborgne2021fraud,
+@book{leborgne2022fraud,
 title={Machine Learning for Credit Card Fraud Detection - Practical Handbook},
-author={Le Borgne, Yann-A{\"e}l and Bontempi, Gianluca},
+author={Le Borgne, Yann-A{\"e}l and Siblini, Wissam and Lebichot, Bertrand and Bontempi, Gianluca},
 url={https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook},
-year={2021},
+year={2022},
 publisher={Universit{\'e} Libre de Bruxelles}
 }
 </pre>
 
 ## Authors
 
-* [Yann-Aël Le Borgne](https://yannael.github.io/) - Main author, contact author (yleborgn@ulb.ac.be).
-* [Gianluca Bontempi](https://mlg.ulb.ac.be/wordpress/members-2/gianluca-bontempi/) - Research design, supervision and monitoring, manuscript revision. 
+* [Yann-Aël Le Borgne](https://yannael.github.io/) (Contact author - yann-ael.le.borgne@ulb.be) - [Machine Learning Group - Université Libre de Bruxelles, Belgium](http://mlg.ulb.ac.be). 
+* [Wissam Siblini](https://www.linkedin.com/in/wissam-siblini) - [Machine Learning Research - Worldline Labs](https://worldline.com)
+* [Bertrand Lebichot](https://b-lebichot.github.io/) - [Interdisciplinary Centre for Security, Reliability and Trust  - Université du Luxembourg, Luxembourg](https://wwwfr.uni.lu/snt)
+* [Gianluca Bontempi](https://mlg.ulb.ac.be/wordpress/members-2/gianluca-bontempi/) - [Machine Learning Group - Université Libre de Bruxelles, Belgium](http://mlg.ulb.ac.be)
+
 
 ## Acknowledgments
 
-This book is the result of ten years of collaboration between the [Machine Learning Group, University of Brussels, Belgium](http://mlg.ulb.ac.be) and [Worldline](https://worldline.com). 
+This book is the result of ten years of collaboration between the [Machine Learning Group, Université Libre de Bruxelles, Belgium](http://mlg.ulb.ac.be) and [Worldline](https://worldline.com). 
 
 * ULB-MLG, Principal investigator: Gianluca Bontempi
 * Worldline, R&D Manager: Frédéric Oblé
 
-We wish to thank all the colleagues who worked on this topic during this collaboration: Olivier Caelen (ULB-MLG/Worldline), Fabrizio Carcillo (ULB-MLG), Guillaume Coter (Worldline), Andrea Dal Pozzolo (ULB-MLG), Jacopo De Stefani (ULB-MLG), Rémy Fabry (Worldline), Liyun He-Guelton (Worldline), Bertrand Lebichot (ULB-MLG), Gian Marco Paldino (ULB-MLG), Wissam Siblini (Worldline), Théo Verhelst (ULB-MLG).
+We wish to thank all the colleagues who worked on this topic during this collaboration: Olivier Caelen (ULB-MLG/Worldline), Fabrizio Carcillo (ULB-MLG), Guillaume Coter (Worldline), Andrea Dal Pozzolo (ULB-MLG), Jacopo De Stefani (ULB-MLG), Rémy Fabry (Worldline), Liyun He-Guelton (Worldline), Gian Marco Paldino (ULB-MLG), Théo Verhelst (ULB-MLG).
 
 The collaboration was made possible thanks to [Innoviris](https://innoviris.brussels), the Brussels Region Institute for Research and Innovation, through a series of grants which started in 2012 and ended in 2021.
 

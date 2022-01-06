@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1. Shared functions &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -46,10 +43,10 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/jtag_0.js"></script>
     <script src="../_static/jtag_1.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -60,24 +57,18 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Bibliography" href="bibliography.html" />
-    <link rel="prev" title="4. Summary" href="../Chapter_5_ModelValidationAndSelection/Summary.html" />
-
+    <link rel="prev" title="6. Summary" href="../Chapter_7_DeepLearning/Summary.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_References/shared_functions.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Shared functions" />
-<meta property="og:description" content="Shared functions  This notebook contains functions which are commonly reused in the book, for loading and saving data, fitting and assessing prediction models, " />
-<meta property="og:image"       content="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_static/logo.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +77,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Foreword.html">
    Foreword
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Book overview
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
    1. Book content and intended audience
@@ -128,12 +123,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Background
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
    1. Introduction
@@ -160,12 +155,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
    1. Introduction
@@ -197,12 +192,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Performance metrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
    1. Introduction
@@ -234,12 +229,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   5. Model validation and model selection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
    1. Introduction
@@ -256,17 +251,96 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
-   4. Summary
+   5. Summary
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_7_DeepLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Shared functions
@@ -279,6 +353,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +369,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,7 +401,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -346,14 +421,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -377,16 +452,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-imports">
    1.1. General imports
@@ -500,6 +575,11 @@
      1.6.9. get_summary_performances
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-selection-performances">
+     1.6.10. model_selection_performances
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -515,6 +595,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-selection-wrapper">
      1.7.2. model_selection_wrapper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kfold-cv-with-classifier">
+     1.7.3. kfold_cv_with_classifier
     </a>
    </li>
   </ul>
@@ -554,12 +639,74 @@
      1.8.6. get_performances_plots
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-execution-times-plot">
+     1.8.7. get_execution_times_plot
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-model-selection-performances-plots">
+     1.8.8. get_model_selection_performances_plots
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.8.9. get_model_selection_performances_plots
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-decision-boundary-classifier">
+     1.8.10. plot_decision_boundary_classifier
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-decision-boundary">
+     1.8.11. plot_decision_boundary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning-functions">
+   1.9. Deep Learning functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seed-everything">
+     1.9.1. seed_everything
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utils-for-data-management-training-and-evaluation">
+     1.9.2. Utils for data management, training and evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frauddatasetunsupervised">
+     1.9.3. FraudDatasetUnsupervised
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplefraudmlpwithdropout-and-fraudmlp-modules">
+     1.9.4. SimpleFraudMLPWithDropout and FraudMLP modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simpleautoencoder-module">
+     1.9.5. SimpleAutoencoder module
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attention-module">
+     1.9.6. Attention module
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -567,7 +714,7 @@
         
               <div>
                 
-  <div class="section" id="shared-functions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="shared-functions">
 <span id="id1"></span><h1><span class="section-number">1. </span>Shared functions<a class="headerlink" href="#shared-functions" title="Permalink to this headline">¶</a></h1>
 <p>This notebook contains functions which are commonly reused in the book, for loading and saving data, fitting and assessing prediction models, or plotting results.</p>
 <p>The notebook can be downloaded from GitHub with</p>
@@ -591,7 +738,9 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1">#import sklearn</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>
@@ -599,6 +748,7 @@
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
@@ -606,6 +756,9 @@
 
 <span class="kn">import</span> <span class="nn">graphviz</span>
 <span class="kn">import</span> <span class="nn">xgboost</span>
+
+<span class="c1"># For imbalanced learning</span>
+<span class="kn">import</span> <span class="nn">imblearn</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -700,11 +853,11 @@ Sampling ratio added in <a class="reference internal" href="../Chapter_5_ModelVa
     <span class="c1"># Get the test set data</span>
     <span class="n">test_df</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="c1"># Note: Cards known to be frauded after the delay period are removed from the test set</span>
+    <span class="c1"># Note: Cards known to be compromised after the delay period are removed from the test set</span>
     <span class="c1"># That is, for each test day, all frauds known at (test_day-delay_period) are removed</span>
     
-    <span class="c1"># First, get known frauded customers from the training set</span>
-    <span class="n">known_frauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="c1"># First, get known defrauded customers from the training set</span>
+    <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
     
     <span class="c1"># Get the relative starting day of training set (easier than TX_DATETIME to collect test data)</span>
     <span class="n">start_tx_time_days_training</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -717,15 +870,15 @@ Sampling ratio added in <a class="reference internal" href="../Chapter_5_ModelVa
                                                                     <span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span>
                                                                     <span class="n">day</span><span class="p">]</span>
         
-        <span class="c1"># Frauded cards from that test day, minus the delay period, are added to the pool of known frauded customers</span>
+        <span class="c1"># Compromised cards from that test day, minus the delay period, are added to the pool of known defrauded customers</span>
         <span class="n">test_df_day_delay_period</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">start_tx_time_days_training</span><span class="o">+</span>
                                                                                 <span class="n">delta_train</span><span class="o">+</span>
                                                                                 <span class="n">day</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         
-        <span class="n">new_frauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_df_day_delay_period</span><span class="p">[</span><span class="n">test_df_day_delay_period</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
-        <span class="n">known_frauded_customers</span> <span class="o">=</span> <span class="n">known_frauded_customers</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">new_frauded_customers</span><span class="p">)</span>
+        <span class="n">new_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_df_day_delay_period</span><span class="p">[</span><span class="n">test_df_day_delay_period</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+        <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="n">known_defrauded_customers</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">new_defrauded_customers</span><span class="p">)</span>
         
-        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">test_df_day</span><span class="p">[</span><span class="o">~</span><span class="n">test_df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_frauded_customers</span><span class="p">)]</span>
+        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">test_df_day</span><span class="p">[</span><span class="o">~</span><span class="n">test_df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_defrauded_customers</span><span class="p">)]</span>
         
         <span class="n">test_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_df_day</span><span class="p">)</span>
         
@@ -744,6 +897,73 @@ Sampling ratio added in <a class="reference internal" href="../Chapter_5_ModelVa
     
     <span class="k">return</span> <span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
                                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_train_delay_test_set</span><span class="p">(</span><span class="n">transactions_df</span><span class="p">,</span>
+                             <span class="n">start_date_training</span><span class="p">,</span>
+                             <span class="n">delta_train</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">delta_delay</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">delta_test</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                             <span class="n">sampling_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                             <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    
+    <span class="c1"># Get the training set data</span>
+    <span class="n">train_df</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_DATETIME</span><span class="o">&gt;=</span><span class="n">start_date_training</span><span class="p">)</span> <span class="o">&amp;</span>
+                               <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_DATETIME</span><span class="o">&lt;</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="p">))]</span>
+    
+    <span class="c1"># Get the delay set data</span>
+    <span class="n">delay_df</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_DATETIME</span><span class="o">&gt;=</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="p">))</span> <span class="o">&amp;</span>
+                               <span class="p">(</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_DATETIME</span><span class="o">&lt;</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="p">)</span><span class="o">+</span>
+                                                                               <span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_delay</span><span class="p">))]</span>
+    
+    <span class="c1"># Get the test set data</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Note: Cards known to be compromised after the delay period are removed from the test set</span>
+    <span class="c1"># That is, for each test day, all frauds known at (test_day-delay_period) are removed</span>
+    
+    <span class="c1"># First, get known defrauded customers from the training set</span>
+    <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    
+    <span class="c1"># Get the relative starting day of training set (easier than TX_DATETIME to collect test data)</span>
+    <span class="n">start_tx_time_days_training</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    
+    <span class="c1"># Then, for each day of the test set</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta_test</span><span class="p">):</span>
+    
+        <span class="c1"># Get test data for that day</span>
+        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">start_tx_time_days_training</span><span class="o">+</span>
+                                                                    <span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="o">+</span>
+                                                                    <span class="n">day</span><span class="p">]</span>
+        
+        <span class="c1"># Compromised cards from that test day, minus the delay period, are added to the pool of known defrauded customers</span>
+        <span class="n">test_df_day_delay_period</span> <span class="o">=</span> <span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">TX_TIME_DAYS</span><span class="o">==</span><span class="n">start_tx_time_days_training</span><span class="o">+</span>
+                                                                                <span class="n">delta_train</span><span class="o">+</span>
+                                                                                <span class="n">day</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="n">new_defrauded_customers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_df_day_delay_period</span><span class="p">[</span><span class="n">test_df_day_delay_period</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+        <span class="n">known_defrauded_customers</span> <span class="o">=</span> <span class="n">known_defrauded_customers</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">new_defrauded_customers</span><span class="p">)</span>
+        
+        <span class="n">test_df_day</span> <span class="o">=</span> <span class="n">test_df_day</span><span class="p">[</span><span class="o">~</span><span class="n">test_df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_defrauded_customers</span><span class="p">)]</span>
+        
+        <span class="n">test_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_df_day</span><span class="p">)</span>
+        
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+    
+    <span class="c1"># If subsample</span>
+    <span class="k">if</span> <span class="n">sampling_ratio</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span>
+        
+        <span class="n">train_df_frauds</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="n">sampling_ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">train_df_genuine</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="n">sampling_ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">train_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_df_frauds</span><span class="p">,</span><span class="n">train_df_genuine</span><span class="p">])</span>
+        
+    <span class="c1"># Sort data sets by ascending order of transaction ID</span>
+    <span class="n">train_df</span><span class="o">=</span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">)</span>
+    <span class="n">test_df</span><span class="o">=</span><span class="n">test_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TRANSACTION_ID&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">delay_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -847,12 +1067,12 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
             
     <span class="c1"># Get the top k most suspicious cards</span>
     <span class="n">df_day_top_k</span><span class="o">=</span><span class="n">df_day</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span>
-    <span class="n">list_detected_frauded_cards</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
+    <span class="n">list_detected_compromised_cards</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df_day_top_k</span><span class="p">[</span><span class="n">df_day_top_k</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="p">)</span>
     
     <span class="c1"># Compute precision top k</span>
-    <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
+    <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_detected_compromised_cards</span><span class="p">)</span> <span class="o">/</span> <span class="n">top_k</span>
     
-    <span class="k">return</span> <span class="n">list_detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span>
+    <span class="k">return</span> <span class="n">list_detected_compromised_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span>
 </pre></div>
 </div>
 </div>
@@ -864,17 +1084,17 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
 Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html#precision-top-k-metrics"><span class="std std-ref">Chapter 4, Precision_top_K_Metrics</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">remove_detected_frauded_cards</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">remove_detected_compromised_cards</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="c1"># Sort days by increasing order</span>
     <span class="n">list_days</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">list_days</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
     
-    <span class="c1"># At first, the list of detected frauded cards is empty</span>
-    <span class="n">list_detected_frauded_cards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># At first, the list of detected compromised cards is empty</span>
+    <span class="n">list_detected_compromised_cards</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="n">card_precision_top_k_per_day_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">nb_frauded_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nb_compromised_cards_per_day</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="c1"># For each day, compute precision top k</span>
     <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">list_days</span><span class="p">:</span>
@@ -882,24 +1102,24 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
         <span class="n">df_day</span> <span class="o">=</span> <span class="n">predictions_df</span><span class="p">[</span><span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">day</span><span class="p">]</span>
         <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[[</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="s1">&#39;CUSTOMER_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]]</span>
         
-        <span class="c1"># Let us remove detected frauded cards from the set of daily transactions</span>
-        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_detected_frauded_cards</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+        <span class="c1"># Let us remove detected compromised cards from the set of daily transactions</span>
+        <span class="n">df_day</span> <span class="o">=</span> <span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_detected_compromised_cards</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
         
-        <span class="n">nb_frauded_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+        <span class="n">nb_compromised_cards_per_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_day</span><span class="p">[</span><span class="n">df_day</span><span class="o">.</span><span class="n">TX_FRAUD</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
         
-        <span class="n">detected_frauded_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
+        <span class="n">detected_compromised_cards</span><span class="p">,</span> <span class="n">card_precision_top_k</span> <span class="o">=</span> <span class="n">card_precision_top_k_day</span><span class="p">(</span><span class="n">df_day</span><span class="p">,</span><span class="n">top_k</span><span class="p">)</span>
         
         <span class="n">card_precision_top_k_per_day_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_precision_top_k</span><span class="p">)</span>
         
-        <span class="c1"># Let us update the list of detected frauded cards</span>
-        <span class="k">if</span> <span class="n">remove_detected_frauded_cards</span><span class="p">:</span>
-            <span class="n">list_detected_frauded_cards</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">detected_frauded_cards</span><span class="p">)</span>
+        <span class="c1"># Let us update the list of detected compromised cards</span>
+        <span class="k">if</span> <span class="n">remove_detected_compromised_cards</span><span class="p">:</span>
+            <span class="n">list_detected_compromised_cards</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">detected_compromised_cards</span><span class="p">)</span>
         
     <span class="c1"># Compute the mean</span>
     <span class="n">mean_card_precision_top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     
     <span class="c1"># Returns precision top k per day as a list, and resulting mean</span>
-    <span class="k">return</span> <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
+    <span class="k">return</span> <span class="n">nb_compromised_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span>
 </pre></div>
 </div>
 </div>
@@ -918,7 +1138,7 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
     <span class="n">predictions_df</span><span class="p">[</span><span class="s1">&#39;predictions&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">y_pred</span>
     
     <span class="c1"># Compute the CP@k using the function implemented in Chapter 4, Section 4.2</span>
-    <span class="n">nb_frauded_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span>\
+    <span class="n">nb_compromised_cards_per_day</span><span class="p">,</span><span class="n">card_precision_top_k_per_day_list</span><span class="p">,</span><span class="n">mean_card_precision_top_k</span><span class="o">=</span>\
         <span class="n">card_precision_top_k</span><span class="p">(</span><span class="n">predictions_df</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
     
     <span class="c1"># Return the mean_card_precision_top_k</span>
@@ -1144,6 +1364,122 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
 </div>
 </div>
 </div>
+<div class="section" id="model-selection-performances">
+<h3><span class="section-number">1.6.10. </span>model_selection_performances<a class="headerlink" href="#model-selection-performances" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_selection_performances</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span>
+                                 <span class="n">performance_metric</span><span class="o">=</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">):</span>
+    
+    <span class="c1"># Note: max_depth of 50 is similar to None</span>
+    <span class="n">default_parameters_dictionary</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s2">&quot;Logstic Regression&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="s2">&quot;100/50&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="s2">&quot;100/0.1/2&quot;</span>
+    <span class="p">}</span>
+    
+    <span class="n">mean_performances_dictionary</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Default parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Best validation parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Optimal parameters&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="n">std_performances_dictionary</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Default parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Best validation parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Optimal parameters&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># For each model class</span>
+    <span class="k">for</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">performances_df</span> <span class="ow">in</span> <span class="n">performances_df_dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="c1"># Get the performances for the default paramaters</span>
+        <span class="n">default_performances</span><span class="o">=</span><span class="n">performances_df</span><span class="p">[</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">default_parameters_dictionary</span><span class="p">[</span><span class="n">model_class</span><span class="p">]]</span>
+        <span class="n">default_performances</span><span class="o">=</span><span class="n">default_performances</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Default parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">default_performances</span><span class="p">[</span><span class="n">performance_metric</span><span class="o">+</span><span class="s2">&quot; Test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Default parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">default_performances</span><span class="p">[</span><span class="n">performance_metric</span><span class="o">+</span><span class="s2">&quot; Test Std&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="c1"># Get the performances for the best estimated parameters</span>
+        <span class="n">performances_summary</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">performances_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Test performance&quot;</span><span class="p">]][</span><span class="n">performance_metric</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">mean_std_performances</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+/-&quot;</span><span class="p">)</span>
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Best validation parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Best validation parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        
+        <span class="c1"># Get the performances for the boptimal parameters</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">performances_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Optimal test performance&quot;</span><span class="p">]][</span><span class="n">performance_metric</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">mean_std_performances</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+/-&quot;</span><span class="p">)</span>
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Optimal parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Optimal parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        
+    <span class="c1"># Return the mean performances and their standard deviations    </span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mean_performances_dictionary</span><span class="p">,</span><span class="n">std_performances_dictionary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_selection_performances</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span>
+                                 <span class="n">performance_metric</span><span class="o">=</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span>
+                                 <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;XGBoost&#39;</span><span class="p">],</span>
+                                 <span class="n">default_parameters_dictionary</span><span class="o">=</span><span class="p">{</span>
+                                                <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                                                <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                                <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="s2">&quot;100/50&quot;</span><span class="p">,</span>
+                                                <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="s2">&quot;100/0.1/3&quot;</span>
+                                            <span class="p">}):</span>
+    
+    <span class="n">mean_performances_dictionary</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Default parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Best validation parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Optimal parameters&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="n">std_performances_dictionary</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Default parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Best validation parameters&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;Optimal parameters&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># For each model class</span>
+    <span class="k">for</span> <span class="n">model_class</span> <span class="ow">in</span> <span class="n">model_classes</span><span class="p">:</span>
+        
+        <span class="n">performances_df</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">[</span><span class="n">model_class</span><span class="p">]</span>
+        
+        <span class="c1"># Get the performances for the default paramaters</span>
+        <span class="n">default_performances</span><span class="o">=</span><span class="n">performances_df</span><span class="p">[</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">default_parameters_dictionary</span><span class="p">[</span><span class="n">model_class</span><span class="p">]]</span>
+        <span class="n">default_performances</span><span class="o">=</span><span class="n">default_performances</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Default parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">default_performances</span><span class="p">[</span><span class="n">performance_metric</span><span class="o">+</span><span class="s2">&quot; Test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Default parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">default_performances</span><span class="p">[</span><span class="n">performance_metric</span><span class="o">+</span><span class="s2">&quot; Test Std&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="c1"># Get the performances for the best estimated parameters</span>
+        <span class="n">performances_summary</span><span class="o">=</span><span class="n">get_summary_performances</span><span class="p">(</span><span class="n">performances_df</span><span class="p">,</span> <span class="n">parameter_column_name</span><span class="o">=</span><span class="s2">&quot;Parameters summary&quot;</span><span class="p">)</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">performances_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Test performance&quot;</span><span class="p">]][</span><span class="n">performance_metric</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">mean_std_performances</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+/-&quot;</span><span class="p">)</span>
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Best validation parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Best validation parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        
+        <span class="c1"># Get the performances for the boptimal parameters</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">performances_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Optimal test performance&quot;</span><span class="p">]][</span><span class="n">performance_metric</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">mean_std_performances</span><span class="o">=</span><span class="n">mean_std_performances</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+/-&quot;</span><span class="p">)</span>
+        <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Optimal parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s2">&quot;Optimal parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mean_std_performances</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        
+    <span class="c1"># Return the mean performances and their standard deviations    </span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mean_performances_dictionary</span><span class="p">,</span><span class="n">std_performances_dictionary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="model-selection">
 <h2><span class="section-number">1.7. </span>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h2>
@@ -1257,6 +1593,46 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
 </div>
 </div>
 </div>
+<div class="section" id="kfold-cv-with-classifier">
+<h3><span class="section-number">1.7.3. </span>kfold_cv_with_classifier<a class="headerlink" href="#kfold-cv-with-classifier" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html#cost-sensitive-learning"><span class="std std-ref">Chapter 6, Cost-sensitive learning</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kfold_cv_with_classifier</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span>
+                             <span class="n">X</span><span class="p">,</span>
+                             <span class="n">y</span><span class="p">,</span>
+                             <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                             <span class="n">strategy_name</span><span class="o">=</span><span class="s2">&quot;Basline classifier&quot;</span><span class="p">):</span>
+    
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">cv_results_</span><span class="o">=</span><span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+                                                       <span class="n">scoring</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;average_precision&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">],</span>
+                                                       <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cv_results_</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">results_mean</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">results_std</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">results_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_mean</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;+/-&#39;</span><span class="o">+</span>
+                              <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">results_std</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">))]],</span>
+                            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fit time (s)&#39;</span><span class="p">,</span><span class="s1">&#39;Score time (s)&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span><span class="s1">&#39;Average Precision&#39;</span><span class="p">,</span><span class="s1">&#39;Balanced accuracy&#39;</span><span class="p">])</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="n">strategy_name</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">classifier_0</span><span class="o">=</span><span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">train_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">]})</span>
+    <span class="n">test_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]})</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">classifier_0</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="plotting">
 <h2><span class="section-number">1.8. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
@@ -1274,11 +1650,11 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
     <span class="c1">#Number of fraudulent transactions per day</span>
     <span class="n">nb_fraudulent_transactions_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="c1">#Number of fraudulent cards per day</span>
-    <span class="n">nb_frauded_card_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">nb_compromised_card_per_day</span><span class="o">=</span><span class="n">transactions_df</span><span class="p">[</span><span class="n">transactions_df</span><span class="p">[</span><span class="s1">&#39;TX_FRAUD&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;TX_TIME_DAYS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">CUSTOMER_ID</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
     
     <span class="n">tx_stats</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;nb_tx_per_day&quot;</span><span class="p">:</span><span class="n">nb_tx_per_day</span><span class="p">,</span>
                            <span class="s2">&quot;nb_fraudulent_transactions_per_day&quot;</span><span class="p">:</span><span class="n">nb_fraudulent_transactions_per_day</span><span class="p">,</span>
-                           <span class="s2">&quot;nb_frauded_cards_per_day&quot;</span><span class="p">:</span><span class="n">nb_frauded_card_per_day</span><span class="p">})</span>
+                           <span class="s2">&quot;nb_compromised_cards_per_day&quot;</span><span class="p">:</span><span class="n">nb_compromised_card_per_day</span><span class="p">})</span>
 
     <span class="n">tx_stats</span><span class="o">=</span><span class="n">tx_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
     
@@ -1318,7 +1694,7 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">*</span><span class="mf">0.7</span><span class="p">)</span>    
 
     <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">start_date_test</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="n">delta_delay</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
     
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">ylim</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;Training period&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">start_date_training</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delta_train</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">ylim</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;Delay period&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
@@ -1401,7 +1777,7 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
             <span class="n">conf_max</span> <span class="o">=</span> <span class="n">performances_df</span><span class="p">[</span><span class="n">performance_metric_expe_type</span><span class="p">]</span>\
                         <span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">performances_df</span><span class="p">[</span><span class="n">performance_metric_expe_type</span><span class="o">+</span><span class="s1">&#39; Std&#39;</span><span class="p">]</span>
     
-            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">],</span> <span class="n">conf_min</span><span class="p">,</span> <span class="n">conf_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">expe_type_color_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">],</span> <span class="n">conf_min</span><span class="p">,</span> <span class="n">conf_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">expe_type_color_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
 
     <span class="c1"># If summary_performances table is present, adds vertical dashed bar for best estimated parameter </span>
     <span class="k">if</span> <span class="n">summary_performances</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1457,6 +1833,622 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
 </div>
 </div>
 </div>
+<div class="section" id="get-execution-times-plot">
+<h3><span class="section-number">1.8.7. </span>get_execution_times_plot<a class="headerlink" href="#get-execution-times-plot" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#validation-strategies"><span class="std std-ref">Chapter 5, Validation Strategies</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the performance plot for a single performance metric</span>
+<span class="k">def</span> <span class="nf">get_execution_times_plot</span><span class="p">(</span><span class="n">performances_df</span><span class="p">,</span>
+                             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                             <span class="n">parameter_name</span><span class="o">=</span><span class="s2">&quot;Tree maximum depth&quot;</span><span class="p">):</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    
+    <span class="c1"># Plot data on graph</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">performances_df</span><span class="p">[</span><span class="s1">&#39;Parameters summary&#39;</span><span class="p">],</span> <span class="n">performances_df</span><span class="p">[</span><span class="s2">&quot;Execution time&quot;</span><span class="p">],</span> 
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># Set title, and x and y axes labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="n">parameter_name</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Execution time (seconds)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-model-selection-performances-plots">
+<h3><span class="section-number">1.8.8. </span>get_model_selection_performances_plots<a class="headerlink" href="#get-model-selection-performances-plots" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the performance plot for a single performance metric</span>
+<span class="k">def</span> <span class="nf">get_model_selection_performance_plot</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
+                                         <span class="n">ax</span><span class="p">,</span> 
+                                         <span class="n">performance_metric</span><span class="p">,</span>
+                                         <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                                         <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                        <span class="s1">&#39;XGBoost&#39;</span><span class="p">]):</span>
+    
+    
+    <span class="p">(</span><span class="n">mean_performances_dictionary</span><span class="p">,</span><span class="n">std_performances_dictionary</span><span class="p">)</span> <span class="o">=</span> \
+        <span class="n">model_selection_performances</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="o">=</span><span class="n">performances_df_dictionary</span><span class="p">,</span>
+                                     <span class="n">performance_metric</span><span class="o">=</span><span class="n">performance_metric</span><span class="p">)</span>
+    
+    
+    <span class="c1"># width of the bars</span>
+    <span class="n">barWidth</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="c1"># The x position of bars</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_classes</span><span class="p">))</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r1</span><span class="o">+</span><span class="n">barWidth</span>
+    <span class="n">r3</span> <span class="o">=</span> <span class="n">r1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">barWidth</span>
+    
+    <span class="c1"># Create Default parameters bars (Orange)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Default parameters&#39;</span><span class="p">],</span> 
+           <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#CA8035&#39;</span><span class="p">,</span> <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+           <span class="n">yerr</span><span class="o">=</span><span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Default parameters&#39;</span><span class="p">],</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Default parameters&#39;</span><span class="p">)</span>
+ 
+    <span class="c1"># Create Best validation parameters bars (Red)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Best validation parameters&#39;</span><span class="p">],</span> 
+           <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#008000&#39;</span><span class="p">,</span> <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+           <span class="n">yerr</span><span class="o">=</span><span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Best validation parameters&#39;</span><span class="p">],</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Best validation parameters&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create Optimal parameters bars (Green)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">r3</span><span class="p">,</span> <span class="n">mean_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Optimal parameters&#39;</span><span class="p">],</span> 
+           <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#2F4D7E&#39;</span><span class="p">,</span> <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+           <span class="n">yerr</span><span class="o">=</span><span class="n">std_performances_dictionary</span><span class="p">[</span><span class="s1">&#39;Optimal parameters&#39;</span><span class="p">],</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal parameters&#39;</span><span class="p">)</span>
+ 
+
+    <span class="c1"># Set title, and x and y axes labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">r2</span><span class="o">+</span><span class="n">barWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">model_classes</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">performance_metric</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Model class&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">1.8.9. </span>get_model_selection_performances_plots<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection"><span class="std std-ref">Chapter 5, Model Selection</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_model_selection_performances_plots</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
+                                           <span class="n">performance_metrics_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AUC ROC&#39;</span><span class="p">,</span> <span class="s1">&#39;Average precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Card Precision@100&#39;</span><span class="p">],</span>
+                                           <span class="n">ylim_list</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.9</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.35</span><span class="p">]],</span>
+                                           <span class="n">model_classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> 
+                                                          <span class="s1">&#39;XGBoost&#39;</span><span class="p">]):</span>
+    
+    <span class="c1"># Create as many graphs as there are performance metrics to display</span>
+    <span class="n">n_performance_metrics</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">performance_metrics_list</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_performance_metrics</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">n_performance_metrics</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    
+    <span class="n">parameter_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Default parameters&#39;</span><span class="p">,</span><span class="s1">&#39;Best validation parameters&#39;</span><span class="p">,</span><span class="s1">&#39;Optimal parameters&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Plot performance metric for each metric in performance_metrics_list</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_performance_metrics</span><span class="p">):</span>
+    
+        <span class="n">get_model_selection_performance_plot</span><span class="p">(</span><span class="n">performances_df_dictionary</span><span class="p">,</span> 
+                                             <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                             <span class="n">performance_metrics_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                             <span class="n">ylim</span><span class="o">=</span><span class="n">ylim_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                             <span class="n">model_classes</span><span class="o">=</span><span class="n">model_classes</span>
+                                            <span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_performance_metrics</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
+                                       <span class="n">labels</span><span class="o">=</span><span class="n">parameter_types</span><span class="p">,</span> 
+                                       <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                                       <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Parameter type&quot;</span><span class="p">,</span>
+                                       <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
+                                       <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+                        <span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-decision-boundary-classifier">
+<h3><span class="section-number">1.8.10. </span>plot_decision_boundary_classifier<a class="headerlink" href="#plot-decision-boundary-classifier" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html#cost-sensitive-learning"><span class="std std-ref">Chapter 6, Cost-sensitive learning</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                                      <span class="n">classifier</span><span class="p">,</span>
+                                      <span class="n">train_df</span><span class="p">,</span>
+                                      <span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span><span class="s1">&#39;X2&#39;</span><span class="p">],</span>
+                                      <span class="n">output_feature</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+                                      <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                      <span class="n">fs</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                                      <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">plot_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:blue&quot;</span><span class="p">,</span><span class="s2">&quot;tab:orange&quot;</span><span class="p">]</span>
+
+    <span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_df</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="n">plot_step</span><span class="o">=</span><span class="mf">0.1</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">))</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu_r</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot_training_data</span><span class="p">:</span>
+        <span class="c1"># Plot the training points</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">output_feature</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">group</span><span class="p">[</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">input_features</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">input_features</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-decision-boundary">
+<h3><span class="section-number">1.8.11. </span>plot_decision_boundary<a class="headerlink" href="#plot-decision-boundary" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html#cost-sensitive-learning"><span class="std std-ref">Chapter 6, Cost-sensitive learning</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_decision_boundary</span><span class="p">(</span><span class="n">classifier_0</span><span class="p">,</span>
+                           <span class="n">train_df</span><span class="p">,</span> 
+                           <span class="n">test_df</span><span class="p">):</span>
+    
+    <span class="n">fig_decision_boundary</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With training data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">train_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+    <span class="n">plot_decision_boundary_classifier</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">classifier_0</span><span class="p">,</span>
+                                  <span class="n">test_df</span><span class="p">,</span>
+                                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Decision surface of the decision tree</span><span class="se">\n</span><span class="s2"> With test data&quot;</span><span class="p">,</span>
+                                  <span class="n">plot_training_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> 
+              <span class="c1">#labels=[0,1], </span>
+              <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+              <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">)</span>
+
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu_r</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">cax</span> <span class="o">=</span> <span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    <span class="n">fig_decision_boundary</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">fig_decision_boundary</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deep-learning-functions">
+<h2><span class="section-number">1.9. </span>Deep Learning functions<a class="headerlink" href="#deep-learning-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="seed-everything">
+<h3><span class="section-number">1.9.1. </span>seed_everything<a class="headerlink" href="#seed-everything" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html#feedforwardneuralnetworks"><span class="std std-ref">Chapter 7, Feed-forward neural network</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seed_everything</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYTHONHASHSEED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="utils-for-data-management-training-and-evaluation">
+<h3><span class="section-number">1.9.2. </span>Utils for data management, training and evaluation<a class="headerlink" href="#utils-for-data-management-training-and-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html#feedforwardneuralnetworks"><span class="std std-ref">Chapter 7, Feed-forward neural network</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FraudDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="s1">&#39;Initialization&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Denotes the total number of samples&#39;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="s1">&#39;Generates one sample of data&#39;</span>
+        <span class="c1"># Select sample index</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">prepare_generators</span><span class="p">(</span><span class="n">training_set</span><span class="p">,</span><span class="n">valid_set</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">):</span>
+    
+    <span class="n">train_loader_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="n">batch_size</span><span class="p">,</span>
+              <span class="s1">&#39;shuffle&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+              <span class="s1">&#39;num_workers&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="n">valid_loader_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="n">batch_size</span><span class="p">,</span>
+              <span class="s1">&#39;num_workers&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    
+    <span class="n">training_generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">training_set</span><span class="p">,</span> <span class="o">**</span><span class="n">train_loader_params</span><span class="p">)</span>
+    <span class="n">valid_generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">valid_set</span><span class="p">,</span> <span class="o">**</span><span class="n">valid_loader_params</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">training_generator</span><span class="p">,</span><span class="n">valid_generator</span>
+
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">generator</span><span class="p">,</span><span class="n">criterion</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">batch_losses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">generator</span><span class="p">:</span>
+        <span class="c1"># Forward pass</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
+        <span class="c1"># Compute Loss</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">y_batch</span><span class="p">)</span>
+        <span class="n">batch_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+    <span class="n">mean_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">batch_losses</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">mean_loss</span>
+
+<span class="k">class</span> <span class="nc">EarlyStopping</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience</span> <span class="o">=</span> <span class="n">patience</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">Inf</span>
+    
+    <span class="k">def</span> <span class="nf">continue_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">current_score</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">&gt;</span> <span class="n">current_score</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="n">current_score</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New best score:&quot;</span><span class="p">,</span> <span class="n">current_score</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">,</span> <span class="s2">&quot; iterations since best score.&quot;</span><span class="p">)</span>
+                
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience</span>  
+    
+<span class="k">def</span> <span class="nf">training_loop</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">training_generator</span><span class="p">,</span><span class="n">valid_generator</span><span class="p">,</span><span class="n">optimizer</span><span class="p">,</span><span class="n">criterion</span><span class="p">,</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">apply_early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">patience</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1">#Setting the model in training mode</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">apply_early_stopping</span><span class="p">:</span>
+        <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span><span class="n">patience</span><span class="o">=</span><span class="n">patience</span><span class="p">)</span>
+    
+    <span class="n">all_train_losses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_valid_losses</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1">#Training loop</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_epochs</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">train_loss</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">training_generator</span><span class="p">:</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="c1"># Forward pass</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
+            <span class="c1"># Compute Loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">y_batch</span><span class="p">)</span>
+            <span class="c1"># Backward pass</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>   
+            <span class="n">train_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        
+        <span class="c1">#showing last training loss after each epoch</span>
+        <span class="n">all_train_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_loss</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1">: train loss: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)))</span>
+        <span class="c1">#evaluating the model on the test set after each epoch    </span>
+        <span class="n">valid_loss</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">valid_generator</span><span class="p">,</span><span class="n">criterion</span><span class="p">)</span>
+        <span class="n">all_valid_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valid_loss</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valid loss: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valid_loss</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">apply_early_stopping</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">early_stopping</span><span class="o">.</span><span class="n">continue_training</span><span class="p">(</span><span class="n">valid_loss</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Early stopping&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+        
+    <span class="n">training_execution_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span><span class="n">training_execution_time</span><span class="p">,</span><span class="n">all_train_losses</span><span class="p">,</span><span class="n">all_valid_losses</span>
+
+<span class="k">def</span> <span class="nf">per_sample_mse</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">generator</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="n">batch_losses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">generator</span><span class="p">:</span>
+        <span class="c1"># Forward pass</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
+        <span class="c1"># Compute Loss</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">y_batch</span><span class="p">)</span>
+        <span class="n">loss_app</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        <span class="n">batch_losses</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loss_app</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">batch_losses</span>
+
+<span class="k">class</span> <span class="nc">FraudDatasetForPipe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="s1">&#39;Initialization&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Denotes the total number of samples&#39;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="s1">&#39;Generates one sample of data&#39;</span>
+        <span class="c1"># Select sample index</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span>  
+        
+<span class="k">def</span> <span class="nf">rolling_window</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">window</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span><span class="o">*-</span><span class="mi">1</span><span class="p">,</span><span class="n">array</span><span class="p">])</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+    <span class="n">strides</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">strides</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">stride_tricks</span><span class="o">.</span><span class="n">as_strided</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="n">strides</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="frauddatasetunsupervised">
+<h3><span class="section-number">1.9.3. </span>FraudDatasetUnsupervised<a class="headerlink" href="#frauddatasetunsupervised" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html#autoencoders"><span class="std std-ref">Chapter 7, Autoencoders and anomaly detection</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FraudDatasetUnsupervised</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="s1">&#39;Initialization&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Denotes the total number of samples&#39;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="s1">&#39;Generates one sample of data&#39;</span>
+        <span class="c1"># Select sample index</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simplefraudmlpwithdropout-and-fraudmlp-modules">
+<h3><span class="section-number">1.9.4. </span>SimpleFraudMLPWithDropout and FraudMLP modules<a class="headerlink" href="#simplefraudmlpwithdropout-and-fraudmlp-modules" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html#feedforwardneuralnetworks"><span class="std std-ref">Chapter 7, Feed-forward neural network</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleFraudMLPWithDropout</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">SimpleFraudMLPWithDropout</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <span class="c1"># parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span>  <span class="o">=</span> <span class="n">hidden_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+            
+            <span class="c1">#input to hidden</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+            <span class="c1">#hidden to output</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+            
+        <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+            
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">output</span>
+        
+<span class="k">class</span> <span class="nc">FraudMLP</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span><span class="n">hidden_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">FraudMLP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <span class="c1"># parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span>  <span class="o">=</span> <span class="n">hidden_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+            
+            <span class="c1">#input to hidden</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc_hidden</span><span class="o">=</span><span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fc_hidden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fc_hidden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
+                
+            <span class="c1">#hidden to output</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">()</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+            
+        <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+            
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>             
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_hidden</span><span class="p">:</span>
+                <span class="n">hidden</span><span class="o">=</span><span class="n">layer</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+                <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simpleautoencoder-module">
+<h3><span class="section-number">1.9.5. </span>SimpleAutoencoder module<a class="headerlink" href="#simpleautoencoder-module" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/Autoencoders.html#autoencoders"><span class="std std-ref">Chapter 7, Autoencoders and anomaly detection</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleAutoencoder</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">intermediate_size</span><span class="p">,</span> <span class="n">code_size</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">SimpleAutoencoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <span class="c1"># parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_size</span> <span class="o">=</span> <span class="n">intermediate_size</span>           
+            <span class="bp">self</span><span class="o">.</span><span class="n">code_size</span>  <span class="o">=</span> <span class="n">code_size</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>   
+            
+            <span class="c1">#encoder</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intermediate_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">code_size</span><span class="p">)</span>
+            
+            <span class="c1">#decoder </span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_size</span><span class="p">)</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">fc4</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intermediate_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">)</span>
+            
+            
+        <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+            
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+ 
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+            <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc4</span><span class="p">(</span><span class="n">hidden</span><span class="p">)</span>
+            <span class="c1">#linear activation in final layer)            </span>
+            
+            <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="attention-module">
+<h3><span class="section-number">1.9.6. </span>Attention module<a class="headerlink" href="#attention-module" title="Permalink to this headline">¶</a></h3>
+<p>First use in <a class="reference internal" href="../Chapter_7_DeepLearning/SequentialModeling.html#sequentialmodeling"><span class="std std-ref">Chapter 7, Sequential models and representation learning</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># source : https://github.com/IBM/pytorch-seq2seq/blob/master/seq2seq/models/attention.py</span>
+
+<span class="k">class</span> <span class="nc">Attention</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Applies an attention mechanism on the output features from the decoder.</span>
+<span class="sd">    .. math::</span>
+<span class="sd">            \begin{array}{ll}</span>
+<span class="sd">            x = context*output \\</span>
+<span class="sd">            attn = exp(x_i) / sum_j exp(x_j) \\</span>
+<span class="sd">            output = \tanh(w * (attn * context) + b * output)</span>
+<span class="sd">            \end{array}</span>
+<span class="sd">    Args:</span>
+<span class="sd">        dim(int): The number of expected features in the output</span>
+<span class="sd">    Inputs: output, context</span>
+<span class="sd">        - **output** (batch, output_len, dimensions): tensor containing the output features from the decoder.</span>
+<span class="sd">        - **context** (batch, input_len, dimensions): tensor containing features of the encoded input sequence.</span>
+<span class="sd">    Outputs: output, attn</span>
+<span class="sd">        - **output** (batch, output_len, dimensions): tensor containing the attended output features from the decoder.</span>
+<span class="sd">        - **attn** (batch, output_len, input_len): tensor containing attention weights.</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        linear_out (torch.nn.Linear): applies a linear transformation to the incoming data: :math:`y = Ax + b`.</span>
+<span class="sd">        mask (torch.Tensor, optional): applies a :math:`-inf` to the indices specified in the `Tensor`.</span>
+<span class="sd">    Examples::</span>
+<span class="sd">         &gt;&gt;&gt; attention = seq2seq.models.Attention(256)</span>
+<span class="sd">         &gt;&gt;&gt; context = Variable(torch.randn(5, 3, 256))</span>
+<span class="sd">         &gt;&gt;&gt; output = Variable(torch.randn(5, 5, 256))</span>
+<span class="sd">         &gt;&gt;&gt; output, attn = attention(output, context)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Attention</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">dim</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">set_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets indices to be masked</span>
+<span class="sd">        Args:</span>
+<span class="sd">            mask (torch.Tensor): tensor containing indices to be masked</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">hidden_size</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">input_size</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># (batch, out_len, dim) * (batch, in_len, dim) -&gt; (batch, out_len, in_len)</span>
+        <span class="n">attn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">attn</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>
+        <span class="n">attn</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">attn</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
+
+        <span class="c1"># (batch, out_len, in_len) * (batch, in_len, dim) -&gt; (batch, out_len, dim)</span>
+        <span class="n">mix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">attn</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+        <span class="c1"># concat -&gt; (batch, out_len, 2*dim)</span>
+        <span class="n">combined</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">mix</span><span class="p">,</span> <span class="n">output</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># output -&gt; (batch, out_len, dim)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_out</span><span class="p">(</span><span class="n">combined</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">hidden_size</span><span class="p">)))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">attn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1482,17 +2474,28 @@ Detailed in <a class="reference internal" href="../Chapter_4_PerformanceMetrics/
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Chapter_7_DeepLearning/Summary.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Summary</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Bibliography</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../Chapter_5_ModelValidationAndSelection/Summary.html" title="previous page"><span class="section-number">4. </span>Summary</a>
-    <a class='right-next' id="next-link" href="bibliography.html" title="next page"><span class="section-number">2. </span>Bibliography</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1513,11 +2516,8 @@ Prose and pictures released under a <a href="https://creativecommons.org/license
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
   </body>
 </html>

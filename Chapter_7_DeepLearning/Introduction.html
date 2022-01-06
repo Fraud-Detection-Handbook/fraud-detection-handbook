@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Introduction &#8212; Machine Learning for Credit Card Fraud detection - Practical handbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/jtag_0.js"></script>
+    <script src="../_static/jtag_1.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/Introduction.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Feed-forward neural network" href="FeedForwardNeuralNetworks.html" />
+    <link rel="prev" title="6. Summary" href="../Chapter_6_ImbalancedLearning/Summary.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Credit Card Fraud detection - Practical handbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  1. Book overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContent.html">
+   1. Book content and intended audience
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/BookContributions.html">
+   2. Book contributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_1_BookContent/HowToUse.html">
+   3. How to use this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2. Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/CreditCardFraud.html">
+   2. Credit card fraud scenarios
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/FDS.html">
+   3. Credit card fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/MachineLearningForFraudDetection.html">
+   4. Machine learning for credit card fraud detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_2_Background/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  3. Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/SimulatedDataset.html">
+   2. Transaction data simulator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineFeatureTransformation.html">
+   3. Baseline feature transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html">
+   4. Baseline fraud detection system
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_3_GettingStarted/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4. Performance metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdBased.html">
+   2. Threshold-based metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/ThresholdFree.html">
+   3. Threshold-free metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/TopKBased.html">
+   4. Precision top-k metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Assessment_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_4_PerformanceMetrics/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5. Model validation and model selection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html">
+   2. Validation strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html">
+   3. Model selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData.html">
+   4. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/Summary.html">
+   5. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6. Imbalanced learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/CostSensitive.html">
+   2. Cost-sensitive learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Resampling.html">
+   3. Resampling strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Ensembling.html">
+   4. Ensemble methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_6_ImbalancedLearning/Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7. Deep learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FeedForwardNeuralNetworks.html">
+   2. Feed-forward neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Autoencoders.html">
+   3. Autoencoders and anomaly detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SequentialModeling.html">
+   4. Sequential models and representation learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="RealWorldData.html">
+   5. Real-world data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Summary.html">
+   6. Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/shared_functions.html">
+   1. Shared functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter_References/bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapter_7_DeepLearning/Introduction.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_7_DeepLearning/Introduction.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_7_DeepLearning/Introduction.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-using-a-neural-network-for-fraud-detection">
+   1.1. Why using a neural network for fraud detection?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incremental-learning">
+     1.1.1. Incremental learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representation-learning-and-end-to-end-training">
+     1.1.2. Representation learning and end-to-end training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#federated-learning">
+     1.1.3. Federated learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-additional-model-for-stacking">
+     1.1.4. An additional model for stacking
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-message">
+     1.1.5. Take-away message
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#content-of-the-chapter">
+   1.2. Content of the chapter
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<span id="deep-learning"></span><h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The most widely used models for fraud detection in the industry or in machine learning competitions <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id87">Kag19</a>]</span> are gradient boosting algorithms such as XGBoost <span id="id2">[<a class="reference internal" href="../Chapter_References/bibliography.html#id88">CG16</a>]</span>, LightGBM <span id="id3">[<a class="reference internal" href="../Chapter_References/bibliography.html#id89">KMF+17</a>]</span>, CatBoost <span id="id4">[<a class="reference internal" href="../Chapter_References/bibliography.html#id90">PGV+17</a>]</span>, and tree-based models such as random forest <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id91">Bre01</a>]</span>. With the right preprocessing and feature engineering, these models provide very convincing results in real-world fraud detection systems.</p>
+<p>Neural network algorithms are less often considered in fraud benchmarks with static data as they are more difficult to tune to reach a competitive predictive performance. However, they have many advantages which make them essential in a fraud detection practitioner’s toolbox.</p>
+<div class="section" id="why-using-a-neural-network-for-fraud-detection">
+<h2><span class="section-number">1.1. </span>Why using a neural network for fraud detection?<a class="headerlink" href="#why-using-a-neural-network-for-fraud-detection" title="Permalink to this headline">¶</a></h2>
+<p>There is no reason to assume that a multi-layer feed-forward neural network could outperform random forest or XGBoost on static datasets but there are several other important criteria in the fraud detection problem in addition to the detection performance.</p>
+<div class="section" id="incremental-learning">
+<h3><span class="section-number">1.1.1. </span>Incremental learning<a class="headerlink" href="#incremental-learning" title="Permalink to this headline">¶</a></h3>
+<p>XGBoost and random forest are both tree ensembles. Decision trees are generally not incremental because they require the overall dataset to compute optimal splits and build their structure. Modifying a split given a novel set of data is far from trivial. In particular, as it is built hierarchically, updating a condition in a high split of a tree directly makes the subtrees’ structure unusable. It is worth noting that a number of techniques have been proposed to incrementally update trees, like Hoeffding trees <span id="id6">[<a class="reference internal" href="../Chapter_References/bibliography.html#id92">DH00</a>]</span>, Mondrian trees <span id="id7">[<a class="reference internal" href="../Chapter_References/bibliography.html#id93">LRT14</a>]</span>, or incremental ensembles of trees <span id="id8">[<a class="reference internal" href="../Chapter_References/bibliography.html#id94">STZY18</a>]</span>. Tree-based algorithms however mostly remain used in a batch learning scenario.</p>
+<p>Incremental learning is useful for fraud detection because (1) it is less resource-intensive as models can be updated often on the last chunks of data instead of having to be fully trained on the whole dataset from scratch every time, and (2) it discards the need to store historical data for a long time thus avoiding data regulation issues.</p>
+<p>Neural networks have the advantage of being incremental by nature since their training is iterative and instance-wise.</p>
+</div>
+<div class="section" id="representation-learning-and-end-to-end-training">
+<h3><span class="section-number">1.1.2. </span>Representation learning and end-to-end training<a class="headerlink" href="#representation-learning-and-end-to-end-training" title="Permalink to this headline">¶</a></h3>
+<p>Many studies have shown that additionally to raw transaction features, the use of expert feature engineering (building relevant aggregates based on the cardholder history of transactions) significantly improves the fraud detection rate <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id95">BASO16</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id6">DPCLB+14</a>]</span>.</p>
+<p>However, this process has limitations, primarily that of being dependent on expensive human expert knowledge. There have been attempts to replace manual aggregation through automatic learning of representations <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id98">DJS+20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id96">FCTZ16</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id97">JGZ+18</a>]</span>. These methods are mainly based on neural networks (Autoencoders, convolutional neural networks, long short-term memory networks).</p>
+<p>Moreover, on top of these learned representations, using a feed-forward neural network instead of XGBoost or random forests is more interesting as it allows training/fine-tuning the whole model (representation part + classification part) from one end to the other.</p>
+</div>
+<div class="section" id="federated-learning">
+<h3><span class="section-number">1.1.3. </span>Federated learning<a class="headerlink" href="#federated-learning" title="Permalink to this headline">¶</a></h3>
+<p>Federated learning consists in sharing and training a model on multiple devices while having each device keeping its data locally. The idea is to share an initial model between the devices, update it locally, and frequently federate the updates from all devices into a global model for everyone. In general, the global update is computed with methods like federated averaging <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id99">KonevcnyMY+16</a>]</span>, i.e. through a weighted average of each local model’s weights.</p>
+<p>Contrary to tree-based models, neural networks with the same architecture can have their weights averaged, which make them the first choice when it comes to federated learning.</p>
+</div>
+<div class="section" id="an-additional-model-for-stacking">
+<h3><span class="section-number">1.1.4. </span>An additional model for stacking<a class="headerlink" href="#an-additional-model-for-stacking" title="Permalink to this headline">¶</a></h3>
+<p>Although neural networks might reach a global performance close to XGBoost or random forests, this does not mean that these different models catch the same fraud patterns. In particular, experiments often show that combining a tree-based approach and a neural network into a simple averaging ensemble can lead, thanks to diversity, to a better performance overall.</p>
+</div>
+<div class="section" id="take-away-message">
+<h3><span class="section-number">1.1.5. </span>Take-away message<a class="headerlink" href="#take-away-message" title="Permalink to this headline">¶</a></h3>
+<p>Apart from detection performance, neural networks have several advantages for the credit fraud detection problem: they can be stacked to other models, they can be trained incrementally, they can easily be federated, they allow representation learning, and they can learn representations and classification together with end-to-end training.</p>
+</div>
+</div>
+<div class="section" id="content-of-the-chapter">
+<h2><span class="section-number">1.2. </span>Content of the chapter<a class="headerlink" href="#content-of-the-chapter" title="Permalink to this headline">¶</a></h2>
+<p>This chapter covers techniques to build neural networks for the fraud detection problem. Section 2 describes general considerations to design a first model (fully connected feed-forward neural network). The next sections explore more advanced deep learning techniques to learn useful representations from data. Section 3 and 4 respectively describe the use of autoencoders and sequential models (Convolutional neural networks, long short-term memory networks, and attention mechanism). Finally, section 5 describes the results of all the methods on real-world data, for comparison with the batch methods from chapter 5.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapter_7_DeepLearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Chapter_6_ImbalancedLearning/Summary.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Summary</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FeedForwardNeuralNetworks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Feed-forward neural network</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By <a href="https://mlg.ulb.ac.be/wordpress/">Machine Learning Group (Université Libre de Bruxelles - ULB)</a>.<br/>
+        
+          <div class="extra_footer">
+            <p>
+Code released under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0 license</a>. 
+Prose and pictures released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 license</a>.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
