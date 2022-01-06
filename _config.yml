@@ -9,9 +9,12 @@ logo: images/logo.png
 execute:
   execute_notebooks         : "off"  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
   cache                     : ""  # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
-  exclude_patterns          : ['helper_functions','Chapter_*',Chapter_Introduction/*','Chapter_OptimisationGoals/*','Chapter_MotivatingExample/Baseline*','Chapter_MotivatingExample/Sim*']  # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
+  exclude_patterns          : ['helper_functions','Chapter_*','Not_to_be_published']  # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
 
 #parse:
+#  myst_enable_extensions:
+#    - html_image
+
 #  myst_extended_syntax: true
 
 #######################################################################################
@@ -25,7 +28,9 @@ html:
   extra_footer              : ""  # Will be displayed underneath the footer.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
   home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
+  #baseurl                   : "https://fraud-detection-handbook.github.io/fraud-detection-handbook/"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   baseurl                   : "https://fraud-detection-handbook.github.io/fraud-detection-handbook/"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  use_multitoc_numbering: false
   comments:
     hypothesis              : false
     utterances              : false
@@ -46,6 +51,7 @@ launch_buttons:
   colab_url                 : https://colab.research.google.com # The URL of Google Colab (e.g., https://colab.research.google.com)
 
 repository:
+  #url                       : https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook  # The URL to your book's repository
   url                       : https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook  # The URL to your book's repository
   path_to_book              : ""  # A path to your book's folder, relative to the repository root.
   branch                    : main  # Which branch of the repository should be used when creating links
@@ -53,8 +59,8 @@ repository:
 #######################################################################################
 # Advanced and power-user settings
 sphinx:
-  extra_extensions          :   # A list of extra extensions to load by Sphinx.
-    - jupyterbook_latex
+#  extra_extensions          :   # A list of extra extensions to load by Sphinx.
+#    - jupyterbook_latex
   config                    :   # key-value pairs to directly over-ride the Sphinx configuration
     html_show_copyright: false
 

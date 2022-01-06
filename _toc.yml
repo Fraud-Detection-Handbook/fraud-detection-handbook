@@ -1,21 +1,22 @@
-- file: Foreword
-  numbered: true
-
-- part: 1. Book overview
+format: jb-book
+root: Foreword
+parts:
+- caption: 1. Book overview
+  numbered: True
   chapters:
   - file: Chapter_1_BookContent/BookContent
   - file: Chapter_1_BookContent/BookContributions
   - file: Chapter_1_BookContent/HowToUse
-
-- part: 2. Background
+- caption: 2. Background
+  numbered: True
   chapters:
   - file: Chapter_2_Background/Introduction
   - file: Chapter_2_Background/CreditCardFraud
   - file: Chapter_2_Background/FDS
   - file: Chapter_2_Background/MachineLearningForFraudDetection
   - file: Chapter_2_Background/Summary
-
-- part: 3. Getting started
+- caption: 3. Getting started
+  numbered: True
   chapters:
   - file: Chapter_3_GettingStarted/Introduction
   - file: Chapter_3_GettingStarted/SimulatedDataset
@@ -23,8 +24,8 @@
   - file: Chapter_3_GettingStarted/BaselineModeling
   - file: Chapter_3_GettingStarted/Baseline_RealWorldData
   - file: Chapter_3_GettingStarted/Summary
-
-- part: 4. Performance metrics
+- caption: 4. Performance metrics
+  numbered: True
   chapters:
   - file: Chapter_4_PerformanceMetrics/Introduction
   - file: Chapter_4_PerformanceMetrics/ThresholdBased
@@ -32,16 +33,41 @@
   - file: Chapter_4_PerformanceMetrics/TopKBased
   - file: Chapter_4_PerformanceMetrics/Assessment_RealWorldData
   - file: Chapter_4_PerformanceMetrics/Summary
-
-- part: 5. Model validation and model selection
+- caption: 5. Model validation and model selection
+  numbered: True
   chapters:
   - file: Chapter_5_ModelValidationAndSelection/Introduction
   - file: Chapter_5_ModelValidationAndSelection/ValidationStrategies
   - file: Chapter_5_ModelValidationAndSelection/ModelSelection
+  - file: Chapter_5_ModelValidationAndSelection/ModelSelection_RealWorldData
   - file: Chapter_5_ModelValidationAndSelection/Summary
-
-- part: References
+- caption: 6. Imbalanced learning
+  numbered: True
+  chapters:
+  - file: Chapter_6_ImbalancedLearning/Introduction
+  - file: Chapter_6_ImbalancedLearning/CostSensitive
+  - file: Chapter_6_ImbalancedLearning/Resampling
+  - file: Chapter_6_ImbalancedLearning/Ensembling
+  - file: Chapter_6_ImbalancedLearning/Imbalanced_RealWorldData
+  - file: Chapter_6_ImbalancedLearning/Summary
+- caption: 7. Deep learning
+  numbered: true
+  chapters:
+  - file: Chapter_7_DeepLearning/Introduction
+  - file: Chapter_7_DeepLearning/FeedForwardNeuralNetworks
+  - file: Chapter_7_DeepLearning/Autoencoders
+  - file: Chapter_7_DeepLearning/SequentialModeling 
+  - file: Chapter_7_DeepLearning/RealWorldData
+  - file: Chapter_7_DeepLearning/Summary
+#- caption: 8. Interpretability
+#  numbered: true
+#  chapters:
+#  - file: Chapter_x_Interpretability/InterpretabiltySection1
+#  - file: Chapter_x_Interpretability/InterpretabiltySection2
+#  - file: Chapter_x_Interpretability/InterpretabiltySection3
+#  - file: Chapter_x_Interpretability/InterpretabiltySection4
+- caption: References
+  numbered: True
   chapters:
   - file: Chapter_References/shared_functions
   - file: Chapter_References/bibliography
-  

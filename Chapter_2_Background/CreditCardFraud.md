@@ -41,7 +41,7 @@ Card-not-present refers to the general category of frauds conducted remotely, ei
 
 Overall, there are fewer statistics available on the cause of such frauds. For example, contrary to card-present frauds, the European Central Bank only requires the card payment scheme operators to report the overall CNP fraud losses.
 
-It is however known that most CNP frauds are a direct consequence of illegally obtained payment credentials (e.g., card numbers), either from data breaches or sometimes directly from the cardholders (e.g. via phishing, scam text messages). Also worth noting, such credentials are usually not used directly, but rather put on sale on underground web market places (the *dark web*), and later used by criminal groups. Criminals who steal data are usually a different group than criminals who perpetrate frauds {cite}`ECB2020,NilsonReport2019`. 
+It is however known that most CNP frauds are a direct consequence of illegally obtained payment credentials (e.g., card numbers), either from data breaches or sometimes directly from the cardholders (e.g. via phishing, scam text messages). Also worth noting, such credentials are usually not used directly, but rather put on sale on underground web marketplaces (the *dark web*), and later used by criminal groups. Criminals who steal data are usually a different group than criminals who perpetrate frauds {cite}`ECB2020,NilsonReport2019`. 
 
 The data that is generally involved in card-not-present fraud involves the card number, card expiration date, card security code, and personal billing information (such as the cardholder’s address).
 
