@@ -1,4 +1,4 @@
-# Machine Learning for Credit Card Fraud Detection - Practical Handbook
+# Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook
 
 ## Early access
 
@@ -75,7 +75,7 @@ If you wish to cite this book, you may use the following:
 
 <pre>
 @book{leborgne2022fraud,
-title={Machine Learning for Credit Card Fraud Detection - Practical Handbook},
+title={Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook},
 author={Le Borgne, Yann-A{\"e}l and Siblini, Wissam and Lebichot, Bertrand and Bontempi, Gianluca},
 url={https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook},
 year={2022},
