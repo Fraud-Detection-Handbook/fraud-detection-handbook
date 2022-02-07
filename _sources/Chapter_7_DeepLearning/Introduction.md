@@ -27,9 +27,9 @@ Moreover, on top of these learned representations, using a feed-forward neural n
 
 ### Federated learning
 
-Federated learning consists in sharing and training a model on multiple devices while having each device keeping its data locally. The idea is to share an initial model between the devices, update it locally, and frequently federate the updates from all devices into a global model for everyone. In general, the global update is computed with methods like federated averaging {cite}`konevcny2016federated`, i.e. through a weighted average of each local model's weights. 
+Federated learning consists in sharing and training a model on multiple devices with each device keeping its data locally. The idea is to share an initial model between the devices, update it locally, and frequently federate the updates from all devices into a global model for everyone. In general, the global update is computed with methods like federated averaging {cite}`konevcny2016federated`, i.e. through a weighted average of each local model's weights. 
 
-Contrary to tree-based models, neural networks with the same architecture can have their weights averaged, which make them the first choice when it comes to federated learning.
+Contrary to tree-based models, neural networks with the same architecture can have their weights averaged, which makes them the first choice when it comes to federated learning.
 
 ### An additional model for stacking
 
