@@ -56,3 +56,4 @@ The collaboration was made possible thanks to [Innoviris](https://innoviris.brus
 * 2015 to 2018. *BruFence: Scalable machine learning for automating defense system*. Innoviris Bridge Programme.
 * 2012 to 2015. *Adaptive real-time machine learning for credit card fraud detection*. Innoviris Doctiris Programme. 
 
+The collaboration is continuing in the context of the [Data Engineering for Data Science (DEDS) project](https://deds.ulb.ac.be/) - under the Horizon 2020 - Marie Skłodowska-Curie Innovative Training Networks (H2020-MSCA-ITN-2020) framework.
