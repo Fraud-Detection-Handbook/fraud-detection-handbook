@@ -54,7 +54,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook-draft/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html" />
+    <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -410,14 +410,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook-draft"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook-draft/issues/new?title=Issue%20on%20page%20%2FChapter_7_DeepLearning/FeedForwardNeuralNetworks.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/issues/new?title=Issue%20on%20page%20%2FChapter_7_DeepLearning/FeedForwardNeuralNetworks.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook-draft/edit/main/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button
+        <a class="edit-button" href="https://github.com/Fraud-Detection-Handbook/fraud-detection-handbook/edit/main/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -437,7 +437,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook-draft/main?urlpath=tree/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fraud-Detection-Handbook/fraud-detection-handbook/main?urlpath=tree/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -445,7 +445,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook-draft/blob/main/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/Fraud-Detection-Handbook/fraud-detection-handbook/blob/main/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -767,7 +767,7 @@ Wall time: 588 ms
 <h3><span class="section-number">2.2.2. </span>The module<a class="headerlink" href="#the-module" title="Permalink to this headline">¶</a></h3>
 <p>After defining the data pipeline, the next step is to design the module. Let us start with a first rather simple feed-forward neural network.</p>
 <p>As suggested in the introduction, the idea is to define several fully connected layers (<code class="docutils literal notranslate"><span class="pre">torch.nn.Linear</span></code>). A first layer <code class="docutils literal notranslate"><span class="pre">fc1</span></code> which takes as input as many neurons as there are features in the input x. It can be followed by a hidden layer with a chosen number of neurons (<code class="docutils literal notranslate"><span class="pre">hidden_size</span></code>). Finally comes the output layer which has a single output neuron to fit the label (<code class="docutils literal notranslate"><span class="pre">fraud</span></code> or <code class="docutils literal notranslate"><span class="pre">genuine</span></code>, represented by 1 and 0).</p>
-<p>In the past, the sigmoid activation function used to be the primary choice for all activation functions in all layers of a neural network. Today, the preferred choice is <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> (or variants like <code class="docutils literal notranslate"><span class="pre">eLU</span></code>, <code class="docutils literal notranslate"><span class="pre">leaky</span> <span class="pre">ReLU</span></code>), at least for the intermediate neurons. It has empirically proven to be a better choice for optimization and speed <span id="id5">[]</span>. For output neurons, the choice depends on the range or the expected distribution for the output value to be predicted.</p>
+<p>In the past, the sigmoid activation function used to be the primary choice for all activation functions in all layers of a neural network. Today, the preferred choice is <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> (or variants like <code class="docutils literal notranslate"><span class="pre">eLU</span></code>, <code class="docutils literal notranslate"><span class="pre">leaky</span> <span class="pre">ReLU</span></code>), at least for the intermediate neurons. It has empirically proven to be a better choice for optimization and speed <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id121">NH10</a>]</span>. For output neurons, the choice depends on the range or the expected distribution for the output value to be predicted.</p>
 <p>Below are plotted the output of several activation functions with respect to their input value to show how they behave and how they are distributed:</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
