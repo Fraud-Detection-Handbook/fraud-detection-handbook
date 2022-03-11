@@ -45,12 +45,11 @@
     <script src="../_static/jtag_1.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/Introduction.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -505,7 +504,7 @@
 <h3><span class="section-number">1.1.2. </span>Representation learning and end-to-end training<a class="headerlink" href="#representation-learning-and-end-to-end-training" title="Permalink to this headline">¶</a></h3>
 <p>Many studies have shown that additionally to raw transaction features, the use of expert feature engineering (building relevant aggregates based on the cardholder history of transactions) significantly improves the fraud detection rate <span id="id9">[<a class="reference internal" href="../Chapter_References/bibliography.html#id95">BASO16</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id6">DPCLB+14</a>]</span>.</p>
 <p>However, this process has limitations, primarily that of being dependent on expensive human expert knowledge. There have been attempts to replace manual aggregation through automatic learning of representations <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id98">DJS+20</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id96">FCTZ16</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id97">JGZ+18</a>]</span>. These methods are mainly based on neural networks (Autoencoders, convolutional neural networks, long short-term memory networks).</p>
-<p>Moreover, on top of these learned representations, using a feed-forward neural network instead of XGBoost or random forests is more interesting as it allows training/fine-tuning the whole model (representation part + classification part) from one end to the other.</p>
+<p>Moreover, on top of these learned representations, using a feed-forward neural network instead of XGBoost or random forests is more interesting as it allows training the whole model (representation part + classification part) from one end to the other.</p>
 </div>
 <div class="section" id="federated-learning">
 <h3><span class="section-number">1.1.3. </span>Federated learning<a class="headerlink" href="#federated-learning" title="Permalink to this headline">¶</a></h3>

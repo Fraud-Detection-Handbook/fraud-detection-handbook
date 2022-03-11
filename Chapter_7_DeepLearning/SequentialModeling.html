@@ -45,15 +45,14 @@
     <script src="../_static/jtag_1.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/SequentialModeling.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -634,31 +633,31 @@
      4.7.1. Grid search on the 1-D Convolutional Neural Network
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search-on-the-long-short-term-memory">
+     4.7.2. Grid search on the Long Short Term Memory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search-on-the-lstm-with-attention">
+     4.7.3. Grid search on the LSTM with Attention
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grid-search-on-the-long-short-term-memory">
-   4.8. Grid search on the Long Short Term Memory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grid-search-on-the-lstm-with-attention">
-   4.9. Grid search on the LSTM with Attention
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#saving-of-results">
-   4.10. Saving of results
+   4.8. Saving of results
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#benchmark-summary">
-   4.11. Benchmark summary
+   4.9. Benchmark summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
-   4.12. Conclusion
+   4.10. Conclusion
   </a>
  </li>
 </ul>
@@ -1424,7 +1423,8 @@ Name: tmp_index, Length: 66928, dtype: float64
 <p>To do that, they replace the regular fully connected layer with a layer of convolutional filters that performs a convolution operation over the input neurons.</p>
 <p><img alt="Illustration of a 2D-convolutional layer" src="../_images/convnet.png" /></p>
 <p>A convolutional layer has <code class="docutils literal notranslate"><span class="pre">num_filters</span></code> filters, with weights of a chosen dimension. If we consider a 2D-convolutional layer, each filter has 2 dimensions (width and height). In the example above, we consider an 8x6 input and a 3x3 filter. The convolution operation consists in sliding the filter over the input from left to right and from up to bottom, and each time computing the weighted sum of the input patch using the filter weights and applying an activation function to obtain an output similar to a regular neuron. In the figure, we represent with dashed squares on the left the first two input patches that the filter goes through and on the right the two corresponding outputs. Here we considered a <code class="docutils literal notranslate"><span class="pre">stride</span></code> parameter of 1, which means that the filter slides by 1 input each time. There is no padding, so the filter does not slide outside of the input, therefore the result is a map of features of dimension (8-(3-1))x(6-(3-1)), i.e. 6x4. But one can apply padding (considering that values outside the input are zeros) so that the output feature map has the same dimension as the input.</p>
-<p>The convolution operation can be seen as a filter scanning the input to identify a specific pattern. The information of the feature map can be aggregated into single information with a global pooling (average, max).</p>
+<p>The convolution operation can be seen as a filter scanning the input to identify a specific pattern. The weights of the filters are learned by the model. Having multiple filters allows capturing multiple patterns that are useful to reduce the loss for the task at hand.</p>
+<p>In order to summarize the information in final layers or to save memory in intermediate ones, the obtained feature maps can be aggregated into smaller maps with pooling layers (average, max).</p>
 <div class="section" id="d-convolutions">
 <h3><span class="section-number">4.3.1. </span>1D-convolutions<a class="headerlink" href="#d-convolutions" title="Permalink to this headline">¶</a></h3>
 <p>Note: Although not represented in the figure, if the input is an image, the input is in fact 3-dimensional (a 2D map of 3 features also called channels, namely RGB levels). The user only defines 2 dimensions for the filter (along the “sliding” directions) but the filters are in reality 3-dimensional as well, the last dimension matching the channel dimension.</p>
@@ -2852,9 +2852,8 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/conda/lib/python3
 </div>
 <p>Similar to the feed-forward network, the number of epochs and batch size, which are optimization parameters, have a sweet spot, which is probably connected to other parameters (model size, dropout, etc.). For the chosen optimization parameters, 100 filters seem to lead to better results than 200.</p>
 </div>
-</div>
 <div class="section" id="grid-search-on-the-long-short-term-memory">
-<h2><span class="section-number">4.8. </span>Grid search on the Long Short Term Memory<a class="headerlink" href="#grid-search-on-the-long-short-term-memory" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">4.7.2. </span>Grid search on the Long Short Term Memory<a class="headerlink" href="#grid-search-on-the-long-short-term-memory" title="Permalink to this headline">¶</a></h3>
 <p>For the LSTM, we will search the following hyperparameters:</p>
 <ul class="simple">
 <li><p>Batch size : [64,128,256]</p></li>
@@ -3095,7 +3094,7 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/conda/lib/python3
 <p>Recall here that the grid search is not exhaustive, and from the plots, it appears that the average precision could have been further improved.</p>
 </div>
 <div class="section" id="grid-search-on-the-lstm-with-attention">
-<h2><span class="section-number">4.9. </span>Grid search on the LSTM with Attention<a class="headerlink" href="#grid-search-on-the-lstm-with-attention" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">4.7.3. </span>Grid search on the LSTM with Attention<a class="headerlink" href="#grid-search-on-the-lstm-with-attention" title="Permalink to this headline">¶</a></h3>
 <p>For the LSTM with Attention, we apply the exact same process as for the LSTM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3337,8 +3336,9 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/conda/lib/python3
 </div>
 <p>For the same set of hyperparameters, the convergence w.r.t the average precision is different than LSTM without Attention.</p>
 </div>
+</div>
 <div class="section" id="saving-of-results">
-<h2><span class="section-number">4.10. </span>Saving of results<a class="headerlink" href="#saving-of-results" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.8. </span>Saving of results<a class="headerlink" href="#saving-of-results" title="Permalink to this headline">¶</a></h2>
 <p>Let us save the performance results and execution times of these three models in a Python pickle format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3359,7 +3359,7 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/conda/lib/python3
 </div>
 </div>
 <div class="section" id="benchmark-summary">
-<h2><span class="section-number">4.11. </span>Benchmark summary<a class="headerlink" href="#benchmark-summary" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.9. </span>Benchmark summary<a class="headerlink" href="#benchmark-summary" title="Permalink to this headline">¶</a></h2>
 <p>Let us finally retrieve the performance results obtained in</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ModelSelection.html#model-selection-comparison-performances"><span class="std std-ref">Chapter 5</span></a> with decision tree, logistic regression, random forest and XGBoost, and</p></li>
@@ -3502,7 +3502,7 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/conda/lib/python3
 <p>In the end, it appears that neural-network based approaches provide results that are competitive with random forests and XGBoost, providing slightly better performances in terms of AUC ROC, and slightly worse performances in terms of Average Precision. However, it should be kept in mind that, given more computational resources, a more extensive hyperparameter tuning could be performed for neural network-based approaches that would likely lead to further improve their performances.</p>
 </div>
 <div class="section" id="conclusion">
-<h2><span class="section-number">4.12. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.10. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>In this section, automatic methods to build features from contextual data were explored. To classify a transaction as fraudulent or genuine, it is generally useful to resort to the regular behavior of the cardholder in order to detect a discrepancy. A manual method to integrate this contextual information is to proceed with feature engineering and the creation of expert feature aggregations.</p>
 <p>Automatic representation learning methods from the Deep Learning literature have been explored to create features that represent the cardholder’s sequence of previous transactions in a way that optimizes the classification of the current transaction.</p>
 <p>The key methodological components are the building of the data pipeline to automatically create the sequential data from landmark variables and the right combination of adapted neural networks such as the 1D-CNN, the LSTM, the Attention mechanism, etc. These models have been tested here, and they can provide competitive performance. In the future, other candidate architectures such as Multi-Head Self-Attention, Sequence-to-Sequence Autoencoder, or any combination of the above modules could be explored to attempt to further improve fraud detection performance.</p>

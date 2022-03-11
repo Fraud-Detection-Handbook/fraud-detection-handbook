@@ -45,13 +45,14 @@
     <script src="../_static/jtag_1.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/Autoencoders.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -543,7 +544,7 @@
 </ul>
 <p><img alt="Autoencoder" src="../_images/autoencoder.png" /></p>
 <p>The encoder and decoder can have complex architectures like recurrent neural networks when dealing with sequential data or convolutional neural networks when dealing with images. But in their simplest form, they are multi-layer feed-forward neural networks. The dimension of the code, which is also the input of the decoder, can be fixed arbitrarily. This dimension is generally chosen to be lower than the original input dimension to reduce the dimensionality and to learn underlying meta variables. The dimension of the output of the decoder is the same as the input of the encoder because its purpose is to reconstruct the input.</p>
-<p>The architecture is generally trained end-to-end by optimizing the input reconstruction, i.e. by minimizing a loss that measures a difference between the model’s output and the input. When there are intermediate layers between the input and the bottleneck, one can train them successively: the first intermediate layer can be trained with the objective to reconstruct the input. Then, the second layer can be trained with the objective to reconstruct the output of the first layer, and so on. Regardless, an autoencoder can be trained with any unlabeled data.</p>
+<p>The architecture is generally trained end-to-end by optimizing the input reconstruction, i.e. by minimizing a loss that measures a difference between the model’s output and the input. It can be trained with any unlabeled data. Note that when the autoencoder is “deep”, i.e. there are intermediate layers <span class="math notranslate nohighlight">\(h_2\)</span> and <span class="math notranslate nohighlight">\(h_2'\)</span> respectively between the input <span class="math notranslate nohighlight">\(x\)</span> and the bottleneck <span class="math notranslate nohighlight">\(h\)</span> and between the bottleneck and the output <span class="math notranslate nohighlight">\(y\)</span> (like in the figure above), one can train the layers successively instead of simultaneously. More precisely, one can first consider a submodel with only <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(h_2\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and train it to reconstruct the input from the intermediate code <span class="math notranslate nohighlight">\(h_2\)</span>. Then, consider a second submodel with only <span class="math notranslate nohighlight">\(h_2\)</span>, <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(h_2'\)</span> and train it to reconstruct the intermediate code from the code <span class="math notranslate nohighlight">\(h\)</span>. Finally, fine-tune the whole model with <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(h_2\)</span>, <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(h_2'\)</span> and <span class="math notranslate nohighlight">\(y\)</span> to reconstruct the input.</p>
 <p>Autoencoders can be used as techniques for unsupervised or semi-supervised anomaly detection, which led them to be used multiple times for credit card fraud detection <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id111">AC15</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id112">ZP17</a>]</span>.</p>
 <div class="section" id="anomaly-detection">
 <h3><span class="section-number">3.1.1. </span>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline">¶</a></h3>
@@ -815,6 +816,7 @@ Wall time: 760 ms
 </div>
 </div>
 </div>
+<p>Before training it, here are the loss values for the first five samples, and the overall average loss.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">losses</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
@@ -2245,7 +2247,7 @@ Early stopping
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f9f243358e0&gt;
 </pre></div>
 </div>
-<img alt="../_images/Autoencoders_51_1.png" src="../_images/Autoencoders_51_1.png" />
+<img alt="../_images/Autoencoders_52_1.png" src="../_images/Autoencoders_52_1.png" />
 </div>
 </div>
 <p>It is also possible to apply a K-means clustering and vizualize the clusters:</p>
@@ -2273,7 +2275,7 @@ Early stopping
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f9f25e1c460&gt;
 </pre></div>
 </div>
-<img alt="../_images/Autoencoders_54_1.png" src="../_images/Autoencoders_54_1.png" />
+<img alt="../_images/Autoencoders_55_1.png" src="../_images/Autoencoders_55_1.png" />
 </div>
 </div>
 </div>

@@ -45,15 +45,14 @@
     <script src="../_static/jtag_1.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/FeedForwardNeuralNetworks.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -475,23 +474,18 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-management">
-     2.2.1. Data management
+    <a class="reference internal nav-link" href="#data-management-datasets-and-dataloaders">
+     2.2.1. Data management: Datasets and Dataloaders
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-module">
-     2.2.2. The module
+    <a class="reference internal nav-link" href="#the-model-aka-the-module">
+     2.2.2. The model aka the module
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optimization-and-training">
-     2.2.3. Optimization and training
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optimization">
-     2.2.4. Optimization
+    <a class="reference internal nav-link" href="#the-optimizer-and-the-training-loop">
+     2.2.3. The optimizer and the training loop
     </a>
    </li>
   </ul>
@@ -550,7 +544,9 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="feed-forward-neural-network">
 <span id="feedforwardneuralnetworks"></span><h1><span class="section-number">2. </span>Feed-forward neural network<a class="headerlink" href="#feed-forward-neural-network" title="Permalink to this headline">¶</a></h1>
 <p>As neural networks are a pillar in both the early and the recent advances of artificial intelligence, their use for credit card fraud detection is not surprising. The first examples of simple feed-forward neural networks applied to fraud detection can bring us back to the early 90s <span id="id1">[<a class="reference internal" href="../Chapter_References/bibliography.html#id101">AFR97</a>, <a class="reference internal" href="../Chapter_References/bibliography.html#id100">GR94</a>]</span>. Naturally, in recent FDS studies, neural networks are often found in experimental benchmarks, along with random forests, XGBoost, or logistic regression.</p>
-<p>At the core of a feed-forward neural network is the artificial neuron, a simple machine learning model that consists of a linear combination of input variables followed by the application of an activation function (sigmoid, ReLU, tanh, …).</p>
+<p>At the core of a feed-forward neural network is the artificial neuron, a simple machine learning model that consists of a linear combination of input variables followed by the application of an activation function <span class="math notranslate nohighlight">\(\sigma\)</span> (sigmoid, ReLU, tanh, …). More precisely, given a list of <span class="math notranslate nohighlight">\(n\)</span> input variables <span class="math notranslate nohighlight">\(x_i\)</span>, the output <span class="math notranslate nohighlight">\(h\)</span> of the artificial neuron is computed as follows:</p>
+<p><span class="math notranslate nohighlight">\(h = \sigma(\sum_{i=1}^n w_i*x_i)\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(w_i\)</span> are the weights of the model.</p>
 <p>A whole network is composed of a succession of layers containing neurons that take, as inputs, the output values of the previous layer.</p>
 <p><img alt="A feed forward neural network architecture" src="../_images/neuralnetwork.png" /></p>
 <p>When applied to the fraud detection problem, the architecture is designed as follows:</p>
@@ -699,8 +695,9 @@ Wall time: 588 ms
 <li><p>The optimizer: The <a class="reference external" href="https://pytorch.org/docs/stable/optim.html">optimizer</a> is the object that implements the optimization algorithm. It is called after the loss is computed to calculate the necessary model updates. The most basic one is SGD, but there are many others like RMSProp, Adagrad, Adam, …</p></li>
 <li><p>Training loop and evaluation: the training loop is the core of a model’s training. It consists in performing several iterations (epochs), getting all the training batches from the loader, performing the forward pass, computing the loss, and calling the optimizer. After each epoch, an evaluation can be performed to track the model’s evolution and possibly stop the process.</p></li>
 </ul>
-<div class="section" id="data-management">
-<h3><span class="section-number">2.2.1. </span>Data management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h3>
+<p>The next subsections describe and implement in details each of these elements.</p>
+<div class="section" id="data-management-datasets-and-dataloaders">
+<h3><span class="section-number">2.2.1. </span>Data management: Datasets and Dataloaders<a class="headerlink" href="#data-management-datasets-and-dataloaders" title="Permalink to this headline">¶</a></h3>
 <p>The first step is to convert our data into objects that PyTorch can use, like <code class="docutils literal notranslate"><span class="pre">FloatTensors</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -761,10 +758,10 @@ Wall time: 588 ms
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">num_workers</span></code> parameter allows parallelizing batch preparation. It can be useful when the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> requires a lot of processing before returning a sample.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">num_workers</span></code> parameter allows parallelizing batch preparation. It can be useful when the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> requires a lot of processing before returning a sample. Here we do not use multiprocessing so we set <code class="docutils literal notranslate"><span class="pre">num_workers</span></code> to 0.</p>
 </div>
-<div class="section" id="the-module">
-<h3><span class="section-number">2.2.2. </span>The module<a class="headerlink" href="#the-module" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-model-aka-the-module">
+<h3><span class="section-number">2.2.2. </span>The model aka the module<a class="headerlink" href="#the-model-aka-the-module" title="Permalink to this headline">¶</a></h3>
 <p>After defining the data pipeline, the next step is to design the module. Let us start with a first rather simple feed-forward neural network.</p>
 <p>As suggested in the introduction, the idea is to define several fully connected layers (<code class="docutils literal notranslate"><span class="pre">torch.nn.Linear</span></code>). A first layer <code class="docutils literal notranslate"><span class="pre">fc1</span></code> which takes as input as many neurons as there are features in the input x. It can be followed by a hidden layer with a chosen number of neurons (<code class="docutils literal notranslate"><span class="pre">hidden_size</span></code>). Finally comes the output layer which has a single output neuron to fit the label (<code class="docutils literal notranslate"><span class="pre">fraud</span></code> or <code class="docutils literal notranslate"><span class="pre">genuine</span></code>, represented by 1 and 0).</p>
 <p>In the past, the sigmoid activation function used to be the primary choice for all activation functions in all layers of a neural network. Today, the preferred choice is <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> (or variants like <code class="docutils literal notranslate"><span class="pre">eLU</span></code>, <code class="docutils literal notranslate"><span class="pre">leaky</span> <span class="pre">ReLU</span></code>), at least for the intermediate neurons. It has empirically proven to be a better choice for optimization and speed <span id="id5">[<a class="reference internal" href="../Chapter_References/bibliography.html#id121">NH10</a>]</span>. For output neurons, the choice depends on the range or the expected distribution for the output value to be predicted.</p>
@@ -870,10 +867,10 @@ Wall time: 588 ms
 </div>
 </div>
 </div>
-<div class="section" id="optimization-and-training">
-<h3><span class="section-number">2.2.3. </span>Optimization and training<a class="headerlink" href="#optimization-and-training" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-optimizer-and-the-training-loop">
+<h3><span class="section-number">2.2.3. </span>The optimizer and the training loop<a class="headerlink" href="#the-optimizer-and-the-training-loop" title="Permalink to this headline">¶</a></h3>
 <p>Optimization is at the core of neural network training. The above neural network is designed to output a single value between 0 and 1. The goal is that this value gets as close to 1 (resp. 0) as possible for an input describing a fraudulent (resp. genuine) transaction.</p>
-<p>In practice, this goal is formulated with an optimization problem that aims at minimizing or maximizing some cost/loss function. The role of the loss function is precisely to measure the discrepancy between the predicted value and the expected value (0 or 1), also referred to as the ground truth. There are many loss functions (mean squared error, cross-entropy, KL-divergence, hinge loss, mean absolute error) available in PyTorch, and each serves a specific purpose. For binary classification problems, binary cross-entropy is the most relevant one. It is defined as follows:</p>
+<p>In practice, this goal is formulated with an optimization problem that aims at minimizing or maximizing some cost/loss function. The role of the loss function is precisely to measure the discrepancy between the predicted value and the expected value (0 or 1), also referred to as the ground truth. There are many loss functions (mean squared error, cross-entropy, KL-divergence, hinge loss, mean absolute error) available in PyTorch, and each serves a specific purpose. Here we only focus on binary cross-entropy because it is the most relevant loss function for binary classification problems like fraud detection. It is defined as follows:</p>
 <p><span class="math notranslate nohighlight">\(BCE(y,p) = −(y*log(p)+(1−y)*log(1−p))\)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(y\)</span> is the ground truth (in <span class="math notranslate nohighlight">\(\{0,1\}\)</span>) and <span class="math notranslate nohighlight">\(p\)</span> the predicted output (in <span class="math notranslate nohighlight">\(]0,1[\)</span>).</p>
 <div class="cell docutils container">
@@ -955,7 +952,7 @@ Let us start by setting the number of epochs to <code class="docutils literal no
     <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">train_loss</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">training_generator</span><span class="p">:</span>
-        <span class="c1"># Applying the updates associated to previously computed gradients</span>
+        <span class="c1"># Removing previously computed gradients</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
         <span class="c1"># Performing the forward pass on the current batch</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
@@ -963,7 +960,7 @@ Let us start by setting the number of epochs to <code class="docutils literal no
         <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">y_batch</span><span class="p">)</span>
         <span class="c1"># Computing the gradients over the backward pass</span>
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-        <span class="c1"># Indicating to the optimizer that a step has been performed</span>
+        <span class="c1"># Performing an optimization step from the current gradients</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
         <span class="c1"># Storing the current step&#39;s loss for display purposes</span>
         <span class="n">train_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
@@ -1534,9 +1531,6 @@ test loss: 0.019413354424067133
 </div></div></div>
 </div>
 <p>This first shot feed-forward network already obtains a decent performance on the test set (refer to <a class="reference internal" href="../Chapter_3_GettingStarted/BaselineModeling.html#baseline-fds-performances-simulation"><span class="std std-ref">Chapter 3.4</span></a> for comparison). But several elements can be modified to improve the AUC ROC, reduce the training time, etc.</p>
-</div>
-<div class="section" id="optimization">
-<h3><span class="section-number">2.2.4. </span>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
 <p>As stated above, for the first model, optimization was not carried out properly because the validation performance is not exploited during the training process. To avoid overfitting in practice, it is necessary to take it into account (See Chapter 5, <a class="reference internal" href="../Chapter_5_ModelValidationAndSelection/ValidationStrategies.html#hold-out-validation"><span class="std std-ref">Hold-out validation</span></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1634,11 +1628,8 @@ test loss: 0.019413354424067133
         <span class="n">train_loss</span><span class="o">=</span><span class="p">[]</span>
         <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">training_generator</span><span class="p">:</span>
             <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-            <span class="c1"># Forward pass</span>
             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
-            <span class="c1"># Compute Loss</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">y_batch</span><span class="p">)</span>
-            <span class="c1"># Backward pass</span>
             <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
             <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>   
             <span class="n">train_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
@@ -2785,7 +2776,7 @@ Early stopping
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.01, 0.06)
 </pre></div>
 </div>
-<img alt="../_images/FeedForwardNeuralNetworks_63_1.png" src="../_images/FeedForwardNeuralNetworks_63_1.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_62_1.png" src="../_images/FeedForwardNeuralNetworks_62_1.png" />
 </div>
 </div>
 <p>The optimization is much faster with Adam (10 times fewer epochs) and it reaches a better optimum. Of course, increasing patience or changing the learning rate with SGD would probably help improve both speed and optimum. Nevertheless, Adam will be retained for the rest of the chapter as it usually allows very decent performance <strong>without significant tuning</strong>. To build the final neural network later, the tuning will mostly be made using batch size and initial learning rate.</p>
@@ -2863,11 +2854,11 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f996d2e3190&gt;
 </pre></div>
 </div>
-<img alt="../_images/FeedForwardNeuralNetworks_71_1.png" src="../_images/FeedForwardNeuralNetworks_71_1.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_70_1.png" src="../_images/FeedForwardNeuralNetworks_70_1.png" />
 </div>
 </div>
 <p>It is generally reported that a small dropout value can lead to better generalization results than no dropout, but it can sometimes be the opposite if the training data are very rich, if the training distribution is close to the valid/test distribution, and if the model is already not too expressive. So, the best practice is to consider dropout as a hyperparameter (that could be set to 0) and tune it with a hyperparameter search.</p>
-<p>In addition to the L2-regularization effect, dropout can be seen as a very powerful mechanism that mimics ensembling strategies like the one in a Random Forest (the model can be seen as an ensemble of submodels trained on different subsets of data).</p>
+<p>In addition to the L2-regularization effect, dropout can be seen as a very powerful mechanism that mimics ensembling strategies like bagging (the model can be seen as an ensemble of submodels trained on different subsets of data) <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id122">GBC16</a>]</span>.</p>
 </div>
 <div class="section" id="scaling-the-inputs">
 <h2><span class="section-number">2.4. </span>Scaling the inputs<a class="headerlink" href="#scaling-the-inputs" title="Permalink to this headline">¶</a></h2>
@@ -2888,7 +2879,7 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_77_0.png" src="../_images/FeedForwardNeuralNetworks_77_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_76_0.png" src="../_images/FeedForwardNeuralNetworks_76_0.png" />
 </div>
 </div>
 <p>And now let us apply the log function to it. To obtain a positive log for the feature that is in [0,+∞[, an idea is to add 1 and then apply the log function (which is equivalent to applying the <code class="docutils literal notranslate"><span class="pre">log1p</span></code> function in <code class="docutils literal notranslate"><span class="pre">numpy</span></code>). This leads to a preprocessed feature that belongs to [0,+∞[ and it can then be standardized. Here is how the amounts are distributed after all these steps:</p>
@@ -2899,7 +2890,7 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_79_0.png" src="../_images/FeedForwardNeuralNetworks_79_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_78_0.png" src="../_images/FeedForwardNeuralNetworks_78_0.png" />
 </div>
 </div>
 <p>Note that here, our artificial data were generated with Gaussians so the <code class="docutils literal notranslate"><span class="pre">np.log1p</span></code> is not very useful in practice. But keep in mind that on real-world data, the original scale of features like amount is far from normally distributed and this operation turns out to be quite often useful.</p>
@@ -2934,7 +2925,7 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9917b62c70&gt;
 </pre></div>
 </div>
-<img alt="../_images/FeedForwardNeuralNetworks_82_1.png" src="../_images/FeedForwardNeuralNetworks_82_1.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_81_1.png" src="../_images/FeedForwardNeuralNetworks_81_1.png" />
 </div>
 </div>
 <p>The train/valid losses are smoother and reach much better levels faster when the data is normalized with standard scaling.</p>
@@ -2958,7 +2949,7 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 </ul>
 <p>With neural networks, one can make use of embedding layers to encode categorical variables. More precisely, the idea is to let the neural network itself learn a representation of each modality of the categorical variable in a continuous vector space of dimension k, chosen by the practitioner. These representations can be learned end-to-end to make the feed-forward network optimal for the fraud detection task. They can also be learned with a different objective like predicting the sequences of countries visited by cardholders (unsupervised pre-training) and then later used for fraud detection, either with a neural network classifier or any other classifier (XGBoost, random forest, etc.).</p>
 <p><img alt="Embedding layer illustration" src="../_images/embedding.png" /></p>
-<p>Note that learning an embedding of dimension <span class="math notranslate nohighlight">\(k\)</span> for a categorical feature is equivalent to passing the one-hot encoding of the feature alone into a dense layer with an output dimension <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>Note that learning an embedding of dimension <span class="math notranslate nohighlight">\(k\)</span> for a categorical feature is computationally equivalent to learning a classical fully connected layer that takes as input the one-hot encoding of the feature and outputs <span class="math notranslate nohighlight">\(k\)</span> neurons.</p>
 <p>To test embedding layers, let us try to add extra categorical inputs in <span class="math notranslate nohighlight">\(x\)</span> and let the model learn embedding for them. Our last neural network was trained on the following features:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3130,7 +3121,7 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9917ac37c0&gt;
 </pre></div>
 </div>
-<img alt="../_images/FeedForwardNeuralNetworks_96_1.png" src="../_images/FeedForwardNeuralNetworks_96_1.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_95_1.png" src="../_images/FeedForwardNeuralNetworks_95_1.png" />
 </div>
 </div>
 <p>The performance here is not necessarily better with the categorical features (they do not add value compared to the engineered features, at least for the fraud patterns in our categorical data). This implementation is shown for educational purposes. Keep in mind that embedding layers are often a valuable solution in practice when training with a lot of data because it is a step forward in automation (instead of expert feature engineering, one can leave the representation choice to the model).</p>
@@ -3139,8 +3130,8 @@ Image source: <span id="id9">[<a class="reference internal" href="../Chapter_Ref
 <div class="section" id="ensemble">
 <h2><span class="section-number">2.6. </span>Ensemble<a class="headerlink" href="#ensemble" title="Permalink to this headline">¶</a></h2>
 <p>To go further and improve the results, ensembling is a common strategy with neural networks in general and for fraud detection.</p>
-<p>The idea is to simply train the architecture several times and average the predictions of all the obtained models at inference <span id="id10">[<a class="reference internal" href="../Chapter_References/bibliography.html#id108">Zho21</a>]</span>. Layer initialization and the random batch order are generally enough to ensure diversity between each submodel and make the ensemble better than each individual. To go further, one can also train each individual on a different train/valid split <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id109">Bre96</a>]</span>.</p>
-<p>Ensembling is also very useful for fraud detection, in particular, because of concept drift. Indeed, in fraud detection, the fraudsters’ techniques are varied and change over time. A single model can struggle to both learn and remember all the different patterns for the target class. In this context, it is expected that an ensemble of models, efficiently built, can cope with the issue. The intuition is that the different components of the ensemble can be specialized for different tasks. For example, a component could be specialized for the recent patterns and another for the old patterns <span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id27">LPS+21</a>]</span>. Similarly, a component could be specialized for the easiest and generic fraudsters’ strategies and another for advanced concepts.</p>
+<p>The idea is to simply train the architecture several times and average the predictions of all the obtained models at inference <span id="id11">[<a class="reference internal" href="../Chapter_References/bibliography.html#id108">Zho21</a>]</span>. Layer initialization and the random batch order are generally enough to ensure diversity between each submodel and make the ensemble better than each individual. To go further, one can also train each individual on a different train/valid split <span id="id12">[<a class="reference internal" href="../Chapter_References/bibliography.html#id109">Bre96</a>]</span>.</p>
+<p>Ensembling is also very useful for fraud detection, in particular, because of concept drift. Indeed, in fraud detection, the fraudsters’ techniques are varied and change over time. A single model can struggle to both learn and remember all the different patterns for the target class. In this context, it is expected that an ensemble of models, efficiently built, can cope with the issue. The intuition is that the different components of the ensemble can be specialized for different tasks. For example, a component could be specialized for the recent patterns and another for the old patterns <span id="id13">[<a class="reference internal" href="../Chapter_References/bibliography.html#id27">LPS+21</a>]</span>. Similarly, a component could be specialized for the easiest and generic fraudsters’ strategies and another for advanced concepts.</p>
 </div>
 <div class="section" id="prequential-grid-search">
 <span id="model-selection-ffnn"></span><h2><span class="section-number">2.7. </span>Prequential grid search<a class="headerlink" href="#prequential-grid-search" title="Permalink to this headline">¶</a></h2>
@@ -3849,7 +3840,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/conda/lib/python3.8/site-
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_122_0.png" src="../_images/FeedForwardNeuralNetworks_122_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_121_0.png" src="../_images/FeedForwardNeuralNetworks_121_0.png" />
 </div>
 </div>
 <p>First, if we fix the number of epochs to 20, the dropout level to 0.2, the lower batch size leads to better results for average precision and card precision on the test set, whereas there is a sweet spot according to AUC-ROC. In fact, the optimal batch size is strongly connected to other optimizer parameters. Often, a larger batch size requires a larger number of epochs. To verify that, let us visualize the same plots but with the number of epochs to 40.</p>
@@ -3869,7 +3860,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/conda/lib/python3.8/site-
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_124_0.png" src="../_images/FeedForwardNeuralNetworks_124_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_123_0.png" src="../_images/FeedForwardNeuralNetworks_123_0.png" />
 </div>
 </div>
 <p>With this higher number of epochs, the optimal batch size is now globally higher. Let us now do the contrary, i.e. fix the batch size to some value (e.g. 64) and visualize the impact of the number of epochs.</p>
@@ -3889,7 +3880,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/conda/lib/python3.8/site-
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_126_0.png" src="../_images/FeedForwardNeuralNetworks_126_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_125_0.png" src="../_images/FeedForwardNeuralNetworks_125_0.png" />
 </div>
 </div>
 <p>The optimal number of epochs also depends on the metric and has a sweet spot strongly connected to the choice of other hyperparameters.</p>
@@ -3921,7 +3912,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/conda/lib/python3.8/site-
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/FeedForwardNeuralNetworks_128_0.png" src="../_images/FeedForwardNeuralNetworks_128_0.png" />
+<img alt="../_images/FeedForwardNeuralNetworks_127_0.png" src="../_images/FeedForwardNeuralNetworks_127_0.png" />
 </div>
 </div>
 <p>As for the dropout, it helps generalize and improve the valid/test metrics. However, when the dropout value is too high (0.4), it can deteriorate the results, e.g. by limiting the fitting power or by requiring a larger number of epochs.</p>
@@ -4056,7 +4047,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/conda/lib/python3.8/site-
 </div>
 <div class="section" id="conclusion">
 <h2><span class="section-number">2.10. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
-<p>This section gave an overview of how to design a feed-forward neural network for fraud detection. Comparatively to classical machine learning models, neural networks have an infinite set of hyperparameters. This modularity in the design has a lot of advantages in terms of expressivity but it comes at the cost of a time-consuming hyper optimization of the architecture, the activations, the loss, the optimizers, the preprocessing, etc. Nevertheless, there are many ways to automate hyper optimization and architecture design, for instance with AutoML including Neural Architecture Search (or NAS) <span id="id13">[<a class="reference internal" href="../Chapter_References/bibliography.html#id110">EMH19</a>]</span>.</p>
+<p>This section gave an overview of how to design a feed-forward neural network for fraud detection. Comparatively to classical machine learning models, neural networks have an infinite set of hyperparameters. This modularity in the design has a lot of advantages in terms of expressivity but it comes at the cost of a time-consuming hyper optimization of the architecture, the activations, the loss, the optimizers, the preprocessing, etc. Nevertheless, there are many ways to automate hyper optimization and architecture design, for instance with AutoML including Neural Architecture Search (or NAS) <span id="id14">[<a class="reference internal" href="../Chapter_References/bibliography.html#id110">EMH19</a>]</span>.</p>
 <p>Here only the top of the iceberg is covered. There are many other aspects to consider even with such a simple neural network. Many of them can be found in good practice guides and generally also apply to fraud detection. Some are even specific to problems like the latter. An important one is to manage imbalance (refer to Chapter 6 for more details): it can be done with neural networks by replacing binary cross-entropy with a weighted BCE (putting more importance on the loss terms associated with fraud samples) or with focal loss, a variant of cross-entropy specifically designed to automatically focus on under-represented samples. Another way is to implement a custom Dataloader with a <a class="reference external" href="https://github.com/ufoym/imbalanced-dataset-sampler">balanced sampler</a>.</p>
 <p>The rest of the chapter rather focuses on different types of neural network models like autoencoders or sequential models and the way they can be used in a fraud detection context.</p>
 </div>

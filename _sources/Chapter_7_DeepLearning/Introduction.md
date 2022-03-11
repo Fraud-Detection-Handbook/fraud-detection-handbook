@@ -23,7 +23,7 @@ Many studies have shown that additionally to raw transaction features, the use o
 
 However, this process has limitations, primarily that of being dependent on expensive human expert knowledge. There have been attempts to replace manual aggregation through automatic learning of representations {cite}`fu2016credit,jurgovsky2018sequence,dastidar2020nag`. These methods are mainly based on neural networks (Autoencoders, convolutional neural networks, long short-term memory networks).
 
-Moreover, on top of these learned representations, using a feed-forward neural network instead of XGBoost or random forests is more interesting as it allows training/fine-tuning the whole model (representation part + classification part) from one end to the other. 
+Moreover, on top of these learned representations, using a feed-forward neural network instead of XGBoost or random forests is more interesting as it allows training the whole model (representation part + classification part) from one end to the other. 
 
 ### Federated learning
 

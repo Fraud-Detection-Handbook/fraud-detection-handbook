@@ -45,12 +45,11 @@
     <script src="../_static/jtag_1.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_7_DeepLearning/RealWorldData.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -508,7 +507,7 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="real-world-data">
 <h1><span class="section-number">5. </span>Real-world data<a class="headerlink" href="#real-world-data" title="Permalink to this headline">¶</a></h1>
 <p>The section reports the performances that are obtained on real-world data using neural network architectures. The dataset is the same as in <a class="reference internal" href="../Chapter_3_GettingStarted/Baseline_RealWorldData.html#baseline-fds-realworlddata"><span class="std std-ref">Chapter 3, Section 5</span></a>. Results are reported following the prequential grid search methodology used in the previous sections with simulated data.</p>
-<p>We first report the performances for the feed-forward neural network, the convolutional neural network, the long short term memory, and the LSTM with attention, varying some hyperparameters:</p>
+<p>We first report the performances for the feed-forward neural network, the convolutional neural network, the long short term memory, and the LSTM with attention. We also considered variations in the hyperparameters:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Feed-forward</span> <span class="pre">Neural</span> <span class="pre">Network</span></code>: 2 layers, 500 neurons, a dropout level of 0 or 0.2, Adam with a learning rate of 0.001 or 0.0001, 5, 10 or 20 epochs, and a batch size of 64, 128, or 256.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Convolutional</span> <span class="pre">Neural</span> <span class="pre">Network</span></code>: 2 convolutional layers with 200 filters of size 2, 1 hidden layer with 500 neurons, a dropout level of 0 or 0.2, Adam with a learning rate of 0.001 or 0.0001, 5, 10 or 20 epochs, and a batch size of 64, 128 or 256.</p></li>
@@ -612,7 +611,7 @@
 </table>
 </div></div></div>
 </div>
-<p>As well as for the synthetic data, the optimal set of hyperparameters strongly depends on the metric. The smallest learning rate <code class="docutils literal notranslate"><span class="pre">0.0001</span></code> and the largest number of epochs <code class="docutils literal notranslate"><span class="pre">20</span></code> are slightly favored. Let us consider these values and visualize the impact of the batch size and dropout level.</p>
+<p>As well as for the synthetic data, the optimal set of hyperparameters strongly depends on the metric. The smallest learning rate <code class="docutils literal notranslate"><span class="pre">0.0001</span></code>, and the largest number of epochs <code class="docutils literal notranslate"><span class="pre">20</span></code> are slightly favored. Let us consider these values and visualize the impact of the batch size and dropout level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">performances_df_nn</span><span class="p">[</span><span class="s1">&#39;Parameters&#39;</span><span class="p">])</span>
@@ -659,12 +658,12 @@
 <img alt="../_images/RealWorldData_9_0.png" src="../_images/RealWorldData_9_0.png" />
 </div>
 </div>
-<p>Similar to results on synthetic data, these hyperparameters related to optimization all have sweet spots that are interlinked to each other. This confirms the importance of tuning for this kind of model.</p>
-<p>Overall, our simple feed-forward neural network reaches a competitive performance, comparable to the Random Forest baseline on the real-world data (global comparison at the end), which is very promising for applications to incremental fraud detection systems.</p>
+<p>Similar to results on synthetic data, these hyperparameters related to optimization all have sweet spots that depend on each other. This confirms the importance of tuning for this kind of model.</p>
+<p>Overall, our simple feed-forward neural network reaches a competitive performance. It is comparable to the Random Forest baseline on the real-world data (global comparison at the end), which is very promising for applications to incremental fraud detection systems.</p>
 </div>
 <div class="section" id="sequential-models">
 <h2><span class="section-number">5.2. </span>Sequential models<a class="headerlink" href="#sequential-models" title="Permalink to this headline">¶</a></h2>
-<p>Let us now analyze the performance of sequential models on real-world data, with respect to some of their optimization parameters.</p>
+<p>Let us now analyze the performance of sequential models on real-world data with respect to some of their optimization parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filehandler</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;performances_model_selection_seq_model_real_data.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> 
@@ -913,11 +912,11 @@
 <img alt="../_images/RealWorldData_21_1.png" src="../_images/RealWorldData_21_1.png" />
 </div>
 </div>
-<p>The charts above show the evolution of the three metrics with the number of epochs, for the two extreme sets of “convergence”-related hyperparameters. On the top charts, the learning rate is <code class="docutils literal notranslate"><span class="pre">0.0001</span></code> and the batch size is <code class="docutils literal notranslate"><span class="pre">256</span></code>. On the bottom charts, the learning rate is <code class="docutils literal notranslate"><span class="pre">0.001</span></code> and the batch size is <code class="docutils literal notranslate"><span class="pre">64</span></code>. The best performance is obtained for the lowest learning rate, the largest batch size, and the lowest number of epochs which suggests that reducing the convergence speed or the number of epochs could potentially push the performance further. In spite of this, the optimal performance on the test sets is already very competitive with the baseline (see the results at the end of this section).</p>
+<p>The charts above show the evolution of the three metrics with the number of epochs, for the two extreme sets of “convergence”-related hyperparameters. On the top charts, the learning rate is <code class="docutils literal notranslate"><span class="pre">0.0001</span></code>, and the batch size is <code class="docutils literal notranslate"><span class="pre">256</span></code>. On the bottom charts, the learning rate is <code class="docutils literal notranslate"><span class="pre">0.001</span></code>, and the batch size is <code class="docutils literal notranslate"><span class="pre">64</span></code>. The best performance is obtained for the lowest learning rate, the largest batch size, and the lowest number of epochs which suggests that reducing the convergence speed or the number of epochs could potentially push the performance further. In spite of this, the optimal performance on the test sets is already very competitive with the baseline (see the results at the end of this section).</p>
 </div>
 <div class="section" id="lstm-with-attention">
 <h3><span class="section-number">5.2.3. </span>LSTM with Attention<a class="headerlink" href="#lstm-with-attention" title="Permalink to this headline">¶</a></h3>
-<p>For the LSTM with Attention, we finally perform the exact same analysis as for the regular LSTM. The results, shown below, are slightly better, and could also be improved by performing fewer optimization steps or by slowing down the convergence.</p>
+<p>For the LSTM with Attention, we finally perform the exact same analysis as for the regular LSTM. The results, shown below, are slightly better and could also be improved by performing fewer optimization steps or by slowing down the convergence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_performances_lstm_attn</span>
@@ -1158,7 +1157,7 @@
 </div>
 <p>The conclusions here are different from the results obtained with the simulated data. It appears that all neural network-based models have better performance than the Logistic Regression and the Decision Tree for the three metrics.</p>
 <p>In comparison with XGBoost and Random Forest, the sequential models are better w.r.t Average Precision, similar w.r.t Card Precision&#64;100, and worse w.r.t AUC-ROC.</p>
-<p>The sequential models are better than the regular feed-forward network, suggesting that the information brought by the history of transactions is relevant for fraud detection. The LSTM performs better than the CNN for the set of chosen hyperparameters and the Attention brings a little value.</p>
+<p>The sequential models are better than the regular feed-forward network, suggesting that the information brought by the history of transactions is relevant for fraud detection. The LSTM performs better than the CNN for the set of chosen hyperparameters, and the Attention brings a little value.</p>
 <p>The competitivity of the deep learning architectures comes at the great cost of hyperoptimization and tuning but is definitely valuable for all the reasons mentioned in the introduction (e.g. incremental).</p>
 </div>
 </div>
