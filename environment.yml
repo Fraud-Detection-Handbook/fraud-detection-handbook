@@ -16,3 +16,7 @@ dependencies:
   - pytorch
   - imbalanced-learn
   - py-xgboost
+  - pylint
+  - pip:
+    - 'black[jupyter]' 
+
