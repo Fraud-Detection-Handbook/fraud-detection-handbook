@@ -1,0 +1,22 @@
+name: fraud-detection-handbook
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - jupyterlab
+  - numpy
+  - matplotlib
+  - pandas
+  - pandarallel
+  - jupyter-book
+  - scikit-learn
+  - seaborn
+  - sphinx
+  - pytorch
+  - imbalanced-learn
+  - py-xgboost
+  - pylint
+  - pip:
+    - 'black[jupyter]' 
+
