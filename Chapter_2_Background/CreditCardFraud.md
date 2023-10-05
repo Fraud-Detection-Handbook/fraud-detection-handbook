@@ -1,7 +1,7 @@
 (Credit_Card_Fraud_Scenarios)=
 # Credit card fraud scenarios
 
-Worldwide financial losses caused by credit card fraudulent activities are worth tens of billions of dollars. One American over ten has been a victim of credit card fraud (median amount of $399), according to the Statistic Brain Research Institute {cite}`StatisticBrain2018`. According to the latest European Central Bank (ECB) report {cite}`ECB2020`, the total level of card fraud losses amounted to €1.8 billion in 2018 in the Single European Payment Area (SEPA).
+Worldwide financial losses caused by credit card fraudulent activities are worth tens of billions of dollars. One American in ten has been a victim of credit card fraud (median amount of $399), according to the Statistic Brain Research Institute {cite}`StatisticBrain2018`. According to the latest European Central Bank (ECB) report {cite}`ECB2020`, the total level of card fraud losses amounted to €1.8 billion in 2018 in the Single European Payment Area (SEPA).
 
 There exists a wide variety of scenarios that may lead a fraudster to successfully perform fraudulent payments with a credit card. There is currently no definite taxonomy on credit card fraud types, though certain patterns are known to occur more frequently than others. It should also be noted that fraud detection is a cat and mouse game, where fraudulent patterns change over time. As technology evolves, both in terms of fraud prevention and ease of use of payment systems, so do fraudster techniques. They adapt by moving from the old (and by now fixed) targets to the vulnerability of the new technologies. They also benefit from the constant changes in volume and characteristics of genuine transactions.
 
